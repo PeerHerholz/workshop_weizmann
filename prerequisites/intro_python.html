@@ -1,0 +1,2936 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Python &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_nipype.html">
+   Basics in data handling &amp; Nipype
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/prerequisites/intro_python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fprerequisites/intro_python.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/prerequisites/intro_python.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/prerequisites/intro_python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#before-we-get-started-1">
+   Before we get started 1…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals">
+   Goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-python">
+   What is Python?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#widely-used">
+     Widely-used
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#high-level">
+     High-level
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#file-reading-in-java">
+       File reading in Java
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-purpose">
+     General-purpose
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamic">
+     Dynamic
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variables-and-data-types">
+   Variables and data types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module">
+   Module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#namespaces-and-imports">
+   Namespaces and imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#help-and-descriptions">
+   Help and Descriptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variables-and-types">
+   Variables and types
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#symbol-names">
+     Symbol names
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment">
+     Assignment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fundamental-types-data-structures">
+     Fundamental types &amp; data structures
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operators-and-comparisons">
+   Operators and comparisons
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shortcut-math-operation-and-assignment">
+     Shortcut math operation and assignment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strings-list-and-dictionaries">
+   Strings, List and dictionaries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#strings">
+     Strings
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#string-formatting-examples">
+       String formatting examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#single-quote">
+       Single Quote
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#double-quotes">
+       Double Quotes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#triple-quotes">
+       Triple Quotes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#list">
+     List
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-inserting-modifying-and-removing-elements-from-lists">
+       Adding, inserting, modifying, and removing elements from lists
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lists">
+       Lists
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tuples">
+     Tuples
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Tuples
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dictionaries">
+     Dictionaries
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dictionaries-dict">
+       Dictionaries (dict)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#everything-is-an-object-in-python">
+     Everything is an object in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indentation">
+   Indentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-flow">
+   Control Flow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-structures">
+   Control structures
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conditional-statements-if-elif-else">
+     Conditional statements: if, elif, else
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loops">
+   Loops
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#for-loops">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     for
+    </span>
+   </code>
+   loops
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#break-continue-and-pass">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       break
+      </span>
+     </code>
+     ,
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       continue
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pass
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   Functions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#positional-vs-keyword-arguments">
+     Positional vs. keyword arguments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#default-argument-and-keyword-arguments">
+     Default argument and keyword arguments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#args-and-kwargs-parameters">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       *args
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       *kwargs
+      </span>
+     </code>
+     parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unnamed-functions-lambda-function">
+     Unnamed functions: lambda function
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classes">
+   Classes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modules">
+   Modules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exceptions">
+   Exceptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-i-o">
+   File I/O
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-csv-files">
+     Reading CSV files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#writing-csv-files">
+     Writing CSV files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-txt-files">
+     Reading TXT files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#writing-txt-files">
+     Writing TXT files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#with-open">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       with
+      </span>
+      <span class="pre">
+       open
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-modes">
+   File modes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-do-data-science-in-python">
+     Why do data science in Python?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#easy-to-learn">
+     Easy to learn
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comprehensive-standard-library">
+     Comprehensive standard library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exceptional-external-libraries">
+     Exceptional external libraries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relatively-good-performance">
+     (Relatively) good performance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-vs-other-data-science-languages">
+     Python vs. other data science languages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#r">
+     R
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matlab">
+     MATLAB
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#so-why-python">
+     So, why Python?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#you-can-have-your-cake-and-eat-it">
+     You can have your cake
+     <em>
+      and
+     </em>
+     eat it!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-core-python-data-science-stack">
+     The core Python data science stack
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-jupyter-notebook">
+     The Jupyter notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-jupyter">
+     Why Jupyter?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slideshow-mode">
+     Slideshow mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#built-in-latex-support">
+     Built-in LaTeX support
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#highly-customizable">
+     Highly customizable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#magic-functions">
+     Magic functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#combining-r-and-python-with-the-r-magic">
+     Combining R and Python with the %R magic
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-python">
+<h1>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://peerherholz.github.io/">Peer Herholz (he/him)</a><br />
+Postdoctoral researcher - <a class="reference external" href="https://neurodatascience.github.io/">NeuroDataScience lab</a> at <a class="reference external" href="https://www.mcgill.ca/neuro/">MNI</a>/<a class="reference external" href="https://www.mcgill.ca/">McGill</a>, <a class="reference external" href="https://sites.google.com/view/unique-neuro-ai">UNIQUE</a><br />
+Member - <a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">BIDS</a>, <a class="reference external" href="https://www.repronim.org/">ReproNim</a>, <a class="reference external" href="https://brainhack.org/">Brainhack</a>, <a class="reference external" href="https://www.cneuromod.ca/">Neuromod</a>, <a class="reference external" href="https://ohbm-environment.org/">OHBM SEA-SIG</a></p>
+<p><img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/Twitter%20social%20icons%20-%20circle%20-%20blue.png" alt="logo" title="Twitter" width="32" height="20" /> <img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/GitHub-Mark-120px-plus.png" alt="logo" title="Github" width="30" height="20" />     &#64;peerherholz</p>
+<div class="section" id="before-we-get-started-1">
+<h2>Before we get started 1…<a class="headerlink" href="#before-we-get-started-1" title="Permalink to this headline">¶</a></h2>
+<br>
+<ul class="simple">
+<li><p>most of what you’ll see within this lecture was prepared by Ross Markello, Michael Notter and Peer Herholz and further adapted for this course by Peer Herholz</p></li>
+<li><p>based on Tal Yarkoni’s <a class="reference external" href="https://neurohackademy.org/course/introduction-to-python-2/">“Introduction to Python” lecture at Neurohackademy 2019</a></p></li>
+<li><p>based on <a class="reference external" href="http://github.com/jrjohansson/scientific-python-lectures">IPython notebooks from J. R. Johansson</a></p></li>
+<li><p>based on <a class="reference external" href="http://www.stavros.io/tutorials/python/">http://www.stavros.io/tutorials/python/</a> &amp; <a class="reference external" href="http://www.swaroopch.com/notes/python">http://www.swaroopch.com/notes/python</a></p></li>
+<li><p>based on <a class="reference external" href="https://github.com/oesteban/biss2016">https://github.com/oesteban/biss2016</a> &amp;  <a class="reference external" href="https://github.com/jvns/pandas-cookbook">https://github.com/jvns/pandas-cookbook</a></p></li>
+</ul>
+</div>
+<div class="section" id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>learn basic and efficient usage of the python programming language</p>
+<ul>
+<li><p>what is python &amp; how to utilize it</p></li>
+<li><p>building blocks of &amp; operations in python</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="what-is-python">
+<h2>What is Python?<a class="headerlink" href="#what-is-python" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Python is a programming language</p></li>
+<li><p>Specifically, it’s a widely used, very flexible, high-level, general-purpose, dynamic programming language</p></li>
+<li><p>That’s a mouthful! Let’s explore each of these points in more detail…</p></li>
+</ul>
+<div class="section" id="widely-used">
+<h3>Widely-used<a class="headerlink" href="#widely-used" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Python is the fastest-growing major programming language</p></li>
+<li><p>Top 3 overall (with JavaScript, Java)</p></li>
+</ul>
+<center><img src="https://149351115.v2.pressablecdn.com/wp-content/uploads/2017/09/growth_major_languages-1-1400x1200.png" width="800px" style="margin-bottom: 10px;"></center></div>
+<div class="section" id="high-level">
+<h3>High-level<a class="headerlink" href="#high-level" title="Permalink to this headline">¶</a></h3>
+<p>Python features a high level of abstraction</p>
+<ul class="simple">
+<li><p>Many operations that are explicit in lower-level languages (e.g., C/C++) are implicit in Python</p></li>
+<li><p>E.g., memory allocation, garbage collection, etc.</p></li>
+<li><p>Python lets you write code faster</p></li>
+</ul>
+<div class="section" id="file-reading-in-java">
+<h4>File reading in Java<a class="headerlink" href="#file-reading-in-java" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="p">;</span>
+ 
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReadFile</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="p">{</span>
+        <span class="n">String</span> <span class="n">fileContents</span> <span class="o">=</span> <span class="n">readEntireFile</span><span class="p">(</span><span class="s">&quot;./foo.txt&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+ 
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">readEntireFile</span><span class="p">(</span><span class="n">String</span> <span class="n">filename</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">FileReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+        <span class="n">StringBuilder</span> <span class="n">contents</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+        <span class="kt">char</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="mi">4096</span><span class="o">]</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">read</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="n">contents</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">read</span><span class="p">);</span>
+            <span class="n">read</span> <span class="o">=</span> <span class="n">in</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">read</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">contents</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="general-purpose">
+<h3>General-purpose<a class="headerlink" href="#general-purpose" title="Permalink to this headline">¶</a></h3>
+<p>You can do almost everything in Python</p>
+<ul class="simple">
+<li><p>Comprehensive standard library</p></li>
+<li><p>Enormous ecosystem of third-party packages</p></li>
+<li><p>Widely used in many areas of software development (web, dev-ops, data science, etc.)</p></li>
+</ul>
+</div>
+<div class="section" id="dynamic">
+<h3>Dynamic<a class="headerlink" href="#dynamic" title="Permalink to this headline">¶</a></h3>
+<p>Code is interpreted at run-time</p>
+<ul class="simple">
+<li><p>No compilation process*; code is read line-by-line when executed</p></li>
+<li><p>Eliminates delays between development and execution</p></li>
+<li><p>The downside: poorer performance compared to compiled languages</p></li>
+</ul>
+<center><img src="https://imgs.xkcd.com/comics/python.png"></center><p>(Try typing <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">antigravity</span></code> into a new cell and running it!)</p>
+</div>
+</div>
+<div class="section" id="variables-and-data-types">
+<h2>Variables and data types<a class="headerlink" href="#variables-and-data-types" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>In Python, we declare a variable by assigning it a value with the = sign</p>
+<ul>
+<li><p>Variables are pointers, not data stores!</p></li>
+</ul>
+</li>
+<li><p>Python supports a variety of data types and structures:</p>
+<ul>
+<li><p>booleans</p></li>
+<li><p>numbers (ints, floats, etc.)</p></li>
+<li><p>strings</p></li>
+<li><p>lists</p></li>
+<li><p>dictionaries</p></li>
+<li><p>many others!</p></li>
+</ul>
+</li>
+<li><p>We don’t specify a variable’s type at assignment</p></li>
+</ul>
+<p>What follows is a <em>short</em> introduction to <code class="docutils literal notranslate"><span class="pre">Python</span></code> to help beginners to get familiar with this <code class="docutils literal notranslate"><span class="pre">programming</span> <span class="pre">language</span></code>.</p>
+<p>It is divided into the following chapters:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#Module">Module</a></p></li>
+<li><p><a class="reference external" href="#Help-and-Descriptions">Help and Descriptions</a></p></li>
+<li><p><a class="reference external" href="#Variables-and-types">Variables and types</a></p>
+<ul>
+<li><p><a class="reference external" href="#Symbol-names">Symbol names</a></p></li>
+<li><p><a class="reference external" href="#Assignment">Assignment</a></p></li>
+<li><p><a class="reference external" href="#Fundamental-types">Fundamental types</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#Operators-and-comparisons">Operators and comparisons</a></p>
+<ul>
+<li><p><a class="reference external" href="#Shortcut-math-operation-and-assignment">Shortcut math operation and assignment</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#Strings,-List-and-dictionaries">Strings, List and dictionaries</a></p>
+<ul>
+<li><p><a class="reference external" href="#Strings">Strings</a></p></li>
+<li><p><a class="reference external" href="#List">List</a></p></li>
+<li><p><a class="reference external" href="#Tuples">Tuples</a></p></li>
+<li><p><a class="reference external" href="#Dictionaries">Dictionaries</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#Indentation">Indentation</a></p></li>
+<li><p><a class="reference external" href="#Control-Flow">Control Flow</a></p>
+<ul>
+<li><p><a class="reference external" href="#Conditional-statements:-if,-elif,-else">Conditional statements: <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#Loops">Loops</a></p>
+<ul>
+<li><p><a class="reference external" href="#for-loops"><code class="docutils literal notranslate"><span class="pre">for</span></code> loops</a></p></li>
+<li><p><a class="reference external" href="#break,-continue-and-pass"><code class="docutils literal notranslate"><span class="pre">break</span></code>, <code class="docutils literal notranslate"><span class="pre">continue</span></code> and <code class="docutils literal notranslate"><span class="pre">pass</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#Functions">Functions</a></p>
+<ul>
+<li><p><a class="reference external" href="#Default-argument-and-keyword-arguments">Default argument and keyword arguments</a></p></li>
+<li><p><a class="reference external" href="#*args-and-*kwargs-parameters"><code class="docutils literal notranslate"><span class="pre">*args</span></code> and <code class="docutils literal notranslate"><span class="pre">*kwargs</span></code> parameters</a></p></li>
+<li><p><a class="reference external" href="#Unnamed-functions:-lambda-function">Unnamed functions: <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#Classes">Classes</a></p></li>
+<li><p><a class="reference external" href="#Modules">Modules</a></p></li>
+<li><p><a class="reference external" href="#Exceptions">Exceptions</a></p></li>
+<li><p><a class="reference external" href="#File-I/O">File I/O</a></p>
+<ul>
+<li><p><a class="reference external" href="#Reading-CSV-files">Reading CSV files</a></p></li>
+<li><p><a class="reference external" href="#Writing-CSV-files">Writing CSV files</a></p></li>
+<li><p><a class="reference external" href="#Reading-TXT-files">Reading TXT files</a></p></li>
+<li><p><a class="reference external" href="#Writing-TXT-files">Writing TXT files</a></p></li>
+<li><p><a class="reference external" href="#with-open">with open</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="module">
+<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<p>Most of the functionality in Python is provided by <em>modules</em>. To use a module in a Python program it first has to be imported. A module can be imported using the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement. For example, to import the module <code class="docutils literal notranslate"><span class="pre">math</span></code>, which contains many standard mathematical functions, we can do:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This includes the whole module and makes it available for use later in the program. For example, we can do:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Importing the whole module us often times unnecessary and can lead to longer loading time or increase the memory consumption. An alternative to the previous method, we can also choose to import only a few selected functions from a module by explicitly listing which ones we want to import:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is also possible to give an imported module or symbol your own access name with the <code class="docutils literal notranslate"><span class="pre">as</span></code> additional:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span> <span class="k">as</span> <span class="n">number_pi</span>
+
+<span class="n">x</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">number_pi</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="namespaces-and-imports">
+<h2>Namespaces and imports<a class="headerlink" href="#namespaces-and-imports" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Python is very serious about maintaining orderly namespaces</p></li>
+<li><p>If you want to use some code outside the current scope, you need to explicitly “import” it</p></li>
+<li><p>Python’s import system often annoys beginners, but it substantially increases code clarity</p>
+<ul>
+<li><p>Almost completely eliminates naming conflicts and confusion</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="help-and-descriptions">
+<h2>Help and Descriptions<a class="headerlink" href="#help-and-descriptions" title="Permalink to this headline">¶</a></h2>
+<p>Using the function <code class="docutils literal notranslate"><span class="pre">help</span></code> we can get a description of almost all functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="variables-and-types">
+<h2>Variables and types<a class="headerlink" href="#variables-and-types" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="symbol-names">
+<h3>Symbol names<a class="headerlink" href="#symbol-names" title="Permalink to this headline">¶</a></h3>
+<p>Variable names in Python can contain alphanumerical characters <code class="docutils literal notranslate"><span class="pre">a-z</span></code>, <code class="docutils literal notranslate"><span class="pre">A-Z</span></code>, <code class="docutils literal notranslate"><span class="pre">0-9</span></code> and some special characters such as <code class="docutils literal notranslate"><span class="pre">_</span></code>. Normal variable names must start with a letter.</p>
+<p>By convention, variable names start with a lower-case letter, and Class names start with a capital letter.</p>
+<p>In addition, there are a number of Python keywords that cannot be used as variable names. These keywords are:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>and, as, assert, break, class, continue, def, del, elif, else, except, exec, finally, for, from, global, if, import, in, is, lambda, not, or, pass, print, raise, return, try, while, with, yield
+</pre></div>
+</div>
+</div>
+<div class="section" id="assignment">
+<h3>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">¶</a></h3>
+<p>The assignment operator in Python is <code class="docutils literal notranslate"><span class="pre">=</span></code>. Python is a dynamically typed language, so we do not need to specify the type of a variable when we create one.</p>
+<p>Assigning a value to a new variable creates the variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># variable assignments</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Although not explicitly specified, a variable does have a type associated with it. The type is derived from the value it was assigned.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we assign a new value to a variable, its type can change.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we try to use a variable that has not yet been defined we get an <code class="docutils literal notranslate"><span class="pre">NameError</span></code> (Note, that we will use in the notebooks <code class="docutils literal notranslate"><span class="pre">try/except</span></code> blocks to handle the exception, so the notebook doesn’t stop. The code below will try to execute <code class="docutils literal notranslate"><span class="pre">print</span></code> function and if the <code class="docutils literal notranslate"><span class="pre">NameError</span></code> occurs the error message will be printed. Otherwise, an error will be raised. Later in this notebook you will learn more about exception handling.):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">NameError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NameError&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Variable names:</p>
+<ul class="simple">
+<li><p>Can include letters, digits, and underscores</p></li>
+<li><p>Cannot start with a digit</p></li>
+<li><p>Are case sensitive.</p></li>
+</ul>
+<p>This means that, for example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">weight0</span></code> is a valid variable name, whereas <code class="docutils literal notranslate"><span class="pre">0weight</span></code> is not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weight</span></code> and <code class="docutils literal notranslate"><span class="pre">Weight</span></code> are different variables</p></li>
+</ul>
+</div>
+<div class="section" id="fundamental-types-data-structures">
+<h3>Fundamental types &amp; data structures<a class="headerlink" href="#fundamental-types-data-structures" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Most code requires more complex structures built out of basic data types</p></li>
+<li><p>Python provides built-in support for many common structures</p>
+<ul>
+<li><p>Many additional structures can be found in the <a class="reference external" href="https://docs.python.org/3/library/collections.html">collections</a> module</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># integers</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># float</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># boolean</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="nb">type</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># string</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span>
+
+<span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="operators-and-comparisons">
+<h2>Operators and comparisons<a class="headerlink" href="#operators-and-comparisons" title="Permalink to this headline">¶</a></h2>
+<p>Most operators and comparisons in Python work as one would expect:</p>
+<ul class="simple">
+<li><p>Arithmetic operators <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">**</span></code> power, <code class="docutils literal notranslate"><span class="pre">%</span></code> modulo</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> 
+ <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span>
+ <span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+ <span class="mi">1</span> <span class="o">%</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In Python 2.7, what kind of division (<code class="docutils literal notranslate"><span class="pre">/</span></code>) will be executed, depends on the type of the numbers involved. If all numbers are integers, the division will be an integer division, otherwise, it will be a float division. In Python 3 this has been changed and fractions aren’t lost when dividing integers (for integer division you can use another operator, <code class="docutils literal notranslate"><span class="pre">//</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In Python 3 these two operations will give the same result</span>
+<span class="c1"># (in Python 2 the first one will be treated as an integer division). </span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note! The power operator in python isn&#39;t ^, but **</span>
+<span class="mi">2</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The boolean operators are spelled out as words <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ow">not</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="ow">or</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Comparison operators <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> (greater or equal), <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> (less or equal), <code class="docutils literal notranslate"><span class="pre">==</span></code> (equal), <code class="docutils literal notranslate"><span class="pre">!=</span></code> (not equal) and <code class="docutils literal notranslate"><span class="pre">is</span></code> (identical).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">&lt;</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="o">&lt;</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># equal to</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># not equal to</span>
+<span class="mi">2</span> <span class="o">!=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>boolean operator</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">y</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="ow">not</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="ow">and</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="ow">or</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>String comparison</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;lo W&quot;</span> <span class="ow">in</span> <span class="s2">&quot;Hello World&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;x&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s2">&quot;Hello World&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="shortcut-math-operation-and-assignment">
+<h3>Shortcut math operation and assignment<a class="headerlink" href="#shortcut-math-operation-and-assignment" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The command <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">*</span> <span class="pre">2</span></code>, can be shortcut to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*=</span> <span class="pre">2</span></code>. This also works with <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code> and <code class="docutils literal notranslate"><span class="pre">/=</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">b</span> <span class="o">*=</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="strings-list-and-dictionaries">
+<h2>Strings, List and dictionaries<a class="headerlink" href="#strings-list-and-dictionaries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="strings">
+<h3>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h3>
+<p>Strings are the variable type that is used for storing text messages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Hello world&quot;</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># length of the string: number of characters in string</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># replace a substring in a string with something else</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can index a character in a string using <code class="docutils literal notranslate"><span class="pre">[]</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Heads up MATLAB users:</strong> Indexing start at 0!</p>
+<p>We can extract a part of a string using the syntax <code class="docutils literal notranslate"><span class="pre">[start:stop]</span></code>, which extracts characters between index <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">stop</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we omit either (or both) of <code class="docutils literal notranslate"><span class="pre">start</span></code> or <code class="docutils literal notranslate"><span class="pre">stop</span></code> from <code class="docutils literal notranslate"><span class="pre">[start:stop]</span></code>, the default is the beginning and the end of the string, respectively:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also define the step size using the syntax <code class="docutils literal notranslate"><span class="pre">[start:end:step]</span></code> (the default value for <code class="docutils literal notranslate"><span class="pre">step</span></code> is 1, as we saw above):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[::</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This technique is called <em>slicing</em>.</p>
+<div class="section" id="string-formatting-examples">
+<h4>String formatting examples<a class="headerlink" href="#string-formatting-examples" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;str1&quot;</span> <span class="o">+</span> <span class="s2">&quot;str2&quot;</span> <span class="o">+</span> <span class="s2">&quot;str3&quot;</span><span class="p">)</span>  <span class="c1"># strings added with + are concatenated without space</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;str1&quot;</span> <span class="s2">&quot;str2&quot;</span> <span class="s2">&quot;str3&quot;</span><span class="p">)</span>      <span class="c1"># The print function concatenates strings differently</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;str2&quot;</span><span class="p">,</span> <span class="s2">&quot;str3&quot;</span><span class="p">)</span>    <span class="c1"># depending on how the inputs are specified</span>
+<span class="nb">print</span><span class="p">((</span><span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;str2&quot;</span><span class="p">,</span> <span class="s2">&quot;str3&quot;</span><span class="p">))</span>  <span class="c1"># See the three different outputs below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>       <span class="c1"># The print function converts all arguments to strings</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;value = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">1</span>.0)       # we can use C-style string formatting
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python has two string formatting styles. An example of the old style is below, specifier <code class="docutils literal notranslate"><span class="pre">%.2f</span></code> transforms the input number into a string, that corresponds to a floating point number with 2 decimal places and the specifier <code class="docutils literal notranslate"><span class="pre">%d</span></code> transforms the input number into a string, corresponding to a decimal number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span> <span class="o">=</span> <span class="s2">&quot;value1 = </span><span class="si">%.2f</span><span class="s2">. value2 = </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">3.1415</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The same string can be written using the new style string formatting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span> <span class="o">=</span> <span class="s1">&#39;value1 = </span><span class="si">{:.2f}</span><span class="s1">, value2 = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">3.1415</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Newlines are indicated by </span><span class="se">\n</span><span class="s2">And tabs by </span><span class="se">\t</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Newlines are indicated by \nAnd tabs by \t. Printed as rawstring&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">Number: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">String: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Nipype&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strString</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;This is</span>
+<span class="s2">a multiline</span>
+<span class="s2">string.&quot;&quot;&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">strString</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This </span><span class="si">{verb}</span><span class="s2"> a </span><span class="si">{noun}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">noun</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">verb</span> <span class="o">=</span> <span class="s2">&quot;is&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="single-quote">
+<h4>Single Quote<a class="headerlink" href="#single-quote" title="Permalink to this headline">¶</a></h4>
+<p>You can specify strings using single quotes such as <code class="docutils literal notranslate"><span class="pre">'Quote</span> <span class="pre">me</span> <span class="pre">on</span> <span class="pre">this'</span></code>.
+All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p>
+</div>
+<div class="section" id="double-quotes">
+<h4>Double Quotes<a class="headerlink" href="#double-quotes" title="Permalink to this headline">¶</a></h4>
+<p>Strings in double quotes work exactly the same way as strings in single quotes. An example is <code class="docutils literal notranslate"><span class="pre">&quot;What's</span> <span class="pre">your</span> <span class="pre">name?&quot;</span></code>.</p>
+</div>
+<div class="section" id="triple-quotes">
+<h4>Triple Quotes<a class="headerlink" href="#triple-quotes" title="Permalink to this headline">¶</a></h4>
+<p>You can specify multi-line strings using triple quotes - (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">'''</span></code>). You can use single quotes and double quotes freely within the triple quotes. An example is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;This is a multi-line string. This is the first line.</span>
+<span class="sd">This is the second line.</span>
+<span class="sd">&quot;What&#39;s your name?,&quot; I asked.</span>
+<span class="sd">He said &quot;Bond, James Bond.&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="list">
+<h3>List<a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h3>
+<p>Lists are very similar to strings, except that each element can be of any type.</p>
+<p>The syntax for creating lists in Python is <code class="docutils literal notranslate"><span class="pre">[...]</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use the same slicing techniques to manipulate lists as we could use on strings:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Heads up MATLAB users:</strong> Indexing starts at 0!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Elements in a list do not all have to be of the same type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python lists can be inhomogeneous and arbitrarily nested:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nested_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">]]]]]</span>
+
+<span class="n">nested_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lists play a very important role in Python and are for example used in loops and other flow control structures (discussed below). There are a number of convenient functions for generating lists of various types, for example, the <code class="docutils literal notranslate"><span class="pre">range</span></code> function (note that in Python 3 <code class="docutils literal notranslate"><span class="pre">range</span></code> creates a generator, so you have to use <code class="docutils literal notranslate"><span class="pre">list</span></code> function to get a list):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">stop</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">step</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert a string to a list by type casting:</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="n">s2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="n">s2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sorting lists</span>
+<span class="n">s2</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="adding-inserting-modifying-and-removing-elements-from-lists">
+<h4>Adding, inserting, modifying, and removing elements from lists<a class="headerlink" href="#adding-inserting-modifying-and-removing-elements-from-lists" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a new empty list</span>
+<span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># add an elements using `append`</span>
+<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">)</span>
+<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can modify lists by assigning new values to elements in the list. In technical jargon, lists are <em>mutable</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span>
+<span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;t&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Insert an element at an specific index using <code class="docutils literal notranslate"><span class="pre">insert</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;i&quot;</span><span class="p">)</span>
+<span class="n">l</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">)</span>
+<span class="n">l</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
+<span class="n">l</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">)</span>
+<span class="n">l</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">l</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remove first element with specific value using ‘remove’</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remove an element at a specific location using <code class="docutils literal notranslate"><span class="pre">del</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">l</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">l</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="lists">
+<h4>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>An ordered, heterogeneous collection of objects</p></li>
+<li><p>List elements can be accessed by position</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="tuples">
+<h3>Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">¶</a></h3>
+<p>Tuples are like lists, except that they cannot be modified once created, that is they are <em>immutable</em>.</p>
+<p>In Python, tuples are created using the syntax <code class="docutils literal notranslate"><span class="pre">(...,</span> <span class="pre">...,</span> <span class="pre">...)</span></code>, or even <code class="docutils literal notranslate"><span class="pre">...,</span> <span class="pre">...</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">point</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we try to assign a new value to an element in a tuple we get an error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">er</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TypeError:&quot;</span><span class="p">,</span> <span class="n">er</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h4>Tuples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Very similar to lists</p></li>
+<li><p>Key difference: tuples are <em>immutable</em></p>
+<ul>
+<li><p>They can’t be modified once they’re created</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="dictionaries">
+<h3>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h3>
+<p>Dictionaries are also like lists, except that each element is a key-value pair. The syntax for dictionaries is <code class="docutils literal notranslate"><span class="pre">{key1</span> <span class="pre">:</span> <span class="pre">value1,</span> <span class="pre">...}</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;parameter1&quot;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+          <span class="s2">&quot;parameter2&quot;</span> <span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
+          <span class="s2">&quot;parameter3&quot;</span> <span class="p">:</span> <span class="mf">3.0</span><span class="p">,}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dictionary entries can only be accessed by their key name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter2&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter1 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter1&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter2 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter2&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter3 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter3&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span>
+<span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;B&quot;</span>
+
+<span class="c1"># add a new entry</span>
+<span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter4&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;D&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter1 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter1&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter2 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter2&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter3 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter3&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter4 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter4&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="dictionaries-dict">
+<h4>Dictionaries (dict)<a class="headerlink" href="#dictionaries-dict" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Unordered collection of key-to-value pairs</p></li>
+<li><p>dictionary elements can be accessed by key, but <em>not</em> by position</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="everything-is-an-object-in-python">
+<h3>Everything is an object in Python<a class="headerlink" href="#everything-is-an-object-in-python" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>All of these ‘data types’ are actually just objects in Python</p></li>
+<li><p><em>Everything</em> is an object in Python!</p></li>
+<li><p>The operations you can perform with a variable depend on the object’s definition</p></li>
+<li><p>E.g., the multiplication operator * is defined for some objects but not others</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indentation">
+<h2>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h2>
+<p>Whitespace is important in Python. Actually, whitespace at the beginning of the line is important. This is called indentation. Leading whitespace (spaces and tabs) at the beginning of the logical line is used to determine the indentation level of the logical line, which in turn is used to determine the grouping of statements.</p>
+<p>This means that statements which go together must have the same indentation, for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Value is &#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I repeat, the value is &#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each such set of statements is called a block. We will see examples of how blocks are important later on.
+One thing you should remember is that wrong indentation rises <code class="docutils literal notranslate"><span class="pre">IndentationError</span></code>.</p>
+</div>
+<div class="section" id="control-flow">
+<h2>Control Flow<a class="headerlink" href="#control-flow" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="control-structures">
+<h2>Control structures<a class="headerlink" href="#control-structures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Language features that allow us to control how code is executed</p></li>
+<li><p>Iteration (e.g., for-loops, while statements…)</p></li>
+<li><p>Conditionals (if-then-else statements)</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html">Etc</a>…</p></li>
+</ul>
+<div class="section" id="conditional-statements-if-elif-else">
+<h3>Conditional statements: if, elif, else<a class="headerlink" href="#conditional-statements-if-elif-else" title="Permalink to this headline">¶</a></h3>
+<p>The Python syntax for conditional execution of code use the keywords <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code> (else if), <code class="docutils literal notranslate"><span class="pre">else</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statement1</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">statement2</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">statement1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;statement1 is True&quot;</span><span class="p">)</span>
+    
+<span class="k">elif</span> <span class="n">statement2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;statement2 is True&quot;</span><span class="p">)</span>
+    
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;statement1 and statement2 are False&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the first time, here we encountered a peculiar and unusual aspect of the Python programming language: Program blocks are defined by their indentation level. In Python, the extent of a code block is defined by the indentation level (usually a tab or say four white spaces). This means that we have to be careful to indent our code correctly, or else we will get syntax errors.</p>
+<p><strong>Examples:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good indentation</span>
+<span class="n">statement1</span> <span class="o">=</span> <span class="n">statement2</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">if</span> <span class="n">statement1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">statement2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;both statement1 and statement2 are True&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bad indentation! This would lead to error</span>
+<span class="c1">#if statement1:</span>
+<span class="c1">#    if statement2:</span>
+<span class="c1">#    print(&quot;both statement1 and statement2 are True&quot;)  # this line is not properly indented</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statement1</span> <span class="o">=</span> <span class="kc">False</span> 
+
+<span class="k">if</span> <span class="n">statement1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;printed if statement1 is True&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;still inside the if block&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">statement1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;printed if statement1 is True&quot;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;now outside the if block&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="loops">
+<h2>Loops<a class="headerlink" href="#loops" title="Permalink to this headline">¶</a></h2>
+<p>In Python, loops can be programmed in a number of different ways. The most common is the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, which is used together with iterable objects, such as lists. The basic syntax is:</p>
+</div>
+<div class="section" id="for-loops">
+<h2><code class="docutils literal notranslate"><span class="pre">for</span></code> loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over the elements of the supplied list and executes the containing block once for each element. Any kind of list can be used in the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span> <span class="c1"># by default range start at 0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">range(4)</span></code> does not include 4 !</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;scientific&quot;</span><span class="p">,</span> <span class="s2">&quot;computing&quot;</span><span class="p">,</span> <span class="s2">&quot;with&quot;</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To iterate over key-value pairs of a dictionary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes it is useful to have access to the indices of the values when iterating over a list. We can use the <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> function for this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="break-continue-and-pass">
+<h3><code class="docutils literal notranslate"><span class="pre">break</span></code>, <code class="docutils literal notranslate"><span class="pre">continue</span></code> and <code class="docutils literal notranslate"><span class="pre">pass</span></code><a class="headerlink" href="#break-continue-and-pass" title="Permalink to this headline">¶</a></h3>
+<p>To control the flow of a certain loop you can also use <code class="docutils literal notranslate"><span class="pre">break</span></code>, <code class="docutils literal notranslate"><span class="pre">continue</span></code> and <code class="docutils literal notranslate"><span class="pre">pass</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rangelist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">rangelist</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">rangelist</span><span class="p">:</span>
+    <span class="c1"># Check if number is one of</span>
+    <span class="c1"># the numbers in the tuple.</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]:</span>
+        <span class="c1"># &quot;Break&quot; terminates a for without</span>
+        <span class="c1"># executing the &quot;else&quot; clause.</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># &quot;Continue&quot; starts the next iteration</span>
+        <span class="c1"># of the loop. It&#39;s rather useless here,</span>
+        <span class="c1"># as it&#39;s the last statement of the loop.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">continue</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># The &quot;else&quot; clause is optional and is</span>
+    <span class="c1"># executed only if the loop didn&#39;t &quot;break&quot;.</span>
+    <span class="k">pass</span> <span class="c1"># Do nothing</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>List comprehensions: Creating lists using <code class="docutils literal notranslate"><span class="pre">for</span></code> loops</strong>:</p>
+<p>A convenient and compact way to initialize lists:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">while</span></code> loops</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">&quot;done&quot;</span></code> statement is not part of the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop body because of the difference in the indentation.</p>
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>A function in Python is defined using the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code>, followed by a function name, a signature within parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code>, and a colon <code class="docutils literal notranslate"><span class="pre">:</span></code>. The following code, with one additional level of indentation, is the function body.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+    <span class="c1"># block belonging to the function</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+
+<span class="n">say_hello</span><span class="p">()</span> <span class="c1"># call the function</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>A block of code that only runs when explicitly called</p></li>
+<li><p>Can accept arguments (or parameters) that alter its behavior</p></li>
+<li><p>Can accept any number/type of inputs, but always return a single object</p>
+<ul>
+<li><p>Note: functions can return tuples (may <em>look like</em> multiple objects)</p></li>
+</ul>
+</li>
+</ul>
+<p>Following an example where we also feed two arguments into the function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="s1">&#39;is maximum&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;is equal to&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s1">&#39;is maximum&#39;</span><span class="p">)</span>
+
+<span class="c1"># directly pass literal values</span>
+<span class="n">print_max</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="c1"># pass variables as arguments</span>
+<span class="n">print_max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Very important</strong>: Variables inside a function are treated as local variables and therefore don’t interfere with variables outside the scope of the function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x is&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Changed local x to&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x is still&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The local scope of a variable inside a function can be extended with the keyword <code class="docutils literal notranslate"><span class="pre">global</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">x</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x is&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Changed global x to&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">func</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Value of x is&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Optionally, but highly recommended, we can define a so called “docstring”, which is a description of the functions purpose and behavior. The docstring should follow directly after the function definition, before the code in the function body.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print a string &#39;s&#39; and tell how many characters it has    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="s2">&quot; has &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; characters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">func1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func1</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Functions that return a value use the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the square of x.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">square</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can return multiple values from a function using tuples (see above):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">powers</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a few powers of x.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span><span class="p">,</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powers</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And if we know that a function returns multiple outputs, we can store them directly in multiple variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span> <span class="o">=</span> <span class="n">powers</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="positional-vs-keyword-arguments">
+<h3>Positional vs. keyword arguments<a class="headerlink" href="#positional-vs-keyword-arguments" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Positional arguments are defined by position and <em>must</em> be passed</p>
+<ul>
+<li><p>Arguments in the function signature are filled in order</p></li>
+</ul>
+</li>
+<li><p>Keyword arguments have a default value</p>
+<ul>
+<li><p>Arguments can be passed in arbitrary order (after any positional arguments)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="default-argument-and-keyword-arguments">
+<h3>Default argument and keyword arguments<a class="headerlink" href="#default-argument-and-keyword-arguments" title="Permalink to this headline">¶</a></h3>
+<p>In a definition of a function, we can give default values to the arguments the function takes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;evaluating myfunc for x = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; using exponent p = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we don’t provide a value of the <code class="docutils literal notranslate"><span class="pre">debug</span></code> argument when calling the the function <code class="docutils literal notranslate"><span class="pre">myfunc</span></code> it defaults to the value provided in the function definition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfunc</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfunc</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we explicitly list the name of the arguments in the function calls, they do not need to come in the same order as in the function definition. This is called <em>keyword</em> arguments and is often very useful in functions that take a lot of optional arguments.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfunc</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="args-and-kwargs-parameters">
+<h3><code class="docutils literal notranslate"><span class="pre">*args</span></code> and <code class="docutils literal notranslate"><span class="pre">*kwargs</span></code> parameters<a class="headerlink" href="#args-and-kwargs-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes you might want to define a function that can take any number of parameters, i.e. variable number of arguments, this can be achieved by using one (<code class="docutils literal notranslate"><span class="pre">*args</span></code>) or two (<code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>) asterisks in the function declaration. <code class="docutils literal notranslate"><span class="pre">*args</span></code> is used to pass a non-keyworded, variable-length argument list and the <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> is used to pass a keyworded, variable-length argument list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">args_func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Formal arg:&quot;</span><span class="p">,</span> <span class="n">arg1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;additioanl arg:&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">args_func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kwargs_func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;kwargs is now a dictionary...</span><span class="se">\n</span><span class="s2">Type: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">Content: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">kwargs</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Formal arg:&quot;</span><span class="p">,</span> <span class="n">arg1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;another keyword arg: </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+    
+<span class="n">kwargs_func</span><span class="p">(</span><span class="n">arg1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">myarg2</span><span class="o">=</span><span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="n">myarg3</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="unnamed-functions-lambda-function">
+<h3>Unnamed functions: lambda function<a class="headerlink" href="#unnamed-functions-lambda-function" title="Permalink to this headline">¶</a></h3>
+<p>In Python we can also create unnamed functions, using the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> keyword:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+    
+<span class="c1"># is equivalent to </span>
+
+<span class="k">def</span> <span class="nf">f2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">f2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This technique is useful for example when we want to pass a simple function as an argument to another function, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># map is a built-in python function</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<p>Classes are the key features of object-oriented programming. A class is a structure for representing an object and the operations that can be performed on the object.</p>
+<p>In Python, a class can contain <em>attributes</em> (variables) and <em>methods</em> (functions).</p>
+<p>A class is defined almost like a function, but using the <code class="docutils literal notranslate"><span class="pre">class</span></code> keyword, and the class definition usually contains a number of class method definitions (a function in a class).</p>
+<ul class="simple">
+<li><p>Each class method should have an argument <code class="docutils literal notranslate"><span class="pre">self</span></code> as it first argument. This object is a self-reference.</p></li>
+<li><p>Some class method names have special meaning, for example:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code>: The name of the method that is invoked when the object is first created.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__str__</span></code> : A method that is invoked when a simple string representation of the class is needed, as for example when printed.</p></li>
+<li><p>There are many more, see <a class="reference external" href="http://docs.python.org/3.6/reference/datamodel.html#special-method-names">http://docs.python.org/3.6/reference/datamodel.html#special-method-names</a></p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple class for representing a point in a Cartesian coordinate system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new Point at x, y.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        
+    <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Translate the point by dx and dy in the x and y direction.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">dx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">dy</span>
+        
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span><span class="p">(</span><span class="s2">&quot;Point at [</span><span class="si">%f</span><span class="s2">, </span><span class="si">%f</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To create a new instance of a class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># this will invoke the __init__ method in the Point class</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>          <span class="c1"># this will invoke the __str__ method</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To invoke a class method in the class instance <code class="docutils literal notranslate"><span class="pre">p</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+
+<span class="n">p2</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can access any value of a class object directly, for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<p>One of the most important concepts in good programming is to reuse code and avoid repetitions.</p>
+<p>The idea is to write functions and classes with a well-defined purpose and scope, and reuse these instead of repeating similar code in different part of a program (modular programming). The result is usually that readability and maintainability of a program are greatly improved. What this means in practice is that our programs have fewer bugs, are easier to extend and debug/troubleshoot.</p>
+<p>Python supports modular programming at different levels. Functions and classes are examples of tools for low-level modular programming. Python modules are a higher-level modular programming construct, where we can collect related variables, functions, and classes in a module. A python module is defined in a python file (with file-ending <code class="docutils literal notranslate"><span class="pre">.py</span></code>), and it can be made accessible to other Python modules and programs using the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement.</p>
+<p>Consider the following example: the file <code class="docutils literal notranslate"><span class="pre">mymodule.py</span></code> contains simple example implementations of a variable, function and a class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mymodule.py
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Example of a python module. Contains a variable called my_variable,</span>
+<span class="sd">a function called my_function, and a class called MyClass.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">my_variable</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">my_function</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Example function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">my_variable</span>
+    
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Example class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">my_variable</span>
+        
+    <span class="k">def</span> <span class="nf">set_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set self.variable to a new value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">new_value</span>
+        
+    <span class="k">def</span> <span class="nf">get_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">%%file</span></code> is called a cell-magic function and creates a file that has the following lines as content.</p>
+<p>We can import the module <code class="docutils literal notranslate"><span class="pre">mymodule</span></code> into our Python program using <code class="docutils literal notranslate"><span class="pre">import</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mymodule</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">help(module)</span></code> to get a summary of what the module provides:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">mymodule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mymodule</span><span class="o">.</span><span class="n">my_variable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mymodule</span><span class="o">.</span><span class="n">my_function</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_class</span> <span class="o">=</span> <span class="n">mymodule</span><span class="o">.</span><span class="n">MyClass</span><span class="p">()</span> 
+<span class="n">my_class</span><span class="o">.</span><span class="n">set_variable</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">my_class</span><span class="o">.</span><span class="n">get_variable</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we make changes to the code in <code class="docutils literal notranslate"><span class="pre">mymodule.py</span></code>, we need to reload it using <code class="docutils literal notranslate"><span class="pre">reload</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
+<span class="n">reload</span><span class="p">(</span><span class="n">mymodule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
+<p>In Python errors are managed with a special language construct called “Exceptions”. When errors occur exceptions can be raised, which interrupts the normal program flow and fallback to somewhere else in the code where the closest try-except statement is defined.</p>
+<p>To generate an exception we can use the <code class="docutils literal notranslate"><span class="pre">raise</span></code> statement, which takes an argument that must be an instance of the class <code class="docutils literal notranslate"><span class="pre">BaseExpection</span></code> or a class derived from it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;description of the error&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Exception:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A typical use of exceptions is to abort functions when some error condition occurs, for example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def my_function(arguments):
+
+    if not verify(arguments):
+        raise Exception(&quot;Invalid arguments&quot;)
+    
+    # rest of the code goes here
+</pre></div>
+</div>
+<p>To gracefully catch errors that are generated by functions and class methods, or by the Python interpreter itself, use the <code class="docutils literal notranslate"><span class="pre">try</span></code> and  <code class="docutils literal notranslate"><span class="pre">except</span></code> statements:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>try:
+    # normal code goes here
+except:
+    # code for error handling goes here
+    # this code is not executed unless the code
+    # above generated an error
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+    <span class="c1"># generate an error: the variable test is not defined</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught an exception&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get information about the error, we can access the <code class="docutils literal notranslate"><span class="pre">Exception</span></code> class instance that describes the exception by using for example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>except Exception as e:
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+    <span class="c1"># generate an error: the variable test is not defined</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught an exception:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This block is executed after the try- and except-block.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">some_function</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Division by zero raises an exception</span>
+        <span class="mi">10</span> <span class="o">/</span> <span class="mi">0</span>
+    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Oops, invalid.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Exception didn&#39;t occur, we&#39;re good.</span>
+        <span class="k">pass</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="c1"># This is executed after the code block is run</span>
+        <span class="c1"># and all exceptions have been handled, even</span>
+        <span class="c1"># if a new exception is raised while handling.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;We&#39;re done with that.&quot;</span><span class="p">)</span>
+
+<span class="n">some_function</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You will see more exception handling examples in this and other notebooks.</p>
+</div>
+<div class="section" id="file-i-o">
+<h2>File I/O<a class="headerlink" href="#file-i-o" title="Permalink to this headline">¶</a></h2>
+<p>This section should give you a basic knowledge about how to read and write CSV or TXT files. First, let us create a CSV and TXT file about demographic information of 10 subjects (experiment_id, subject_id, gender, age).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> demographics.csv
+<span class="n">ds102</span><span class="p">,</span><span class="n">sub001</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="mf">21.94</span>
+<span class="n">ds102</span><span class="p">,</span><span class="n">sub002</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="mf">22.79</span>
+<span class="n">ds102</span><span class="p">,</span><span class="n">sub003</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="mf">19.65</span>
+<span class="n">ds102</span><span class="p">,</span><span class="n">sub004</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="mf">25.98</span>
+<span class="n">ds102</span><span class="p">,</span><span class="n">sub005</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="mf">23.24</span>
+<span class="n">ds102</span><span class="p">,</span><span class="n">sub006</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="mf">23.27</span>
+<span class="n">ds102</span><span class="p">,</span><span class="n">sub007</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="mf">34.72</span>
+<span class="n">ds102</span><span class="p">,</span><span class="n">sub008</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="mf">22.22</span>
+<span class="n">ds102</span><span class="p">,</span><span class="n">sub009</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="mf">22.7</span>
+<span class="n">ds102</span><span class="p">,</span><span class="n">sub010</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="mf">25.24</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> demographics.txt
+<span class="n">ds102</span>	<span class="n">sub001</span>	<span class="n">F</span>	<span class="mf">21.94</span>
+<span class="n">ds102</span>	<span class="n">sub002</span>	<span class="n">M</span>	<span class="mf">22.79</span>
+<span class="n">ds102</span>	<span class="n">sub003</span>	<span class="n">M</span>	<span class="mf">19.65</span>
+<span class="n">ds102</span>	<span class="n">sub004</span>	<span class="n">M</span>	<span class="mf">25.98</span>
+<span class="n">ds102</span>	<span class="n">sub005</span>	<span class="n">M</span>	<span class="mf">23.24</span>
+<span class="n">ds102</span>	<span class="n">sub006</span>	<span class="n">M</span>	<span class="mf">23.27</span>
+<span class="n">ds102</span>	<span class="n">sub007</span>	<span class="n">D</span>	<span class="mf">34.72</span>
+<span class="n">ds102</span>	<span class="n">sub008</span>	<span class="n">D</span>	<span class="mf">22.22</span>
+<span class="n">ds102</span>	<span class="n">sub009</span>	<span class="n">M</span>	<span class="mf">22.7</span>
+<span class="n">ds102</span>	<span class="n">sub010</span>	<span class="n">D</span>	<span class="mf">25.24</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="reading-csv-files">
+<h3>Reading CSV files<a class="headerlink" href="#reading-csv-files" title="Permalink to this headline">¶</a></h3>
+<p>Parsing comma-separated-values (CSV) files is a common task. There are many tools available in Python to deal with this. Let’s start by using the built-in <code class="docutils literal notranslate"><span class="pre">csv</span></code> module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before you can read or write any kind of file, you first have to open the file and go through its content with a reader function or write the output line by line with a write function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;demographics.csv&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>   <span class="c1"># open the file with reading rights = &#39;r&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="p">]</span> <span class="c1"># go through file and read each line</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                          <span class="c1"># close the file again</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="writing-csv-files">
+<h3>Writing CSV files<a class="headerlink" href="#writing-csv-files" title="Permalink to this headline">¶</a></h3>
+<p>Now, we want to write the same data without the first experiment_id column in CSV format to a csv-file. First, let’s delete the first column in the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_new</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data_new</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we first have to open a file again, but this time with writing permissions = <code class="docutils literal notranslate"><span class="pre">'w'</span></code>. After it, we can go through the file and write each line to the new csv-file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;demographics_new.csv&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="c1"># open a file with writing rights = &#39;w&#39;</span>
+<span class="n">fw</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>                   <span class="c1"># create csv writer</span>
+<span class="n">fw</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">data_new</span><span class="p">)</span>               <span class="c1"># write content to file</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                            <span class="c1"># close file </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lets now check the content of <code class="docutils literal notranslate"><span class="pre">demographics_new.csv</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat demographics_new.csv
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="reading-txt-files">
+<h3>Reading TXT files<a class="headerlink" href="#reading-txt-files" title="Permalink to this headline">¶</a></h3>
+<p>The reading of txt files is quite similar to the reading of csv-files. The only difference is in the name of the reading function and the formatting that has to be applied to the input or output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;demographics.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># open file with reading rights = &#39;r&#39;</span>
+
+<span class="c1"># go through file and trim the new line &#39;\n&#39; at the end</span>
+<span class="n">datatxt</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+
+<span class="c1"># go through data and split elements in line by tabulators &#39;\t&#39;</span>
+<span class="n">datatxt</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">datatxt</span><span class="p">]</span>
+
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># close file again</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">datatxt</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="writing-txt-files">
+<h3>Writing TXT files<a class="headerlink" href="#writing-txt-files" title="Permalink to this headline">¶</a></h3>
+<p>The writing of txt files is as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;demograhics_new.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="c1"># open file with writing rights = &#39;w&#39;</span>
+
+<span class="n">datatxt_new</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">datatxt</span><span class="p">]</span> <span class="c1"># delete first column of array</span>
+
+<span class="c1"># Go through datatxt array and write each line with specific format to file</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">datatxt_new</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># close file</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="with-open">
+<h3><code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">open</span></code><a class="headerlink" href="#with-open" title="Permalink to this headline">¶</a></h3>
+<p>The previous methods to open or write a file always required that you also close the file again with the <code class="docutils literal notranslate"><span class="pre">close()</span></code> function. If you don’t want to worry about this, you can also use the <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">open</span></code> approach. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;demographics.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+    <span class="n">datatxt</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+    <span class="n">datatxt</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">datatxt</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">datatxt</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="file-modes">
+<h2>File modes<a class="headerlink" href="#file-modes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Read-only: <code class="docutils literal notranslate"><span class="pre">r</span></code></p></li>
+<li><p>Write-only: <code class="docutils literal notranslate"><span class="pre">w</span></code> (Create a new file or overwrite existing file)</p></li>
+<li><p>Append a file: <code class="docutils literal notranslate"><span class="pre">a</span></code></p></li>
+<li><p>Read and Write: <code class="docutils literal notranslate"><span class="pre">r+</span></code></p></li>
+<li><p>Binary mode: <code class="docutils literal notranslate"><span class="pre">b</span></code> (Use for binary files, especially on Windows)</p></li>
+</ul>
+<div class="section" id="why-do-data-science-in-python">
+<h3>Why do data science in Python?<a class="headerlink" href="#why-do-data-science-in-python" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="easy-to-learn">
+<h3>Easy to learn<a class="headerlink" href="#easy-to-learn" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Readable, explicit syntax</p></li>
+<li><p>Most packages are very well documented</p>
+<ul>
+<li><p>e.g., <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <a class="reference external" href="http://scikit-learn.org/stable/documentation.html">documentation</a> is widely held up as a model</p></li>
+</ul>
+</li>
+<li><p>A huge number of tutorials, guides, and other educational materials</p></li>
+</ul>
+</div>
+<div class="section" id="comprehensive-standard-library">
+<h3>Comprehensive standard library<a class="headerlink" href="#comprehensive-standard-library" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://docs.python.org/2/library/">Python standard library</a> contains a huge number of high-quality modules</p></li>
+<li><p>When in doubt, check the standard library first before you write your own tools!</p></li>
+<li><p>For example:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">os</span></code>: operating system tools</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">re</span></code>: regular expressions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">collections</span></code>: useful data structures</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code>: simple parallelization tools</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pickle</span></code>: serialization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">json</span></code>: reading and writing JSON</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="exceptional-external-libraries">
+<h3>Exceptional external libraries<a class="headerlink" href="#exceptional-external-libraries" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Python has very good (often best-in-class) external packages for almost everything</p></li>
+<li><p>Particularly important for data science, which draws on a very broad toolkit</p></li>
+<li><p>Package management is easy (conda, pip)</p></li>
+<li><p>Examples:</p>
+<ul>
+<li><p>Web development: flask, Django</p></li>
+<li><p>Database ORMs: SQLAlchemy, Django ORM (w/ adapters for all major DBs)</p></li>
+<li><p>Scraping/parsing text/markup: beautifulsoup, scrapy</p></li>
+<li><p>Natural language processing (NLP): nltk, gensim, textblob</p></li>
+<li><p>Numerical computation and data analysis: numpy, scipy, pandas, xarray</p></li>
+<li><p>Machine learning: scikit-learn, Tensorflow, keras</p></li>
+<li><p>Image processing: pillow, scikit-image, OpenCV</p></li>
+<li><p>Plotting: matplotlib, seaborn, altair, ggplot, Bokeh</p></li>
+<li><p>GUI development: pyQT, wxPython</p></li>
+<li><p>Testing: py.test</p></li>
+<li><p>Etc. etc. etc.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="relatively-good-performance">
+<h3>(Relatively) good performance<a class="headerlink" href="#relatively-good-performance" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Python is a high-level dynamic language—this comes at a performance cost</p></li>
+<li><p>For many (not all!) data scientists, performance is irrelevant most of the time</p></li>
+<li><p>In general, the less Python code you write yourself, the better your performance will be</p>
+<ul>
+<li><p>Much of the standard library consists of Python interfaces to C functions</p></li>
+<li><p>Numpy, scikit-learn, etc. all rely heavily on C/C++ or Fortran</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="python-vs-other-data-science-languages">
+<h3>Python vs. other data science languages<a class="headerlink" href="#python-vs-other-data-science-languages" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Python competes for mind share with many other languages</p></li>
+<li><p>Most notably, R</p></li>
+<li><p>To a lesser extent, Matlab, Mathematica, SAS, Julia, Java, Scala, etc.</p></li>
+</ul>
+</div>
+<div class="section" id="r">
+<h3>R<a class="headerlink" href="#r" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.r-project.org/">R</a> is dominant in traditional statistics and some fields of science</p>
+<ul>
+<li><p>Has attracted many SAS, SPSS, and Stata users</p></li>
+</ul>
+</li>
+<li><p>Exceptional statistics support; hundreds of best-in-class libraries</p></li>
+<li><p>Designed to make data analysis and visualization as easy as possible</p></li>
+<li><p>Slow</p></li>
+<li><p>Language quirks drive many experienced software developers crazy</p></li>
+<li><p>Less support for most things non-data-related</p></li>
+</ul>
+</div>
+<div class="section" id="matlab">
+<h3>MATLAB<a class="headerlink" href="#matlab" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>A proprietary numerical computing language widely used by engineers</p></li>
+<li><p>Good performance and very active development, but expensive</p></li>
+<li><p>Closed ecosystem, relatively few third-party libraries</p>
+<ul>
+<li><p>There is an open-source port (Octave)</p></li>
+</ul>
+</li>
+<li><p>Not suitable for use as a general-purpose language</p></li>
+</ul>
+</div>
+<div class="section" id="so-why-python">
+<h3>So, why Python?<a class="headerlink" href="#so-why-python" title="Permalink to this headline">¶</a></h3>
+<p>Why choose Python over other languages?</p>
+<ul class="simple">
+<li><p>Arguably none of these offers the same combination of readability, flexibility, libraries, and performance</p></li>
+<li><p>Python is sometimes described as “the second best language for everything”</p></li>
+<li><p>Doesn’t mean you should always use Python</p>
+<ul>
+<li><p>Depends on your needs, community, etc.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="you-can-have-your-cake-and-eat-it">
+<h3>You can have your cake <em>and</em> eat it!<a class="headerlink" href="#you-can-have-your-cake-and-eat-it" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Many languages—particularly R—now interface seamlessly with Python</p></li>
+<li><p>You can work primarily in Python, fall back on R when you need it (or vice versa)</p></li>
+<li><p>The best of all possible worlds?</p></li>
+</ul>
+</div>
+<div class="section" id="the-core-python-data-science-stack">
+<h3>The core Python data science stack<a class="headerlink" href="#the-core-python-data-science-stack" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The Python ecosystem contains tens of thousands of packages</p></li>
+<li><p>Several are very widely used in data science applications:</p>
+<ul>
+<li><p><a class="reference external" href="http://jupyter.org">Jupyter</a>: interactive notebooks</p></li>
+<li><p><a class="reference external" href="http://numpy.org">Numpy</a>: numerical computing in Python</p></li>
+<li><p><a class="reference external" href="http://pandas.pydata.org/">pandas</a>: data structures for Python</p></li>
+<li><p><a class="reference external" href="http://scipy.org">Scipy</a>: scientific Python tools</p></li>
+<li><p><a class="reference external" href="http://matplotlib.org">Matplotlib</a>: plotting in Python</p></li>
+<li><p><a class="reference external" href="http://scikit-learn.org">scikit-learn</a>: machine learning in Python</p></li>
+</ul>
+</li>
+<li><p>We’ll cover the first three very briefly here</p>
+<ul>
+<li><p>Other tutorials will go into greater detail on most of the others</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="the-jupyter-notebook">
+<h3>The Jupyter notebook<a class="headerlink" href="#the-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>“The <a class="reference external" href="http://jupyter.org">Jupyter Notebook</a> is a web application that allows you to create and share documents that contain live code, equations, visualizations and explanatory text.”</p>
+<ul>
+<li><p>You can <a class="reference external" href="http://jupyter.org/try">try it online</a></p></li>
+</ul>
+</li>
+<li><p>Supports <a class="reference external" href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">many different languages</a></p></li>
+<li><p>A living document wrapped around a command prompt</p></li>
+<li><p>Various extensions and <a class="reference external" href="http://ipywidgets.readthedocs.io/en/latest/index.html">widgets</a></p></li>
+</ul>
+</div>
+<div class="section" id="why-jupyter">
+<h3>Why Jupyter?<a class="headerlink" href="#why-jupyter" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>An easy way to write and share completely reproducible documents</p></li>
+<li><p>Combine code, results, and text in one place</p></li>
+<li><p>You can mix languages</p></li>
+<li><p>Completely interactive: make a change and see what happens</p></li>
+<li><p>Execution order matters</p></li>
+</ul>
+</div>
+<div class="section" id="slideshow-mode">
+<h3>Slideshow mode<a class="headerlink" href="#slideshow-mode" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>These slides are actually a live Jupyter notebook</p></li>
+<li><p>We can edit and execute cells on-the-fly</p></li>
+<li><p>The slideshow extension is installed separately; follow the instructions <a class="reference external" href="https://github.com/damianavila/RISE">here</a></p></li>
+</ul>
+</div>
+<div class="section" id="built-in-latex-support">
+<h3>Built-in LaTeX support<a class="headerlink" href="#built-in-latex-support" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[ F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx \]</div>
+</div>
+<div class="section" id="highly-customizable">
+<h3>Highly customizable<a class="headerlink" href="#highly-customizable" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Custom key bindings</p></li>
+<li><p>Supports <a class="reference external" href="http://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/JavaScript%20Notebook%20Extensions.html">web standards</a> that enable near-limitless customization via JavaScript</p></li>
+<li><p>All kinds of <a class="reference external" href="http://jupyter-contrib-nbextensions.readthedocs.io/en/latest/">unofficial extensions</a></p></li>
+</ul>
+</div>
+<div class="section" id="magic-functions">
+<h3>Magic functions<a class="headerlink" href="#magic-functions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Jupyter/IPython includes a number of <a class="reference external" href="http://ipython.readthedocs.io/en/stable/interactive/magics.html">“magic” commands</a> to make life easier</p></li>
+<li><p>Support in-line plotting, timing, debugging, calling other languages, etc.</p></li>
+</ul>
+</div>
+<div class="section" id="combining-r-and-python-with-the-r-magic">
+<h3>Combining R and Python with the %R magic<a class="headerlink" href="#combining-r-and-python-with-the-r-magic" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>In the same notebook</p></li>
+<li><p>And even in the same notebook cell!</p></li>
+<li><p>Can also use an <a class="reference external" href="https://irkernel.github.io/">R kernel</a> with the notebook</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./prerequisites"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,1357 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nilearn GLM: statistical analyses of MRI in Python &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Functional connectivity and resting state" href="functional_connectivity.html" />
+    <link rel="prev" title="Introduction to pybids" href="pybids.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_nipype.html">
+   Basics in data handling &amp; Nipype
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/advanced/statistical_analyses_MRI.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fadvanced/statistical_analyses_MRI.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/advanced/statistical_analyses_MRI.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/advanced/statistical_analyses_MRI.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Nilearn GLM: statistical analyses of MRI in Python
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#individual-level-analysis">
+   Individual level analysis
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-and-inspecting-the-data">
+   Setting and inspecting the data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#specifying-the-experimental-paradigm">
+     Specifying the experimental paradigm
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performing-the-glm-analysis">
+     Performing the GLM analysis
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#detecting-voxels-with-significant-effects">
+     Detecting voxels with significant effects
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#performing-an-f-test">
+       Performing an F-test
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#evaluating-models">
+       Evaluating models
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#get-and-check-model-residuals">
+         Get and check model residuals
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#get-and-check-predicted-time-series">
+         Get and check predicted time series
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#plot-the-r-squared">
+         Plot the R-squared
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#group-level-statistics">
+     Group level statistics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#run-individual-level-analysis-for-multiple-participants">
+       Run individual level analysis for multiple participants
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#define-a-group-level-model">
+       Define a group level model
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performing-statistical-analyses-on-bids-datasets">
+     Performing statistical analyses on BIDS datasets
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-danger">
+<h3>Disclaimer</h3>
+The package <code>nistats</code> will soon be merged into <code>nilearn</code> and all of its functionality will be available in the release of <code>nilearn</code> 0.7.0 in late 2020. Instead of using the retired version of <code>nistats</code>, we decided to already provide a brief spoiler of how things look in the new version (by installing <code>nilearn</code> from the current <code>main branch</code>. While drastic changes regarding functions and modules shouldn't be a thin, please watch out for smaller differences like <code>arguments</code>, <code>function/argument names/defaults</code>, etc. . 
+</div>
+<div class="section" id="nilearn-glm-statistical-analyses-of-mri-in-python">
+<h1>Nilearn GLM: statistical analyses of MRI in Python<a class="headerlink" href="#nilearn-glm-statistical-analyses-of-mri-in-python" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="../advanced.html"><span class="doc std std-doc">Nilearn</span></a>’s <a class="reference internal" href="../advanced.html"><span class="doc std std-doc">GLM/stats</span></a> module allows fast and easy MRI statistical analysis.</p>
+<p>It leverages <a class="reference internal" href="../advanced.html"><span class="doc std std-doc">Nibabel</span></a> and other Python libraries from the Python scientific stack like <a class="reference internal" href="../advanced.html"><span class="doc std std-doc">Scipy</span></a>, <a class="reference internal" href="../advanced.html"><span class="doc std std-doc">Numpy</span></a> and <a class="reference internal" href="../advanced.html"><span class="doc std std-doc">Pandas</span></a>.</p>
+<p>In this tutorial, we’re going to explore <code class="docutils literal notranslate"><span class="pre">nilearn's</span> <span class="pre">GLM</span></code> functionality by analyzing 1) a single subject single run and 2) three subject group level example using a General Linear Model (GLM). We’re gonna use the same example dataset (ds000114) as from the <code class="docutils literal notranslate"><span class="pre">nibabel</span></code> and <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> tutorials. As this is a multi run multi task dataset, we’ve to decide on a run and a task we want to analyze. Let’s go with <code class="docutils literal notranslate"><span class="pre">ses-test</span></code> and <code class="docutils literal notranslate"><span class="pre">task-fingerfootlips</span></code>, starting with a single subject <code class="docutils literal notranslate"><span class="pre">sub-01</span></code>.</p>
+</div>
+<div class="section" id="individual-level-analysis">
+<h1>Individual level analysis<a class="headerlink" href="#individual-level-analysis" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="setting-and-inspecting-the-data">
+<h1>Setting and inspecting the data<a class="headerlink" href="#setting-and-inspecting-the-data" title="Permalink to this headline">¶</a></h1>
+<p>At first, we have to set and indicate the data we want to analyze. As stated above, we’re going to use the anatomical image and the preprocessed functional image of <code class="docutils literal notranslate"><span class="pre">sub-01</span></code> from <code class="docutils literal notranslate"><span class="pre">ses-test</span></code>. The preprocessing was conducted through <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/index.html">fmriprep</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_img</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_desc-preproc_bold.nii.gz&#39;</span>
+<span class="n">anat_img</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can display the mean functional image and the subject’s anatomy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">mean_img</span>
+<span class="n">mean_img</span> <span class="o">=</span> <span class="n">mean_img</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_stat_map</span><span class="p">,</span> <span class="n">plot_anat</span><span class="p">,</span> <span class="n">plot_img</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">plot_glass_brain</span>
+<span class="n">plot_img</span><span class="p">(</span><span class="n">mean_img</span><span class="p">)</span>
+<span class="n">plot_anat</span><span class="p">(</span><span class="n">anat_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="specifying-the-experimental-paradigm">
+<h2>Specifying the experimental paradigm<a class="headerlink" href="#specifying-the-experimental-paradigm" title="Permalink to this headline">¶</a></h2>
+<p>We must now provide a description of the experiment, that is, define the
+timing of the task and rest periods. This is typically
+provided in an events.tsv file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_events.tsv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="performing-the-glm-analysis">
+<h2>Performing the GLM analysis<a class="headerlink" href="#performing-the-glm-analysis" title="Permalink to this headline">¶</a></h2>
+<p>It is now time to create and estimate a <code class="docutils literal notranslate"><span class="pre">FirstLevelModel</span></code> object, that will generate the <em>design matrix</em> using the  information provided by the <code class="docutils literal notranslate"><span class="pre">events</span></code> object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.glm.first_level</span> <span class="kn">import</span> <span class="n">FirstLevelModel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are a lot of important parameters one needs to define within a <code class="docutils literal notranslate"><span class="pre">FirstLevelModel</span></code> and the majority of them will have a prominent influence on your results. Thus, make sure to check them before running your model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>FirstLevelModel<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need the TR of the functional images, luckily we can extract that information using <code class="docutils literal notranslate"><span class="pre">nibabel</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nib-ls /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_desc-preproc_bold.nii.gz
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see the <code class="docutils literal notranslate"><span class="pre">TR</span></code> is 2.5.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_glm</span> <span class="o">=</span> <span class="n">FirstLevelModel</span><span class="p">(</span><span class="n">t_r</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
+                           <span class="n">noise_model</span><span class="o">=</span><span class="s1">&#39;ar1&#39;</span><span class="p">,</span>
+                           <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;spm&#39;</span><span class="p">,</span>
+                           <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+                           <span class="n">high_pass</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">160</span><span class="p">,</span>
+                           <span class="n">signal_scaling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                           <span class="n">minimize_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usually, we also want to include confounds computed during preprocessing (e.g., motion, global signal, etc.) as regressors of no interest. In our example, these were computed by <code class="docutils literal notranslate"><span class="pre">fmriprep</span></code> and can be found in <code class="docutils literal notranslate"><span class="pre">derivatives/fmriprep/sub-01/func/</span></code>. We can use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to inspect that file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">confounds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">confounds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Comparable to other neuroimaging softwards, we have a timepoint x confound dataframe. However, <code class="docutils literal notranslate"><span class="pre">fmriprep</span></code> computes way more confounds than most of you are used to and that require a bit of reading to understand and therefore utilize properly. We therefore and for the sake of simplicity stick to the “classic” ones: <code class="docutils literal notranslate"><span class="pre">WhiteMatter</span></code>, <code class="docutils literal notranslate"><span class="pre">GlobalSignal</span></code>, <code class="docutils literal notranslate"><span class="pre">FramewiseDisplacement</span></code> and the <code class="docutils literal notranslate"><span class="pre">motion</span> <span class="pre">correction</span> <span class="pre">parameters</span></code> in translation and rotation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">confounds_glm</span> <span class="o">=</span> <span class="n">confounds</span><span class="p">[[</span><span class="s1">&#39;WhiteMatter&#39;</span><span class="p">,</span> <span class="s1">&#39;GlobalSignal&#39;</span><span class="p">,</span> <span class="s1">&#39;FramewiseDisplacement&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;RotX&#39;</span><span class="p">,</span> <span class="s1">&#39;RotY&#39;</span><span class="p">,</span> <span class="s1">&#39;RotZ&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">confounds_glm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have specified the model, we can run it on the fMRI image</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_glm</span> <span class="o">=</span> <span class="n">fmri_glm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">confounds_glm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One can inspect the design matrix (rows represent time, and
+columns contain the predictors).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <span class="n">fmri_glm</span><span class="o">.</span><span class="n">design_matrices_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Formally, we have taken the first design matrix, because the model is
+implictily meant to for multiple runs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_design_matrix</span>
+<span class="n">plot_design_matrix</span><span class="p">(</span><span class="n">design_matrix</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save the design matrix image to disk, first creating a directory where you want to write the images:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;results&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">outdir</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">outdir</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
+<span class="n">plot_design_matrix</span><span class="p">(</span><span class="n">design_matrix</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;design_matrix.png&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first column contains the expected reponse profile of regions which are
+sensitive to the “Finger” task. Let’s plot this first column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">design_matrix</span><span class="p">[</span><span class="s1">&#39;Finger&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;scan&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Expected Response for condition &quot;Finger&quot;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="detecting-voxels-with-significant-effects">
+<h2>Detecting voxels with significant effects<a class="headerlink" href="#detecting-voxels-with-significant-effects" title="Permalink to this headline">¶</a></h2>
+<p>To access the estimated coefficients (Betas of the GLM model), we
+created constrast with a single ‘1’ in each of the columns: The role
+of the contrast is to select some columns of the model –and
+potentially weight them– to study the associated statistics. So in
+a nutshell, a contrast is a weigted combination of the estimated
+effects.  Here we can define canonical contrasts that just consider
+the two condition in isolation —let’s call them “conditions”—
+then a contrast that makes the difference between these conditions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;active - Finger&#39;</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]),</span>
+    <span class="s1">&#39;active - Foot&#39;</span><span class="p">:</span>   <span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]),</span>
+    <span class="s1">&#39;active - Lips&#39;</span><span class="p">:</span>   <span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at it: plot the coefficients of the contrast, indexed by
+the names of the columns of the design matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_contrast_matrix</span>
+<span class="n">plot_contrast_matrix</span><span class="p">(</span><span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Finger&#39;</span><span class="p">],</span> <span class="n">design_matrix</span><span class="o">=</span><span class="n">design_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, we compute the estimated effect. It is in BOLD signal unit,
+but has no statistical guarantees, because it does not take into
+account the associated variance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eff_map</span> <span class="o">=</span> <span class="n">fmri_glm</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Finger&#39;</span><span class="p">],</span>
+                                    <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;effect_size&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to get statistical significance, we form a t-statistic, and
+directly convert is into z-scale. The z-scale means that the values
+are scaled to match a standard Gaussian distribution (mean=0,
+variance=1), across voxels, if there were now effects in the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_map</span> <span class="o">=</span> <span class="n">fmri_glm</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Finger&#39;</span><span class="p">],</span>
+                                  <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;z_score&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot thresholded z scores map.</p>
+<p>We display it on top of the average
+functional image of the series (could be the anatomical image of the
+subject).  We use arbitrarily a threshold of 3.0 in z-scale. We’ll
+see later how to use corrected thresholds.  we show to display 3
+axial views: display_mode=’z’, cut_coords=3</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active - Finger (Z&gt;3)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_abs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active - Finger (Z&gt;3)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Statistical signifiance testing. One should worry about the
+statistical validity of the procedure: here we used an arbitrary
+threshold of 3.0 but the threshold should provide some guarantees on
+the risk of false detections (aka type-1 errors in statistics). One
+first suggestion is to control the false positive rate (fpr) at a
+certain level, e.g. 0.001: this means that there is.1% chance of
+declaring active an inactive voxel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.glm.thresholding</span> <span class="kn">import</span> <span class="n">threshold_stats_img</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_stats_img</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.001</span><span class="p">,</span> <span class="n">height_control</span><span class="o">=</span><span class="s1">&#39;fpr&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Uncorrected p&lt;0.001 threshold: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">threshold</span><span class="p">)</span>
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active - Finger (p&lt;0.001)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_abs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active - Finger (p&lt;0.001)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The problem is that with this you expect 0.001 * n_voxels to show up
+while they’re not active — tens to hundreds of voxels. A more
+conservative solution is to control the family wise errro rate,
+i.e. the probability of making ony one false detection, say at
+5%. For that we use the so-called Bonferroni correction:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_stats_img</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">height_control</span><span class="o">=</span><span class="s1">&#39;bonferroni&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bonferroni-corrected, p&lt;0.05 threshold: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">threshold</span><span class="p">)</span>
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active - Finger (p&lt;0.05, corrected)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_abs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active - Finger (p&lt;0.05, corrected)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is quite conservative indeed !  A popular alternative is to
+control the false discovery rate, i.e. the expected proportion of
+false discoveries among detections. This is called the false
+disovery rate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_stats_img</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">height_control</span><span class="o">=</span><span class="s1">&#39;fdr&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;False Discovery rate = 0.05 threshold: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">threshold</span><span class="p">)</span>
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active - Finger (fdr=0.05)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_abs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active - Finger (fdr=0.05)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally people like to discard isolated voxels (aka “small
+clusters”) from these images. It is possible to generate a
+thresholded map with small clusters removed by providing a
+cluster_threshold argument. here clusters smaller than 10 voxels
+will be discarded.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_map</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_stats_img</span><span class="p">(</span>
+    <span class="n">z_map</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">height_control</span><span class="o">=</span><span class="s1">&#39;fdr&#39;</span><span class="p">,</span> <span class="n">cluster_threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">clean_map</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active - Finger (fdr=0.05), clusters &gt; 10 voxels&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_abs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active - Finger (fdr=0.05), clusters &gt; 10 voxels)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can save the effect and zscore maps to the disk</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_map</span><span class="o">.</span><span class="n">to_filename</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;sub-01_ses-test_task-footfingerlips_space-MNI152nlin2009casym_desc-finger_zmap.nii.gz&#39;</span><span class="p">))</span>
+<span class="n">eff_map</span><span class="o">.</span><span class="n">to_filename</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;sub-01_ses-test_task-footfingerlips_space-MNI152nlin2009casym_desc-finger_effmap.nii.gz&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Report the found positions in a table</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.reporting</span> <span class="kn">import</span> <span class="n">get_clusters_table</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">get_clusters_table</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">stat_threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+                           <span class="n">cluster_threshold</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This table can be saved for future use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;table.csv&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or use <a class="reference external" href="https://github.com/miykael/atlasreader">atlasreader</a> to get even more information and informative figures:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">atlasreader</span> <span class="kn">import</span> <span class="n">create_output</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
+<span class="n">create_output</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;active_finger_z_map.nii.gz&#39;</span><span class="p">),</span>
+              <span class="n">cluster_extent</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">voxel_thresh</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s have a look at the csv file containing relevant information about the peak of each cluster. This table contains the cluster association and location of each peak, its signal value at this location, the cluster extent (in mm, not in number of voxels), as well as the membership of each peak, given a particular atlas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peak_info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;results/active_finger_z_map_peaks.csv&#39;</span><span class="p">)</span>
+<span class="n">peak_info</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And the clusters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;results/active_finger_z_map_clusters.csv&#39;</span><span class="p">)</span>
+<span class="n">cluster_info</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For each cluster, we also get a corresponding visualization, saved as <code class="docutils literal notranslate"><span class="pre">.png</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;results/active_finger_z_map.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;results/active_finger_z_map_cluster01.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;results/active_finger_z_map_cluster02.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;results/active_finger_z_map_cluster03.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>But wait, there’s more! There’s even a functionality to create entire <code class="docutils literal notranslate"><span class="pre">GLM</span> <span class="pre">reports</span></code> including information regarding the <code class="docutils literal notranslate"><span class="pre">model</span></code> and its <code class="docutils literal notranslate"><span class="pre">parameters</span></code>, <code class="docutils literal notranslate"><span class="pre">design</span> <span class="pre">matrix</span></code>, <code class="docutils literal notranslate"><span class="pre">contrasts</span></code>, etc. . All we need is the <code class="docutils literal notranslate"><span class="pre">make_glm_report</span></code> function from <code class="docutils literal notranslate"><span class="pre">nilearn.reporting</span></code> and apply it to our <code class="docutils literal notranslate"><span class="pre">fitted</span> <span class="pre">GLM</span></code>, specifying a <code class="docutils literal notranslate"><span class="pre">contrast</span> <span class="pre">of</span> <span class="pre">interest</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.reporting</span> <span class="kn">import</span> <span class="n">make_glm_report</span>
+
+<span class="n">report</span> <span class="o">=</span> <span class="n">make_glm_report</span><span class="p">(</span><span class="n">fmri_glm</span><span class="p">,</span>
+                         <span class="n">contrasts</span><span class="o">=</span><span class="s1">&#39;Finger&#39;</span><span class="p">,</span>
+                         <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img</span>
+                         <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once generated, we have several options to view the <code class="docutils literal notranslate"><span class="pre">GLM</span> <span class="pre">report</span></code>: directly in the <code class="docutils literal notranslate"><span class="pre">notebook</span></code>, in the <code class="docutils literal notranslate"><span class="pre">browser</span></code> or save it as an <code class="docutils literal notranslate"><span class="pre">html</span></code> file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span>
+<span class="c1">#report.open_in_browser()</span>
+<span class="c1">#report.save_as_html(&quot;GLM_report.html&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="performing-an-f-test">
+<h3>Performing an F-test<a class="headerlink" href="#performing-an-f-test" title="Permalink to this headline">¶</a></h3>
+<p>“active vs rest” is a typical t test: condition versus
+baseline. Another popular type of test is an F test in which one
+seeks whether a certain combination of conditions (possibly two-,
+three- or higher-dimensional) explains a significant proportion of
+the signal.  Here one might for instance test which voxels are well
+explained by combination of the active and rest condition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">effects_of_interest</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Finger&#39;</span><span class="p">],</span> <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Lips&#39;</span><span class="p">]))</span>
+<span class="n">plot_contrast_matrix</span><span class="p">(</span><span class="n">effects_of_interest</span><span class="p">,</span> <span class="n">design_matrix</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Specify the contrast and compute the correspoding map. Actually, the
+contrast specification is done exactly the same way as for t
+contrasts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_map</span> <span class="o">=</span> <span class="n">fmri_glm</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">effects_of_interest</span><span class="p">,</span>
+                                  <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;z_score&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the statistic has been converted to a z-variable, which
+makes it easier to represent it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_map</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_stats_img</span><span class="p">(</span>
+    <span class="n">z_map</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">height_control</span><span class="o">=</span><span class="s1">&#39;fdr&#39;</span><span class="p">,</span> <span class="n">cluster_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">clean_map</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Effects of interest (fdr=0.05), clusters &gt; 10 voxels&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="evaluating-models">
+<h3>Evaluating models<a class="headerlink" href="#evaluating-models" title="Permalink to this headline">¶</a></h3>
+<p>While not commonly done, it’s a very good and important idea to actually evaluate your model in terms of its fit. We can do that comprehensively, yet easily through <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> functionality. In more detail, we’re going to inspect the residuals and evaluate the predicted time series. Let’s  do this for the peak voxels. At first, we have to extract them using <code class="docutils literal notranslate"><span class="pre">get_clusters_table</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">get_clusters_table</span><span class="p">(</span><span class="n">z_map</span><span class="p">,</span> <span class="n">stat_threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                           <span class="n">cluster_threshold</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Cluster ID&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>, we get the <code class="docutils literal notranslate"><span class="pre">largest</span> <span class="pre">clusters</span></code> and prepare a <code class="docutils literal notranslate"><span class="pre">masker</span></code> to extract their <code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">series</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">input_data</span>
+
+<span class="c1"># get the largest clusters&#39; max x, y, and z coordinates</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># extract time series from each coordinate</span>
+<span class="n">masker</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">NiftiSpheresMasker</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="get-and-check-model-residuals">
+<h4>Get and check model residuals<a class="headerlink" href="#get-and-check-model-residuals" title="Permalink to this headline">¶</a></h4>
+<p>We can simply obtain the <code class="docutils literal notranslate"><span class="pre">residuals</span></code> of the peak voxels from our <code class="docutils literal notranslate"><span class="pre">fitted</span> <span class="pre">model</span></code> via applying the prepared <code class="docutils literal notranslate"><span class="pre">masker</span></code> (and thus <code class="docutils literal notranslate"><span class="pre">peak</span> <span class="pre">voxel</span></code>) to the <code class="docutils literal notranslate"><span class="pre">residuals</span></code> our:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resid</span> <span class="o">=</span> <span class="n">masker</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fmri_glm</span><span class="o">.</span><span class="n">residuals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now, we can plot them and evaluate our <code class="docutils literal notranslate"><span class="pre">peak</span> <span class="pre">voxels</span></code> based on their <code class="docutils literal notranslate"><span class="pre">distribution</span></code> of <code class="docutils literal notranslate"><span class="pre">residuals</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># colors for each of the clusters</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="s1">&#39;olive&#39;</span><span class="p">,</span> <span class="s1">&#39;teal&#39;</span><span class="p">]</span>
+
+
+<span class="n">fig2</span><span class="p">,</span> <span class="n">axs2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">axs2</span> <span class="o">=</span> <span class="n">axs2</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="n">axs2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Cluster peak </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="n">axs2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">resid</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean residuals: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resid</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+
+<span class="n">fig2</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">fig2</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-and-check-predicted-time-series">
+<h4>Get and check predicted time series<a class="headerlink" href="#get-and-check-predicted-time-series" title="Permalink to this headline">¶</a></h4>
+<p>In order to evaluate the <code class="docutils literal notranslate"><span class="pre">predicted</span> <span class="pre">time</span> <span class="pre">series</span></code> we need to extract them, as well as the <code class="docutils literal notranslate"><span class="pre">actual</span> <span class="pre">time</span> <span class="pre">series</span></code>. To do so, we can use the <code class="docutils literal notranslate"><span class="pre">masker</span></code> again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">real_timeseries</span> <span class="o">=</span> <span class="n">masker</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">)</span>
+<span class="n">predicted_timeseries</span> <span class="o">=</span> <span class="n">masker</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fmri_glm</span><span class="o">.</span><span class="n">predicted</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having obtained both <code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">series</span></code>, we can plot them against each other. To make it more informative, we will also visualize the respective <code class="docutils literal notranslate"><span class="pre">peak</span> <span class="pre">voxels</span></code> on the <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">functional</span> <span class="pre">image</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+
+<span class="c1"># plot the time series and corresponding locations</span>
+<span class="n">fig1</span><span class="p">,</span> <span class="n">axs1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="c1"># plotting time series</span>
+    <span class="n">axs1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Cluster peak </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="n">axs1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">real_timeseries</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">axs1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">predicted_timeseries</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">axs1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+    <span class="n">axs1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Signal intensity&#39;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># plotting image below the time series</span>
+    <span class="n">roi_img</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span>
+        <span class="n">z_map</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]],</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">3.1</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">,</span>
+        <span class="n">axes</span><span class="o">=</span><span class="n">axs1</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+    <span class="n">roi_img</span><span class="o">.</span><span class="n">add_markers</span><span class="p">([</span><span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">fig1</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-the-r-squared">
+<h4>Plot the R-squared<a class="headerlink" href="#plot-the-r-squared" title="Permalink to this headline">¶</a></h4>
+<p>Another option to evaluate our model is to plot the <code class="docutils literal notranslate"><span class="pre">R-squared</span></code>, that is the amount of variance explained through our <code class="docutils literal notranslate"><span class="pre">GLM</span></code> in total. While this plot will be informative, its interpretation will be limited as we can’t tell if a voxel exhibits a large <code class="docutils literal notranslate"><span class="pre">R-squared</span></code> because of a response to a <code class="docutils literal notranslate"><span class="pre">condition</span></code> in our experiment or to <code class="docutils literal notranslate"><span class="pre">noise</span></code>. For these things, one should employ <code class="docutils literal notranslate"><span class="pre">F-Tests</span></code> as shown above. However, as expected we see that the <code class="docutils literal notranslate"><span class="pre">R-squared</span></code> decreases the further away <code class="docutils literal notranslate"><span class="pre">voxels</span></code> are from the <code class="docutils literal notranslate"><span class="pre">receive</span> <span class="pre">coils</span></code> (e.g. deeper in the brain).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">fmri_glm</span><span class="o">.</span><span class="n">r_square</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span>
+                       <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="group-level-statistics">
+<h2>Group level statistics<a class="headerlink" href="#group-level-statistics" title="Permalink to this headline">¶</a></h2>
+<p>Now that we’ve explored the individual level analysis quite a bit, one might ask: but what about <code class="docutils literal notranslate"><span class="pre">group</span> <span class="pre">level</span></code> statistics? No problem at all, <code class="docutils literal notranslate"><span class="pre">nilearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">GLM</span></code> functionality of course supports this as well. As in other software packages, we need to repeat the <code class="docutils literal notranslate"><span class="pre">individual</span> <span class="pre">level</span> <span class="pre">analysis</span></code> for each subject to obtain the same contrast images, that we can submit to a <code class="docutils literal notranslate"><span class="pre">group</span> <span class="pre">level</span> <span class="pre">analysis</span></code>.</p>
+<div class="section" id="run-individual-level-analysis-for-multiple-participants">
+<h3>Run individual level analysis for multiple participants<a class="headerlink" href="#run-individual-level-analysis-for-multiple-participants" title="Permalink to this headline">¶</a></h3>
+<p>By now, we know how to do this easily. Let’s use a simple <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">loop</span></code> to repeat the analysis from above for <code class="docutils literal notranslate"><span class="pre">sub-02</span></code> and <code class="docutils literal notranslate"><span class="pre">sub-03</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">subject</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;02&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">]:</span>
+
+    <span class="c1"># set the fMRI image</span>
+    <span class="n">fmri_img</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/derivatives/fmriprep/sub-</span><span class="si">%s</span><span class="s1">/ses-test/func/sub-</span><span class="si">%s</span><span class="s1">_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_desc-preproc_bold.nii.gz&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">subject</span><span class="p">)</span>
+    
+    <span class="c1"># read in the events </span>
+    <span class="n">events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/sub-</span><span class="si">%s</span><span class="s1">/ses-test/func/sub-</span><span class="si">%s</span><span class="s1">_ses-test_task-fingerfootlips_events.tsv&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">subject</span><span class="p">))</span>
+    
+    <span class="c1"># read in the confounds</span>
+    <span class="n">confounds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/derivatives/fmriprep/sub-</span><span class="si">%s</span><span class="s1">/ses-test/func/sub-</span><span class="si">%s</span><span class="s1">_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">subject</span><span class="p">))</span>
+    
+    <span class="c1"># restrict the to be included confounds to a subset</span>
+    <span class="n">confounds_glm</span> <span class="o">=</span> <span class="n">confounds</span><span class="p">[[</span><span class="s1">&#39;WhiteMatter&#39;</span><span class="p">,</span> <span class="s1">&#39;GlobalSignal&#39;</span><span class="p">,</span> <span class="s1">&#39;FramewiseDisplacement&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;RotX&#39;</span><span class="p">,</span> <span class="s1">&#39;RotY&#39;</span><span class="p">,</span> <span class="s1">&#39;RotZ&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="c1"># run the GLM</span>
+    <span class="n">fmri_glm</span> <span class="o">=</span> <span class="n">fmri_glm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">confounds_glm</span><span class="p">)</span>
+    
+    <span class="c1"># compute the contrast as a z-map</span>
+    <span class="n">z_map</span> <span class="o">=</span> <span class="n">fmri_glm</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Finger&#39;</span><span class="p">],</span>
+                                  <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;z_score&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># save the z-map</span>
+    <span class="n">z_map</span><span class="o">.</span><span class="n">to_filename</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;sub-</span><span class="si">%s</span><span class="s1">_ses-test_task-footfingerlips_space-MNI152nlin2009casym_desc-finger_zmap.nii.gz&#39;</span> <span class="o">%</span><span class="k">subject</span>))
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="define-a-group-level-model">
+<h3>Define a group level model<a class="headerlink" href="#define-a-group-level-model" title="Permalink to this headline">¶</a></h3>
+<p>As we now have the same contrast from multiple <code class="docutils literal notranslate"><span class="pre">subjects</span></code> we can define our <code class="docutils literal notranslate"><span class="pre">group</span> <span class="pre">level</span> <span class="pre">model</span></code>. At first, we need to gather the <code class="docutils literal notranslate"><span class="pre">individual</span> <span class="pre">contrast</span> <span class="pre">maps</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="n">list_z_maps</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;sub-*_ses-test_task-footfingerlips_space-MNI152nlin2009casym_desc-finger_zmap.nii.gz&#39;</span><span class="p">))</span>
+
+
+<span class="n">list_z_maps</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Great! The next step includes the definition of a <code class="docutils literal notranslate"><span class="pre">design</span> <span class="pre">matrix</span></code>. As we want to run a simple <code class="docutils literal notranslate"><span class="pre">one-sample</span> <span class="pre">t-test</span></code>, we just need to indicate as many <code class="docutils literal notranslate"><span class="pre">1</span></code> as we have <code class="docutils literal notranslate"><span class="pre">z-maps</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_z_maps</span><span class="p">),</span>
+                             <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;intercept&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Believe it or not, that’s all it takes. Within the next step we can already set and run our model. It’s basically identical to the <code class="docutils literal notranslate"><span class="pre">First_level_model</span></code>: we need to define the <code class="docutils literal notranslate"><span class="pre">images</span></code> and <code class="docutils literal notranslate"><span class="pre">design</span> <span class="pre">matrix</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.glm.second_level</span> <span class="kn">import</span> <span class="n">SecondLevelModel</span>
+<span class="n">second_level_model</span> <span class="o">=</span> <span class="n">SecondLevelModel</span><span class="p">()</span>
+<span class="n">second_level_model</span> <span class="o">=</span> <span class="n">second_level_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">list_z_maps</span><span class="p">,</span>
+                                            <span class="n">design_matrix</span><span class="o">=</span><span class="n">design_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The same holds true for <code class="docutils literal notranslate"><span class="pre">contrast</span> <span class="pre">computation</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_map_group</span> <span class="o">=</span> <span class="n">second_level_model</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;z_score&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What do we get? After defining a liberal threshold of <code class="docutils literal notranslate"><span class="pre">p&lt;0.001</span> <span class="pre">(uncorrected)</span></code>, we can plot our computed <code class="docutils literal notranslate"><span class="pre">group</span> <span class="pre">level</span> <span class="pre">contrast</span> <span class="pre">image</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="n">p001_unc</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">z_map_group</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">p001_unc</span><span class="p">,</span>
+                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Group Finger tapping (unc p&lt;0.001)&#39;</span><span class="p">,</span>
+                          <span class="n">plot_abs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Well, not much going there…But please remember we also just included three participants. Besides this rather simple model, <code class="docutils literal notranslate"><span class="pre">nilearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">GLM</span></code> functionality of course also allows you to run <code class="docutils literal notranslate"><span class="pre">paired</span> <span class="pre">t-test</span></code>, <code class="docutils literal notranslate"><span class="pre">two-sample</span> <span class="pre">t-test</span></code>, <code class="docutils literal notranslate"><span class="pre">F-test</span></code>, etc. . As shown above, you also can define different <code class="docutils literal notranslate"><span class="pre">thresholds</span></code> and <code class="docutils literal notranslate"><span class="pre">multiple</span> <span class="pre">comparison</span> <span class="pre">corrections</span></code>. There’s yet another cool thing we didn’t talk about. It’s possible to run analyses in a rather automated way if your dataset is in <code class="docutils literal notranslate"><span class="pre">BIDS</span></code>.</p>
+</div>
+</div>
+<div class="section" id="performing-statistical-analyses-on-bids-datasets">
+<h2>Performing statistical analyses on BIDS datasets<a class="headerlink" href="#performing-statistical-analyses-on-bids-datasets" title="Permalink to this headline">¶</a></h2>
+<p>Even though model specification and running was comparably easy and straightforward, it can be even better. <code class="docutils literal notranslate"><span class="pre">Nilearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">GLM</span></code> functionality actually enables you to define models for multiple participants through one function by leveraging the <code class="docutils literal notranslate"><span class="pre">BIDS</span></code> standard. More precisely, the function <code class="docutils literal notranslate"><span class="pre">first_level_from_bids</span></code> takes the same input arguments as <code class="docutils literal notranslate"><span class="pre">First_Level_model</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">t_r</span></code>, <code class="docutils literal notranslate"><span class="pre">hrf_model</span></code>, <code class="docutils literal notranslate"><span class="pre">high_pass</span></code>, etc.), but through defining the <code class="docutils literal notranslate"><span class="pre">BIDS</span> <span class="pre">raw</span></code> and <code class="docutils literal notranslate"><span class="pre">derivatives</span> <span class="pre">folder</span></code>, as well as a <code class="docutils literal notranslate"><span class="pre">task</span></code> and <code class="docutils literal notranslate"><span class="pre">space</span></code> label automatically extracts all information necessary to run <code class="docutils literal notranslate"><span class="pre">individual</span> <span class="pre">level</span> <span class="pre">models</span></code> and creates the <code class="docutils literal notranslate"><span class="pre">model</span></code> itself for all participants.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.glm.first_level</span> <span class="kn">import</span> <span class="n">first_level_from_bids</span>
+
+<span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/&#39;</span>
+<span class="n">task_label</span> <span class="o">=</span> <span class="s1">&#39;fingerfootlips&#39;</span>
+<span class="n">space_label</span> <span class="o">=</span> <span class="s1">&#39;MNI152nlin2009casym&#39;</span>
+<span class="n">derivatives_folder</span> <span class="o">=</span> <span class="s1">&#39;derivatives/fmriprep&#39;</span>
+
+<span class="n">models</span><span class="p">,</span> <span class="n">models_run_imgs</span><span class="p">,</span> <span class="n">models_events</span><span class="p">,</span> <span class="n">models_confounds</span> <span class="o">=</span> \
+    <span class="n">first_level_from_bids</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">task_label</span><span class="p">,</span> <span class="n">space_label</span><span class="p">,</span>
+                          <span class="n">smoothing_fwhm</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+                          <span class="n">derivatives_folder</span><span class="o">=</span><span class="n">derivatives_folder</span><span class="p">,</span> 
+                          <span class="n">t_r</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> 
+                          <span class="n">noise_model</span><span class="o">=</span><span class="s1">&#39;ar1&#39;</span><span class="p">,</span>
+                          <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;spm&#39;</span><span class="p">,</span>
+                          <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+                          <span class="n">high_pass</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">160</span><span class="p">,</span>
+                          <span class="n">signal_scaling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">minimize_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Done, let’s check if things work as expected. As an example, we will have a look at the information for <code class="docutils literal notranslate"><span class="pre">sub-01</span></code>. We’re going to start with the <code class="docutils literal notranslate"><span class="pre">images</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">run</span><span class="p">)</span> <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">models_run_imgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looks good. How about confounds?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">models_confounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ah, the <code class="docutils literal notranslate"><span class="pre">NaN</span></code> again. Let’s fix those as we did last time, but for all participants.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">models_confounds_no_nan</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">confounds</span> <span class="ow">in</span> <span class="n">models_confounds</span><span class="p">:</span>
+    <span class="n">models_confounds_no_nan</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">confounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)[[</span><span class="s1">&#39;WhiteMatter&#39;</span><span class="p">,</span> <span class="s1">&#39;GlobalSignal&#39;</span><span class="p">,</span> <span class="s1">&#39;FramewiseDisplacement&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;RotX&#39;</span><span class="p">,</span> <span class="s1">&#39;RotY&#39;</span><span class="p">,</span> <span class="s1">&#39;RotZ&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Last but not least: how do the <code class="docutils literal notranslate"><span class="pre">events</span></code> look?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">models_events</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;trial_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fantastic, now we’re ready to run our models. With a little <code class="docutils literal notranslate"><span class="pre">zip</span></code> magic this is done without a problem. We also going to compute <code class="docutils literal notranslate"><span class="pre">z-maps</span></code> as before and plot them side by side.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">models_fitted</span> <span class="o">=</span> <span class="p">[]</span> 
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">))</span>
+<span class="n">model_and_args</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">models_run_imgs</span><span class="p">,</span> <span class="n">models_events</span><span class="p">,</span> <span class="n">models_confounds_no_nan</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">midx</span><span class="p">,</span> <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">imgs</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">confounds</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model_and_args</span><span class="p">):</span>
+    <span class="c1"># fit the GLM</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">confounds</span><span class="p">)</span>
+        
+    <span class="n">models_fitted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    
+    <span class="c1"># compute the contrast of interest</span>
+    <span class="n">zmap</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="s1">&#39;Finger&#39;</span><span class="p">)</span>
+    <span class="n">plotting</span><span class="o">.</span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">zmap</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">p001_unc</span><span class="p">,</span>
+                              <span class="n">title</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sub-&#39;</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">subject_label</span><span class="p">),</span>
+                              <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">midx</span><span class="p">)],</span>
+                              <span class="n">plot_abs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;subjects z_map finger tapping (unc p&lt;0.001)&#39;</span><span class="p">)</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That looks about right. However, let’s also check the <code class="docutils literal notranslate"><span class="pre">design</span> <span class="pre">matrix</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_design_matrix</span>
+<span class="n">plot_design_matrix</span><span class="p">(</span><span class="n">models_fitted</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">design_matrices_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and <code class="docutils literal notranslate"><span class="pre">contrast</span> <span class="pre">matrix</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_contrast_matrix</span><span class="p">(</span><span class="s1">&#39;Finger&#39;</span><span class="p">,</span> <span class="n">models_fitted</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">design_matrices_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nothing to complain here and thus we can move on to the <code class="docutils literal notranslate"><span class="pre">group</span> <span class="pre">level</span> <span class="pre">model</span></code>. Instead of assembling <code class="docutils literal notranslate"><span class="pre">contrast</span> <span class="pre">images</span></code> from each participant, we also have the option to simply provide the <code class="docutils literal notranslate"><span class="pre">fitted</span> <span class="pre">individual</span> <span class="pre">level</span> <span class="pre">models</span></code> as input.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.glm.second_level</span> <span class="kn">import</span> <span class="n">SecondLevelModel</span>
+<span class="n">second_level_input</span> <span class="o">=</span> <span class="n">models_fitted</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s all it takes and we can run our <code class="docutils literal notranslate"><span class="pre">group</span> <span class="pre">level</span> <span class="pre">model</span></code> again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">second_level_model</span> <span class="o">=</span> <span class="n">SecondLevelModel</span><span class="p">()</span>
+<span class="n">second_level_model</span> <span class="o">=</span> <span class="n">second_level_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">second_level_input</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And after computing the <code class="docutils literal notranslate"><span class="pre">contrast</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zmap</span> <span class="o">=</span> <span class="n">second_level_model</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span>
+    <span class="n">first_level_contrast</span><span class="o">=</span><span class="s1">&#39;Finger&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we can plot the results again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">zmap</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">p001_unc</span><span class="p">,</span>
+                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Group Finger tapping (unc p&lt;0.001)&#39;</span><span class="p">,</span>
+                          <span class="n">plot_abs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s all for now. Please note, that we only showed a small part of what’s possible. Make sure to check the documentation and the examples it includes. We hope we could show you how powerful <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> will be through including <code class="docutils literal notranslate"><span class="pre">GLM</span></code> functionality  starting with the new release. While there’s already a lot you can do, there will be even more in the future.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./advanced"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="pybids.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Introduction to <code class="docutils literal notranslate"><span class="pre">pybids</span></code></p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="functional_connectivity.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Functional connectivity and resting state</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

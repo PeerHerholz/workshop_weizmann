@@ -1,0 +1,1380 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to the jupyter ecosystem &amp; notebooks &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_nipype.html">
+   Basics in data handling &amp; Nipype
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/prerequisites/intro_jupyter.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fprerequisites/intro_jupyter.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/prerequisites/intro_jupyter.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/prerequisites/intro_jupyter.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#before-we-get-started-1">
+   Before we get started 1…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals">
+   Goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#to-jupyter-beyond">
+   To Jupyter &amp; beyond
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   To Jupyter &amp; beyond
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#before-we-get-started-2">
+   Before we get started 2…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#files-tab">
+   Files Tab
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-notebook">
+     The Notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#header">
+     Header
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#body">
+     Body
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modality">
+     Modality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mouse-navigation">
+     Mouse navigation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#keyboard-navigation">
+     Keyboard Navigation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markdown-cells">
+     Markdown Cells
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markdown-basics">
+     Markdown basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedded-code">
+     Embedded code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#github-flavored-markdown-gfm">
+     Github flavored markdown (GFM)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-html">
+     General HTML
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-files">
+     Local files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#security-of-local-files">
+     Security of local files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markdown-attachments">
+     Markdown attachments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-cells">
+     Code cells
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tab-completion">
+     Tab Completion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-help">
+   Get Help
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-code">
+   Writing code
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-interactive-workflow-input-output-history">
+     The interactive workflow: input, output, history
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessing-the-underlying-operating-system">
+     Accessing the underlying operating system
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#magic-functions">
+     Magic functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-latex">
+   Writing latex
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#running-normal-python-code-execution-and-errors">
+     Running normal Python code: execution and errors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-code-in-other-languages-with-special-magics">
+   Running code in other languages with special
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     %%
+    </span>
+   </code>
+   magics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raw-input-in-the-notebook">
+     Raw Input in the notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-in-the-notebook">
+     Plotting in the notebook
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-ipython-kernel-client-model">
+   The IPython kernel/client model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-a-notebook">
+   Saving a Notebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   To Jupyter &amp; beyond
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-the-jupyter-ecosystem-notebooks">
+<h1>Introduction to the jupyter ecosystem &amp; notebooks<a class="headerlink" href="#introduction-to-the-jupyter-ecosystem-notebooks" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://peerherholz.github.io/">Peer Herholz (he/him)</a><br />
+Postdoctoral researcher - <a class="reference external" href="https://neurodatascience.github.io/">NeuroDataScience lab</a> at <a class="reference external" href="https://www.mcgill.ca/neuro/">MNI</a>/<a class="reference external" href="https://www.mcgill.ca/">McGill</a>, <a class="reference external" href="https://sites.google.com/view/unique-neuro-ai">UNIQUE</a><br />
+Member - <a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">BIDS</a>, <a class="reference external" href="https://www.repronim.org/">ReproNim</a>, <a class="reference external" href="https://brainhack.org/">Brainhack</a>, <a class="reference external" href="https://www.cneuromod.ca/">Neuromod</a>, <a class="reference external" href="https://ohbm-environment.org/">OHBM SEA-SIG</a></p>
+<p><img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/Twitter%20social%20icons%20-%20circle%20-%20blue.png" alt="logo" title="Twitter" width="32" height="20" /> <img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/GitHub-Mark-120px-plus.png" alt="logo" title="Github" width="30" height="20" />     &#64;peerherholz</p>
+<div class="section" id="before-we-get-started-1">
+<h2>Before we get started 1…<a class="headerlink" href="#before-we-get-started-1" title="Permalink to this headline">¶</a></h2>
+<br>
+<ul class="simple">
+<li><p>most of what you’ll see within this lecture was prepared by Ross Markello, Michael Notter and Peer Herholz and further adapted for this course by Peer Herholz</p></li>
+<li><p>based on Tal Yarkoni’s <a class="reference external" href="https://neurohackademy.org/course/introduction-to-python-2/">“Introduction to Python” lecture at Neurohackademy 2019</a></p></li>
+<li><p>based on <a class="reference external" href="http://github.com/jrjohansson/scientific-python-lectures">IPython notebooks from J. R. Johansson</a></p></li>
+<li><p>based on <a class="reference external" href="http://www.stavros.io/tutorials/python/">http://www.stavros.io/tutorials/python/</a> &amp; <a class="reference external" href="http://www.swaroopch.com/notes/python">http://www.swaroopch.com/notes/python</a></p></li>
+<li><p>based on <a class="reference external" href="https://github.com/oesteban/biss2016">https://github.com/oesteban/biss2016</a> &amp;  <a class="reference external" href="https://github.com/jvns/pandas-cookbook">https://github.com/jvns/pandas-cookbook</a></p></li>
+</ul>
+</div>
+<div class="section" id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>learn basic and efficient usage of the <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">ecosystem</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">notebooks</span></code></p>
+<ul>
+<li><p>what is <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> &amp; how to utilize <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebooks</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="to-jupyter-beyond">
+<h2>To Jupyter &amp; beyond<a class="headerlink" href="#to-jupyter-beyond" title="Permalink to this headline">¶</a></h2>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/jupyter_ecosystem.png" alt="logo" title="jupyter" width="500" height="200" /> 
+<ul class="simple">
+<li><p>a community of people</p></li>
+<li><p>an ecosystem of open tools and standards for interactive computing</p></li>
+<li><p>language-agnostic and modular</p></li>
+<li><p>empower people to use other open tools</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>To Jupyter &amp; beyond<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/jupyter_example.png" alt="logo" title="jupyter" width="900" height="400" /> </div>
+<div class="section" id="before-we-get-started-2">
+<h2>Before we get started 2…<a class="headerlink" href="#before-we-get-started-2" title="Permalink to this headline">¶</a></h2>
+<p>We’re going to be working in <span class="xref myst">Jupyter notebooks</span> for most of this presentation!</p>
+<p>To load yours, do the following:</p>
+<ol class="simple">
+<li><p>Open a terminal</p></li>
+</ol>
+<ol class="simple">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code></p></li>
+</ol>
+<ol class="simple">
+<li><p>If you’re not automatically directed to a webpage copy the URL printed in the terminal and paste it in your browser</p></li>
+</ol>
+<ol class="simple">
+<li><p>Click “New” in the top-right corner and select “Python 3”</p></li>
+</ol>
+<ol class="simple">
+<li><p>You have a Jupyter notebook!</p></li>
+</ol>
+</div>
+<div class="section" id="files-tab">
+<h2>Files Tab<a class="headerlink" href="#files-tab" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">files</span> <span class="pre">tab</span></code> provides an interactive view of the portion of the <code class="docutils literal notranslate"><span class="pre">filesystem</span></code> which is accessible by the <code class="docutils literal notranslate"><span class="pre">user</span></code>. This is typically rooted by the directory in which the notebook server was started.</p>
+<p>The top of the <code class="docutils literal notranslate"><span class="pre">files</span> <span class="pre">list</span></code> displays <code class="docutils literal notranslate"><span class="pre">clickable</span></code> breadcrumbs of the <code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">directory</span></code>. It is possible to navigate the <code class="docutils literal notranslate"><span class="pre">filesystem</span></code> by clicking on these <code class="docutils literal notranslate"><span class="pre">breadcrumbs</span></code> or on the <code class="docutils literal notranslate"><span class="pre">directories</span></code> displayed in the <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">list</span></code>.</p>
+<p>A new <code class="docutils literal notranslate"><span class="pre">notebook</span></code> can be created by clicking on the <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">dropdown</span> <span class="pre">button</span></code> at the top of the list, and selecting the desired <code class="docutils literal notranslate"><span class="pre">language</span> <span class="pre">kernel</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Notebooks</span></code> can also be <code class="docutils literal notranslate"><span class="pre">uploaded</span></code> to the <code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">directory</span></code> by dragging a <code class="docutils literal notranslate"><span class="pre">notebook</span></code> file onto the list or by clicking the <code class="docutils literal notranslate"><span class="pre">Upload</span> <span class="pre">button</span></code> at the top of the list.</p>
+<div class="section" id="the-notebook">
+<h3>The Notebook<a class="headerlink" href="#the-notebook" title="Permalink to this headline">¶</a></h3>
+<p>When a <code class="docutils literal notranslate"><span class="pre">notebook</span></code> is opened, a new <code class="docutils literal notranslate"><span class="pre">browser</span> <span class="pre">tab</span></code> will be created which presents the <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">user</span> <span class="pre">interface</span> <span class="pre">(UI)</span></code>. This <code class="docutils literal notranslate"><span class="pre">UI</span></code> allows for <code class="docutils literal notranslate"><span class="pre">interactively</span> <span class="pre">editing</span></code> and <code class="docutils literal notranslate"><span class="pre">running</span></code> the <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">document</span></code>.</p>
+<p>A new <code class="docutils literal notranslate"><span class="pre">notebook</span></code> can be created from the <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> by clicking on the <code class="docutils literal notranslate"><span class="pre">Files</span> <span class="pre">tab</span></code>, followed by the <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">dropdown</span> <span class="pre">button</span></code>, and then selecting the <code class="docutils literal notranslate"><span class="pre">language</span></code> of choice for the <code class="docutils literal notranslate"><span class="pre">notebook</span></code>.</p>
+<p>An <code class="docutils literal notranslate"><span class="pre">interactive</span> <span class="pre">tour</span></code> of the <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">UI</span></code> can be started by selecting <code class="docutils literal notranslate"><span class="pre">Help</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">Interface</span> <span class="pre">Tour</span></code> from the <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">menu</span> <span class="pre">bar</span></code>.</p>
+</div>
+<div class="section" id="header">
+<h3>Header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h3>
+<p>At the top of the <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">document</span></code> is a <code class="docutils literal notranslate"><span class="pre">header</span></code> which contains the <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">title</span></code>, a <code class="docutils literal notranslate"><span class="pre">menubar</span></code>, and <code class="docutils literal notranslate"><span class="pre">toolbar</span></code>. This <code class="docutils literal notranslate"><span class="pre">header</span></code> remains <code class="docutils literal notranslate"><span class="pre">fixed</span></code> at the top of the screen, even as the <code class="docutils literal notranslate"><span class="pre">body</span></code> of the <code class="docutils literal notranslate"><span class="pre">notebook</span></code> is <code class="docutils literal notranslate"><span class="pre">scrolled</span></code>. The <code class="docutils literal notranslate"><span class="pre">title</span></code> can be edited <code class="docutils literal notranslate"><span class="pre">in-place</span></code> (which renames the <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">file</span></code>), and the <code class="docutils literal notranslate"><span class="pre">menubar</span></code> and <code class="docutils literal notranslate"><span class="pre">toolbar</span></code> contain a variety of actions which control <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">navigation</span></code> and <code class="docutils literal notranslate"><span class="pre">document</span> <span class="pre">structure</span></code>.</p>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/notebook_header_4_0.png" alt="logo" title="jupyter" width="600" height="100" /> </div>
+<div class="section" id="body">
+<h3>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">body</span></code> of a <code class="docutils literal notranslate"><span class="pre">notebook</span></code> is composed of <code class="docutils literal notranslate"><span class="pre">cells</span></code>. Each <code class="docutils literal notranslate"><span class="pre">cell</span></code> contains either <code class="docutils literal notranslate"><span class="pre">markdown</span></code>, <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">output</span></code>, or <code class="docutils literal notranslate"><span class="pre">raw</span> <span class="pre">text</span></code>. <code class="docutils literal notranslate"><span class="pre">Cells</span></code> can be included in any order and edited at-will, allowing for a large amount of flexibility for constructing a narrative.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Markdown</span> <span class="pre">cells</span></code> - These are used to build a <code class="docutils literal notranslate"><span class="pre">nicely</span> <span class="pre">formatted</span> <span class="pre">narrative</span></code> around the <code class="docutils literal notranslate"><span class="pre">code</span></code> in the document. The majority of this lesson is composed of <code class="docutils literal notranslate"><span class="pre">markdown</span> <span class="pre">cells</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Code</span> <span class="pre">cells</span></code> - These are used to define the <code class="docutils literal notranslate"><span class="pre">computational</span> <span class="pre">code</span></code> in the <code class="docutils literal notranslate"><span class="pre">document</span></code>. They come in <code class="docutils literal notranslate"><span class="pre">two</span> <span class="pre">forms</span></code>:</p>
+<ul>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">cell</span></code> where the <code class="docutils literal notranslate"><span class="pre">user</span></code> types the <code class="docutils literal notranslate"><span class="pre">code</span></code> to be <code class="docutils literal notranslate"><span class="pre">executed</span></code>,</p></li>
+<li><p>and the <code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">cell</span></code> which is the <code class="docutils literal notranslate"><span class="pre">representation</span></code> of the <code class="docutils literal notranslate"><span class="pre">executed</span> <span class="pre">code</span></code>. Depending on the <code class="docutils literal notranslate"><span class="pre">code</span></code>, this <code class="docutils literal notranslate"><span class="pre">representation</span></code> may be a <code class="docutils literal notranslate"><span class="pre">simple</span> <span class="pre">scalar</span> <span class="pre">value</span></code>, or something more complex like a <code class="docutils literal notranslate"><span class="pre">plot</span></code> or an <code class="docutils literal notranslate"><span class="pre">interactive</span> <span class="pre">widget</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Raw</span> <span class="pre">cells</span></code> - These are used when <code class="docutils literal notranslate"><span class="pre">text</span></code> needs to be included in <code class="docutils literal notranslate"><span class="pre">raw</span> <span class="pre">form</span></code>, without <code class="docutils literal notranslate"><span class="pre">execution</span></code> or <code class="docutils literal notranslate"><span class="pre">transformation</span></code>.</p></li>
+</ul>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/notebook_body_4_0.png" alt="logo" title="jupyter" width="700" height="200" /> </div>
+<div class="section" id="modality">
+<h3>Modality<a class="headerlink" href="#modality" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">user</span> <span class="pre">interface</span></code> is <code class="docutils literal notranslate"><span class="pre">modal</span></code>. This means that the <code class="docutils literal notranslate"><span class="pre">keyboard</span></code> behaves <code class="docutils literal notranslate"><span class="pre">differently</span></code> depending upon the <code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">mode</span></code> of the <code class="docutils literal notranslate"><span class="pre">notebook</span></code>. A <code class="docutils literal notranslate"><span class="pre">notebook</span></code> has <code class="docutils literal notranslate"><span class="pre">two</span> <span class="pre">modes</span></code>: <code class="docutils literal notranslate"><span class="pre">edit</span></code> and <code class="docutils literal notranslate"><span class="pre">command</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">mode</span></code> is indicated by a <code class="docutils literal notranslate"><span class="pre">green</span> <span class="pre">cell</span> <span class="pre">border</span></code> and a <code class="docutils literal notranslate"><span class="pre">prompt</span></code> showing in the <code class="docutils literal notranslate"><span class="pre">editor</span> <span class="pre">area</span></code>. When a <code class="docutils literal notranslate"><span class="pre">cell</span></code> is in <code class="docutils literal notranslate"><span class="pre">edit</span> <span class="pre">mode</span></code>, you can type into the <code class="docutils literal notranslate"><span class="pre">cell</span></code>, like a <code class="docutils literal notranslate"><span class="pre">normal</span> <span class="pre">text</span> <span class="pre">editor</span></code>.</p>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/edit_mode.png" alt="logo" title="jupyter" width="700" height="100" /> <p><code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">mode</span></code> is indicated by a <code class="docutils literal notranslate"><span class="pre">grey</span> <span class="pre">cell</span> <span class="pre">border</span></code>. When in <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">mode</span></code>, the structure of the <code class="docutils literal notranslate"><span class="pre">notebook</span></code> can be modified as a whole, but the <code class="docutils literal notranslate"><span class="pre">text</span></code> in <code class="docutils literal notranslate"><span class="pre">individual</span> <span class="pre">cells</span></code> cannot be changed. Most importantly, the <code class="docutils literal notranslate"><span class="pre">keyboard</span></code> is <code class="docutils literal notranslate"><span class="pre">mapped</span></code> to a set of <code class="docutils literal notranslate"><span class="pre">shortcuts</span></code> for efficiently performing <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">and</span> <span class="pre">cell</span> <span class="pre">actions</span></code>. For example, pressing <code class="docutils literal notranslate"><span class="pre">c</span></code> when in <code class="docutils literal notranslate"><span class="pre">command</span></code> mode, will <code class="docutils literal notranslate"><span class="pre">copy</span></code> the <code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">cell</span></code>; no modifier is needed.</p>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/command_mode.png" alt="logo" title="jupyter" width="700" height="100" /> </div>
+<div class="section" id="mouse-navigation">
+<h3>Mouse navigation<a class="headerlink" href="#mouse-navigation" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">first</span> <span class="pre">concept</span></code> to understand in <code class="docutils literal notranslate"><span class="pre">mouse-based</span> <span class="pre">navigation</span></code> is that <code class="docutils literal notranslate"><span class="pre">cells</span></code> can be <code class="docutils literal notranslate"><span class="pre">selected</span> <span class="pre">by</span> <span class="pre">clicking</span> <span class="pre">on</span> <span class="pre">them</span></code>. The <code class="docutils literal notranslate"><span class="pre">currently</span> <span class="pre">selected</span> <span class="pre">cell</span></code> is indicated with a <code class="docutils literal notranslate"><span class="pre">grey</span></code> or <code class="docutils literal notranslate"><span class="pre">green</span> <span class="pre">border</span> <span class="pre">depending</span></code> on whether the <code class="docutils literal notranslate"><span class="pre">notebook</span></code> is in <code class="docutils literal notranslate"><span class="pre">edit</span> <span class="pre">or</span> <span class="pre">command</span> <span class="pre">mode</span></code>. Clicking inside a <code class="docutils literal notranslate"><span class="pre">cell</span></code>’s <code class="docutils literal notranslate"><span class="pre">editor</span> <span class="pre">area</span></code> will enter <code class="docutils literal notranslate"><span class="pre">edit</span> <span class="pre">mode</span></code>. Clicking on the <code class="docutils literal notranslate"><span class="pre">prompt</span></code> or the <code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">area</span></code> of a <code class="docutils literal notranslate"><span class="pre">cell</span></code> will enter <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">mode</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">second</span> <span class="pre">concept</span></code> to understand in <code class="docutils literal notranslate"><span class="pre">mouse-based</span> <span class="pre">navigation</span></code> is that <code class="docutils literal notranslate"><span class="pre">cell</span> <span class="pre">actions</span></code> usually apply to the <code class="docutils literal notranslate"><span class="pre">currently</span> <span class="pre">selected</span> <span class="pre">cell</span></code>. For example, to <code class="docutils literal notranslate"><span class="pre">run</span></code> the <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">cell</span></code>, select it and then click the  <code class="docutils literal notranslate"><span class="pre">button</span></code> in the <code class="docutils literal notranslate"><span class="pre">toolbar</span></code> or the <code class="docutils literal notranslate"><span class="pre">Cell</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Run</span></code> menu item. Similarly, to <code class="docutils literal notranslate"><span class="pre">copy</span></code> a <code class="docutils literal notranslate"><span class="pre">cell</span></code>, select it and then click the  <code class="docutils literal notranslate"><span class="pre">button</span></code> in the <code class="docutils literal notranslate"><span class="pre">toolbar</span></code> or the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Copy</span></code> menu item. With this simple pattern, it should be possible to perform nearly every <code class="docutils literal notranslate"><span class="pre">action</span></code> with the <code class="docutils literal notranslate"><span class="pre">mouse</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Markdown</span> <span class="pre">cells</span></code> have one other <code class="docutils literal notranslate"><span class="pre">state</span></code> which can be <code class="docutils literal notranslate"><span class="pre">modified</span></code> with the <code class="docutils literal notranslate"><span class="pre">mouse</span></code>. These <code class="docutils literal notranslate"><span class="pre">cells</span></code> can either be <code class="docutils literal notranslate"><span class="pre">rendered</span></code> or <code class="docutils literal notranslate"><span class="pre">unrendered</span></code>. When they are <code class="docutils literal notranslate"><span class="pre">rendered</span></code>, a nice <code class="docutils literal notranslate"><span class="pre">formatted</span> <span class="pre">representation</span></code> of the <code class="docutils literal notranslate"><span class="pre">cell</span></code>’s <code class="docutils literal notranslate"><span class="pre">contents</span></code> will be presented. When they are <code class="docutils literal notranslate"><span class="pre">unrendered</span></code>, the <code class="docutils literal notranslate"><span class="pre">raw</span> <span class="pre">text</span> <span class="pre">source</span></code> of the <code class="docutils literal notranslate"><span class="pre">cell</span></code> will be presented. To <code class="docutils literal notranslate"><span class="pre">render</span></code> the <code class="docutils literal notranslate"><span class="pre">selected</span> <span class="pre">cell</span></code> with the <code class="docutils literal notranslate"><span class="pre">mouse</span></code>, click the  <code class="docutils literal notranslate"><span class="pre">button</span></code> in the <code class="docutils literal notranslate"><span class="pre">toolbar</span></code> or the <code class="docutils literal notranslate"><span class="pre">Cell</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Run</span></code> menu item. To <code class="docutils literal notranslate"><span class="pre">unrender</span></code> the <code class="docutils literal notranslate"><span class="pre">selected</span> <span class="pre">cell</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">click</span></code> on the <code class="docutils literal notranslate"><span class="pre">cell</span></code>.</p>
+</div>
+<div class="section" id="keyboard-navigation">
+<h3>Keyboard Navigation<a class="headerlink" href="#keyboard-navigation" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">modal</span> <span class="pre">user</span> <span class="pre">interface</span></code> of the <code class="docutils literal notranslate"><span class="pre">IPython</span> <span class="pre">Notebook</span></code> has been optimized for efficient <code class="docutils literal notranslate"><span class="pre">keyboard</span></code> usage. This is made possible by having <code class="docutils literal notranslate"><span class="pre">two</span> <span class="pre">different</span> <span class="pre">sets</span></code> of <code class="docutils literal notranslate"><span class="pre">keyboard</span> <span class="pre">shortcuts</span></code>: one set that is <code class="docutils literal notranslate"><span class="pre">active</span> <span class="pre">in</span> <span class="pre">edit</span> <span class="pre">mode</span></code> and another in <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">mode</span></code>.</p>
+<p>The most important <code class="docutils literal notranslate"><span class="pre">keyboard</span> <span class="pre">shortcuts</span></code> are <code class="docutils literal notranslate"><span class="pre">Enter</span></code>, which enters <code class="docutils literal notranslate"><span class="pre">edit</span> <span class="pre">mode</span></code>, and <code class="docutils literal notranslate"><span class="pre">Esc</span></code>, which enters <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">mode</span></code>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">edit</span> <span class="pre">mode</span></code>, most of the <code class="docutils literal notranslate"><span class="pre">keyboard</span></code> is dedicated to <code class="docutils literal notranslate"><span class="pre">typing</span></code> into the <code class="docutils literal notranslate"><span class="pre">cell's</span> <span class="pre">editor</span></code>. Thus, in <code class="docutils literal notranslate"><span class="pre">edit</span> <span class="pre">mode</span></code> there are relatively <code class="docutils literal notranslate"><span class="pre">few</span> <span class="pre">shortcuts</span></code>. In <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">mode</span></code>, the entire <code class="docutils literal notranslate"><span class="pre">keyboard</span></code> is available for <code class="docutils literal notranslate"><span class="pre">shortcuts</span></code>, so there are many more possibilities.</p>
+<p>The following images give an overview of the available <code class="docutils literal notranslate"><span class="pre">keyboard</span> <span class="pre">shortcuts</span></code>. These can viewed in the <code class="docutils literal notranslate"><span class="pre">notebook</span></code> at any time via the <code class="docutils literal notranslate"><span class="pre">Help</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Keyboard</span> <span class="pre">Shortcuts</span></code> menu item.</p>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/notebook_shortcuts_4_0.png" alt="logo" title="jupyter" width="500" height="500" /> <p>The following shortcuts have been found to be the most useful in day-to-day tasks:</p>
+<ul class="simple">
+<li><p>Basic navigation: <code class="docutils literal notranslate"><span class="pre">enter</span></code>, <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code>, <code class="docutils literal notranslate"><span class="pre">up/k</span></code>, <code class="docutils literal notranslate"><span class="pre">down/j</span></code></p></li>
+<li><p>Saving the <code class="docutils literal notranslate"><span class="pre">notebook</span></code>: <code class="docutils literal notranslate"><span class="pre">s</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">types</span></code>: <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">1-6</span></code>, <code class="docutils literal notranslate"><span class="pre">r</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">creation</span></code>: <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">editing</span></code>: <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>, <code class="docutils literal notranslate"><span class="pre">v</span></code>, <code class="docutils literal notranslate"><span class="pre">d</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code>, <code class="docutils literal notranslate"><span class="pre">ctrl+shift+-</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">operations</span></code>: <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">.</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="markdown-cells">
+<h3>Markdown Cells<a class="headerlink" href="#markdown-cells" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Text</span></code> can be added to <code class="docutils literal notranslate"><span class="pre">IPython</span> <span class="pre">Notebooks</span></code> using <code class="docutils literal notranslate"><span class="pre">Markdown</span> <span class="pre">cells</span></code>. <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> is a popular <code class="docutils literal notranslate"><span class="pre">markup</span> <span class="pre">language</span></code> that is a <code class="docutils literal notranslate"><span class="pre">superset</span> <span class="pre">of</span> <span class="pre">HTML</span></code>. Its specification can be found here:</p>
+<p><a class="reference external" href="http://daringfireball.net/projects/markdown/">http://daringfireball.net/projects/markdown/</a></p>
+<p>You can view the <code class="docutils literal notranslate"><span class="pre">source</span></code> of a <code class="docutils literal notranslate"><span class="pre">cell</span></code> by <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">clicking</span></code> on it, or while the <code class="docutils literal notranslate"><span class="pre">cell</span></code> is selected in <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">mode</span></code>, press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to edit it. Once a <code class="docutils literal notranslate"><span class="pre">cell</span></code> has been <code class="docutils literal notranslate"><span class="pre">edited</span></code>, use <code class="docutils literal notranslate"><span class="pre">Shift-Enter</span></code> to <code class="docutils literal notranslate"><span class="pre">re-render</span></code> it.</p>
+</div>
+<div class="section" id="markdown-basics">
+<h3>Markdown basics<a class="headerlink" href="#markdown-basics" title="Permalink to this headline">¶</a></h3>
+<p>You can make text <em>italic</em> or <strong>bold</strong>.</p>
+<p>You can build nested itemized or enumerated lists:</p>
+<ul class="simple">
+<li><p>One</p>
+<ul>
+<li><p>Sublist</p>
+<ul>
+<li><p>This</p></li>
+</ul>
+</li>
+<li><p>Sublist
+- That
+- The other thing</p></li>
+</ul>
+</li>
+<li><p>Two</p>
+<ul>
+<li><p>Sublist</p></li>
+</ul>
+</li>
+<li><p>Three</p>
+<ul>
+<li><p>Sublist</p></li>
+</ul>
+</li>
+</ul>
+<p>Now another list:</p>
+<ol class="simple">
+<li><p>Here we go</p>
+<ol class="simple">
+<li><p>Sublist</p></li>
+<li><p>Sublist</p></li>
+</ol>
+</li>
+<li><p>There we go</p></li>
+<li><p>Now this</p></li>
+</ol>
+<p>You can add horizontal rules:</p>
+<hr class="docutils" />
+<p>Here is a blockquote:</p>
+<blockquote>
+<div><p>Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren’t special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one– and preferably only one –obvious way to do it.
+Although that way may not be obvious at first unless you’re Dutch.
+Now is better than never.
+Although never is often better than <em>right</em> now.
+If the implementation is hard to explain, it’s a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea – let’s do more of those!</p>
+</div></blockquote>
+<p>You can add headings using Markdown’s syntax:</p>
+<pre>
+# Heading 1
+
+# Heading 2
+
+## Heading 2.1
+
+## Heading 2.2
+</pre></div>
+<div class="section" id="embedded-code">
+<h3>Embedded code<a class="headerlink" href="#embedded-code" title="Permalink to this headline">¶</a></h3>
+<p>You can embed code meant for illustration instead of execution in Python:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def f(x):
+    &quot;&quot;&quot;a docstring&quot;&quot;&quot;
+    return x**2
+</pre></div>
+</div>
+<p>or other languages:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if (i=0; i&lt;n; i++) {
+  printf(&quot;hello %d\n&quot;, i);
+  x += 4;
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="github-flavored-markdown-gfm">
+<h3>Github flavored markdown (GFM)<a class="headerlink" href="#github-flavored-markdown-gfm" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Notebook</span> <span class="pre">webapp</span></code> support <code class="docutils literal notranslate"><span class="pre">Github</span> <span class="pre">flavored</span> <span class="pre">markdown</span></code> meaning that you can use <code class="docutils literal notranslate"><span class="pre">triple</span> <span class="pre">backticks</span></code> for <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">blocks</span></code></p>
+<pre>
+```python
+print "Hello World"
+```
+
+```javascript
+console.log("Hello World")
+```
+</pre>
+<p>Gives</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s2">&quot;Hello World&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And a table like this :</p>
+<pre>
+| This | is   |
+|------|------|
+|   a  | table| 
+</pre>
+<p>A nice HTML Table</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>This</p></th>
+<th class="head"><p>is</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>a</p></td>
+<td><p>table</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="general-html">
+<h3>General HTML<a class="headerlink" href="#general-html" title="Permalink to this headline">¶</a></h3>
+<p>Because <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> is a <code class="docutils literal notranslate"><span class="pre">superset</span> <span class="pre">of</span> <span class="pre">HTML</span></code> you can even add things like <code class="docutils literal notranslate"><span class="pre">HTML</span> <span class="pre">tables</span></code>:</p>
+<table>
+<tr>
+<th>Header 1</th>
+<th>Header 2</th>
+</tr>
+<tr>
+<td>row 1, cell 1</td>
+<td>row 1, cell 2</td>
+</tr>
+<tr>
+<td>row 2, cell 1</td>
+<td>row 2, cell 2</td>
+</tr>
+</table></div>
+<div class="section" id="local-files">
+<h3>Local files<a class="headerlink" href="#local-files" title="Permalink to this headline">¶</a></h3>
+<p>If you have <code class="docutils literal notranslate"><span class="pre">local</span> <span class="pre">files</span></code> in your <code class="docutils literal notranslate"><span class="pre">Notebook</span> <span class="pre">directory</span></code>, you can refer to these <code class="docutils literal notranslate"><span class="pre">files</span></code> in <code class="docutils literal notranslate"><span class="pre">Markdown</span> <span class="pre">cells</span></code> directly:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[subdirectory/]&lt;filename&gt;
+</pre></div>
+</div>
+<p>For example, in the <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">folder</span></code>, we have the <code class="docutils literal notranslate"><span class="pre">logo</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;img src=&quot;static/ml-dl_workshop.png&quot; /&gt;
+</pre></div>
+</div>
+<img src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/ml-dl_workshop.png" width=300 />
+<p>These do not <code class="docutils literal notranslate"><span class="pre">embed</span></code> the data into the <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">file</span></code>, and require that the <code class="docutils literal notranslate"><span class="pre">files</span></code> exist when you are viewing the <code class="docutils literal notranslate"><span class="pre">notebook</span></code>.</p>
+</div>
+<div class="section" id="security-of-local-files">
+<h3>Security of local files<a class="headerlink" href="#security-of-local-files" title="Permalink to this headline">¶</a></h3>
+<p>Note that this means that the <code class="docutils literal notranslate"><span class="pre">IPython</span> <span class="pre">notebook</span> <span class="pre">server</span></code> also acts as a <code class="docutils literal notranslate"><span class="pre">generic</span> <span class="pre">file</span> <span class="pre">server</span></code> for <code class="docutils literal notranslate"><span class="pre">files</span></code> inside the same <code class="docutils literal notranslate"><span class="pre">tree</span></code> as your <code class="docutils literal notranslate"><span class="pre">notebooks</span></code>. Access is not granted outside the <code class="docutils literal notranslate"><span class="pre">notebook</span></code> folder so you have strict control over what <code class="docutils literal notranslate"><span class="pre">files</span></code> are <code class="docutils literal notranslate"><span class="pre">visible</span></code>, but for this reason <strong>it is highly recommended that you do not run the notebook server with a notebook directory at a high level in your filesystem (e.g. your home directory)</strong>.</p>
+<p>When you run the <code class="docutils literal notranslate"><span class="pre">notebook</span></code> in a <code class="docutils literal notranslate"><span class="pre">password-protected</span></code> manner, <code class="docutils literal notranslate"><span class="pre">local</span> <span class="pre">file</span></code> access is <code class="docutils literal notranslate"><span class="pre">restricted</span></code> to <code class="docutils literal notranslate"><span class="pre">authenticated</span> <span class="pre">users</span></code> unless <code class="docutils literal notranslate"><span class="pre">read-only</span> <span class="pre">views</span></code> are active.</p>
+</div>
+<div class="section" id="markdown-attachments">
+<h3>Markdown attachments<a class="headerlink" href="#markdown-attachments" title="Permalink to this headline">¶</a></h3>
+<p>Since <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">version</span> <span class="pre">5.0</span></code>, in addition to <code class="docutils literal notranslate"><span class="pre">referencing</span> <span class="pre">external</span> <span class="pre">files</span></code> you can <code class="docutils literal notranslate"><span class="pre">attach</span> <span class="pre">a</span> <span class="pre">file</span></code> to a <code class="docutils literal notranslate"><span class="pre">markdown</span> <span class="pre">cell</span></code>. To do so <code class="docutils literal notranslate"><span class="pre">drag</span></code> the <code class="docutils literal notranslate"><span class="pre">file</span></code> from e.g. the <code class="docutils literal notranslate"><span class="pre">browser</span></code> or local <code class="docutils literal notranslate"><span class="pre">storage</span></code> in a <code class="docutils literal notranslate"><span class="pre">markdown</span> <span class="pre">cell</span></code> while <code class="docutils literal notranslate"><span class="pre">editing</span></code> it:</p>
+<p><img alt="ml-dl_workshop.png" src="attachment:https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/ml-dl_workshop.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">Files</span></code> are stored in <code class="docutils literal notranslate"><span class="pre">cell</span> <span class="pre">metadata</span></code> and will be <code class="docutils literal notranslate"><span class="pre">automatically</span> <span class="pre">scrubbed</span></code> at <code class="docutils literal notranslate"><span class="pre">save-time</span></code> if not <code class="docutils literal notranslate"><span class="pre">referenced</span></code>. You can recognize <code class="docutils literal notranslate"><span class="pre">attached</span> <span class="pre">images</span></code> from other <code class="docutils literal notranslate"><span class="pre">files</span></code> by their <code class="docutils literal notranslate"><span class="pre">url</span></code> that starts with <code class="docutils literal notranslate"><span class="pre">attachment</span></code>. For the <code class="docutils literal notranslate"><span class="pre">image</span></code> above:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>![pycon-logo.jpg](attachment:pycon-logo.jpg)
+</pre></div>
+</div>
+<p>Keep in mind that <code class="docutils literal notranslate"><span class="pre">attached</span> <span class="pre">files</span></code> will <code class="docutils literal notranslate"><span class="pre">increase</span> <span class="pre">the</span> <span class="pre">size</span></code> of your <code class="docutils literal notranslate"><span class="pre">notebook</span></code>.</p>
+<p>You can manually edit the <code class="docutils literal notranslate"><span class="pre">attachement</span></code> by using the <code class="docutils literal notranslate"><span class="pre">View</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">Toolbar</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Attachment</span></code> menu, but you should not need to.</p>
+</div>
+<div class="section" id="code-cells">
+<h3>Code cells<a class="headerlink" href="#code-cells" title="Permalink to this headline">¶</a></h3>
+<p>When executing code in <code class="docutils literal notranslate"><span class="pre">IPython</span></code>, all valid <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">syntax</span></code> works as-is, but <code class="docutils literal notranslate"><span class="pre">IPython</span></code> provides a number of <code class="docutils literal notranslate"><span class="pre">features</span></code> designed to make the <code class="docutils literal notranslate"><span class="pre">interactive</span> <span class="pre">experience</span></code> more <code class="docutils literal notranslate"><span class="pre">fluid</span></code> and <code class="docutils literal notranslate"><span class="pre">efficient</span></code>. First, we need to explain how to run <code class="docutils literal notranslate"><span class="pre">cells</span></code>. Try to run the <code class="docutils literal notranslate"><span class="pre">cell</span></code> below!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hi! This is a cell. Click on it and press the ▶ button above to run it&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also run a cell with <code class="docutils literal notranslate"><span class="pre">Ctrl+Enter</span></code> or <code class="docutils literal notranslate"><span class="pre">Shift+Enter</span></code>. Experiment a bit with that.</p>
+</div>
+<div class="section" id="tab-completion">
+<h3>Tab Completion<a class="headerlink" href="#tab-completion" title="Permalink to this headline">¶</a></h3>
+<p>One of the most useful things about <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code> is its tab completion.</p>
+<p>Try this: click just after <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>( in the cell below and press <code class="docutils literal notranslate"><span class="pre">Shift+Tab</span></code> 4 times, slowly. Note that if you’re using <code class="docutils literal notranslate"><span class="pre">JupyterLab</span></code> you don’t have an additional help box option.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After the first time, you should see this:</p>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/jupyter_tab-once.png" alt="logo" title="jupyter" width="700" height="200" /> <p>After the second time:</p>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/jupyter_tab-twice.png" alt="logo" title="jupyter" width="500" height="200" /> <p>After the fourth time, a big help box should pop up at the bottom of the screen, with the full documentation for the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function:</p>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/jupyter_tab-4-times.png" alt="logo" title="jupyter" width="700" height="300" /> 
+<p>This is amazingly useful. You can think of this as “the more confused I am, the more times I should press <code class="docutils literal notranslate"><span class="pre">Shift+Tab</span></code>”.</p>
+<p>Okay, let’s try <code class="docutils literal notranslate"><span class="pre">tab</span> <span class="pre">completion</span></code> for <code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">names</span></code>!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">r</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should see this:</p>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/jupyter_function-completion.png" alt="logo" title="jupyter" width="300" height="200" /> </div>
+</div>
+<div class="section" id="get-help">
+<h2>Get Help<a class="headerlink" href="#get-help" title="Permalink to this headline">¶</a></h2>
+<p>There’s an additional way on how you can reach the help box shown above after the fourth <code class="docutils literal notranslate"><span class="pre">Shift+Tab</span></code> press. Instead, you can also use <code class="docutils literal notranslate"><span class="pre">obj</span></code>? or <code class="docutils literal notranslate"><span class="pre">obj</span></code>?? to get help or more help for an object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.read_csv<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="writing-code">
+<h2>Writing code<a class="headerlink" href="#writing-code" title="Permalink to this headline">¶</a></h2>
+<p>Writing code in a <code class="docutils literal notranslate"><span class="pre">notebook</span></code> is pretty normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_10_nums</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_10_nums</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you messed something up and want to revert to an older version of a code in a cell, use <code class="docutils literal notranslate"><span class="pre">Ctrl+Z</span></code> or to go than back <code class="docutils literal notranslate"><span class="pre">Ctrl+Y</span></code>.</p>
+<p>For a full list of all keyboard shortcuts, click on the small <code class="docutils literal notranslate"><span class="pre">keyboard</span> <span class="pre">icon</span></code> in the <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">header</span></code> or click on <code class="docutils literal notranslate"><span class="pre">Help</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Keyboard</span> <span class="pre">Shortcuts</span></code>.</p>
+<div class="section" id="the-interactive-workflow-input-output-history">
+<h3>The interactive workflow: input, output, history<a class="headerlink" href="#the-interactive-workflow-input-output-history" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Notebooks</span></code> provide various options for <code class="docutils literal notranslate"><span class="pre">inputs</span></code> and <code class="docutils literal notranslate"><span class="pre">outputs</span></code>, while also allowing to access the <code class="docutils literal notranslate"><span class="pre">history</span></code> of <code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">commands</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">+</span><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can suppress the <code class="docutils literal notranslate"><span class="pre">storage</span></code> and <code class="docutils literal notranslate"><span class="pre">rendering</span></code> of <code class="docutils literal notranslate"><span class="pre">output</span></code> if you append <code class="docutils literal notranslate"><span class="pre">;</span></code> to the last <code class="docutils literal notranslate"><span class="pre">cell</span></code> (this comes in handy when plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, for example):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="o">+</span><span class="mi">20</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">output</span></code> is stored in <code class="docutils literal notranslate"><span class="pre">_N</span></code> and <code class="docutils literal notranslate"><span class="pre">Out[N]</span></code> variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_10</span> <span class="o">==</span> <span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Previous inputs are available, too:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_i</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">history</span> -n 1-5
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="accessing-the-underlying-operating-system">
+<h3>Accessing the underlying operating system<a class="headerlink" href="#accessing-the-underlying-operating-system" title="Permalink to this headline">¶</a></h3>
+<p>Through <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> you can also access the underlying <code class="docutils literal notranslate"><span class="pre">operating</span> <span class="pre">system</span></code> and <code class="docutils literal notranslate"><span class="pre">communicate</span></code> with it as you would do in e.g. a <code class="docutils literal notranslate"><span class="pre">terminal</span></code> via <code class="docutils literal notranslate"><span class="pre">bash</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pwd
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="o">!</span>ls
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;My current directory&#39;s files:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">echo</span> <span class="nv">$files</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">echo</span> <span class="o">{</span>files<span class="o">[</span><span class="m">0</span><span class="o">]</span>.upper<span class="o">()}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="magic-functions">
+<h3>Magic functions<a class="headerlink" href="#magic-functions" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">IPython</span></code> has all kinds of <code class="docutils literal notranslate"><span class="pre">magic</span> <span class="pre">functions</span></code>. <code class="docutils literal notranslate"><span class="pre">Magic</span> <span class="pre">functions</span></code> are prefixed by <code class="docutils literal notranslate"><span class="pre">%</span></code> or <code class="docutils literal notranslate"><span class="pre">%%,</span></code> and typically take their <code class="docutils literal notranslate"><span class="pre">arguments</span></code> without <code class="docutils literal notranslate"><span class="pre">parentheses</span></code>, <code class="docutils literal notranslate"><span class="pre">quotes</span></code> or even <code class="docutils literal notranslate"><span class="pre">commas</span></code> for convenience. <code class="docutils literal notranslate"><span class="pre">Line</span> <span class="pre">magics</span></code> take a single <code class="docutils literal notranslate"><span class="pre">%</span></code> and <code class="docutils literal notranslate"><span class="pre">cell</span> <span class="pre">magics</span></code> are prefixed with two <code class="docutils literal notranslate"><span class="pre">%%</span></code>.</p>
+<p>Some useful magic functions are:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Magic Name</p></th>
+<th class="head"><p>Effect</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>%env</p></td>
+<td><p>Get, set, or list environment variables</p></td>
+</tr>
+<tr class="row-odd"><td><p>%pdb</p></td>
+<td><p>Control the automatic calling of the pdb interactive debugger</p></td>
+</tr>
+<tr class="row-even"><td><p>%pylab</p></td>
+<td><p>Load numpy and matplotlib to work interactively</p></td>
+</tr>
+<tr class="row-odd"><td><p>%%debug</p></td>
+<td><p>Activates debugging mode in cell</p></td>
+</tr>
+<tr class="row-even"><td><p>%%html</p></td>
+<td><p>Render the cell as a block of HTML</p></td>
+</tr>
+<tr class="row-odd"><td><p>%%latex</p></td>
+<td><p>Render the cell as a block of latex</p></td>
+</tr>
+<tr class="row-even"><td><p>%%sh</p></td>
+<td><p>%%sh script magic</p></td>
+</tr>
+<tr class="row-odd"><td><p>%%time</p></td>
+<td><p>Time execution of a Python statement or expression</p></td>
+</tr>
+</tbody>
+</table>
+<p>You can run <code class="docutils literal notranslate"><span class="pre">%magic</span></code> to get a list of <code class="docutils literal notranslate"><span class="pre">magic</span> <span class="pre">functions</span></code> or <code class="docutils literal notranslate"><span class="pre">%quickref</span></code> for a reference sheet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">magic</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Line</span></code> vs <code class="docutils literal notranslate"><span class="pre">cell</span> <span class="pre">magics</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(range(1000))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Line</span> <span class="pre">magics</span></code> can be used even inside <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">blocks</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mi">100</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size:&#39;</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="o">%</span><span class="k">timeit</span> list(range(size))
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Magics</span></code> can do anything they want with their input, so it doesn’t have to be valid <code class="docutils literal notranslate"><span class="pre">Python</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+echo &quot;My shell is:&quot; $SHELL
+echo &quot;My disk usage is:&quot;
+df -h
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another interesting <code class="docutils literal notranslate"><span class="pre">cell</span> <span class="pre">magic</span></code>: create any <code class="docutils literal notranslate"><span class="pre">file</span></code> you want <code class="docutils literal notranslate"><span class="pre">locally</span></code> from the <code class="docutils literal notranslate"><span class="pre">notebook</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%writefile test.txt
+This is a test file!
+It can contain anything I want...
+
+And more...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat test.txt
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see what other <code class="docutils literal notranslate"><span class="pre">magics</span></code> are currently defined in the <code class="docutils literal notranslate"><span class="pre">system</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">lsmagic</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="writing-latex">
+<h2>Writing latex<a class="headerlink" href="#writing-latex" title="Permalink to this headline">¶</a></h2>
+<p>Let’s use <code class="docutils literal notranslate"><span class="pre">%%latex</span></code> to render a block of <code class="docutils literal notranslate"><span class="pre">latex</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%latex</span>
+<span class="sb">$$</span><span class="nb">F</span><span class="o">(</span><span class="nb">k</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\int</span><span class="nb">_{</span><span class="o">-</span><span class="nv">\infty</span><span class="nb">}^{</span><span class="nv">\infty</span><span class="nb">} f</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> e^{</span><span class="m">2</span><span class="nv">\pi</span><span class="nb"> i k} </span><span class="nv">\mathrm</span><span class="nb">{d} x</span><span class="s">$$</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="running-normal-python-code-execution-and-errors">
+<h3>Running normal Python code: execution and errors<a class="headerlink" href="#running-normal-python-code-execution-and-errors" title="Permalink to this headline">¶</a></h3>
+<p>Not only can you input normal <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">code</span></code>, you can even paste straight from a <code class="docutils literal notranslate"><span class="pre">Python</span></code> or <code class="docutils literal notranslate"><span class="pre">IPython</span> <span class="pre">shell</span> <span class="pre">session</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="c1"># Fibonacci series:</span>
+<span class="o">...</span> <span class="c1"># the sum of two elements defines the next</span>
+<span class="o">...</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+<span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>     
+</pre></div>
+</div>
+</div>
+</div>
+<p>And when your code produces errors, you can control how they are displayed with the <code class="docutils literal notranslate"><span class="pre">%xmode</span></code> magic:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> mod.py
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s call the function <code class="docutils literal notranslate"><span class="pre">g</span></code> with an argument that would produce an error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mod</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">g</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">xmode</span> plain
+<span class="n">mod</span><span class="o">.</span><span class="n">g</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">xmode</span> verbose
+<span class="n">mod</span><span class="o">.</span><span class="n">g</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The default <code class="docutils literal notranslate"><span class="pre">%xmode</span></code> is “context”, which shows additional context but not all local variables.  Let’s restore that one for the rest of our session.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">xmode</span> context
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="running-code-in-other-languages-with-special-magics">
+<h2>Running code in other languages with special <code class="docutils literal notranslate"><span class="pre">%%</span></code> magics<a class="headerlink" href="#running-code-in-other-languages-with-special-magics" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%perl</span>
+<span class="nv">@months</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;July&quot;</span><span class="p">,</span> <span class="s">&quot;August&quot;</span><span class="p">,</span> <span class="s">&quot;September&quot;</span><span class="p">);</span>
+<span class="k">print</span> <span class="nv">$months</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%ruby</span>
+<span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;world&quot;</span>
+<span class="nb">puts</span> <span class="s2">&quot;Hello </span><span class="si">#{</span><span class="nb">name</span><span class="o">.</span><span class="n">capitalize</span><span class="si">}</span><span class="s2">!&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="raw-input-in-the-notebook">
+<h3>Raw Input in the notebook<a class="headerlink" href="#raw-input-in-the-notebook" title="Permalink to this headline">¶</a></h3>
+<p>Since <code class="docutils literal notranslate"><span class="pre">1.0</span></code> the <code class="docutils literal notranslate"><span class="pre">IPython</span> <span class="pre">notebook</span> <span class="pre">web</span> <span class="pre">application</span></code> supports <code class="docutils literal notranslate"><span class="pre">raw_input</span></code> which for example allow us to invoke the <code class="docutils literal notranslate"><span class="pre">%debug</span></code> <code class="docutils literal notranslate"><span class="pre">magic</span></code> in the <code class="docutils literal notranslate"><span class="pre">notebook</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span><span class="o">.</span><span class="n">g</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">debug</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Don’t forget to exit your <code class="docutils literal notranslate"><span class="pre">debugging</span> <span class="pre">session</span></code>. <code class="docutils literal notranslate"><span class="pre">Raw</span> <span class="pre">input</span></code> can of course be used to ask for <code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">input</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enjoy</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Are you enjoying this tutorial? &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;enjoy is:&#39;</span><span class="p">,</span> <span class="n">enjoy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-in-the-notebook">
+<h3>Plotting in the notebook<a class="headerlink" href="#plotting-in-the-notebook" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Notebooks</span></code> support a variety of fantastic <code class="docutils literal notranslate"><span class="pre">plotting</span> <span class="pre">options</span></code>, including <code class="docutils literal notranslate"><span class="pre">static</span></code> and <code class="docutils literal notranslate"><span class="pre">interactive</span></code> graphics. This <code class="docutils literal notranslate"><span class="pre">magic</span></code> configures <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to <code class="docutils literal notranslate"><span class="pre">render</span></code> its <code class="docutils literal notranslate"><span class="pre">figures</span></code> <code class="docutils literal notranslate"><span class="pre">inline</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A little chirp&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>  <span class="c1"># let&#39;s keep the figure object around for later...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.figure_factory</span> <span class="k">as</span> <span class="nn">ff</span>
+
+<span class="c1"># Add histogram data</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">x4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span>
+
+<span class="c1"># Group data together</span>
+<span class="n">hist_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">]</span>
+
+<span class="n">group_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Group 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Group 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Group 3&#39;</span><span class="p">,</span> <span class="s1">&#39;Group 4&#39;</span><span class="p">]</span>
+
+<span class="c1"># Create distplot with custom bin_size</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span><span class="n">hist_data</span><span class="p">,</span> <span class="n">group_labels</span><span class="p">,</span> <span class="n">bin_size</span><span class="o">=</span><span class="mf">.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-ipython-kernel-client-model">
+<h2>The IPython kernel/client model<a class="headerlink" href="#the-ipython-kernel-client-model" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">connect_info</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can connect automatically a Qt Console to the currently running kernel with the <code class="docutils literal notranslate"><span class="pre">%qtconsole</span></code> magic, or by typing <code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">console</span> <span class="pre">--existing</span> <span class="pre">&lt;kernel-UUID&gt;</span></code> in any terminal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">qtconsole</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="saving-a-notebook">
+<h2>Saving a Notebook<a class="headerlink" href="#saving-a-notebook" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebooks</span></code> <code class="docutils literal notranslate"><span class="pre">autosave</span></code>, so you don’t have to worry about losing code too much. At the top of the page you can usually see the current save status:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Last</span> <span class="pre">Checkpoint:</span> <span class="pre">2</span> <span class="pre">minutes</span> <span class="pre">ago</span> <span class="pre">(unsaved</span> <span class="pre">changes)</span></code>
+<code class="docutils literal notranslate"><span class="pre">Last</span> <span class="pre">Checkpoint:</span> <span class="pre">a</span> <span class="pre">few</span> <span class="pre">seconds</span> <span class="pre">ago</span> <span class="pre">(autosaved)</span></code></p>
+<p>If you want to save a notebook on purpose, either click on <code class="docutils literal notranslate"><span class="pre">File</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Save</span></code> and <code class="docutils literal notranslate"><span class="pre">Checkpoint</span></code> or press <code class="docutils literal notranslate"><span class="pre">Ctrl+S</span></code>.</p>
+</div>
+<div class="section" id="id2">
+<h2>To Jupyter &amp; beyond<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<img align="center" src="https://raw.githubusercontent.com/PeerHerholz/ML-DL_workshop_SynAGE/master/lecture/static/jupyter_example.png" alt="logo" title="jupyter" width="800" height="400" /> <ol class="simple">
+<li><p>Open a terminal</p></li>
+</ol>
+<ol class="simple">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code></p></li>
+</ol>
+<ol class="simple">
+<li><p>If you’re not automatically directed to a webpage copy the URL printed in the terminal and paste it in your browser</p></li>
+</ol>
+<ol class="simple">
+<li><p>Click “New” in the top-right corner and select “Python 3”</p></li>
+</ol>
+<ol class="simple">
+<li><p>You have a <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span></code> within <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">lab</span></code>!</p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./prerequisites"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

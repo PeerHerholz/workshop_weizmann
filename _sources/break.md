@@ -1,0 +1,5 @@
+# Yoga and/or dance break
+
+We all know the feeling: after sitting in workshop for several hours, trying to follow and comprehend what's being shown and talked about, one just gets tired...Sure, coffee breaks are great, bring some energy back and the usual chat with folks is great for relaxing and networking. However, during these things we all tend to not move a lot and this is actually what our bodies need and want: moving around and stretching to get that blood to circulate and pump up our oxygen levels. Thus, we advocate to take 5 dedicated minutes within each break to specifically get some physical activity. Could be walking around, could be yoga, could be dancing...whatever works for you and you feel comfortable with. Gotta stay healthy, y'all! 
+
+<iframe width="420" height="315" src="https://www.youtube.com/embed/TIfAkOBMf5A">

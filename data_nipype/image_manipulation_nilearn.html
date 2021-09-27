@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using Python for neuroimaging data - Nilearn &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Advanced and specialized analyses" href="../advanced.html" />
+    <link rel="prev" title="Using Python for neuroimaging data - NiBabel" href="image_manipulation_nibabel.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../data_nipype.html">
+   Basics in data handling &amp; Nipype
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/data_nipype/image_manipulation_nilearn.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fdata_nipype/image_manipulation_nilearn.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/data_nipype/image_manipulation_nilearn.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/data_nipype/image_manipulation_nilearn.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Using Python for neuroimaging data - Nilearn
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nilearn">
+   Nilearn
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup">
+     Setup
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-manipulation-with-nilearn">
+     1. Image manipulation with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#let-s-create-a-mean-image">
+       Let’s create a mean image
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#resample-image-to-a-template">
+       Resample image to a template
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#smooth-an-image">
+       Smooth an image
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clean-an-image-to-improve-snr">
+       Clean an image to improve SNR
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mask-an-image-and-extract-an-average-signal-of-a-region">
+       Mask an image and extract an average signal of a region
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#independent-component-analysis">
+       Independent Component Analysis
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dictionary-learning">
+       Dictionary Learning
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-visualization-with-nilearn">
+     2. Image visualization with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#glass-brain">
+       Glass brain
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#overlay-functional-image-onto-anatomical-image">
+       Overlay functional image onto anatomical image
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#overlay-two-images-ontop-of-each-other">
+       Overlay two images ontop of each other
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#use-add-edges-to-see-the-overlay-between-two-images">
+       Use
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         add_edges
+        </span>
+       </code>
+       to see the overlay between two images
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exercise-1">
+       Exercise 1:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#d-surface-plot">
+       3D Surface Plot
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="using-python-for-neuroimaging-data-nilearn">
+<h1>Using Python for neuroimaging data - Nilearn<a class="headerlink" href="#using-python-for-neuroimaging-data-nilearn" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://peerherholz.github.io/">Peer Herholz (he/him)</a><br />
+Postdoctoral researcher - <a class="reference external" href="https://neurodatascience.github.io/">NeuroDataScience lab</a> at <a class="reference external" href="https://www.mcgill.ca/neuro/">MNI</a>/<a class="reference external" href="https://www.mcgill.ca/">McGill</a>, <a class="reference external" href="https://sites.google.com/view/unique-neuro-ai">UNIQUE</a><br />
+Member - <a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">BIDS</a>, <a class="reference external" href="https://www.repronim.org/">ReproNim</a>, <a class="reference external" href="https://brainhack.org/">Brainhack</a>, <a class="reference external" href="https://www.cneuromod.ca/">Neuromod</a>, <a class="reference external" href="https://ohbm-environment.org/">OHBM SEA-SIG</a></p>
+<p><img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/Twitter%20social%20icons%20-%20circle%20-%20blue.png" alt="logo" title="Twitter" width="32" height="20" /> <img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/GitHub-Mark-120px-plus.png" alt="logo" title="Github" width="30" height="20" />     &#64;peerherholz</p>
+<p>The primary goal of this section is to become familiar with loading, modifying, saving, and visualizing neuroimages in Python. A secondary goal is to develop a conceptual understanding of the data structures involved, to facilitate diagnosing problems in data or analysis pipelines.</p>
+<p>To these ends, we’ll be exploring two libraries: <a class="reference external" href="http://nipy.org/nibabel/">nibabel</a> and <a class="reference external" href="https://nilearn.github.io/">nilearn</a>. Each of these projects has excellent documentation. While this should get you started, it is well worth your time to look through these sites.</p>
+<p>This notebook only covers nilearn, see the notebook <a class="reference internal" href="image_manipulation_nibabel.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">image_manipulation_nibabel.ipynb</span></code></span></a> for more information about nibabel.</p>
+</div>
+<div class="section" id="nilearn">
+<h1>Nilearn<a class="headerlink" href="#nilearn" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://nilearn.github.io/index.html">Nilearn</a> labels itself as: <em>A Python module for fast and easy statistical learning on NeuroImaging data. It leverages the scikit-learn Python toolbox for multivariate statistics with applications such as predictive modeling, classification, decoding, or connectivity analysis.</em></p>
+<p>But it’s much more than that. It is also an excellent library to <strong>manipulate</strong> (e.g. resample images, smooth images, ROI extraction, etc.) and <strong>visualize</strong> your neuroimages.</p>
+<p>So let’s visit all three of those domains:</p>
+<ol class="simple">
+<li><p>Image manipulation</p></li>
+<li><p>Image visualization</p></li>
+</ol>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Image settings</span>
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Throughout this tutorial, we will be using the anatomical and functional image of subject 1. So let’s load them already here that we have a quicker access later on:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span> <span class="k">as</span> <span class="n">nli</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">bold</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because the bold image didn’t reach steady-state at the beginning of the image, let’s cut of the first 5 volumes, to be sure:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bold</span> <span class="o">=</span> <span class="n">bold</span><span class="o">.</span><span class="n">slicer</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="image-manipulation-with-nilearn">
+<h2>1. Image manipulation with <code class="docutils literal notranslate"><span class="pre">nilearn</span></code><a class="headerlink" href="#image-manipulation-with-nilearn" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="let-s-create-a-mean-image">
+<h3>Let’s create a mean image<a class="headerlink" href="#let-s-create-a-mean-image" title="Permalink to this headline">¶</a></h3>
+<p>If you use nibabel to compute the mean image, you first need to load the img, get the data and then compute the mean thereof. With nilearn, you can do all this in just one line with <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">image</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span> <span class="k">as</span> <span class="n">nli</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="n">bold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From version <code class="docutils literal notranslate"><span class="pre">0.5.0</span></code> on, <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> provides interactive visual views. A nice alternative to <code class="docutils literal notranslate"><span class="pre">nibabel</span></code>’s <code class="docutils literal notranslate"><span class="pre">orthoview()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">view_img</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Perfect! What else can we do with the <code class="docutils literal notranslate"><span class="pre">image</span></code> module?<br />
+Let’s see…</p>
+</div>
+<div class="section" id="resample-image-to-a-template">
+<h3>Resample image to a template<a class="headerlink" href="#resample-image-to-a-template" title="Permalink to this headline">¶</a></h3>
+<p>Using <code class="docutils literal notranslate"><span class="pre">resample_to_img</span></code>, we can resample one image to have the same dimensions as another one. For example, let’s resample an anatomical T1 image to the computed mean image above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="n">bold</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">mean</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">shape</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s resample the t1 image to the mean image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resampled_t1</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">resample_to_img</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+<span class="n">resampled_t1</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The image size of the resampled t1 image seems to be right. But what does it look like?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_anat</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;original t1&#39;</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_anat</span><span class="p">(</span><span class="n">resampled_t1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;resampled t1&#39;</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="smooth-an-image">
+<h3>Smooth an image<a class="headerlink" href="#smooth-an-image" title="Permalink to this headline">¶</a></h3>
+<p>Using <code class="docutils literal notranslate"><span class="pre">smooth_img</span></code>, we can very quickly smooth any kind of MRI image. Let’s, for example, take the mean image from above and smooth it with different FWHM values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">fwhm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="n">smoothed_img</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">smooth_img</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">fwhm</span><span class="p">)</span>
+    <span class="n">plotting</span><span class="o">.</span><span class="n">plot_epi</span><span class="p">(</span><span class="n">smoothed_img</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Smoothing </span><span class="si">%i</span><span class="s2">mm&quot;</span> <span class="o">%</span> <span class="n">fwhm</span><span class="p">,</span>
+                     <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="clean-an-image-to-improve-snr">
+<h3>Clean an image to improve SNR<a class="headerlink" href="#clean-an-image-to-improve-snr" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes you also want to clean your functional images a bit to improve the SNR. For this, nilearn offers <code class="docutils literal notranslate"><span class="pre">clean_img</span></code>. You can improve the SNR of your fMRI signal by using one or more of the following options:</p>
+<ul class="simple">
+<li><p>detrend</p></li>
+<li><p>standardize</p></li>
+<li><p>remove confounds</p></li>
+<li><p>low- and high-pass filter</p></li>
+</ul>
+<p><strong>Note:</strong> Low-pass filtering improves specificity. High-pass filtering should be kept small, to keep some sensitivity.</p>
+<p>First, let’s get the TR value of our functional image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TR</span> <span class="o">=</span> <span class="n">bold</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;pixdim&#39;</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">TR</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a first step, let’s just detrend the image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func_d</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">clean_img</span><span class="p">(</span><span class="n">bold</span><span class="p">,</span> <span class="n">detrend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">t_r</span><span class="o">=</span><span class="n">TR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the original and detrended timecourse of a random voxel</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">31</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">bold</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="p">:]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">func_d</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="p">:]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Original&#39;</span><span class="p">,</span> <span class="s1">&#39;Detrend&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now see what <code class="docutils literal notranslate"><span class="pre">standardize</span></code> does:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func_ds</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">clean_img</span><span class="p">(</span><span class="n">bold</span><span class="p">,</span> <span class="n">detrend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">t_r</span><span class="o">=</span><span class="n">TR</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">func_d</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="p">:]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">func_ds</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="p">:]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Detrend&#39;</span><span class="p">,</span> <span class="s1">&#39;Detrend+standardize&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And as a final step, let’s also remove the influence of the motion parameters from the signal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func_ds_c</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">clean_img</span><span class="p">(</span><span class="n">bold</span><span class="p">,</span> <span class="n">detrend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">t_r</span><span class="o">=</span><span class="n">TR</span><span class="p">,</span>
+                          <span class="n">confounds</span><span class="o">=</span><span class="s1">&#39;data/sub-01_ses-test_task-fingerfootlips_bold_mcf.par&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">func_ds</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="p">:]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">func_ds_c</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="p">:]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Det.+stand.&#39;</span><span class="p">,</span> <span class="s1">&#39;Det.+stand.-confounds&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mask-an-image-and-extract-an-average-signal-of-a-region">
+<h3>Mask an image and extract an average signal of a region<a class="headerlink" href="#mask-an-image-and-extract-an-average-signal-of-a-region" title="Permalink to this headline">¶</a></h3>
+<p>Thanks to nibabel and nilearn you can consider your images just a special kind of a numpy array. Which means that you have all the liberties that you are used to.</p>
+<p>For example, let’s take a functional image, (1) create the mean image thereof, then we (2) threshold it to only keep the voxels that have a value that is higher than 95% of all voxels. Of this thresholded image, we only (3) keep those regions that are bigger than 1000mm^3. And finally, we (4) binarize those regions to create a mask image.</p>
+<p>So first, we load again a functional image and compute the mean thereof.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="n">bold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">threshold_img</span></code> to only keep voxels that have a value that is higher than 95% of all voxels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thr</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">threshold_img</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="s1">&#39;95%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">view_img</span><span class="p">(</span><span class="n">thr</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s only keep those voxels that are in regions/clusters that are bigger than 1000mm^3.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voxel_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">thr</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;pixdim&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>  <span class="c1"># Size of 1 voxel in mm^3</span>
+<span class="n">voxel_size</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s create the mask that only keeps those big clusters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.regions</span> <span class="kn">import</span> <span class="n">connected_regions</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">connected_regions</span><span class="p">(</span><span class="n">thr</span><span class="p">,</span> <span class="n">min_region_size</span><span class="o">=</span><span class="mf">1000.</span> <span class="o">/</span> <span class="n">voxel_size</span><span class="p">,</span> <span class="n">smoothing_fwhm</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And finally, let’s binarize this cluster file to create a mask.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">math_img</span><span class="p">(</span><span class="s1">&#39;np.mean(img,axis=3) &gt; 0&#39;</span><span class="p">,</span> <span class="n">img</span><span class="o">=</span><span class="n">cluster</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let us investigate this mask by visualizing it on the subject specific anatomy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_roi</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_roi</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mf">.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma_r&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next step is now to take this mask, apply it to the original functional image and extract the mean of the temporal signal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply mask to original functional image</span>
+<span class="kn">from</span> <span class="nn">nilearn.masking</span> <span class="kn">import</span> <span class="n">apply_mask</span>
+
+<span class="n">all_timecourses</span> <span class="o">=</span> <span class="n">apply_mask</span><span class="p">(</span><span class="n">bold</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+<span class="n">all_timecourses</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> You can bring the timecourses (or masked data) back into the original 3D/4D space with <code class="docutils literal notranslate"><span class="pre">unmask</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.masking</span> <span class="kn">import</span> <span class="n">unmask</span>
+<span class="n">img_timecourse</span> <span class="o">=</span> <span class="n">unmask</span><span class="p">(</span><span class="n">all_timecourses</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compute mean trace of all extracted timecourses and plot the mean signal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_timecourse</span> <span class="o">=</span> <span class="n">all_timecourses</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean_timecourse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="independent-component-analysis">
+<h3>Independent Component Analysis<a class="headerlink" href="#independent-component-analysis" title="Permalink to this headline">¶</a></h3>
+<p>Nilearn gives you also the possibility to run an ICA on your data. This can either be on a single file or on multiple subjects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import CanICA module</span>
+<span class="kn">from</span> <span class="nn">nilearn.decomposition</span> <span class="kn">import</span> <span class="n">CanICA</span>
+
+<span class="c1"># Specify relevant parameters</span>
+<span class="n">n_components</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">fwhm</span> <span class="o">=</span> <span class="mf">6.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify CanICA object</span>
+<span class="n">canica</span> <span class="o">=</span> <span class="n">CanICA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">smoothing_fwhm</span><span class="o">=</span><span class="n">fwhm</span><span class="p">,</span>
+                <span class="n">memory</span><span class="o">=</span><span class="s2">&quot;nilearn_cache&quot;</span><span class="p">,</span> <span class="n">memory_level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="n">threshold</span><span class="o">=</span><span class="mf">3.</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run/fit CanICA on input data</span>
+<span class="n">canica</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">bold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the independent components in brain space</span>
+<span class="n">components_img</span> <span class="o">=</span> <span class="n">canica</span><span class="o">.</span><span class="n">masker_</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">canica</span><span class="o">.</span><span class="n">components_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now visualize those components on the T1 image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">iter_img</span>
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_stat_map</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cur_img</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">iter_img</span><span class="p">(</span><span class="n">components_img</span><span class="p">)):</span>
+    <span class="n">plot_stat_map</span><span class="p">(</span><span class="n">cur_img</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;IC </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">,</span>
+                  <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">t1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> The ICA components are not ordered, the visualization above and below therefore might look different from case to case.</p>
+<p>If you’re now also curious about how those independent components, correlate with the functional image over time, you can use the following code to get some insights:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+
+<span class="c1"># Get data of the functional image</span>
+<span class="n">orig_data</span> <span class="o">=</span> <span class="n">bold</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+
+<span class="c1"># Compute the pearson correlation between the components and the signal</span>
+<span class="n">curves</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">components_img</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+      <span class="n">orig_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">orig_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">canica</span><span class="o">.</span><span class="n">n_components</span><span class="p">)])</span>
+
+<span class="c1"># Plot the components</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">centered_curves</span> <span class="o">=</span> <span class="n">curves</span> <span class="o">-</span> <span class="n">curves</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centered_curves</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;IC </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">canica</span><span class="o">.</span><span class="n">n_components</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dictionary-learning">
+<h3>Dictionary Learning<a class="headerlink" href="#dictionary-learning" title="Permalink to this headline">¶</a></h3>
+<p>Recent work has shown that dictionary learning based techniques outperform ICA in term of stability and constitutes a better first step in a statistical analysis pipeline. Dictionary learning in neuro-imaging seeks to extract a few representative temporal elements along with their sparse spatial loadings, which constitute good extracted maps. Luckily, doing dictionary learning with <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> is as easy as it can be.</p>
+<p>DictLearning is a ready-to-use class with the same interface as CanICA. The sparsity of output map is controlled by a parameter alpha: using a larger alpha yields sparser maps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import DictLearning module</span>
+<span class="kn">from</span> <span class="nn">nilearn.decomposition</span> <span class="kn">import</span> <span class="n">DictLearning</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the dictionary learning object</span>
+<span class="n">dict_learning</span> <span class="o">=</span> <span class="n">DictLearning</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                             <span class="n">alpha</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">smoothing_fwhm</span><span class="o">=</span><span class="n">fwhm</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                             <span class="n">memory</span><span class="o">=</span><span class="s2">&quot;nilearn_cache&quot;</span><span class="p">,</span> <span class="n">memory_level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                             <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># As before, let&#39;s fit the model to the data</span>
+<span class="n">dict_learning</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">bold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the independent components in brain space</span>
+<span class="n">components_img</span> <span class="o">=</span> <span class="n">dict_learning</span><span class="o">.</span><span class="n">masker_</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">dict_learning</span><span class="o">.</span><span class="n">components_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now let&#39;s plot the components</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cur_img</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">iter_img</span><span class="p">(</span><span class="n">components_img</span><span class="p">)):</span>
+    <span class="n">plot_stat_map</span><span class="p">(</span><span class="n">cur_img</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;IC </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">,</span>
+                  <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">t1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Maps obtained with dictionary leaning are often easier to exploit as they are less noisy than ICA maps, with blobs usually better defined. Typically, smoothing can be lower than when doing ICA. While dictionary learning computation time is comparable to CanICA, obtained atlases have been shown to outperform ICA in a variety of classification tasks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+
+<span class="c1"># Get data of the functional image</span>
+<span class="n">orig_data</span> <span class="o">=</span> <span class="n">bold</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+
+<span class="c1"># Compute the pearson correlation between the components and the signal</span>
+<span class="n">curves</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">components_img</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+      <span class="n">orig_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">orig_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dict_learning</span><span class="o">.</span><span class="n">n_components</span><span class="p">)])</span>
+
+<span class="c1"># Plot the components</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">centered_curves</span> <span class="o">=</span> <span class="n">curves</span> <span class="o">-</span> <span class="n">curves</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centered_curves</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;IC </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dict_learning</span><span class="o">.</span><span class="n">n_components</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="image-visualization-with-nilearn">
+<h2>2. Image visualization with <code class="docutils literal notranslate"><span class="pre">nilearn</span></code><a class="headerlink" href="#image-visualization-with-nilearn" title="Permalink to this headline">¶</a></h2>
+<p>Above, we’ve already seen some ways on how to visualize brain images with <code class="docutils literal notranslate"><span class="pre">nilearn</span></code>. And there are many more. To keep this notebook short, we will only take a look at some of them. For a complete list, see <a class="reference external" href="http://nilearn.github.io/plotting/index.html">nilearn’s plotting section</a>.</p>
+<p><strong>Note:</strong> In most of the <code class="docutils literal notranslate"><span class="pre">nilearn</span></code>’s plotting functions, you can specify the value <code class="docutils literal notranslate"><span class="pre">output_file=example.png'</span></code>, to save the figure directly to a file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Specify the functional file that we want to plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">localizer_tmap</span> <span class="o">=</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/brainomics_localizer/brainomics_data/&#39;</span>
+<span class="n">localizer_tmap</span> <span class="o">+=</span> <span class="s1">&#39;S02/t_map_left_auditory_&amp;_visual_click_vs_right_auditory&amp;visual_click.nii.gz&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="glass-brain">
+<h3>Glass brain<a class="headerlink" href="#glass-brain" title="Permalink to this headline">¶</a></h3>
+<p>A really cool way to visualize your brain images on the MNI brain is nilearn’s <code class="docutils literal notranslate"><span class="pre">plot_glass_brain()</span></code> function. It gives you a good overview of all significant voxels in our image.</p>
+<p><strong>Note</strong>: It’s important that your data is normalized to the MNI-template, as the overlay is otherwise not overlapping.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">localizer_tmap</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;plot_glass_brain with display_mode=&quot;lyrz&quot;&#39;</span><span class="p">,</span>
+                          <span class="n">plot_abs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;lyrz&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;rainbow&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="overlay-functional-image-onto-anatomical-image">
+<h3>Overlay functional image onto anatomical image<a class="headerlink" href="#overlay-functional-image-onto-anatomical-image" title="Permalink to this headline">¶</a></h3>
+<p>In this type of visualization, you can specify the axis through which you want to cut and the cut coordinates. <code class="docutils literal notranslate"><span class="pre">cut_coords</span></code> as integer 5 without a list implies that number of cuts in the slices should be maximum of 5.
+The coordinates to cut the slices are selected automatically. But you could also specify the exact cuts with<code class="docutils literal notranslate"><span class="pre">cut_coords=[-10,</span> <span class="pre">0,</span> <span class="pre">10,</span> <span class="pre">20]</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">localizer_tmap</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                       <span class="n">title</span><span class="o">=</span><span class="s2">&quot;display_mode=&#39;z&#39;, cut_coords=5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note</strong>: <code class="docutils literal notranslate"><span class="pre">plot_stat_map()</span></code> can also be used to create figures with cuts in all directions, i.e. orthogonal cuts. For this, set <code class="docutils literal notranslate"><span class="pre">display_mode=ortho</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">localizer_tmap</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                       <span class="n">title</span><span class="o">=</span><span class="s2">&quot;display_mode=&#39;orth&#39;, cut_coords=peak&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="overlay-two-images-ontop-of-each-other">
+<h3>Overlay two images ontop of each other<a class="headerlink" href="#overlay-two-images-ontop-of-each-other" title="Permalink to this headline">¶</a></h3>
+<p>We can also create a plot that overlays different anatomical images. Let’s show the FreeSurfer <code class="docutils literal notranslate"><span class="pre">aseg</span></code> segmentation over the T1 image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_roi</span><span class="p">(</span><span class="s1">&#39;/usr/share/fsl/data/atlases/HarvardOxford/HarvardOxford-cort-maxprob-thr25-1mm.nii.gz&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;data/templates/MNI152_T1_1mm.nii.gz&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that nilearn will accept an image or a filename equally. Also recall that <code class="docutils literal notranslate"><span class="pre">t1</span></code> was a NIfTI-1 image, while <code class="docutils literal notranslate"><span class="pre">aseg</span></code> is in a FreeSurfer <code class="docutils literal notranslate"><span class="pre">.mgz</span></code> file. Nilearn takes advantage of the common interface (data-affine-header) that nibabel provides for these different formats, and makes correctly aligned overlays.</p>
+</div>
+<div class="section" id="use-add-edges-to-see-the-overlay-between-two-images">
+<h3>Use <code class="docutils literal notranslate"><span class="pre">add_edges</span></code> to see the overlay between two images<a class="headerlink" href="#use-add-edges-to-see-the-overlay-between-two-images" title="Permalink to this headline">¶</a></h3>
+<p>Let’s assume we want to see how well our anatomical image overlays with the mean functional image. Let’s first load those two files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nilearn.image</span> <span class="k">as</span> <span class="nn">nli</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="n">bold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can use the <code class="docutils literal notranslate"><span class="pre">plot_anat</span></code> plotting function to plot the background image, in this case the mean fMRI image. Followed by the <code class="docutils literal notranslate"><span class="pre">add_edges</span></code> function to overlay the edges of the anatomical image onto the mean image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_anat</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise-1">
+<h3>Exercise 1:<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<p>Using the function <code class="docutils literal notranslate"><span class="pre">plot_epi()</span></code>, draw the image <code class="docutils literal notranslate"><span class="pre">mean</span></code> as a set of 5 slices spanning front to back. Suppress the background using the <code class="docutils literal notranslate"><span class="pre">vmin</span></code> option.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_epi</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create solution here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="d-surface-plot">
+<h3>3D Surface Plot<a class="headerlink" href="#d-surface-plot" title="Permalink to this headline">¶</a></h3>
+<p>One of the newest features in nilearn is the possibility to project a 3D statistical map onto a cortical mesh using <code class="docutils literal notranslate"><span class="pre">nilearn.surface.vol_to_surf</span></code>. And then to display a surface plot of the projected map using <code class="docutils literal notranslate"><span class="pre">nilearn.plotting.plot_surf_stat_map</span></code>.</p>
+<p><strong>Note:</strong> Both of those modules require that your <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> version is 1.3.1 or higher and that your <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> version is 0.4 or higher.</p>
+<p>First, let’s specify the location of the surface files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fsaverage</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pial_left&#39;</span><span class="p">:</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/fsaverage5/pial.left.gii&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;pial_right&#39;</span><span class="p">:</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/fsaverage5/pial.right.gii&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;infl_left&#39;</span><span class="p">:</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/fsaverage5/pial_inflated.left.gii&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;infl_right&#39;</span><span class="p">:</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/fsaverage5/pial_inflated.right.gii&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;sulc_left&#39;</span><span class="p">:</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/fsaverage5/sulc.left.gii&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;sulc_right&#39;</span><span class="p">:</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/fsaverage5/sulc.right.gii&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Project the statistical map from the volume onto the surface.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">surface</span>
+<span class="n">texture</span> <span class="o">=</span> <span class="n">surface</span><span class="o">.</span><span class="n">vol_to_surf</span><span class="p">(</span><span class="n">localizer_tmap</span><span class="p">,</span> <span class="n">fsaverage</span><span class="p">[</span><span class="s1">&#39;pial_right&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we are ready to plot the statistical map on the surface:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_surf_stat_map</span><span class="p">(</span><span class="n">fsaverage</span><span class="p">[</span><span class="s1">&#39;infl_right&#39;</span><span class="p">],</span> <span class="n">texture</span><span class="p">,</span>
+                            <span class="n">hemi</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Inflated surface - right hemisphere&#39;</span><span class="p">,</span>
+                            <span class="n">threshold</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">bg_map</span><span class="o">=</span><span class="n">fsaverage</span><span class="p">[</span><span class="s1">&#39;sulc_right&#39;</span><span class="p">],</span>
+                            <span class="n">view</span><span class="o">=</span><span class="s1">&#39;lateral&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;cold_hot&#39;</span><span class="p">)</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or another example, using the pial surface:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_surf_stat_map</span><span class="p">(</span><span class="n">fsaverage</span><span class="p">[</span><span class="s1">&#39;pial_left&#39;</span><span class="p">],</span> <span class="n">texture</span><span class="p">,</span>
+                            <span class="n">hemi</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>  <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Pial surface - left hemisphere&#39;</span><span class="p">,</span>
+                            <span class="n">threshold</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">bg_map</span><span class="o">=</span><span class="n">fsaverage</span><span class="p">[</span><span class="s1">&#39;sulc_left&#39;</span><span class="p">],</span>
+                            <span class="n">view</span><span class="o">=</span><span class="s1">&#39;medial&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;cold_hot&#39;</span><span class="p">)</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From version <code class="docutils literal notranslate"><span class="pre">0.5.0</span></code> on, <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> provides interactive visual views also for surface plots. The great thing is that you actually don’t need to project your statistical maps onto the surface, <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> does that directly for you.</p>
+<p>So taking the <code class="docutils literal notranslate"><span class="pre">localizer_tmap</span></code> from before we can call the interactive plotting function <code class="docutils literal notranslate"><span class="pre">view_img_on_surf</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">view_img_on_surf</span><span class="p">(</span><span class="n">localizer_tmap</span><span class="p">,</span> <span class="n">surf_mesh</span><span class="o">=</span><span class="s1">&#39;fsaverage5&#39;</span><span class="p">,</span>
+                          <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;cold_hot&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./data_nipype"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="image_manipulation_nibabel.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Using Python for neuroimaging data - NiBabel</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../advanced.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Advanced and specialized analyses</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

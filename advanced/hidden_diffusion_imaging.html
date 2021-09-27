@@ -1,0 +1,1539 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Structural connectivity and diffusion imaging &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_nipype.html">
+   Basics in data handling &amp; Nipype
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/advanced/hidden_diffusion_imaging.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fadvanced/hidden_diffusion_imaging.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/advanced/hidden_diffusion_imaging.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/advanced/hidden_diffusion_imaging.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Structural connectivity and diffusion imaging
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explore-the-tutorial-dataset">
+   Explore the tutorial dataset
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reconstruction-of-the-diffusion-signal-with-the-tensor-model">
+   Reconstruction of the diffusion signal with the Tensor model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparation">
+     Preparation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensor-reconstruction">
+     Tensor reconstruction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensor-visualization">
+     Tensor visualization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-reconstruction-approaches">
+   Other reconstruction approaches
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-model">
+     Create Model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit-model-visualize-results">
+     Fit Model &amp; Visualize results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-to-tractography">
+   Introduction to Tractography
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimate-the-response-function-and-create-a-model">
+     Estimate the response function and create a model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-fit-and-computation-of-fiber-direction">
+     Model fit and computation of fiber direction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fiber-tracking">
+     Fiber tracking
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#streamline-generation">
+     Streamline generation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-streamlines">
+     Visualize streamlines
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-various-tissue-classifiers-for-tractography">
+   Using Various Tissue Classifiers for Tractography
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-the-corpus-callosum-fiber-tracts">
+     Visualizing the corpus callosum fiber tracts
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connectivity-matrices-roi-intersections-and-density-maps">
+   Connectivity Matrices, ROI Intersections, and Density Maps
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-the-tractography">
+     Create the tractography
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-the-connectivity-matrix">
+     Create the connectivity matrix
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-density-map">
+     Compute density map
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#direct-bundle-registration">
+   Direct Bundle Registration
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <center><img src="https://arokem.github.io/2015-ohbm-dipy-short/images/dipy-logo.png" width="50%"></center>
+<div class="section" id="structural-connectivity-and-diffusion-imaging">
+<h1>Structural connectivity and diffusion imaging<a class="headerlink" href="#structural-connectivity-and-diffusion-imaging" title="Permalink to this headline">¶</a></h1>
+<p>Structural connectivity or diffusion imaging can be studied in many different way. <a class="reference external" href="http://nipy.org/dipy/"><code class="docutils literal notranslate"><span class="pre">Dipy</span></code></a> is only one of them. <a class="reference external" href="http://nipy.org/dipy/"><code class="docutils literal notranslate"><span class="pre">Dipy</span></code></a> is focusing mainly on diffusion magnetic resonance imaging (dMRI) analysis and implements a broad range of algorithms for denoising, registration, reconstruction, tracking, clustering, visualization, and statistical analysis of dMRI data. For a more detailed guide and a lot of examples go to <a class="reference external" href="http://nipy.org/dipy/"><code class="docutils literal notranslate"><span class="pre">Dipy</span></code></a>, here we want to show you just a few basics.</p>
+<p>Speaking of which, we will be covering the following sections:</p>
+<ol class="simple">
+<li><p>Reconstruction of the diffusion signal with the Tensor model</p></li>
+<li><p>Other reconstruction approaches, such as sparse fascicle models (SFM)</p></li>
+<li><p>Introduction to Tractography</p></li>
+<li><p>Using Various Tissue Classifiers for Tractography</p></li>
+<li><p>Connectivity Matrices, ROI Intersections, and Density Maps</p></li>
+<li><p>Direct Bundle Registration</p></li>
+</ol>
+<p><strong>General disclaimer</strong>: This notebook was written by somebody who is not an expert in diffusion imaging analysis. Therefore, certain steps might not be useful or not used in an actual analysis. Keep this in mind while going through this notebook.</p>
+<p><strong><span style="color:red">Important:</span></strong> The rendering of the diffusion images is this notebook is not possible if you run the notebook within a docker container. For this reason, all output figures were already precomputed and can be shown nonetheless. If you’re running the noteobook outside of a docker container you can set the variable <code class="docutils literal notranslate"><span class="pre">view_mode</span></code> to <code class="docutils literal notranslate"><span class="pre">'create_plot'</span></code> to create plots or to <code class="docutils literal notranslate"><span class="pre">'interactive'</span></code> to interactively manipulate the 3D rendered images.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">view_mode</span> <span class="o">=</span> <span class="s1">&#39;no_render&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
+<p>Before we start with anything, let’s setup the important plotting functions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="explore-the-tutorial-dataset">
+<h1>Explore the tutorial dataset<a class="headerlink" href="#explore-the-tutorial-dataset" title="Permalink to this headline">¶</a></h1>
+<p>For this tutorial, we will be using the <strong>Stanford HARDI</strong> dataset, provided with Dipy. You can download the required datasets with the following commands:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.data</span> <span class="kn">import</span> <span class="p">(</span><span class="n">read_stanford_labels</span><span class="p">,</span> <span class="n">read_stanford_t1</span><span class="p">,</span>
+                       <span class="n">read_stanford_pve_maps</span><span class="p">)</span>
+
+<span class="n">img</span><span class="p">,</span> <span class="n">gtab</span><span class="p">,</span> <span class="n">labels_img</span> <span class="o">=</span> <span class="n">read_stanford_labels</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">read_stanford_t1</span><span class="p">()</span>
+<span class="n">pve_csf</span><span class="p">,</span> <span class="n">pve_gm</span><span class="p">,</span> <span class="n">pve_wm</span> <span class="o">=</span> <span class="n">read_stanford_pve_maps</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To speed up this process, we’ve already downloaded the data for you and put it into the folder: <code class="docutils literal notranslate"><span class="pre">/data/diffusion/</span></code></p>
+<p>This means we can load all required files with the following commands:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/t1.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">pve_csf</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/pve_csf.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">pve_gm</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/pve_gm.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">pve_wm</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/pve_wm.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/HARDI150.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">labels_img</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/HARDI150_labels.nii.gz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So what do we have?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axial_middle</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="n">axial_middle</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;T1 image&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="n">axial_middle</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Without diffusion weights&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="n">axial_middle</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Diffusion weights direc. 20&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="n">axial_middle</span><span class="p">,</span> <span class="mi">110</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Diffusion weights direc. 100&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="n">axial_middle</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;nipy_spectral&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Volume labels&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pve_csf</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="n">axial_middle</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;CSF segmentation&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pve_gm</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="n">axial_middle</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GM segmentation&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pve_wm</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="n">axial_middle</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;WM segmentation&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In diffusion MRI (dMRI) usually we use three types of files, a Nifti file with the diffusion weighted data (here <code class="docutils literal notranslate"><span class="pre">hardi_img.nii.gz</span></code>), and two text files one with b-values and one with the b-vectors. So let’s also load those two files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bvals</span> <span class="o">=</span> <span class="s1">&#39;data/diffusion/stanford_hardi/HARDI150.bval&#39;</span>
+<span class="n">bvecs</span> <span class="o">=</span> <span class="s1">&#39;data/diffusion/stanford_hardi/HARDI150.bvec&#39;</span>
+
+<span class="kn">from</span> <span class="nn">dipy.core.gradients</span> <span class="kn">import</span> <span class="n">gradient_table</span>
+<span class="n">gtab</span> <span class="o">=</span> <span class="n">gradient_table</span><span class="p">(</span><span class="n">bvals</span><span class="p">,</span> <span class="n">bvecs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the GradientTable object <code class="docutils literal notranslate"><span class="pre">gtab</span></code> you can show some information about the acquisition parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gtab</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also see the b-values using:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gtab</span><span class="o">.</span><span class="n">bvals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or, for example the last 10 b-vectors using:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gtab</span><span class="o">.</span><span class="n">bvecs</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, that we learned how to load dMRI datasets we can start the analysis.</p>
+</div>
+<div class="section" id="reconstruction-of-the-diffusion-signal-with-the-tensor-model">
+<h1>Reconstruction of the diffusion signal with the Tensor model<a class="headerlink" href="#reconstruction-of-the-diffusion-signal-with-the-tensor-model" title="Permalink to this headline">¶</a></h1>
+<p>The diffusion tensor model is a model that describes the diffusion within a voxel. In short, for each voxel, we can estimate a tensor that had orientation and a particular tensor shape that indicates the primary diffusion directions of water in this voxel. For more details, check out the <a class="reference external" href="http://nipy.org/dipy/examples_built/reconst_dti.html#example-reconst-dti">full example</a> on the dipy homepage.</p>
+<div class="section" id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;data shape before masking: (</span><span class="si">%d</span><span class="s1">, </span><span class="si">%d</span><span class="s1">, </span><span class="si">%d</span><span class="s1">, </span><span class="si">%d</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To avoid the calculation of the Tensors in the background of the image, we first need to mask and crop the data. For this, we can use Dipy’s mask module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.segment.mask</span> <span class="kn">import</span> <span class="n">median_otsu</span>
+<span class="n">maskdata</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">median_otsu</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">vol_idx</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">median_radius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">numpass</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">autocrop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dilate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;data shape after masking (</span><span class="si">%d</span><span class="s1">, </span><span class="si">%d</span><span class="s1">, </span><span class="si">%d</span><span class="s1">, </span><span class="si">%d</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">maskdata</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tensor-reconstruction">
+<h2>Tensor reconstruction<a class="headerlink" href="#tensor-reconstruction" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have prepared the datasets we can go forward with the voxel reconstruction. First, we instantiate the Tensor model in the following way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dipy.reconst.dti</span> <span class="k">as</span> <span class="nn">dti</span>
+<span class="n">tenmodel</span> <span class="o">=</span> <span class="n">dti</span><span class="o">.</span><span class="n">TensorModel</span><span class="p">(</span><span class="n">gtab</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can fit the data to the model. This is very simple. We just need to call the fit method of the <code class="docutils literal notranslate"><span class="pre">TensorModel</span></code> in the following way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tenfit</span> <span class="o">=</span> <span class="n">tenmodel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">maskdata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have the model fit, we can quickly extract the fractional anisotropy (FA) or the mean diffusivity (MD) from the eigenvalues of the tensor. FA is used to characterize the degree to which the distribution of diffusion in a voxel is directional. That is, whether there is relatively unrestricted diffusion in one particular direction. The MD is simply the mean of the eigenvalues of the tensor. Since FA is a normalized measure of variance and MD is the mean, they are often used as complementary measures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.reconst.dti</span> <span class="kn">import</span> <span class="n">fractional_anisotropy</span><span class="p">,</span> <span class="n">mean_diffusivity</span>
+
+<span class="n">FA</span> <span class="o">=</span> <span class="n">fractional_anisotropy</span><span class="p">(</span><span class="n">tenfit</span><span class="o">.</span><span class="n">evals</span><span class="p">)</span>
+<span class="n">MD</span> <span class="o">=</span> <span class="n">mean_diffusivity</span><span class="p">(</span><span class="n">tenfit</span><span class="o">.</span><span class="n">evals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So what do they look like?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_anat</span><span class="p">(</span><span class="n">nb</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">FA</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">header</span><span class="p">),</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                   <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;FA&#39;</span><span class="p">)</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_anat</span><span class="p">(</span><span class="n">nb</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">MD</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">header</span><span class="p">),</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                   <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;MD&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also compute the colored FA or RGB-map (<a class="reference external" href="https://mscl.cit.nih.gov/mscl_publications/pierpaoli_99.pdf">Pajevic et al., 1999</a>). First, we make sure that the FA is scaled between 0 and 1, we compute the RGB map and save it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.reconst.dti</span> <span class="kn">import</span> <span class="n">color_fa</span>
+<span class="n">RGB</span> <span class="o">=</span> <span class="n">color_fa</span><span class="p">(</span><span class="n">FA</span><span class="p">,</span> <span class="n">tenfit</span><span class="o">.</span><span class="n">evecs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s visualize this</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">RGB</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">31</span><span class="p">,:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tensor-visualization">
+<h2>Tensor visualization<a class="headerlink" href="#tensor-visualization" title="Permalink to this headline">¶</a></h2>
+<p>We’ve estimated the tensors throughout the brain. Now, let’s try to visualize the tensor ellipsoids. For the visualization we need to load the sphere objects, define a canvas to plot the image (here a rendered window) and precut data to a small rectangular area in an axial slice of the splenium of the corpus callosum (CC).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.data</span> <span class="kn">import</span> <span class="n">get_sphere</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">get_sphere</span><span class="p">(</span><span class="s1">&#39;symmetric724&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evals</span> <span class="o">=</span> <span class="n">tenfit</span><span class="o">.</span><span class="n">evals</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">:</span><span class="mi">74</span><span class="p">,</span> <span class="mi">28</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span>
+<span class="n">evecs</span> <span class="o">=</span> <span class="n">tenfit</span><span class="o">.</span><span class="n">evecs</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">:</span><span class="mi">74</span><span class="p">,</span> <span class="mi">28</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can color the ellipsoids using the <code class="docutils literal notranslate"><span class="pre">color_fa</span></code> values that we calculated above. In this example we additionally normalize the values to increase the contrast.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfa</span> <span class="o">=</span> <span class="n">RGB</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">:</span><span class="mi">74</span><span class="p">,</span> <span class="mi">28</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span>
+<span class="n">cfa</span> <span class="o">/=</span> <span class="n">cfa</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">actor</span>
+<span class="n">ren</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
+<span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">actor</span><span class="o">.</span><span class="n">tensor_slicer</span><span class="p">(</span><span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span><span class="p">,</span> <span class="n">scalar_colors</span><span class="o">=</span><span class="n">cfa</span><span class="p">,</span> <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">n_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/tensor_ellipsoids.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/tensor_ellipsoids.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can also visualize the tensor Orientation Distribution Functions for the same area as we did with the ellipsoids.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_odfs</span> <span class="o">=</span> <span class="n">tenmodel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">55</span><span class="p">:</span><span class="mi">85</span><span class="p">,</span> <span class="mi">38</span><span class="p">:</span><span class="mi">39</span><span class="p">])</span><span class="o">.</span><span class="n">odf</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+<span class="n">odf_actor</span> <span class="o">=</span> <span class="n">actor</span><span class="o">.</span><span class="n">odf_slicer</span><span class="p">(</span><span class="n">tensor_odfs</span><span class="p">,</span> <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">odf_actor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">n_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/tensor_odfs.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/tensor_odfs.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that while the tensor model is an accurate and reliable model of the diffusion signal in the white matter, it has the drawback that it only has one principal diffusion direction. Therefore, in locations in the brain that contain multiple fiber populations crossing each other, the tensor model may indicate that the principal diffusion direction is intermediate to these directions. Therefore, using the principal diffusion direction for tracking in these locations may be misleading and may lead to errors in defining the tracks. Fortunately, other reconstruction methods can be used to represent the diffusion and fiber orientations in those locations.</p>
+</div>
+</div>
+<div class="section" id="other-reconstruction-approaches">
+<h1>Other reconstruction approaches<a class="headerlink" href="#other-reconstruction-approaches" title="Permalink to this headline">¶</a></h1>
+<p>Dipy offers many different reconstruction models, such as Constrained Spherical Deconvolution, Continuous Axially Symmetric Tensors, Q-Ball Constant Solid Angle, Sparse Fascicle Model and many more. For a full list check out the <a class="reference external" href="http://nipy.org/dipy/examples_index.html#reconstruction">Reconstruction section</a> on <a class="reference external" href="http://dipy.org">dipy.org</a>.</p>
+<p>But to show you how easy it is to change the reconstruction model, let’s take a loop at the <strong>Sparse Fascicle Model</strong> (<a class="reference external" href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0123272">Rokem et al., 2015</a>). In very short, sparse fascicle models (SFM) try to control for the noise due to variance, and over-fitting, by means of regularization by limiting the number of fascicles in the estimated solution.</p>
+<div class="section" id="create-model">
+<h2>Create Model<a class="headerlink" href="#create-model" title="Permalink to this headline">¶</a></h2>
+<p>Just like in Constrained Spherical Deconvolution (see <a class="reference external" href="http://nipy.org/dipy/examples_built/reconst_csd.html#reconst-csd">Reconstruction with Constrained Spherical Deconvolution</a>), the SFM requires the definition of a response function. We’ll take advantage of the automated algorithm in the <code class="docutils literal notranslate"><span class="pre">csdeconv</span></code> module to find this response function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.reconst.csdeconv</span> <span class="kn">import</span> <span class="n">auto_response</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">ratio</span> <span class="o">=</span> <span class="n">auto_response</span><span class="p">(</span><span class="n">gtab</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">roi_radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fa_thr</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">response</span></code> return value contains two entries. The first is an array with the eigenvalues of the response function and the second is the average S0 for this response. It is a very good practice to always validate the result of <code class="docutils literal notranslate"><span class="pre">auto_response</span></code>. For, this purpose we can print it and have a look at its values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We initialize an SFM model object, using these values. We will use the default sphere (362 vertices, symmetrically distributed on the surface of the sphere), as a set of putative fascicle directions that are considered in the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.data</span> <span class="kn">import</span> <span class="n">get_sphere</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">get_sphere</span><span class="p">(</span><span class="s1">&#39;symmetric362&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dipy.reconst.sfm</span> <span class="k">as</span> <span class="nn">sfm</span>
+<span class="n">sf_model</span> <span class="o">=</span> <span class="n">sfm</span><span class="o">.</span><span class="n">SparseFascicleModel</span><span class="p">(</span><span class="n">gtab</span><span class="p">,</span> <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">,</span>
+                                   <span class="n">l1_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+                                   <span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As before, let’s focus on  the small volume of data containing parts of the corpus callosum and of the centrum semiovale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_small</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">55</span><span class="p">:</span><span class="mi">85</span><span class="p">,</span> <span class="mi">38</span><span class="p">:</span><span class="mi">39</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fit-model-visualize-results">
+<h2>Fit Model &amp; Visualize results<a class="headerlink" href="#fit-model-visualize-results" title="Permalink to this headline">¶</a></h2>
+<p>Fitting the model to this small volume of data, we calculate the ODF of this model on the sphere and plot it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sf_fit</span> <span class="o">=</span> <span class="n">sf_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_small</span><span class="p">)</span>
+<span class="n">sf_odf</span> <span class="o">=</span> <span class="n">sf_fit</span><span class="o">.</span><span class="n">odf</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">actor</span>
+<span class="n">ren</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
+<span class="n">fodf_spheres</span> <span class="o">=</span> <span class="n">actor</span><span class="o">.</span><span class="n">odf_slicer</span><span class="p">(</span><span class="n">sf_odf</span><span class="p">,</span> <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">)</span>
+<span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fodf_spheres</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_odfs.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_odfs.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can extract the peaks from the ODF, and plot these as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dipy.direction.peaks</span> <span class="k">as</span> <span class="nn">dpp</span>
+<span class="n">sf_peaks</span> <span class="o">=</span> <span class="n">dpp</span><span class="o">.</span><span class="n">peaks_from_model</span><span class="p">(</span><span class="n">sf_model</span><span class="p">,</span>
+                                <span class="n">data_small</span><span class="p">,</span>
+                                <span class="n">sphere</span><span class="p">,</span>
+                                <span class="n">relative_peak_threshold</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span>
+                                <span class="n">min_separation_angle</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+                                <span class="n">return_sh</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s render these peaks as well</span>
+<span class="n">fodf_peaks</span> <span class="o">=</span> <span class="n">actor</span><span class="o">.</span><span class="n">peak_slicer</span><span class="p">(</span><span class="n">sf_peaks</span><span class="o">.</span><span class="n">peak_dirs</span><span class="p">,</span> <span class="n">sf_peaks</span><span class="o">.</span><span class="n">peak_values</span><span class="p">)</span>
+<span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fodf_peaks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_peaks.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_peaks.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can plot both the peaks and the ODFs, overlayed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fodf_spheres</span><span class="o">.</span><span class="n">GetProperty</span><span class="p">()</span><span class="o">.</span><span class="n">SetOpacity</span><span class="p">(</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fodf_spheres</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_both.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_both.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction-to-tractography">
+<h1>Introduction to Tractography<a class="headerlink" href="#introduction-to-tractography" title="Permalink to this headline">¶</a></h1>
+<p>Local fiber tracking is an approach used to model white matter fibers by creating streamlines from local directional information. The idea is as follows: if the local directionality of a tract/pathway segment is known, one can integrate along those directions to build a complete representation of that structure. Local fiber tracking is widely used in the field of diffusion MRI because it is simple and robust.</p>
+<p>In order to perform local fiber tracking, three things are needed:</p>
+<ol class="simple">
+<li><p>A method for getting directions from a diffusion data set.</p></li>
+<li><p>A method for identifying different tissue types within the data set.</p></li>
+<li><p>A set of seeds from which to begin tracking.</p></li>
+</ol>
+<p>Here we will use Constrained Spherical Deconvolution (CSD) <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811907001243">Tournier et al., 2007</a> for local reconstruction and then generate deterministic streamlines using the fiber directions (peaks) from CSD and fractional anisotropic (FA) from DTI as stopping criteria for the tracking. As before, we will be using the masked Stanford HARDI dataset.</p>
+<div class="section" id="estimate-the-response-function-and-create-a-model">
+<h2>Estimate the response function and create a model<a class="headerlink" href="#estimate-the-response-function-and-create-a-model" title="Permalink to this headline">¶</a></h2>
+<p>For the Constrained Spherical Deconvolution we need to estimate the response function (see Reconstruction with Constrained Spherical Deconvolution) and create a model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.reconst.csdeconv</span> <span class="kn">import</span> <span class="n">ConstrainedSphericalDeconvModel</span><span class="p">,</span> <span class="n">auto_response</span>
+
+<span class="n">response</span><span class="p">,</span> <span class="n">ratio</span> <span class="o">=</span> <span class="n">auto_response</span><span class="p">(</span><span class="n">gtab</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">roi_radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fa_thr</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="n">csd_model</span> <span class="o">=</span> <span class="n">ConstrainedSphericalDeconvModel</span><span class="p">(</span><span class="n">gtab</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model-fit-and-computation-of-fiber-direction">
+<h2>Model fit and computation of fiber direction<a class="headerlink" href="#model-fit-and-computation-of-fiber-direction" title="Permalink to this headline">¶</a></h2>
+<p>Next, we use <code class="docutils literal notranslate"><span class="pre">peaks_from_model</span></code> to fit the data and calculated the fiber directions in all voxels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.data</span> <span class="kn">import</span> <span class="n">get_sphere</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">get_sphere</span><span class="p">(</span><span class="s1">&#39;symmetric724&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.segment.mask</span> <span class="kn">import</span> <span class="n">median_otsu</span>
+<span class="n">maskdata</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">median_otsu</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">vol_idx</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">median_radius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">numpass</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">autocrop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dilate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="kn">from</span> <span class="nn">dipy.direction</span> <span class="kn">import</span> <span class="n">peaks_from_model</span>
+<span class="n">csd_peaks</span> <span class="o">=</span> <span class="n">peaks_from_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">csd_model</span><span class="p">,</span>
+                             <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                             <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">,</span>
+                             <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+                             <span class="n">relative_peak_threshold</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span>
+                             <span class="n">min_separation_angle</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+                             <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fiber-tracking">
+<h2>Fiber tracking<a class="headerlink" href="#fiber-tracking" title="Permalink to this headline">¶</a></h2>
+<p>For the tracking part, we will use the fiber directions from the <code class="docutils literal notranslate"><span class="pre">csd_model</span></code> but stop tracking in areas where fractional anisotropy is low (&lt; 0.1). To derive the FA, used here as a stopping criterion, we would need to fit a tensor model first. Here, we fit the tensor using weighted least squares (WLS).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.reconst.dti</span> <span class="kn">import</span> <span class="n">TensorModel</span>
+<span class="n">tensor_model</span> <span class="o">=</span> <span class="n">TensorModel</span><span class="p">(</span><span class="n">gtab</span><span class="p">,</span> <span class="n">fit_method</span><span class="o">=</span><span class="s1">&#39;WLS&#39;</span><span class="p">)</span>
+<span class="n">tensor_fit</span> <span class="o">=</span> <span class="n">tensor_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+<span class="n">fa</span> <span class="o">=</span> <span class="n">tensor_fit</span><span class="o">.</span><span class="n">fa</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this simple example we can use FA to stop tracking. Here we stop tracking when FA &lt; 0.1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.tracking.stopping_criterion</span> <span class="kn">import</span> <span class="n">ThresholdStoppingCriterion</span>
+<span class="n">tissue_classifier</span> <span class="o">=</span> <span class="n">ThresholdStoppingCriterion</span><span class="p">(</span><span class="n">fa</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we need to set starting points for propagating each track. We call those seeds. Using <code class="docutils literal notranslate"><span class="pre">random_seeds_from_mask</span></code> we can select a specific number of seeds (<code class="docutils literal notranslate"><span class="pre">seeds_count</span></code>) in each voxel where the mask <code class="docutils literal notranslate"><span class="pre">fa</span> <span class="pre">&gt;</span> <span class="pre">0.3</span></code> is true.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.tracking.utils</span> <span class="kn">import</span> <span class="n">random_seeds_from_mask</span>
+<span class="n">seeds</span> <span class="o">=</span> <span class="n">random_seeds_from_mask</span><span class="p">(</span><span class="n">fa</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">seeds_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For quality assurance, let’s visualize a slice from the direction field which we will use as the basis to perform the tracking.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">actor</span>
+<span class="n">ren</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
+<span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">actor</span><span class="o">.</span><span class="n">peak_slicer</span><span class="p">(</span><span class="n">csd_peaks</span><span class="o">.</span><span class="n">peak_dirs</span><span class="p">,</span>
+                          <span class="n">csd_peaks</span><span class="o">.</span><span class="n">peak_values</span><span class="p">,</span>
+                          <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/csd_direction_field.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/csd_direction_field.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="streamline-generation">
+<h2>Streamline generation<a class="headerlink" href="#streamline-generation" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have the direction field, we can generate the streamlines of the tractography.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.tracking.local_tracking</span> <span class="kn">import</span> <span class="n">LocalTracking</span>
+<span class="n">streamline_generator</span> <span class="o">=</span> <span class="n">LocalTracking</span><span class="p">(</span><span class="n">csd_peaks</span><span class="p">,</span> <span class="n">tissue_classifier</span><span class="p">,</span>
+                                     <span class="n">seeds</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+                                     <span class="n">step_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.tracking.streamline</span> <span class="kn">import</span> <span class="n">Streamlines</span>
+<span class="n">streamlines</span> <span class="o">=</span> <span class="n">Streamlines</span><span class="p">(</span><span class="n">streamline_generator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The total number of streamlines can be check as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">streamlines</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To increase the number of streamlines you can change the parameter <code class="docutils literal notranslate"><span class="pre">seeds_count</span></code> in <code class="docutils literal notranslate"><span class="pre">random_seeds_from_mask</span></code>.</p>
+</div>
+<div class="section" id="visualize-streamlines">
+<h2>Visualize streamlines<a class="headerlink" href="#visualize-streamlines" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have everything we can visualize the streamlines using <code class="docutils literal notranslate"><span class="pre">actor.line</span></code> or <code class="docutils literal notranslate"><span class="pre">actor.streamtube</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">actor</span>
+<span class="n">ren</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
+<span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">actor</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">streamlines</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/det_streamlines.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/det_streamlines.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-various-tissue-classifiers-for-tractography">
+<h1>Using Various Tissue Classifiers for Tractography<a class="headerlink" href="#using-various-tissue-classifiers-for-tractography" title="Permalink to this headline">¶</a></h1>
+<p>The tissue classifier determines if the tracking stops or continues at each tracking position. The tracking stops when it reaches an ending region (e.g. low FA, gray matter or corticospinal fluid regions) or exits the image boundaries. The tracking also stops if the direction getter has no direction to follow.</p>
+<p>In this example we want to show how you can use the white matter voxels of the corpus callosum to use as a seed mask from which the streamlines should start. For this we first need to create a corpus callosum mask. This we can get from the <code class="docutils literal notranslate"><span class="pre">labels_img</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_anat</span><span class="p">(</span><span class="n">labels_img</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;nipy_spectral&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;labels&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this label image file, label 2 represents the corpus callosum. So let’s create a mask from this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span><span class="o">==</span><span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_anat</span><span class="p">(</span><span class="n">nb</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">cc_mask</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">header</span><span class="p">),</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                   <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Corpus callosum&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.tracking</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="n">seeds</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">seeds_from_mask</span><span class="p">(</span><span class="n">cc_mask</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">affine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have the mask, we can run the streamline generator again, but this time using the corpus callosum mask as a seed region.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.tracking.local_tracking</span> <span class="kn">import</span> <span class="n">LocalTracking</span>
+<span class="n">streamline_generator</span> <span class="o">=</span> <span class="n">LocalTracking</span><span class="p">(</span><span class="n">csd_peaks</span><span class="p">,</span>
+                                     <span class="n">tissue_classifier</span><span class="p">,</span>
+                                     <span class="n">seeds</span><span class="p">,</span>
+                                     <span class="n">affine</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span>
+                                     <span class="n">step_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.tracking.streamline</span> <span class="kn">import</span> <span class="n">Streamlines</span>
+<span class="n">streamlines</span> <span class="o">=</span> <span class="n">Streamlines</span><span class="p">(</span><span class="n">streamline_generator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="visualizing-the-corpus-callosum-fiber-tracts">
+<h2>Visualizing the corpus callosum fiber tracts<a class="headerlink" href="#visualizing-the-corpus-callosum-fiber-tracts" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">actor</span>
+<span class="n">ren</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
+<span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">actor</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">streamlines</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/deterministic.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/deterministic.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="connectivity-matrices-roi-intersections-and-density-maps">
+<h1>Connectivity Matrices, ROI Intersections, and Density Maps<a class="headerlink" href="#connectivity-matrices-roi-intersections-and-density-maps" title="Permalink to this headline">¶</a></h1>
+<p>This example is meant to be an introduction to some of the streamline tools available in Dipy. Some of the functions covered in this example are:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">target</span></code></strong> allows one to filter streamlines that either pass through or do not pass through some region of the brain</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">connectivity_matrix</span></code></strong> groups and counts streamlines based on where in the brain they begin and end</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">density</span> <span class="pre">map</span></code></strong> counts the number of streamlines that pass through every voxel of some image.</p></li>
+</ul>
+<div class="section" id="create-the-tractography">
+<h2>Create the tractography<a class="headerlink" href="#create-the-tractography" title="Permalink to this headline">¶</a></h2>
+<p>To get started we’ll need to have a set of streamlines to work with. We will use again the Stanford HARDI dataset and use <code class="docutils literal notranslate"><span class="pre">EuDX</span></code> along with the <code class="docutils literal notranslate"><span class="pre">CsaOdfModel</span></code> to make some streamlines.</p>
+<p>We’ll use <code class="docutils literal notranslate"><span class="pre">peaks_from_model</span></code> to apply the <code class="docutils literal notranslate"><span class="pre">CsaOdfModel</span></code> to each white matter voxel and estimate fiber orientations which we can use for tracking:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.data</span> <span class="kn">import</span> <span class="n">read_stanford_labels</span><span class="p">,</span> <span class="n">read_stanford_t1</span>
+
+<span class="n">hardi_img</span><span class="p">,</span> <span class="n">gtab</span><span class="p">,</span> <span class="n">labels_img</span> <span class="o">=</span> <span class="n">read_stanford_labels</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">hardi_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">labels_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+
+<span class="n">t1</span> <span class="o">=</span> <span class="n">read_stanford_t1</span><span class="p">()</span>
+<span class="n">t1_data</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ve loaded an image called labels_img which is a map of tissue types such that every integer value in the array labels represents an anatomical structure or tissue type 1. For this example, the image was created so that white matter voxels have values of either 1 or 2. We’ll use <code class="docutils literal notranslate"><span class="pre">peaks_from_model</span></code> to apply the <code class="docutils literal notranslate"><span class="pre">CsaOdfModel</span></code> to each white matter voxel and estimate fiber orientations which we can use for tracking. We will also dilate this mask by 1 voxel to ensure streamlines reach the grey matter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.reconst</span> <span class="kn">import</span> <span class="n">shm</span>
+<span class="kn">from</span> <span class="nn">dipy.direction</span> <span class="kn">import</span> <span class="n">peaks</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage.morphology</span> <span class="kn">import</span> <span class="n">binary_dilation</span>
+
+<span class="n">white_matter</span> <span class="o">=</span> <span class="n">binary_dilation</span><span class="p">((</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">csamodel</span> <span class="o">=</span> <span class="n">shm</span><span class="o">.</span><span class="n">CsaOdfModel</span><span class="p">(</span><span class="n">gtab</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">csapeaks</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">peaks_from_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">csamodel</span><span class="p">,</span>
+                                  <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                                  <span class="n">sphere</span><span class="o">=</span><span class="n">peaks</span><span class="o">.</span><span class="n">default_sphere</span><span class="p">,</span>
+                                  <span class="n">relative_peak_threshold</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+                                  <span class="n">min_separation_angle</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span>
+                                  <span class="n">mask</span><span class="o">=</span><span class="n">white_matter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use <code class="docutils literal notranslate"><span class="pre">EuDX</span></code> to track all of the white matter. To keep things reasonably fast we use <code class="docutils literal notranslate"><span class="pre">density=1</span></code> which will result in 1 seeds per voxel. We’ll set <code class="docutils literal notranslate"><span class="pre">a_low</span></code> (the parameter which determines the threshold of FA/QA under which tracking stops) to be very low because we’ve already applied a white matter mask.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.tracking</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">dipy.tracking.local_tracking</span> <span class="kn">import</span> <span class="n">LocalTracking</span>
+<span class="kn">from</span> <span class="nn">dipy.tracking.stopping_criterion</span> <span class="kn">import</span> <span class="n">BinaryStoppingCriterion</span>
+<span class="kn">from</span> <span class="nn">dipy.tracking.streamline</span> <span class="kn">import</span> <span class="n">Streamlines</span>
+<span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">seeds</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">seeds_from_mask</span><span class="p">(</span><span class="n">white_matter</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">BinaryStoppingCriterion</span><span class="p">(</span><span class="n">white_matter</span><span class="p">)</span>
+
+<span class="n">streamline_generator</span> <span class="o">=</span> <span class="n">LocalTracking</span><span class="p">(</span><span class="n">csapeaks</span><span class="p">,</span> <span class="n">stopping_criterion</span><span class="p">,</span> <span class="n">seeds</span><span class="p">,</span>
+                                     <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">,</span> <span class="n">step_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">streamlines</span> <span class="o">=</span> <span class="n">Streamlines</span><span class="p">(</span><span class="n">streamline_generator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first of the tracking utilities we’ll cover here is <strong><code class="docutils literal notranslate"><span class="pre">target</span></code></strong>. This function takes a set of streamlines and a region of interest (ROI) and returns only those streamlines that pass through the ROI. The ROI should be an array such that the voxels that belong to the ROI are <code class="docutils literal notranslate"><span class="pre">True</span></code> and all other voxels are <code class="docutils literal notranslate"><span class="pre">False</span></code> (this type of binary array is sometimes called a mask). This function can also exclude all the streamlines that pass through an ROI by setting the <code class="docutils literal notranslate"><span class="pre">include</span></code> flag to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>In this example, we’ll target the streamlines of the corpus callosum. Our <code class="docutils literal notranslate"><span class="pre">labels</span></code> array has a sagittal slice of the corpus callosum identified by the label value 2. We’ll create an ROI mask from that label and create two sets of streamlines, those that intersect with the ROI and those that don’t.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">cc_slice</span> <span class="o">=</span> <span class="n">labels</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="n">cc_streamlines</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="n">streamlines</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">cc_slice</span><span class="p">)</span>
+<span class="n">cc_streamlines</span> <span class="o">=</span> <span class="n">Streamlines</span><span class="p">(</span><span class="n">cc_streamlines</span><span class="p">)</span>
+
+<span class="n">other_streamlines</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="n">streamlines</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">cc_slice</span><span class="p">,</span>
+                                 <span class="n">include</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">other_streamlines</span> <span class="o">=</span> <span class="n">Streamlines</span><span class="p">(</span><span class="n">other_streamlines</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">other_streamlines</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">cc_streamlines</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">streamlines</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/corpuscallosum_axial.png&#39;</span><span class="p">)</span>
+    <span class="n">ren</span><span class="o">.</span><span class="n">set_camera</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">focal_point</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">view_up</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/corpuscallosum_sagittal.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/corpuscallosum_axial.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/corpuscallosum_sagittal.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-the-connectivity-matrix">
+<h2>Create the connectivity matrix<a class="headerlink" href="#create-the-connectivity-matrix" title="Permalink to this headline">¶</a></h2>
+<p>Once we’ve targeted on the corpus callosum ROI, we might want to find out which regions of the brain are connected by these streamlines. To do this we can use the <code class="docutils literal notranslate"><span class="pre">connectivity_matrix</span></code> function. This function takes a set of streamlines and an array of labels as arguments. It returns the number of streamlines that start and end at each pair of labels and it can return the streamlines grouped by their endpoints. Notice that this function only considers the endpoints of each streamline. Because we’re typically only interested in connections between gray matter regions, and because the label 0 represents background and the labels 1 and 2 represent white matter, we discard the first three rows and columns of the connectivity matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="p">,</span> <span class="n">grouping</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">connectivity_matrix</span><span class="p">(</span><span class="n">cc_streamlines</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">labels</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">),</span>
+                                        <span class="n">return_mapping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                        <span class="n">mapping_as_streamlines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">M</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">M</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ve set <code class="docutils literal notranslate"><span class="pre">return_mapping</span></code> and <code class="docutils literal notranslate"><span class="pre">mapping_as_streamlines</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> so that <code class="docutils literal notranslate"><span class="pre">connectivity_matrix</span></code> returns all the streamlines in <code class="docutils literal notranslate"><span class="pre">cc_streamlines</span></code> grouped by their endpoint.</p>
+<p>We can now display this matrix using matplotlib. We display it using a log scale to make small values in the matrix easier to see.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">M</span><span class="p">),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;connectivity.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In our example track, there are more streamlines connecting regions 11 and 54 than any other pair of regions. These labels represent the left and right superior frontal gyrus respectively. These two regions are large, close together, have lots of corpus callosum fibers and are easy to track so this result should not be a surprise to anyone.</p>
+<p>However, the interpretation of streamline counts can be tricky. The relationship between the underlying biology and the streamline counts will depend on several factors, including how the tracking was done, and the correct way to interpret these kinds of connectivity matrices is still an open question in the diffusion imaging literature.</p>
+</div>
+<div class="section" id="compute-density-map">
+<h2>Compute density map<a class="headerlink" href="#compute-density-map" title="Permalink to this headline">¶</a></h2>
+<p>The next function we’ll demonstrate is <code class="docutils literal notranslate"><span class="pre">density_map</span></code>. This function allows one to represent the spatial distribution of a track by counting the density of streamlines in each voxel.</p>
+<p>For example, let’s take the track connecting the left and right superior frontal gyrus.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_superiorfrontal_track</span> <span class="o">=</span> <span class="n">grouping</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">54</span><span class="p">]</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">dm</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">density_map</span><span class="p">(</span><span class="n">lr_superiorfrontal_track</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s save this density map and visualize it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save density map</span>
+<span class="n">dm_img</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int16&quot;</span><span class="p">),</span> <span class="n">img</span><span class="o">.</span><span class="n">affine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_anat</span><span class="p">(</span><span class="n">dm_img</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">34</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                   <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Density Map of Region 11 &amp; 54&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="direct-bundle-registration">
+<h1>Direct Bundle Registration<a class="headerlink" href="#direct-bundle-registration" title="Permalink to this headline">¶</a></h1>
+<p>Creating different tractographies is cool and looks very pleasing, but what if we want to compare the tractography of two people, where the bundles don’t align? No worries, Dipy has the solution: <strong>Bundle registration</strong></p>
+<p>To show the concept we will use two pre-saved cingulum bundles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.data</span> <span class="kn">import</span> <span class="n">two_cingulum_bundles</span>
+<span class="n">cb_subj1</span><span class="p">,</span> <span class="n">cb_subj2</span> <span class="o">=</span> <span class="n">two_cingulum_bundles</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The algorithm we will be using is called Streamline-based Linear Registration (SLR) <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811915003961">Garyfallidis et al., 2015</a>. An important step before running the registration is to resample the streamlines so that they both have the same number of points per streamline. Here we will use 20 points. This step is not optional. Inputting streamlines with different number of points will break the theoretical advantages of using the SLR.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.tracking.streamline</span> <span class="kn">import</span> <span class="n">set_number_of_points</span>
+<span class="n">cb_subj1</span> <span class="o">=</span> <span class="n">set_number_of_points</span><span class="p">(</span><span class="n">cb_subj1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">cb_subj2</span> <span class="o">=</span> <span class="n">set_number_of_points</span><span class="p">(</span><span class="n">cb_subj2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s say now that we want to move the <code class="docutils literal notranslate"><span class="pre">cb_subj2</span></code> (moving) so that it can be aligned with <code class="docutils literal notranslate"><span class="pre">cb_subj1</span></code> (static). Here is how this is done:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.align.streamlinear</span> <span class="kn">import</span> <span class="n">StreamlineLinearRegistration</span>
+<span class="n">srr</span> <span class="o">=</span> <span class="n">StreamlineLinearRegistration</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">srm</span> <span class="o">=</span> <span class="n">srr</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">static</span><span class="o">=</span><span class="n">cb_subj1</span><span class="p">,</span> <span class="n">moving</span><span class="o">=</span><span class="n">cb_subj2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After the optimization is finished we can apply the transformation to <code class="docutils literal notranslate"><span class="pre">cb_subj2</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cb_subj2_aligned</span> <span class="o">=</span> <span class="n">srm</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">cb_subj2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So let’s visualize what we did:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">actor</span>
+<span class="n">ren</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
+<span class="n">ren</span><span class="o">.</span><span class="n">SetBackground</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">bundles</span> <span class="o">=</span> <span class="p">[</span><span class="n">cb_subj1</span><span class="p">,</span> <span class="n">cb_subj2</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">window</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">orange</span><span class="p">,</span> <span class="n">window</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">red</span><span class="p">]</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">bundle</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bundles</span><span class="p">):</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">lines_actor</span> <span class="o">=</span> <span class="n">actor</span><span class="o">.</span><span class="n">streamtube</span><span class="p">(</span><span class="n">bundle</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">lines_actor</span><span class="o">.</span><span class="n">RotateX</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">lines_actor</span><span class="o">.</span><span class="n">RotateZ</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lines_actor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/before_registration.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/before_registration.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now after bundle registration:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">actor</span>
+<span class="n">ren</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
+<span class="n">ren</span><span class="o">.</span><span class="n">SetBackground</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">bundles</span> <span class="o">=</span> <span class="p">[</span><span class="n">cb_subj1</span><span class="p">,</span> <span class="n">cb_subj2_aligned</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">window</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">orange</span><span class="p">,</span> <span class="n">window</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">red</span><span class="p">]</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">bundle</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bundles</span><span class="p">):</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">lines_actor</span> <span class="o">=</span> <span class="n">actor</span><span class="o">.</span><span class="n">streamtube</span><span class="p">(</span><span class="n">bundle</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">lines_actor</span><span class="o">.</span><span class="n">RotateX</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">lines_actor</span><span class="o">.</span><span class="n">RotateZ</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lines_actor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/after_registration.png&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/after_registration.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see the two cingulum bundles are well aligned although they contain many streamlines of different length and shape.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./advanced"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,1528 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Statistics in python &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_nipype.html">
+   Basics in data handling &amp; Nipype
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/prerequisites/intro_statistics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fprerequisites/intro_statistics.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/prerequisites/intro_statistics.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/prerequisites/intro_statistics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction to Statistics in python
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-representation-and-interaction">
+   Data representation and interaction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-as-a-table">
+     Data as a table
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-pandas-data-frame">
+     The pandas data-frame
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-dataframes-reading-data-files-or-converting-arrays">
+       Creating dataframes: reading data files or converting arrays
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#reading-from-a-csv-file">
+         Reading from a CSV file
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#creating-from-arrays">
+         Creating from arrays
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#manipulating-data">
+       Manipulating data
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#the-split-apply-combine-pattern">
+         The split-apply-combine pattern
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plotting-data">
+       Plotting data
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#scatter-matrices">
+         Scatter matrices
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#plot-content-of-a-dataset">
+         Plot content of a dataset
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pingouin-is-an-open-source-statistical-package-written-in-python-3-and-based-mostly-on-pandas-and-numpy">
+       <em>
+        Pingouin is an open-source statistical package written in Python 3 and based mostly on Pandas and NumPy.
+       </em>
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#material-scavenged-from-10-minutes-to-pingouin-and-the-pingouin-docs">
+         **material scavenged from 10 minutes to Pingouin and the pingouin docs
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#test-summary">
+       Test summary
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#before-we-calculate-testing-statistical-premises">
+       Before we calculate:
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Testing
+        </span>
+        <span class="pre">
+         statistical
+        </span>
+        <span class="pre">
+         premises
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shapiro-wilk-normality-test">
+       Shapiro Wilk normality  test
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#henze-zirkler-multivariate-normality-test">
+       Henze-Zirkler multivariate normality test
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mauchly-test-for-sphericity">
+       Mauchly test for sphericity
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#testing-for-homoscedasticity">
+       Testing for homoscedasticity
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parametric-tests">
+     Parametric tests
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#student-s-t-test-the-simplest-statistical-test">
+     Student’s t-test: the simplest statistical test
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sample-t-test-testing-the-value-of-a-population-mean">
+       1-sample t-test: testing the value of a population mean
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sample-t-test-testing-for-difference-across-populations">
+       2-sample t-test: testing for difference across populations
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plot-achieved-power-of-a-paired-t-test">
+       Plot achieved power of a paired T-test
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#non-parametric-tests">
+       Non parametric tests:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scipy-stats-hypothesis-testing-comparing-two-groups">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         scipy.stats
+        </span>
+       </code>
+       - Hypothesis testing: comparing two groups
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       1-sample t-test: testing the value of a population mean
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       2-sample t-test: testing for difference across populations
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#paired-tests-repeated-measurements-on-the-same-indivuals">
+     Paired tests: repeated measurements on the same indivuals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statsmodels-use-formulas-to-specify-statistical-models-in-python">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     statsmodels
+    </span>
+   </code>
+   - use “formulas” to specify statistical models in Python
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-simple-linear-regression">
+     A simple linear regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#terminology">
+       Terminology
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#categorical-variables-comparing-groups-or-multiple-categories">
+     Categorical variables: comparing groups or multiple categories
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tips-on-specifying-model">
+       Tips on specifying model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#link-to-t-tests-between-different-mfq-and-shaps">
+       Link to t-tests between different MFQ and SHAPS
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-regression-including-multiple-factors">
+     Multiple Regression: including multiple factors
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-the-iris-dataset">
+       Example: the iris dataset
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#post-hoc-hypothesis-testing-analysis-of-variance-anova">
+     Post-hoc hypothesis testing: analysis of variance (ANOVA)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seaborn-use-visualization-for-statistical-exploration">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     seaborn
+    </span>
+   </code>
+   - use visualization for statistical exploration
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pairplot-scatter-matrices">
+     Pairplot: scatter matrices
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lmplot-plotting-a-univariate-regression">
+     lmplot: plotting a univariate regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#robust-regression">
+       Robust regression
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-for-interactions">
+   Testing for interactions
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#take-home-messages">
+   Take home messages
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-statistics-in-python">
+<h1>Introduction to Statistics in python<a class="headerlink" href="#introduction-to-statistics-in-python" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://peerherholz.github.io/">Peer Herholz (he/him)</a><br />
+Postdoctoral researcher - <a class="reference external" href="https://neurodatascience.github.io/">NeuroDataScience lab</a> at <a class="reference external" href="https://www.mcgill.ca/neuro/">MNI</a>/<a class="reference external" href="https://www.mcgill.ca/">McGill</a>, <a class="reference external" href="https://sites.google.com/view/unique-neuro-ai">UNIQUE</a><br />
+Member - <a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">BIDS</a>, <a class="reference external" href="https://www.repronim.org/">ReproNim</a>, <a class="reference external" href="https://brainhack.org/">Brainhack</a>, <a class="reference external" href="https://www.cneuromod.ca/">Neuromod</a>, <a class="reference external" href="https://ohbm-environment.org/">OHBM SEA-SIG</a></p>
+<p><img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/Twitter%20social%20icons%20-%20circle%20-%20blue.png" alt="logo" title="Twitter" width="32" height="20" /> <img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/GitHub-Mark-120px-plus.png" alt="logo" title="Github" width="30" height="20" />     &#64;peerherholz</p>
+<p>In this section, we will cover how you can use Python to do some statistics. There are many packages to do so, but we will focus on four:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/">pandas</a></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html">scipy’s stats module</a></p></li>
+<li><p><a class="reference external" href="http://www.statsmodels.org/stable/index.html">statsmodels</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/index.html">seaborn</a></p></li>
+</ul>
+<p>This notebook is strongly based on the <a class="reference external" href="http://www.scipy-lectures.org/packages/statistics/index.html">scipy-lectures.org</a> section about statistics.</p>
+</div>
+<div class="section" id="data-representation-and-interaction">
+<h1>Data representation and interaction<a class="headerlink" href="#data-representation-and-interaction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="data-as-a-table">
+<h2>Data as a table<a class="headerlink" href="#data-as-a-table" title="Permalink to this headline">¶</a></h2>
+<p>The setting that we consider for statistical analysis is that of multiple <em>observations</em> or <em>samples</em> described by a set of different <em>attributes</em> or <em>features</em>. The data can than be seen as a <code class="docutils literal notranslate"><span class="pre">2D</span> <span class="pre">table</span></code>, or <code class="docutils literal notranslate"><span class="pre">matrix</span></code>, with columns giving the different attributes of the data, and rows the observations. For example purposes, we will make use of phenotypic information within a dataset from <a class="reference external" href="https://openneuro.org/datasets/ds003709/versions/1.0.0">OpenNeuro</a>, provided as part of the following publication:</p>
+<p><a class="reference external" href="https://doi.org/10.7554/eLife.62051">Keren H., Zheng C., Jangraw D.C., Chang K., Vitale A., Rutledge R.B., Pereira F., Nielson D.M., Stringaris A. (2021). The temporal representation of experience in subjective mood. eLife, 2021;10:e62051</a>.</p>
+<p>It contains sex, age, handedness, group id, Mood and Feelings Questionnaire total scores and Snaith-Hamilton Pleasure Scale total scores for a fair amount of participants.</p>
+<p>We will use <code class="docutils literal notranslate"><span class="pre">curl</span></code> to gather the respective file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org/crn/datasets/ds003709/snapshots/1.0.0/files/participants.tsv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head participants_stats.tsv
+</pre></div>
+</div>
+</div>
+</div>
+<center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/512px-Pandas_logo.svg.png" width="45%"></center>
+</div>
+<div class="section" id="the-pandas-data-frame">
+<h2>The pandas data-frame<a class="headerlink" href="#the-pandas-data-frame" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-dataframes-reading-data-files-or-converting-arrays">
+<h3>Creating dataframes: reading data files or converting arrays<a class="headerlink" href="#creating-dataframes-reading-data-files-or-converting-arrays" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="reading-from-a-csv-file">
+<h4>Reading from a CSV file<a class="headerlink" href="#reading-from-a-csv-file" title="Permalink to this headline">¶</a></h4>
+<p>Using the above CSV file that gives observations of brain size and weight and IQ (Willerman et al. 1991), the data are a mixture of numerical and categorical values::</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;participants_stats.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-from-arrays">
+<h4>Creating from arrays<a class="headerlink" href="#creating-from-arrays" title="Permalink to this headline">¶</a></h4>
+<p>A <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> can also be seen as a dictionary of 1D ‘series’, eg arrays or lists. If we have 3 <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">sin_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">cos_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can expose them as a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s1">&#39;sin&#39;</span><span class="p">:</span> <span class="n">sin_t</span><span class="p">,</span> <span class="s1">&#39;cos&#39;</span><span class="p">:</span> <span class="n">cos_t</span><span class="p">})</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Other inputs</strong>: <a class="reference external" href="http://pandas.pydata.org">pandas</a> can input data from SQL, excel files, or other formats. See the <a class="reference external" href="http://pandas.pydata.org">pandas documentation</a>.</p>
+</div>
+</div>
+<div class="section" id="manipulating-data">
+<h3>Manipulating data<a class="headerlink" href="#manipulating-data" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">data</span></code> is a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>, that resembles R’s dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>    <span class="c1"># 51 rows and 7 columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">columns</span>  <span class="c1"># It has columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>  <span class="c1"># Columns can be addressed by name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simpler selector</span>
+<span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;HV&#39;</span><span class="p">][</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> For a quick view on a large dataframe, use its <code class="docutils literal notranslate"><span class="pre">describe</span></code> <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.describe</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Frequency count for a given column</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dummy-code # of group (i.e., get N-binary columns)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])[:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-split-apply-combine-pattern">
+<h4>The <a class="reference external" href="https://www.jstatsoft.org/article/view/v040i01/v40i01.pdf">split-apply-combine</a> pattern<a class="headerlink" href="#the-split-apply-combine-pattern" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>A very common data processing strategy is to…</p>
+<ul>
+<li><p>Split the dataset into groups</p></li>
+<li><p>Apply some operation(s) to each group</p></li>
+<li><p>(Optionally) combine back into one dataset</p></li>
+</ul>
+</li>
+</ul>
+<p>Pandas provides powerful and fast tools for this. For example the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> function.</p>
+<p><strong>groupby</strong>: splitting a dataframe on values of categorical variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">groupby_group</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">groupby_group</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]:</span>
+     <span class="nb">print</span><span class="p">((</span><span class="n">group</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">groupby_group</span></code> is a powerful object that exposes many operations on the resulting group of <code class="docutils literal notranslate"><span class="pre">dataframes</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">groupby_group</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-data">
+<h3>Plotting data<a class="headerlink" href="#plotting-data" title="Permalink to this headline">¶</a></h3>
+<p>Pandas comes with some plotting tools (<code class="docutils literal notranslate"><span class="pre">pandas.tools.plotting</span></code>, using
+<code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> behind the scene) to display statistics of the data in
+<code class="docutils literal notranslate"><span class="pre">dataframes</span></code>.</p>
+<p>For example, let’s use <code class="docutils literal notranslate"><span class="pre">boxplot</span></code> (in this case even <code class="docutils literal notranslate"><span class="pre">groupby_group.boxplot</span></code>) to better understand the structure of the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">groupby_group</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;MFQ&#39;</span><span class="p">,</span> <span class="s1">&#39;SHAPS&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="scatter-matrices">
+<h4>Scatter matrices<a class="headerlink" href="#scatter-matrices" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;MFQ&#39;</span><span class="p">,</span> <span class="s1">&#39;SHAPS&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-content-of-a-dataset">
+<h4>Plot content of a dataset<a class="headerlink" href="#plot-content-of-a-dataset" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img src="https://github.com/raphaelvallat/pingouin/blob/master/docs/pictures/logo_pingouin.png?raw=true" width="50%"/>
+</div>
+</div>
+<div class="section" id="pingouin-is-an-open-source-statistical-package-written-in-python-3-and-based-mostly-on-pandas-and-numpy">
+<h3><em>Pingouin is an open-source statistical package written in Python 3 and based mostly on Pandas and NumPy.</em><a class="headerlink" href="#pingouin-is-an-open-source-statistical-package-written-in-python-3-and-based-mostly-on-pandas-and-numpy" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>ANOVAs: one- and two-ways, repeated measures, mixed, ancova</p></li>
+<li><p>Post-hocs tests and pairwise comparisons</p></li>
+<li><p>Robust correlations</p></li>
+<li><p>Partial correlation, repeated measures correlation and intraclass correlation</p></li>
+<li><p>Linear/logistic regression and mediation analysis</p></li>
+<li><p>Bayesian T-test and Pearson correlation</p></li>
+<li><p>Tests for sphericity, normality and homoscedasticity</p></li>
+<li><p>Effect sizes and power analysis</p></li>
+<li><p>Parametric/bootstrapped confidence intervals around an effect size or a correlation coefficient</p></li>
+<li><p>Circular statistics</p></li>
+<li><p>Plotting: Bland-Altman plot, Q-Q plot, etc…</p></li>
+</ul>
+<p><strong>Pingouin is designed for users who want simple yet exhaustive statistical functions.</strong></p>
+<div class="section" id="material-scavenged-from-10-minutes-to-pingouin-and-the-pingouin-docs">
+<h4>**material scavenged from <a class="reference external" href="https://pingouin-stats.org/index.html">10 minutes to Pingouin</a> and <a class="reference external" href="https://pingouin-stats.org/api.html">the pingouin docs</a><a class="headerlink" href="#material-scavenged-from-10-minutes-to-pingouin-and-the-pingouin-docs" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a class="reference external" href="https://pingouin-stats.org/generated/pingouin.corr.html#pingouin.corr">Measures of correlation</a></p>
+<p>“In the broadest sense correlation is any statistical association, though in common usage it most often refers to how close two variables are to having a linear relationship with each other” - <a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Wikipedia</a></p>
+<p>When talking about correlation, we commonly mean the Pearson correlation coefficient, also referred to as Pearson’s r</p>
+<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/93185aed3047ef42fa0f1b6e389a4e89a5654afa"/>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pearson_correlation</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;SHAPS&#39;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pearson_correlation</span><span class="p">)</span>
+<span class="n">cor_coeeficient</span> <span class="o">=</span> <span class="n">pearson_correlation</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1"># sample size</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="test-summary">
+<h3>Test summary<a class="headerlink" href="#test-summary" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>‘n’ : Sample size (after NaN removal)</p></li>
+<li><p>‘outliers’ : number of outliers (only for ‘shepherd’ or ‘skipped’)</p></li>
+<li><p>‘r’ : Correlation coefficient</p></li>
+<li><p>‘CI95’ : <a class="reference external" href="https://en.wikipedia.org/wiki/Confidence_interval">95% parametric confidence intervals</a></p></li>
+<li><p>‘r2’ : <a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">R-squared</a></p></li>
+<li><p>‘adj_r2’ : <a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination#Adjusted_R2">Adjusted R-squared</a></p></li>
+<li><p>‘p-val’ : one or two tailed p-value</p></li>
+<li><p>‘BF10’ : Bayes Factor of the alternative hypothesis (Pearson only)</p></li>
+<li><p>‘power’ : achieved power of the test (= 1 - type II error)</p></li>
+</ul>
+</div>
+<div class="section" id="before-we-calculate-testing-statistical-premises">
+<h3>Before we calculate:  <code class="docutils literal notranslate"><span class="pre">Testing</span> <span class="pre">statistical</span> <span class="pre">premises</span></code><a class="headerlink" href="#before-we-calculate-testing-statistical-premises" title="Permalink to this headline">¶</a></h3>
+<p>Statistical procedures can be classfied into either <a class="reference external" href="https://en.wikipedia.org/wiki/Parametric_statistics"><code class="docutils literal notranslate"><span class="pre">parametric</span></code></a> or <code class="docutils literal notranslate"><span class="pre">non</span> <span class="pre">parametric</span></code> prcedures, which require different necessary preconditions to be met in order to show consistent/robust results.
+Generally people assume that their data follows a gaussian distribution, which allows for parametric tests to be run.
+Nevertheless it is essential to first test the distribution of your data to decide if the assumption of normally distributed data holds, if this is not the case we would have to switch to non parametric tests.</p>
+</div>
+<div class="section" id="shapiro-wilk-normality-test">
+<h3><a class="reference external" href="https://pingouin-stats.org/generated/pingouin.normality.html#pingouin.normality">Shapiro Wilk normality  test</a><a class="headerlink" href="#shapiro-wilk-normality-test" title="Permalink to this headline">¶</a></h3>
+<p>Standard procedure to test for normal distribution. Tests if the distribution of you data deviates significtanly from a normal distribution.
+returns:</p>
+<ul class="simple">
+<li><p>normal : boolean
+True if x comes from a normal distribution.</p></li>
+<li><p>p : float
+P-value.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return a boolean (true if normal) and the associated p-value</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;normaltest&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="henze-zirkler-multivariate-normality-test">
+<h3><a class="reference external" href="https://pingouin-stats.org/generated/pingouin.multivariate_normality.html#pingouin.multivariate_normality">Henze-Zirkler multivariate normality test</a><a class="headerlink" href="#henze-zirkler-multivariate-normality-test" title="Permalink to this headline">¶</a></h3>
+<p>Same procedure for <a class="reference external" href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">multivariate normal distributions</a></p>
+<p>returns</p>
+<ul class="simple">
+<li><p>normal : boolean
+True if X comes from a multivariate normal distribution.</p></li>
+<li><p>p : float
+P-value.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return a boolean (true if normal) and the associated p-value</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="mi">30</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">multivariate_normality</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mauchly-test-for-sphericity">
+<h3><a class="reference external" href="https://pingouin-stats.org/generated/pingouin.sphericity.html#pingouin.sphericity">Mauchly test for sphericity</a><a class="headerlink" href="#mauchly-test-for-sphericity" title="Permalink to this headline">¶</a></h3>
+<p>“Sphericity is the condition where the variances of the differences between all combinations of related groups (levels) are equal. Violation of sphericity is when the variances of the differences between all combinations of related groups are not equal.” - <a class="reference external" href="https://statistics.laerd.com/statistical-guides/sphericity-statistical-guide.php">https://statistics.laerd.com/statistical-guides/sphericity-statistical-guide.php</a></p>
+<p>returns</p>
+<ul class="simple">
+<li><p>spher : boolean
+True if data have the sphericity property.</p></li>
+<li><p>W : float
+Test statistic</p></li>
+<li><p>chi_sq : float
+Chi-square statistic</p></li>
+<li><p>ddof : int
+Degrees of freedom</p></li>
+<li><p>p : float
+P-value.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pg</span><span class="o">.</span><span class="n">sphericity</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-for-homoscedasticity">
+<h3><a class="reference external" href="https://pingouin-stats.org/generated/pingouin.homoscedasticity.html#pingouin.homoscedasticity">Testing for homoscedasticity</a><a class="headerlink" href="#testing-for-homoscedasticity" title="Permalink to this headline">¶</a></h3>
+<p>“In statistics, a sequence or a vector of random variables is homoscedastic /ˌhoʊmoʊskəˈdæstɪk/ if all random variables in the sequence or vector have the same finite variance.” - <a class="reference external" href="https://en.wikipedia.org/wiki/Homoscedasticity">wikipedia</a></p>
+<p>returns:</p>
+<ul class="simple">
+<li><p>equal_var : boolean
+True if data have equal variance.</p></li>
+<li><p>p : float
+P-value.</p></li>
+</ul>
+<p><em>Note:
+This function first tests if the data are normally distributed using the <strong>Shapiro-Wilk test</strong>. If yes, then the homogeneity of variances is measured using the <strong>Bartlett test</strong>. If the data are not normally distributed, the <strong>Levene test</strong>, which is less sensitive to departure from normality, is used.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="c1"># Scale = standard deviation of the distribution.</span>
+<span class="n">array_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">array_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">array_1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">array_2</span><span class="p">))</span>
+
+<span class="n">pg</span><span class="o">.</span><span class="n">homoscedasticity</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dv</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="parametric-tests">
+<h2>Parametric tests<a class="headerlink" href="#parametric-tests" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="student-s-t-test-the-simplest-statistical-test">
+<h2>Student’s t-test: the simplest statistical test<a class="headerlink" href="#student-s-t-test-the-simplest-statistical-test" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sample-t-test-testing-the-value-of-a-population-mean">
+<h3>1-sample t-test: testing the value of a population mean<a class="headerlink" href="#sample-t-test-testing-the-value-of-a-population-mean" title="Permalink to this headline">¶</a></h3>
+<p>tests if the population mean of data is likely to be equal to a given value (technically if observations are drawn from a Gaussian distributions of given population mean).</p>
+<p><code class="docutils literal notranslate"><span class="pre">pingouin.ttest</span></code> returns the T_statistic, the p-value, the [degrees of freedom](<a class="reference external" href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)">https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)</a>, the <a class="reference external" href="https://en.wikiversity.org/wiki/Cohen%27s_d">Cohen d effect size</a>, the achieved [power](<a class="reference external" href="https://en.wikipedia.org/wiki/Power_(statistics%29)">https://en.wikipedia.org/wiki/Power_(statistics))</a> of the test ( = 1 - type II error (beta) = <a class="reference external" href="https://deliveroo.engineering/2018/12/07/monte-carlo-power-analysis.html">P(Reject H0|H1 is true)</a>), and the <a class="reference external" href="https://en.wikipedia.org/wiki/Bayes_factor">Bayes Factor</a> of the alternative hypothesis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sample-t-test-testing-for-difference-across-populations">
+<h3>2-sample t-test: testing for difference across populations<a class="headerlink" href="#sample-t-test-testing-for-difference-across-populations" title="Permalink to this headline">¶</a></h3>
+<p>We have seen above that the mean <code class="docutils literal notranslate"><span class="pre">MFQ</span></code> in the <code class="docutils literal notranslate"><span class="pre">MDD</span></code> and <code class="docutils literal notranslate"><span class="pre">HV</span></code> populations
+were different. To test if this is significant, we do a 2-sample t-test:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MDD_MFQ</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;MDD&#39;</span><span class="p">][</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span>
+<span class="n">HV_MFQ</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;HV&#39;</span><span class="p">][</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span><span class="n">MDD_MFQ</span><span class="p">,</span> <span class="n">HV_MFQ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-achieved-power-of-a-paired-t-test">
+<h3>Plot achieved power of a paired T-test<a class="headerlink" href="#plot-achieved-power-of-a-paired-t-test" title="Permalink to this headline">¶</a></h3>
+<p>Plot the curve of achieved power given the effect size (Cohen d) and the sample size of a paired T-test.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;ticks&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s1">&#39;notebook&#39;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># Fixed effect size</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Incrementing sample size</span>
+
+<span class="c1"># Compute the achieved power</span>
+<span class="n">pwr</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">power_ttest</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">contrast</span><span class="o">=</span><span class="s1">&#39;paired&#39;</span><span class="p">,</span> <span class="n">tail</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span><span class="p">)</span>
+
+<span class="c1"># Start the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">pwr</span><span class="p">,</span> <span class="s1">&#39;ko-.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample size&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Power (1 - type II error)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Achieved power of a paired T-test&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="non-parametric-tests">
+<h3>Non parametric tests:<a class="headerlink" href="#non-parametric-tests" title="Permalink to this headline">¶</a></h3>
+<p>Unlike the parametric test these do not require the assumption of normal distributions.</p>
+<p>“<code class="docutils literal notranslate"><span class="pre">Mann-Whitney</span> <span class="pre">U</span> <span class="pre">Test</span></code> (= Wilcoxon rank-sum test). It is the non-parametric version of the independent T-test.
+Mwu tests the hypothesis that data in x and y are samples from continuous distributions with equal medians. The test assumes that x and y are independent. This test corrects for ties and by default uses a continuity correction.” - <a class="reference external" href="https://pingouin-stats.org/generated/pingouin.mwu.html#pingouin.mwu">mwu-function</a></p>
+<p>Test summary</p>
+<ul class="simple">
+<li><p>‘W-val’ : W-value</p></li>
+<li><p>‘p-val’ : p-value</p></li>
+<li><p>‘RBC’   : matched pairs rank-biserial correlation (effect size)</p></li>
+<li><p>‘CLES’  : common language effect size</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pg</span><span class="o">.</span><span class="n">mwu</span><span class="p">(</span><span class="n">MDD_MFQ</span><span class="p">,</span> <span class="n">HV_MFQ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>“<code class="docutils literal notranslate"><span class="pre">Wilcoxon</span> <span class="pre">signed-rank</span> <span class="pre">test</span></code> is the non-parametric version of the paired T-test.</p>
+<p>The Wilcoxon signed-rank test tests the null hypothesis that two related paired samples come from the same distribution. A continuity correction is applied by default.” - <a class="reference external" href="https://pingouin-stats.org/generated/pingouin.wilcoxon.html#pingouin.wilcoxon">wilcoxon - func</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example from the function definition</span>
+<span class="c1"># Wilcoxon test on two related samples.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">38</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Medians = </span><span class="si">%.2f</span><span class="s2"> - </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">tail</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<center><img src="https://docs.scipy.org/doc/numpy-1.5.x/_static/scipyshiny_small.png" width="20%"></center>
+</div>
+<div class="section" id="scipy-stats-hypothesis-testing-comparing-two-groups">
+<h3><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> - Hypothesis testing: comparing two groups<a class="headerlink" href="#scipy-stats-hypothesis-testing-comparing-two-groups" title="Permalink to this headline">¶</a></h3>
+<p>For simple <a class="reference external" href="https://en.wikipedia.org/wiki/Statistical_hypothesis_testing">statistical tests</a>, it is also possible to use the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> sub-module of <a class="reference external" href="http://docs.scipy.org/doc/"><code class="docutils literal notranslate"><span class="pre">scipy</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>1-sample t-test: testing the value of a population mean<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">scipy.stats.ttest_1samp</span></code> tests if the population mean of data is likely to be equal to a given value (technically if observations are drawn from a Gaussian distributions of given population mean). It returns the <a class="reference external" href="https://en.wikipedia.org/wiki/Student%27s_t-test">T statistic</a>, and the <a class="reference external" href="https://en.wikipedia.org/wiki/P-value">p-value</a> (see the function’s help):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With a p-value of 8^-09 we can claim that the population mean for the <code class="docutils literal notranslate"><span class="pre">MFQ</span></code> is not <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+</div>
+<div class="section" id="id2">
+<h3>2-sample t-test: testing for difference across populations<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>We have seen above that the mean <code class="docutils literal notranslate"><span class="pre">MFQ</span></code> in the <code class="docutils literal notranslate"><span class="pre">MDD</span></code> and <code class="docutils literal notranslate"><span class="pre">HV</span></code> populations
+were different. To test if this is significant, we do a <code class="docutils literal notranslate"><span class="pre">2-sample</span> <span class="pre">t-test</span></code>
+with <code class="docutils literal notranslate"><span class="pre">scipy.stats.ttest_ind</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">MDD_MFQ</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">HV_MFQ</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="paired-tests-repeated-measurements-on-the-same-indivuals">
+<h2>Paired tests: repeated measurements on the same indivuals<a class="headerlink" href="#paired-tests-repeated-measurements-on-the-same-indivuals" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">MFQ</span></code> and <code class="docutils literal notranslate"><span class="pre">SHAPS</span></code> are <code class="docutils literal notranslate"><span class="pre">measures</span></code> of interest. Let us test if they are significantly different. We can use a <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">sample</span> <span class="pre">test</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;SHAPS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The problem with this approach is that it forgets that there are links
+between observations: <code class="docutils literal notranslate"><span class="pre">MFQ</span></code> and <code class="docutils literal notranslate"><span class="pre">SHAPS</span></code> are measured on the same individuals.</p>
+<p>Thus the variance due to <code class="docutils literal notranslate"><span class="pre">inter-subject</span> <span class="pre">variability</span></code> is confounding, and
+can be removed, using a “paired test”, or <a class="reference external" href="https://en.wikipedia.org/wiki/Repeated_measures_design">“repeated measures test”</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_rel</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;SHAPS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is equivalent to a 1-sample test on the difference::</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;SHAPS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>T-tests assume Gaussian errors. We can use a <a class="reference external" href="https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test">Wilcoxon signed-rank test</a>, that relaxes this assumption:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;SHAPS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> The corresponding test in the non paired case is the <a class="reference external" href="https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U">Mann–Whitney U test</a>, <code class="docutils literal notranslate"><span class="pre">scipy.stats.mannwhitneyu</span></code>.</p>
+<center><img src="https://www.statsmodels.org/0.8.0/_static/statsmodels_hybi_banner.png" width="50%"></center>
+</div>
+</div>
+<div class="section" id="statsmodels-use-formulas-to-specify-statistical-models-in-python">
+<h1><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> - use “formulas” to specify statistical models in Python<a class="headerlink" href="#statsmodels-use-formulas-to-specify-statistical-models-in-python" title="Permalink to this headline">¶</a></h1>
+<p>Use <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> to perform linear models, multiple factors or analysis of variance.</p>
+<div class="section" id="a-simple-linear-regression">
+<h2>A simple linear regression<a class="headerlink" href="#a-simple-linear-regression" title="Permalink to this headline">¶</a></h2>
+<p>Given two set of observations, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, we want to test the hypothesis that <code class="docutils literal notranslate"><span class="pre">y</span></code> is a linear function of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<p>In other terms:</p>
+<p><span class="math notranslate nohighlight">\(y = x * coef + intercept + e\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(e\)</span> is observation noise. We will use the <a class="reference external" href="http://statsmodels.sourceforge.net">statsmodels</a> module to:</p>
+<ol class="simple">
+<li><p>Fit a linear model. We will use the simplest strategy, <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">ordinary least squares</a> (OLS).</p></li>
+<li><p>Test that <span class="math notranslate nohighlight">\(coef\)</span> is non zero.</p></li>
+</ol>
+<p>First, we generate simulated data according to the model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># normal distributed noise</span>
+<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Create a data frame containing all the relevant variables</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we specify an OLS model and fit it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s2">&quot;y ~ x&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> For more about “formulas” for statistics in Python, see the <a class="reference external" href="http://statsmodels.sourceforge.net/stable/example_formulas.html">statsmodels documentation</a>.</p>
+<p>We can inspect the various statistics derived from the fit::</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="terminology">
+<h3>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h3>
+<p>Statsmodels uses a statistical terminology: the <code class="docutils literal notranslate"><span class="pre">y</span></code> variable in statsmodels is called <em>endogenous</em> while the <code class="docutils literal notranslate"><span class="pre">x</span></code> variable is called <em>exogenous</em>. This is discussed in more detail <a class="reference external" href="http://statsmodels.sourceforge.net/devel/endog_exog.html">here</a>. To simplify, <code class="docutils literal notranslate"><span class="pre">y</span></code> (endogenous) is the value you are trying to predict, while <code class="docutils literal notranslate"><span class="pre">x</span></code> (exogenous) represents the features you are using to make the prediction.</p>
+</div>
+</div>
+<div class="section" id="categorical-variables-comparing-groups-or-multiple-categories">
+<h2>Categorical variables: comparing groups or multiple categories<a class="headerlink" href="#categorical-variables-comparing-groups-or-multiple-categories" title="Permalink to this headline">¶</a></h2>
+<p>Let us go back to our data. We can write a comparison between <code class="docutils literal notranslate"><span class="pre">MFQ</span></code> of <code class="docutils literal notranslate"><span class="pre">MDD</span></code> and <code class="docutils literal notranslate"><span class="pre">HV</span></code> groups using a linear model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;participants_stats.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s2">&quot;MFQ ~ group + 1&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tips-on-specifying-model">
+<h3>Tips on specifying model<a class="headerlink" href="#tips-on-specifying-model" title="Permalink to this headline">¶</a></h3>
+<p><em><strong>Forcing categorical</strong></em> - the ‘group’ variable is automatically detected as a categorical variable, and thus each of its different values is treated as different entities.</p>
+<p>An integer column can be forced to be treated as categorical using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;MFQ ~ C(group)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><em><strong>Intercept</strong></em>: We can remove the intercept using <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">1</span></code> in the formula, or force the use of an intercept using <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">1</span></code>.</p>
+</div>
+<div class="section" id="link-to-t-tests-between-different-mfq-and-shaps">
+<h3>Link to t-tests between different MFQ and SHAPS<a class="headerlink" href="#link-to-t-tests-between-different-mfq-and-shaps" title="Permalink to this headline">¶</a></h3>
+<p>To compare different types of our measurements of interest, we need to create a <code class="docutils literal notranslate"><span class="pre">&quot;long-form&quot;</span> <span class="pre">table</span></code>, listing them, where their type is indicated by a <code class="docutils literal notranslate"><span class="pre">categorical</span> <span class="pre">variable</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_mfq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;MOI&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">],</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;MFQ&#39;</span><span class="p">})</span>
+<span class="n">data_shaps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;MOI&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;SHAPS&#39;</span><span class="p">],</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;SHAPS&#39;</span><span class="p">})</span>
+<span class="n">data_long</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">data_mfq</span><span class="p">,</span> <span class="n">data_shaps</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_long</span><span class="p">[::</span><span class="mi">8</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s2">&quot;MOI ~ type&quot;</span><span class="p">,</span> <span class="n">data_long</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that we retrieve the same values for t-test and corresponding p-values for the effect of the type of MOI than the previous t-test:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;SHAPS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multiple-regression-including-multiple-factors">
+<h2>Multiple Regression: including multiple factors<a class="headerlink" href="#multiple-regression-including-multiple-factors" title="Permalink to this headline">¶</a></h2>
+<p>Consider a linear model explaining a variable <code class="docutils literal notranslate"><span class="pre">z</span></code> (the dependent
+variable) with 2 variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<p><span class="math notranslate nohighlight">\(z = x \, c_1 + y \, c_2 + i + e\)</span></p>
+<p>Such a model can be seen in 3D as fitting a plane to a cloud of (<code class="docutils literal notranslate"><span class="pre">x</span></code>,
+<code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code>) points (see the following figure).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+
+<span class="c1"># We generate a 2D grid</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># To get reproducable values, provide a seed value</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Z is the elevation of this 2D grid</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">X</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">Y</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Plot the data</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">surf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                       <span class="n">rstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cstride</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">120</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-the-iris-dataset">
+<h3>Example: the iris dataset<a class="headerlink" href="#example-the-iris-dataset" title="Permalink to this headline">¶</a></h3>
+<p>Sepal and petal size tend to be related: bigger flowers are bigger! But is there, in addition, a systematic effect of species?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">scatter_matrix</span>
+
+<span class="c1">#Load the data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;iris&#39;</span><span class="p">)</span>
+
+<span class="c1"># Express the names as categories</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">])</span>
+
+<span class="c1"># The parameter &#39;c&#39; is passed to plt.scatter and will control the color</span>
+<span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">categories</span><span class="o">.</span><span class="n">codes</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;blue: setosa, green: versicolor, red: virginica&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;sepal_width ~ species + petal_length&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="post-hoc-hypothesis-testing-analysis-of-variance-anova">
+<h2>Post-hoc hypothesis testing: analysis of variance (ANOVA)<a class="headerlink" href="#post-hoc-hypothesis-testing-analysis-of-variance-anova" title="Permalink to this headline">¶</a></h2>
+<p>In the above iris example, we wish to test if the petal length is different between versicolor and virginica, after removing the effect of sepal width. This can be formulated as testing the difference between the coefficient associated to versicolor and virginica in the linear model estimated above (it is an Analysis of Variance, <a class="reference external" href="https://en.wikipedia.org/wiki/Analysis_of_variance">ANOVA</a>. For this, we write a <strong>vector of ‘contrast’</strong> on the parameters estimated: we want to test <code class="docutils literal notranslate"><span class="pre">&quot;name[T.versicolor]</span> <span class="pre">-</span> <span class="pre">name[T.virginica]&quot;</span></code>, with an <a class="reference external" href="https://en.wikipedia.org/wiki/F-test">F-test</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">f_test</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Is this difference significant?</p>
+<center><img src="https://raw.githubusercontent.com/mwaskom/seaborn/master/doc/_static/logo-wide-lightbg.png" width="50%"></center>
+</div>
+</div>
+<div class="section" id="seaborn-use-visualization-for-statistical-exploration">
+<h1><code class="docutils literal notranslate"><span class="pre">seaborn</span></code> - use visualization for statistical exploration<a class="headerlink" href="#seaborn-use-visualization-for-statistical-exploration" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://stanford.edu/~mwaskom/software/seaborn/">Seaborn</a> combines simple statistical fits with plotting on pandas dataframes.</p>
+<p>Let us consider a data giving wages and many other personal information on 500 individuals (<a class="reference external" href="http://lib.stat.cmu.edu/datasets/CPS_85_Wages">Berndt, ER. The Practice of Econometrics. 1991. NY:Addison-Wesley</a>) which we will gather using a small function based on the <a class="reference external" href="https://scipy-lectures.org/packages/statistics/auto_examples/plot_wage_data.html">scipy tutorials</a>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">download_wages_data</span><span class="p">():</span>
+    
+    <span class="kn">import</span> <span class="nn">urllib</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;wages.txt&#39;</span><span class="p">):</span>
+        <span class="c1"># Download the file if it is not present</span>
+        <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s1">&#39;http://lib.stat.cmu.edu/datasets/CPS_85_Wages&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;wages.txt&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Give names to the columns</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;EDUCATION: Number of years of education&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;SOUTH: 1=Person lives in South, 0=Person lives elsewhere&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;SEX: 1=Female, 0=Male&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;EXPERIENCE: Number of years of work experience&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;UNION: 1=Union member, 0=Not union member&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;WAGE: Wage (dollars per hour)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;AGE: years&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;RACE: 1=Other, 2=Hispanic, 3=White&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OCCUPATION: 1=Management, 2=Sales, 3=Clerical, 4=Service, 5=Professional, 6=Other&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;SECTOR: 0=Other, 1=Manufacturing, 2=Construction&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MARR: 0=Unmarried,  1=Married&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="n">short_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;wages.txt&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">27</span><span class="p">,</span> <span class="n">skipfooter</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                           <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">short_names</span>
+
+    <span class="c1"># Log-transform the wages, because they typically are increased with</span>
+    <span class="c1"># multiplicative factors</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;WAGE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WAGE&#39;</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">download_wages_data</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pairplot-scatter-matrices">
+<h2>Pairplot: scatter matrices<a class="headerlink" href="#pairplot-scatter-matrices" title="Permalink to this headline">¶</a></h2>
+<p>We can easily have an intuition on the <code class="docutils literal notranslate"><span class="pre">interactions</span></code> between <code class="docutils literal notranslate"><span class="pre">continuous</span> <span class="pre">variables</span></code> using <code class="docutils literal notranslate"><span class="pre">seaborn.pairplot</span></code> to display a <code class="docutils literal notranslate"><span class="pre">scatter</span> <span class="pre">matrix</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WAGE&#39;</span><span class="p">,</span> <span class="s1">&#39;AGE&#39;</span><span class="p">,</span> <span class="s1">&#39;EDUCATION&#39;</span><span class="p">],</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;reg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Categorical</span> <span class="pre">variables</span></code> can be plotted as the <code class="docutils literal notranslate"><span class="pre">hue</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seaborn</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WAGE&#39;</span><span class="p">,</span> <span class="s1">&#39;AGE&#39;</span><span class="p">,</span> <span class="s1">&#39;EDUCATION&#39;</span><span class="p">],</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;reg&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;SEX&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="lmplot-plotting-a-univariate-regression">
+<h2>lmplot: plotting a univariate regression<a class="headerlink" href="#lmplot-plotting-a-univariate-regression" title="Permalink to this headline">¶</a></h2>
+<p>A regression capturing the relation between one variable and another, e.g. wage and eduction, can be plotted using <code class="docutils literal notranslate"><span class="pre">seaborn.lmplot</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seaborn</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;WAGE&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;EDUCATION&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="robust-regression">
+<h3>Robust regression<a class="headerlink" href="#robust-regression" title="Permalink to this headline">¶</a></h3>
+<p>Given that, in the above plot, there seems to be a couple of data points that are outside of the main cloud to the right, they might be outliers, not representative of the population, but driving the regression.</p>
+<p>To compute a regression that is less sensitive to outliers, one must use a <a class="reference external" href="https://en.wikipedia.org/wiki/Robust_statistics">robust model</a>. This is done in seaborn using <code class="docutils literal notranslate"><span class="pre">robust=True</span></code> in the plotting functions, or in statsmodels by replacing the use of the OLS by a “Robust Linear Model”, <code class="docutils literal notranslate"><span class="pre">statsmodels.formula.api.rlm</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="testing-for-interactions">
+<h1>Testing for interactions<a class="headerlink" href="#testing-for-interactions" title="Permalink to this headline">¶</a></h1>
+<p>Do wages increase more with education for people with dark hair than with light hair?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seaborn</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;WAGE&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;EDUCATION&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;SEX&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The plot above is made of two different fits. We need to formulate a single model that tests for a variance of slope across the population. This is done via an <a class="reference external" href="http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions">“interaction”</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;WAGE ~ EDUCATION + SEX + EDUCATION * SEX&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Can we conclude that education benefits people with dark hair more than people with light hair?</p>
+</div>
+<div class="section" id="take-home-messages">
+<h1>Take home messages<a class="headerlink" href="#take-home-messages" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Hypothesis testing and p-value give you the <strong>significance</strong> of an effect / difference</p></li>
+<li><p><strong>Formulas</strong> (with categorical variables) enable you to express rich links in your data</p></li>
+<li><p><strong>Visualizing</strong> your data and simple model fits matters!</p></li>
+<li><p><strong>Conditioning</strong> (adding factors that can explain all or part of the variation) is an important modeling aspect that changes the interpretation.</p></li>
+</ul>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-root-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-root-py",
+            path: "./prerequisites"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-root-py'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

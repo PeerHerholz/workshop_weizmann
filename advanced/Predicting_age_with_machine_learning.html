@@ -1,0 +1,1470 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Machine learning to predict age from rs-fmri &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Yoga and/or dance break" href="../break.html" />
+    <link rel="prev" title="TensorFlow/Keras" href="machine_learning_keras.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_nipype.html">
+   Basics in data handling &amp; Nipype
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/advanced/Predicting_age_with_machine_learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fadvanced/Predicting_age_with_machine_learning.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/advanced/Predicting_age_with_machine_learning.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/advanced/Predicting_age_with_machine_learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-data">
+   Load the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extract-features">
+   Extract features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#retrieve-the-atlas-for-extracting-features-and-an-example-subject">
+     Retrieve the atlas for extracting features and an example subject
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-signals-on-a-parcellation-defined-by-labels">
+     Extract signals on a parcellation defined by labels
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-and-display-a-correlation-matrix">
+     Compute and display a correlation matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-features-from-the-whole-dataset">
+     Extract features from the whole dataset
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-y-our-target-and-assess-its-distribution">
+   Get Y (our target) and assess its distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-data-for-machine-learning">
+   Prepare data for machine learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-your-first-model">
+   Run your first model!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tweak-your-model">
+   Tweak your model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normalize-the-target-data">
+     Normalize the target data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tweak-the-hyperparameters">
+     Tweak the hyperparameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trying-a-more-complicated-model">
+     Trying a more complicated model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-selection">
+     Feature selection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#can-our-model-predict-age-in-completely-un-seen-data">
+   Can our model predict age in completely un-seen data?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpreting-model-feature-importances">
+     Interpreting model feature importances
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s keep our notebook clean, so it&#39;s a little more readable!</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="machine-learning-to-predict-age-from-rs-fmri">
+<h1>Machine learning to predict age from rs-fmri<a class="headerlink" href="#machine-learning-to-predict-age-from-rs-fmri" title="Permalink to this headline">¶</a></h1>
+<p>The goal is to extract data from several rs-fmri images, and use that data as features in a machine learning model. We will integrate what we’ve learned in the previous machine learning lecture to build an unbiased model and test it on a left out sample.</p>
+<p>We’re going to use a dataset that was prepared for this tutorial by <a class="reference external" href="https://elizabeth-dupre.com/#/">Elizabeth Dupre</a>, <a class="reference external" href="https://github.com/illdopejake">Jake Vogel</a> and <a class="reference external" href="http://gael-varoquaux.info/">Gael Varoquaux</a>, by preprocessing <a class="reference external" href="https://openneuro.org/datasets/ds000228/versions/1.0.0">ds000228</a> (from <a class="reference external" href="https://dx.doi.org/10.1038%2Fs41467-018-03399-2">Richardson et al. (2018)</a>) through <a class="reference external" href="https://github.com/poldracklab/fmriprep">fmriprep</a>. They also created this tutorial and should be credited for it.</p>
+<div class="section" id="load-the-data">
+<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">¶</a></h2>
+<img src="data/SampFeat.png" alt="terms" width="300"/>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># change this to the location where you downloaded the data</span>
+<span class="n">wdir</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000228/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now fetch the data</span>
+
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wdir</span><span class="p">,</span><span class="s1">&#39;*.gz&#39;</span><span class="p">)))</span>
+<span class="n">confounds</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wdir</span><span class="p">,</span><span class="s1">&#39;*regressors.tsv&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How many individual subjects do we have?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#len(data.func)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="extract-features">
+<h2>Extract features<a class="headerlink" href="#extract-features" title="Permalink to this headline">¶</a></h2>
+<p><img alt="feat_xtrct" src="https://ars.els-cdn.com/content/image/1-s2.0-S1053811919301594-gr1.jpg" /></p>
+<p>In order to do our machine learning, we will need to extract feature from our rs-fmri images.</p>
+<p>Specifically, we will extract signals from a brain parcellation and compute a correlation matrix, representing regional coactivation between regions.</p>
+<p>We will practice on one subject first, then we’ll extract data for all subjects</p>
+<div class="section" id="retrieve-the-atlas-for-extracting-features-and-an-example-subject">
+<h3>Retrieve the atlas for extracting features and an example subject<a class="headerlink" href="#retrieve-the-atlas-for-extracting-features-and-an-example-subject" title="Permalink to this headline">¶</a></h3>
+<p>Since we’re using rs-fmri data, it makes sense to use an atlas defined using rs-fmri data</p>
+<p>This paper has many excellent insights about what kind of atlas to use for an rs-fmri machine learning task. See in particular Figure 5.</p>
+<p><a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811919301594?via%3Dihub">https://www.sciencedirect.com/science/article/pii/S1053811919301594?via=ihub</a></p>
+<p>Let’s use the MIST atlas, created here in Montreal using the BASC method. This atlas has multiple resolutions, for larger networks or finer-grained ROIs. Let’s use a 64-ROI atlas to allow some detail, but to ultimately keep our connectivity matrices manageable</p>
+<p>Here is a link to the MIST paper: <a class="reference external" href="https://mniopenresearch.org/articles/1-3">https://mniopenresearch.org/articles/1-3</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="n">parcellations</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">fetch_atlas_basc_multiscale_2015</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="s1">&#39;sym&#39;</span><span class="p">)</span>
+<span class="n">atlas_filename</span> <span class="o">=</span> <span class="n">parcellations</span><span class="o">.</span><span class="n">scale064</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Atlas ROIs are located in nifti image (4D) at: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span>
+       <span class="n">atlas_filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s have a look at that atlas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_roi</span><span class="p">(</span><span class="n">atlas_filename</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Great, let’s load an example 4D fmri time-series for one subject</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_filenames</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fmri_filenames</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s have a look at the image! Because it is a 4D image, we can only look at one slice at a time. Or, better yet, let’s look at an average image!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span> 
+
+<span class="n">averaged_Img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="n">fmri_filenames</span><span class="p">))</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">averaged_Img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="extract-signals-on-a-parcellation-defined-by-labels">
+<h3>Extract signals on a parcellation defined by labels<a class="headerlink" href="#extract-signals-on-a-parcellation-defined-by-labels" title="Permalink to this headline">¶</a></h3>
+<p>Using the NiftiLabelsMasker</p>
+<p>So we’ve loaded our atlas and 4D data for a single subject. Let’s practice extracting features!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.input_data</span> <span class="kn">import</span> <span class="n">NiftiLabelsMasker</span>
+
+<span class="n">masker</span> <span class="o">=</span> <span class="n">NiftiLabelsMasker</span><span class="p">(</span><span class="n">labels_img</span><span class="o">=</span><span class="n">atlas_filename</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                           <span class="n">memory</span><span class="o">=</span><span class="s1">&#39;nilearn_cache&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Here we go from nifti files to the signal time series in a numpy</span>
+<span class="c1"># array. Note how we give confounds to be regressed out during signal</span>
+<span class="c1"># extraction</span>
+<span class="n">conf</span> <span class="o">=</span> <span class="n">confounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">masker</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fmri_filenames</span><span class="p">,</span> <span class="n">confounds</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So what did we just create here?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_series</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What are these “confounds” and how are they used?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="n">conf_df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>
+<span class="n">conf_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conf_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compute-and-display-a-correlation-matrix">
+<h3>Compute and display a correlation matrix<a class="headerlink" href="#compute-and-display-a-correlation-matrix" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.connectome</span> <span class="kn">import</span> <span class="n">ConnectivityMeasure</span>
+
+<span class="n">correlation_measure</span> <span class="o">=</span> <span class="n">ConnectivityMeasure</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">)</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">correlation_measure</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">([</span><span class="n">time_series</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">correlation_matrix</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the correlation matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># Mask the main diagonal for visualization:</span>
+<span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># The labels we have start with the background (0), hence we skip the</span>
+<span class="c1"># first label</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> 
+                     <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">time_series</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                     <span class="n">vmax</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">reorder</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># matrices are ordered for block-like representation</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="extract-features-from-the-whole-dataset">
+<h3>Extract features from the whole dataset<a class="headerlink" href="#extract-features-from-the-whole-dataset" title="Permalink to this headline">¶</a></h3>
+<p>Here, we are going to use a for loop to iterate through each image and use the same techniques we learned above to extract rs-fmri connectivity features from every subject.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here is a really simple for loop</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;the number is&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">container</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="n">container</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets construct a more complicated loop to do what we want</p>
+<p>First we do some things we don’t need to do in the loop. Let’s reload our atlas, and re-initiate our masker and correlation_measure</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.input_data</span> <span class="kn">import</span> <span class="n">NiftiLabelsMasker</span>
+<span class="kn">from</span> <span class="nn">nilearn.connectome</span> <span class="kn">import</span> <span class="n">ConnectivityMeasure</span>
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="c1"># load atlas</span>
+<span class="n">multiscale</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">fetch_atlas_basc_multiscale_2015</span><span class="p">()</span>
+<span class="n">atlas_filename</span> <span class="o">=</span> <span class="n">multiscale</span><span class="o">.</span><span class="n">scale064</span>
+
+<span class="c1"># initialize masker (change verbosity)</span>
+<span class="n">masker</span> <span class="o">=</span> <span class="n">NiftiLabelsMasker</span><span class="p">(</span><span class="n">labels_img</span><span class="o">=</span><span class="n">atlas_filename</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                           <span class="n">memory</span><span class="o">=</span><span class="s1">&#39;nilearn_cache&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># initialize correlation measure, set to vectorize</span>
+<span class="n">correlation_measure</span> <span class="o">=</span> <span class="n">ConnectivityMeasure</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">,</span> <span class="n">vectorize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                         <span class="n">discard_diagonal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Okay – now that we have that taken care of, let’s run our big loop!</p>
+<p><strong>NOTE</strong>: On a laptop, this might a few minutes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_features</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># here is where we will put the data (a container)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">sub</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># extract the timeseries from the ROIs in the atlas</span>
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">masker</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">confounds</span><span class="o">=</span><span class="n">confounds</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="c1"># create a region x region correlation matrix</span>
+    <span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">correlation_measure</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">([</span><span class="n">time_series</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># add to our container</span>
+    <span class="n">all_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">)</span>
+    <span class="c1"># keep track of status</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;finished </span><span class="si">%s</span><span class="s1"> of </span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s save the data to disk</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">savez_compressed</span><span class="p">(</span><span class="s1">&#39;MAIN_BASC064_subsamp_features&#39;</span><span class="p">,</span><span class="n">a</span> <span class="o">=</span> <span class="n">all_features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In case you do not want to run the full loop on your computer, you can load the output of the loop here!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_file</span> <span class="o">=</span> <span class="s1">&#39;data/MAIN_BASC064_subsamp_features.npz&#39;</span>
+<span class="n">X_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">feat_file</span><span class="p">)[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_features</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img src="data/SampFeat.png" alt="terms" width="300"/><p>Okay so we’ve got our features.</p>
+<p>We can visualize our feature matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_features</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;feature matrix&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;features&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;subjects&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-y-our-target-and-assess-its-distribution">
+<h2>Get Y (our target) and assess its distribution<a class="headerlink" href="#get-y-our-target-and-assess-its-distribution" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s load the phenotype data</span>
+
+<span class="n">pheno_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wdir</span><span class="p">,</span> <span class="s1">&#39;participants.tsv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="n">pheno</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">pheno_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;participant_id&#39;</span><span class="p">)</span>
+<span class="n">pheno</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looks like there is a column labeling age. Let’s capture it in a variable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_age</span> <span class="o">=</span> <span class="n">pheno</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Maybe we should have a look at the distribution of our target variable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">y_age</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="prepare-data-for-machine-learning">
+<h2>Prepare data for machine learning<a class="headerlink" href="#prepare-data-for-machine-learning" title="Permalink to this headline">¶</a></h2>
+<p>Here, we will define a “training sample” where we can play around with our models. We will also set aside a “validation” sample that we will not touch until the end</p>
+<p>We want to be sure that our training and test sample are matched! We can do that with a “stratified split”. This dataset has a variable indicating AgeGroup. We can use that to make sure our training and testing sets are balanced!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age_class</span> <span class="o">=</span> <span class="n">pheno</span><span class="p">[</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">]</span>
+<span class="n">age_class</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Split the sample to training/validation with a 60/40 ratio, and </span>
+<span class="c1"># stratify by age class, and also shuffle the data.</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                                                    <span class="n">X_features</span><span class="p">,</span> <span class="c1"># x</span>
+                                                    <span class="n">y_age</span><span class="p">,</span> <span class="c1"># y</span>
+                                                    <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span> <span class="c1"># 60%/40% split  </span>
+                                                    <span class="n">shuffle</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="c1"># shuffle dataset</span>
+                                                                    <span class="c1"># before splitting</span>
+                                                    <span class="n">stratify</span> <span class="o">=</span> <span class="n">age_class</span><span class="p">,</span>  <span class="c1"># keep</span>
+                                                                           <span class="c1"># distribution</span>
+                                                                           <span class="c1"># of ageclass</span>
+                                                                           <span class="c1"># consistent</span>
+                                                                           <span class="c1"># betw. train</span>
+                                                                           <span class="c1"># &amp; test sets.</span>
+                                                    <span class="n">random_state</span> <span class="o">=</span> <span class="mi">123</span> <span class="c1"># same shuffle each</span>
+                                                                       <span class="c1"># time</span>
+                                                                       <span class="p">)</span>
+
+<span class="c1"># print the size of our training and test groups</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;training:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span>
+     <span class="s1">&#39;testing:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_val</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s visualize the distributions to be sure they are matched</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">y_val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="run-your-first-model">
+<h2>Run your first model!<a class="headerlink" href="#run-your-first-model" title="Permalink to this headline">¶</a></h2>
+<p>Machine learning can get pretty fancy pretty quickly. We’ll start with a fairly standard regression model called a Support Vector Regressor (SVR).</p>
+<p>While this may seem unambitious, simple models can be very robust. And we probably don’t have enough data to create more complex models (but we can try later).</p>
+<p>For more information, see this excellent resource:
+<a class="reference external" href="https://hal.inria.fr/hal-01824205">https://hal.inria.fr/hal-01824205</a></p>
+<p>Let’s fit our first model!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="n">l_svr</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span> <span class="c1"># define the model</span>
+
+<span class="n">l_svr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> <span class="c1"># fit the model</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Well… that was easy. Let’s see how well the model learned the data!</p>
+<img src="data/modval.png" alt="terms" width="800"/><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># predict the training data based on the model</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">l_svr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span> 
+
+<span class="c1"># caluclate the model accuracy</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">l_svr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s view our results and plot them all at once!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;accuracy (R2)&#39;</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Age&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>HOLY COW! Machine learning is amazing!!! Almost a perfect fit!</p>
+<p>…which means there’s something wrong. What’s the problem here?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Split the sample to training/test with a 75/25 ratio, and </span>
+<span class="c1"># stratify by age class, and also shuffle the data.</span>
+
+<span class="n">age_class2</span> <span class="o">=</span> <span class="n">pheno</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y_train</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">]</span>
+
+<span class="n">X_train2</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train2</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                                                    <span class="n">X_train</span><span class="p">,</span> <span class="c1"># x</span>
+                                                    <span class="n">y_train</span><span class="p">,</span> <span class="c1"># y</span>
+                                                    <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="c1"># 75%/25% split  </span>
+                                                    <span class="n">shuffle</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="c1"># shuffle dataset</span>
+                                                                    <span class="c1"># before splitting</span>
+                                                    <span class="n">stratify</span> <span class="o">=</span> <span class="n">age_class2</span><span class="p">,</span>  <span class="c1"># keep</span>
+                                                                           <span class="c1"># distribution</span>
+                                                                           <span class="c1"># of ageclass</span>
+                                                                           <span class="c1"># consistent</span>
+                                                                           <span class="c1"># betw. train</span>
+                                                                           <span class="c1"># &amp; test sets.</span>
+                                                    <span class="n">random_state</span> <span class="o">=</span> <span class="mi">123</span> <span class="c1"># same shuffle each</span>
+                                                                       <span class="c1"># time</span>
+                                                                       <span class="p">)</span>
+
+<span class="c1"># print the size of our training and test groups</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;training:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train2</span><span class="p">),</span>
+     <span class="s1">&#39;testing:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+
+<span class="c1"># fit model just to training data</span>
+<span class="n">l_svr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train2</span><span class="p">,</span><span class="n">y_train2</span><span class="p">)</span>
+
+<span class="c1"># predict the *test* data based on the model trained on X_train2</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">l_svr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> 
+
+<span class="c1"># caluclate the model accuracy</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">l_svr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> 
+<span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;accuracy (R2) = &#39;</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE = &#39;</span><span class="p">,</span><span class="n">mae</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Age&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not perfect, but as predicting with unseen data goes, not too bad! Especially with a training sample of “only” 69 subjects. But we can do better!</p>
+<p>For example, we can increase the size our training set while simultaneously reducing bias by instead using 10-fold cross-validation</p>
+<img src="data/KCV.png" alt="terms" width="500"/><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span><span class="p">,</span> <span class="n">cross_val_score</span>
+
+<span class="c1"># predict</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">l_svr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># scores</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">l_svr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">l_svr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can look at the accuracy of the predictions for each fold of the cross-validation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fold </span><span class="si">{}</span><span class="s1"> -- Acc = </span><span class="si">{}</span><span class="s1">, MAE = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">acc</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="o">-</span><span class="n">mae</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also look at the overall accuracy of the model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+
+<span class="n">overall_acc</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">overall_mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2:&#39;</span><span class="p">,</span><span class="n">overall_acc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE:&#39;</span><span class="p">,</span><span class="n">overall_mae</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Age&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not too bad at all! But more importantly, this is a more accurate estimation of our model’s predictive efficacy. Our sample size is larger and this is based on several rounds of prediction of unseen data.</p>
+<p>For example, we can now see that the effect is being driven by the model’s successful parsing of adults vs. children, but is not performing so well within the adult or children group. This was not evident during our previous iteration of the model</p>
+</div>
+<div class="section" id="tweak-your-model">
+<h2>Tweak your model<a class="headerlink" href="#tweak-your-model" title="Permalink to this headline">¶</a></h2>
+<p>It’s very important to learn when and where its appropriate to “tweak” your model.</p>
+<p>Since we have done all of the previous analysis in our training data, it’s fine to try out different models. But we <strong>absolutely cannot</strong> “test” it on our left out data. If we do, we are in great danger of overfitting.</p>
+<p>It is not uncommon to try other models, or tweak hyperparameters. In this case, due to our relatively small sample size, we are probably not powered sufficiently to do so, and we would once again risk overfitting. However, for the sake of demonstration, we will do some tweaking.</p>
+<img src="data/KCV2.png" alt="terms" width="500"/>
+<p>We will try a few different examples:</p>
+<ul class="simple">
+<li><p>Normalizing our target data</p></li>
+<li><p>Tweaking our hyperparameters</p></li>
+<li><p>Trying a more complicated model</p></li>
+<li><p>Feature selection</p></li>
+</ul>
+<div class="section" id="normalize-the-target-data">
+<h3>Normalize the target data<a class="headerlink" href="#normalize-the-target-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a log transformer function and log transform Y (age)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">FunctionTransformer</span>
+
+<span class="n">log_transformer</span> <span class="o">=</span> <span class="n">FunctionTransformer</span><span class="p">(</span><span class="n">func</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">log_transformer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">y_train_log</span> <span class="o">=</span> <span class="n">log_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))[:,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">y_train_log</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Log-Transformed Age&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s go ahead and cross-validate our model once again with this new log-transformed target</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># predict</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">l_svr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_log</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># scores</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train_log</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train_log</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2:&#39;</span><span class="p">,</span><span class="n">acc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE:&#39;</span><span class="p">,</span><span class="n">mae</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_train_log</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Log Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Log Age&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Seems like a definite improvement, right? I think we can agree on that.</p>
+<p>But we can’t forget about interpretability? The MAE is much less interpretable now.</p>
+</div>
+<div class="section" id="tweak-the-hyperparameters">
+<h3>Tweak the hyperparameters<a class="headerlink" href="#tweak-the-hyperparameters" title="Permalink to this headline">¶</a></h3>
+<p>Many machine learning algorithms have hyperparameters that can be “tuned” to optimize model fitting. Careful parameter tuning can really improve a model, but haphazard tuning will often lead to overfitting.</p>
+<p>Our SVR model has multiple hyperparameters. Let’s explore some approaches for tuning them</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>SVR<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One way is to plot a “Validation Curve” – this will let us view changes in training and validation accuracy of a model as we shift its hyperparameters. We can do this easily with sklearn.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">validation_curve</span>
+
+<span class="n">C_range</span> <span class="o">=</span> <span class="mf">10.</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="c1"># A range of different values for C</span>
+
+<span class="n">train_scores</span><span class="p">,</span> <span class="n">valid_scores</span> <span class="o">=</span> <span class="n">validation_curve</span><span class="p">(</span><span class="n">l_svr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_log</span><span class="p">,</span> 
+                                              <span class="n">param_name</span><span class="o">=</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span>
+                                              <span class="n">param_range</span> <span class="o">=</span> <span class="n">C_range</span><span class="p">,</span>
+                                              <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A bit of pandas magic to prepare the data for a seaborn plot</span>
+
+<span class="n">tScores</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">train_scores</span><span class="p">)</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">tScores</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;Fold&#39;</span><span class="p">,</span><span class="s1">&#39;Score&#39;</span><span class="p">]</span>
+<span class="n">tScores</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Train&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tScores</span><span class="p">))]</span>
+
+<span class="n">vScores</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">valid_scores</span><span class="p">)</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">vScores</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;Fold&#39;</span><span class="p">,</span><span class="s1">&#39;Score&#39;</span><span class="p">]</span>
+<span class="n">vScores</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Validate&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vScores</span><span class="p">))]</span>
+
+<span class="n">ValCurves</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tScores</span><span class="p">,</span><span class="n">vScores</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ValCurves</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># And plot!</span>
+<span class="c1"># g = sns.lineplot(x=&#39;C&#39;, y=&#39;Score&#39;,hue=&#39;Type&#39;,data=ValCurves)</span>
+<span class="c1"># g.set_xticks(range(11))</span>
+<span class="c1"># g.set_xticklabels(C_range, rotation=90);</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Score&#39;</span><span class="p">,</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">ValCurves</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">))</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">C_range</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like accuracy is better for higher values of C, and plateaus somewhere between 0.1 and 1. The default setting is C=1, so it looks like we can’t really improve by changing C.</p>
+<p>But our SVR model actually has two hyperparameters, C and epsilon. Perhaps there is an optimal combination of settings for these two parameters.</p>
+<p>We can explore that somewhat quickly with a grid search, which is once again easily achieved with sklearn. Because we are fitting the model multiple times witih cross-validation, this will take some time</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">C_range</span> <span class="o">=</span> <span class="mf">10.</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">epsilon_range</span> <span class="o">=</span> <span class="mf">10.</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon_range</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C_range</span><span class="p">)</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">l_svr</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_log</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that the grid search has completed, let’s find out what was the “best” parameter combination</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And if redo our cross-validation with this parameter set?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">SVR</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">),</span> 
+                           <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_log</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># scores</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train_log</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train_log</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2:&#39;</span><span class="p">,</span><span class="n">acc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE:&#39;</span><span class="p">,</span><span class="n">mae</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_train_log</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Log Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Log Age&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Perhaps unsurprisingly, the model fit is actually exactly the same as what we had with our defaults. There’s a reason they are defaults ;-)</p>
+<p>Grid search can be a powerful and useful tool. But can you think of a way that, if not properly utilized, it could lead to overfitting?</p>
+<p>You can find a nice set of tutorials with links to very helpful content regarding how to tune hyperparameters and while be aware of over- and under-fitting here:</p>
+<p><a class="reference external" href="https://scikit-learn.org/stable/modules/learning_curve.html">https://scikit-learn.org/stable/modules/learning_curve.html</a></p>
+</div>
+<div class="section" id="trying-a-more-complicated-model">
+<h3>Trying a more complicated model<a class="headerlink" href="#trying-a-more-complicated-model" title="Permalink to this headline">¶</a></h3>
+<p>In principle, there is no real reason to do this. Perhaps one could make an argument for quadratic relationship with age, but we probably don’t have enough subjects to learn a complicated non-linear model. But for the sake of demonstration, we can give it a shot.</p>
+<p>We’ll use a validation curve to see the result of our model if, instead of fitting a linear model, we instead try to the fit a 2nd, 3rd, … 8th order polynomial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">validation_curve</span>
+
+<span class="n">degree_range</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> <span class="c1"># A range of different values for C</span>
+
+<span class="n">train_scores</span><span class="p">,</span> <span class="n">valid_scores</span> <span class="o">=</span> <span class="n">validation_curve</span><span class="p">(</span><span class="n">SVR</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span>
+                                                  <span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;scale&#39;</span>
+                                                 <span class="p">),</span> 
+                                              <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train_log</span><span class="p">,</span> 
+                                              <span class="n">param_name</span><span class="o">=</span> <span class="s2">&quot;degree&quot;</span><span class="p">,</span>
+                                              <span class="n">param_range</span> <span class="o">=</span> <span class="n">degree_range</span><span class="p">,</span>
+                                              <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A bit of pandas magic to prepare the data for a seaborn plot</span>
+
+<span class="n">tScores</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">train_scores</span><span class="p">)</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">tScores</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Degree&#39;</span><span class="p">,</span><span class="s1">&#39;Fold&#39;</span><span class="p">,</span><span class="s1">&#39;Score&#39;</span><span class="p">]</span>
+<span class="n">tScores</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Train&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tScores</span><span class="p">))]</span>
+
+<span class="n">vScores</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">valid_scores</span><span class="p">)</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">vScores</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Degree&#39;</span><span class="p">,</span><span class="s1">&#39;Fold&#39;</span><span class="p">,</span><span class="s1">&#39;Score&#39;</span><span class="p">]</span>
+<span class="n">vScores</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Validate&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vScores</span><span class="p">))]</span>
+
+<span class="n">ValCurves</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tScores</span><span class="p">,</span><span class="n">vScores</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ValCurves</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># And plot!</span>
+
+<span class="c1"># g = sns.lineplot(x=&#39;Degree&#39;,y=&#39;Score&#39;,hue=&#39;Type&#39;,data=ValCurves)</span>
+<span class="c1"># g.set_xticks(range(7))</span>
+<span class="c1"># g.set_xticklabels(degree_range, rotation=90)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Degree&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Score&#39;</span><span class="p">,</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">ValCurves</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">degree_range</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It appears that we cannot improve our model by increasing the complexity of the fit. If one looked only at the training data, one might surmise that a 2nd order fit could be a slightly better model. But that improvement does not generalize to the validation data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># y_pred = cross_val_predict(SVR(kernel=&#39;rbf&#39;, gamma=&#39;scale&#39;), X_train, y_train_log, cv=10)</span>
+
+<span class="c1"># # scores</span>
+<span class="c1"># acc = r2_score(y_train_log, y_pred)</span>
+<span class="c1"># mae = mean_absolute_error(y_train_log,y_pred)</span>
+
+<span class="c1"># print(&#39;R2:&#39;,acc)</span>
+<span class="c1"># print(&#39;MAE:&#39;,mae)</span>
+
+<span class="c1"># sns.regplot(y_pred, y_train_log)</span>
+<span class="c1"># plt.xlabel(&#39;Predicted Log Age&#39;)</span>
+<span class="c1"># plt.ylabel(&#39;Log Age&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="feature-selection">
+<h3>Feature selection<a class="headerlink" href="#feature-selection" title="Permalink to this headline">¶</a></h3>
+<p>Right now, we have 2016 features. Are all of those really going to contribute to the model stably?</p>
+<p>Intuitively, models tend to perform better when there are fewer, more important features than when there are many, less imortant features. The tough part is figuring out which features are useful or important.</p>
+<p>Here will quickly try a basic feature seclection strategy</p>
+<img src="data/FeatSel.png" alt="terms" width="400"/><p>The SelectPercentile() function will select the top X% of features based on univariate tests. This is a way of identifying theoretically more useful features. But remember, significance != prediction!</p>
+<p>We are also in danger of overfitting here. For starters, if we want to test this with 10-fold cross-validation, we will need to do a separate feature selection within each fold! That means we’ll need to do the cross-validation manually instead of using cross_val_predict().</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectPercentile</span><span class="p">,</span> <span class="n">f_regression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="c1"># Build a tiny pipeline that does feature selection (top 20% of features), </span>
+<span class="c1"># and then prediction with our linear svr model.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;feature_selection&#39;</span><span class="p">,</span><span class="n">SelectPercentile</span><span class="p">(</span><span class="n">f_regression</span><span class="p">,</span><span class="n">percentile</span><span class="o">=</span><span class="mi">20</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;prediction&#39;</span><span class="p">,</span> <span class="n">l_svr</span><span class="p">)</span>
+                 <span class="p">])</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># a container to catch the predictions from each fold</span>
+<span class="n">y_index</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># just in case, the index for each prediciton</span>
+
+<span class="c1"># First we create 10 splits of the data</span>
+<span class="n">skf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="c1"># For each split, assemble the train and test samples </span>
+<span class="k">for</span> <span class="n">tr_ind</span><span class="p">,</span> <span class="n">te_ind</span> <span class="ow">in</span> <span class="n">skf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X_train</span><span class="p">):</span>
+    <span class="n">X_tr</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">tr_ind</span><span class="p">]</span>
+    <span class="n">y_tr</span> <span class="o">=</span> <span class="n">y_train_log</span><span class="p">[</span><span class="n">tr_ind</span><span class="p">]</span>
+    <span class="n">X_te</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">te_ind</span><span class="p">]</span>
+    <span class="n">y_index</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">te_ind</span><span class="p">)</span> <span class="c1"># store the index of samples to predict</span>
+    
+    <span class="c1"># and run our pipeline </span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span> <span class="c1"># fit the data to the model using our mini pipeline</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_te</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="c1"># get the predictions for this fold</span>
+    <span class="n">y_pred</span> <span class="o">+=</span> <span class="n">predictions</span> <span class="c1"># add them to the list of predictions</span>
+
+
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alrighty, let’s see if only using the top 20% of features improves the model at all…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acc</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train_log</span><span class="p">[</span><span class="n">y_index</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train_log</span><span class="p">[</span><span class="n">y_index</span><span class="p">],</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2:&#39;</span><span class="p">,</span><span class="n">acc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE:&#39;</span><span class="p">,</span><span class="n">mae</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_pred</span><span class="p">),</span> <span class="n">y_train_log</span><span class="p">[</span><span class="n">y_index</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Log Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Log Age&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nope, in fact it got a bit worse. It seems we’re getting “value at the margins” so to speak. This is a very good example of how significance != prediction, as demonstrated in this figure from Bzdok et al., 2018 <em>bioRxiv</em></p>
+<p><img alt="Bzdok2018" src="https://www.biorxiv.org/content/biorxiv/early/2018/05/21/327437/F1.large.jpg?width=800&amp;height=600&amp;carousel=1" /></p>
+<p>See here for an explanation of different feature selection options and how to implement them in sklearn: <a class="reference external" href="https://scikit-learn.org/stable/modules/feature_selection.html">https://scikit-learn.org/stable/modules/feature_selection.html</a></p>
+<p>And here is a thoughtful tutorial covering feature selection for novel machine learners: <a class="reference external" href="https://www.datacamp.com/community/tutorials/feature-selection-python">https://www.datacamp.com/community/tutorials/feature-selection-python</a></p>
+<p>So there you have it. We’ve tried many different strategies, but most of our “tweaks” haven’t really lead to improvements in the model. This is not always the case, but it is not uncommon. Can you think of some reasons why?</p>
+<p>Moving on to our validation data, we probably should just stick to a basic model, though predicting log age might be a good idea!</p>
+</div>
+</div>
+<div class="section" id="can-our-model-predict-age-in-completely-un-seen-data">
+<h2>Can our model predict age in completely un-seen data?<a class="headerlink" href="#can-our-model-predict-age-in-completely-un-seen-data" title="Permalink to this headline">¶</a></h2>
+<p>Now that we’ve fit a model we think has possibly learned how to decode age based on rs-fmri signal, let’s put it to the test. We will train our model on all of the training data, and try to predict the age of the subjects we left out at the beginning of this section.</p>
+<p>Because we performed a log transformation on our training data, we will need to transform our testing data using the <em>same information!</em>  But that’s easy because we stored our transformation in an object!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice how we use the Scaler that was fit to X_train and apply to X_test,</span>
+<span class="c1"># rather than creating a new Scaler for X_test</span>
+<span class="n">y_val_log</span> <span class="o">=</span> <span class="n">log_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_val</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))[:,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now for the moment of truth!</p>
+<p>No cross-validation needed here. We simply fit the model with the training data and use it to predict the testing data</p>
+<p>I’m so nervous. Let’s just do it all in one cell</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l_svr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_log</span><span class="p">)</span> <span class="c1"># fit to training data</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">l_svr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span> <span class="c1"># classify age class using testing data</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">l_svr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val_log</span><span class="p">)</span> <span class="c1"># get accuracy (r2)</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_val_log</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="c1"># get mae</span>
+
+<span class="c1"># print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;accuracy (r2) =&#39;</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mae = &#39;</span><span class="p">,</span><span class="n">mae</span><span class="p">)</span>
+
+<span class="c1"># plot results</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_val_log</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Log Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Log Age&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em><strong>Wow!!</strong></em> Congratulations. You just trained a machine learning model that used real rs-fmri data to predict the age of real humans.</p>
+<p>The proper thing to do at this point would be to repeat the train-validation split multiple times. This will ensure the results are not specific to this validation set, and will give you some confidence intervals around your results.</p>
+<p>As an assignment, you can give that a try below. Create 10 different splits of the entire dataset, fit the model and get your predictions. Then, plot the range of predictions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SPACE FOR YOUR ASSIGNMENT</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, it seems like something in this data does seem to be systematically related to age … but what?</p>
+<div class="section" id="interpreting-model-feature-importances">
+<h3>Interpreting model feature importances<a class="headerlink" href="#interpreting-model-feature-importances" title="Permalink to this headline">¶</a></h3>
+<p>Interpreting the feature importances of a machine learning model is a real can of worms. This is an area of active research. Unfortunately, it’s hard to trust the feature importance of some models.</p>
+<p>You can find a whole tutorial on this subject here:
+<a class="reference external" href="http://gael-varoquaux.info/interpreting_ml_tuto/index.html">http://gael-varoquaux.info/interpreting_ml_tuto/index.html</a></p>
+<p>For now, we’ll just eschew better judgement and take a look at our feature importances. While we can’t ascribe any biological relevance to the features, it can still be helpful to know what the model is using to make its predictions. This is a good way to, for example, establish whether your model is actually learning based on a confound! Could you think of some examples?</p>
+<p>We can access the feature importances (weights) used my the model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l_svr</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>lets plot these weights to see their distribution better</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">l_svr</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span><span class="n">l_svr</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;feature importances&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;feature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or perhaps it will be easier to visualize this information as a matrix similar to the one we started with</p>
+<p>We can use the correlation measure from before to perform an inverse transform</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correlation_measure</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">l_svr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+
+<span class="n">feat_exp_matrix</span> <span class="o">=</span> <span class="n">correlation_measure</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">l_svr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">feat_exp_matrix</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>  
+                     <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">feat_exp_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                     <span class="n">reorder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">tri</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see if we can throw those features onto an actual brain.</p>
+<p>First, we’ll need to gather the coordinates of each ROI of our atlas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coords</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">find_parcellation_cut_coords</span><span class="p">(</span><span class="n">atlas_filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now we can use our feature matrix and the wonders of nilearn to create a connectome map where each node is an ROI, and each connection is weighted by the importance of the feature to the model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_connectome</span><span class="p">(</span><span class="n">feat_exp_matrix</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Whoa!! That’s…a lot to process. Maybe let’s threshold the edges so that only the most important connections are visualized</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_connectome</span><span class="p">(</span><span class="n">feat_exp_matrix</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">edge_threshold</span><span class="o">=</span><span class="mf">0.035</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s definitely an improvement, but it’s still a bit hard to see what’s going on.
+Nilearn has a new feature that let’s use view this data interactively!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> notebook
+<span class="n">plotting</span><span class="o">.</span><span class="n">view_connectome</span><span class="p">(</span><span class="n">feat_exp_matrix</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">edge_threshold</span><span class="o">=</span><span class="s1">&#39;98%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./advanced"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="machine_learning_keras.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code>/<code class="docutils literal notranslate"><span class="pre">Keras</span></code></p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../break.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Yoga and/or dance break</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,963 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MVPA and Searchlight with nilearn &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TensorFlow/Keras" href="machine_learning_keras.html" />
+    <link rel="prev" title="Preparation Machine Learning" href="machine_learning_preparation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_nipype.html">
+   Basics in data handling &amp; Nipype
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_nipype/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/advanced/machine_learning_nilearn.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fadvanced/machine_learning_nilearn.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/advanced/machine_learning_nilearn.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/advanced/machine_learning_nilearn.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   MVPA and Searchlight with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nilearn
+    </span>
+   </code>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nilearn">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup">
+     Setup
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-machine-learning-dataset">
+     Load machine learning dataset
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-mask">
+     Create mask
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#masking-and-un-masking-data">
+     Masking and Un-masking data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-mvpa-example">
+   Simple MVPA Example
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutation-testing">
+     Permutation testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#which-region-is-driving-the-classification">
+   Which region is driving the classification?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spacenet-decoding-with-spatial-structure-for-better-maps">
+     SpaceNet: decoding with spatial structure for better maps
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#searchlight">
+     Searchlight
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="mvpa-and-searchlight-with-nilearn">
+<h1>MVPA and Searchlight with <code class="docutils literal notranslate"><span class="pre">nilearn</span></code><a class="headerlink" href="#mvpa-and-searchlight-with-nilearn" title="Permalink to this headline">¶</a></h1>
+<p>In this section we will show how you can use <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> to perform multivariate pattern analysis (MVPA) and a Searchlight analysis.</p>
+<div class="section" id="nilearn">
+<h2><code class="docutils literal notranslate"><span class="pre">nilearn</span></code><a class="headerlink" href="#nilearn" title="Permalink to this headline">¶</a></h2>
+<p>Although nilearn’s visualizations are quite nice, its primary purpose was to facilitate machine learning in neuroimaging. It’s in some sense the bridge between <a class="reference external" href="http://nipy.org/nibabel/">nibabel</a> and <a class="reference external" href="http://scikit-learn.org/stable/">scikit-learn</a>. On the one hand, it reformats images to be easily passed to scikit-learn, and on the other, it reformats the results to produce valid nibabel images.</p>
+<p>So let’s take a look at a short multi-variate pattern analysis (MVPA) example.</p>
+<p><strong>Note 1</strong>: This section is heavily based on the <a class="reference external" href="https://nilearn.github.io/auto_examples/plot_decoding_tutorial.html">nilearn decoding tutorial</a>.<br />
+<strong>Note 2</strong>: This section is not intended to teach machine learning, but to demonstrate a simple nilearn pipeline.</p>
+</div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nb</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="load-machine-learning-dataset">
+<h2>Load machine learning dataset<a class="headerlink" href="#load-machine-learning-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Let’s load the dataset we prepared in the previous notebook:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="o">=</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/dataset_ML.nii.gz&#39;</span>
+<span class="o">!</span>nib-ls <span class="nv">$func</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-mask">
+<h2>Create mask<a class="headerlink" href="#create-mask" title="Permalink to this headline">¶</a></h2>
+<p>As we only want to use voxels in a particular region of interest (ROI) for the classification, let’s create a function that returns a mask that either contains the only the brain, only the eyes or both:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">resample_to_img</span><span class="p">,</span> <span class="n">math_img</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">binary_dilation</span>
+
+<span class="k">def</span> <span class="nf">get_mask</span><span class="p">(</span><span class="n">mask_type</span><span class="p">):</span>
+    
+    <span class="c1"># Specify location of the brain and eye image</span>
+    <span class="n">brain</span> <span class="o">=</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/templates/MNI152_T1_1mm_brain.nii.gz&#39;</span>
+    <span class="n">eyes</span> <span class="o">=</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/templates/MNI152_T1_1mm_eye.nii.gz&#39;</span>
+
+    <span class="c1"># Load region of interest</span>
+    <span class="k">if</span> <span class="n">mask_type</span> <span class="o">==</span> <span class="s1">&#39;brain&#39;</span><span class="p">:</span>
+        <span class="n">img_resampled</span> <span class="o">=</span> <span class="n">resample_to_img</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mask_type</span> <span class="o">==</span> <span class="s1">&#39;eyes&#39;</span><span class="p">:</span>
+        <span class="n">img_resampled</span> <span class="o">=</span> <span class="n">resample_to_img</span><span class="p">(</span><span class="n">eyes</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">mask_type</span> <span class="o">==</span> <span class="s1">&#39;both&#39;</span><span class="p">:</span>
+        <span class="n">img_roi</span> <span class="o">=</span> <span class="n">math_img</span><span class="p">(</span><span class="s2">&quot;img1 + img2&quot;</span><span class="p">,</span> <span class="n">img1</span><span class="o">=</span><span class="n">brain</span><span class="p">,</span> <span class="n">img2</span><span class="o">=</span><span class="n">eyes</span><span class="p">)</span>
+        <span class="n">img_resampled</span> <span class="o">=</span> <span class="n">resample_to_img</span><span class="p">(</span><span class="n">img_roi</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+
+    <span class="c1"># Binarize ROI template</span>
+    <span class="n">data_binary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_resampled</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span><span class="o">&gt;=</span><span class="mi">10</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+    <span class="c1"># Dilate binary mask once</span>
+    <span class="n">data_dilated</span> <span class="o">=</span> <span class="n">binary_dilation</span><span class="p">(</span><span class="n">data_binary</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+    <span class="c1"># Save binary mask in NIfTI image</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">data_dilated</span><span class="p">,</span> <span class="n">img_resampled</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span> <span class="n">img_resampled</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">mask</span><span class="o">.</span><span class="n">set_data_dtype</span><span class="p">(</span><span class="s1">&#39;i1&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">mask</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="masking-and-un-masking-data">
+<h2>Masking and Un-masking data<a class="headerlink" href="#masking-and-un-masking-data" title="Permalink to this headline">¶</a></h2>
+<p>For the classification with <code class="docutils literal notranslate"><span class="pre">nilearn</span></code>, we need our functional data in a 2D, sample-by-voxel matrix. To get that, we’ll select all the voxels defined in our <code class="docutils literal notranslate"><span class="pre">mask</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_roi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anat</span> <span class="o">=</span> <span class="s1">&#39;/home/neuro/workshop/notebooks/data/templates/MNI152_T1_1mm.nii.gz&#39;</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">get_mask</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">plot_roi</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">anat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Paired&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mf">.5</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">NiftiMasker</span></code> is an object that applies a mask to a dataset and returns the masked voxels as a vector at each time point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.input_data</span> <span class="kn">import</span> <span class="n">NiftiMasker</span>
+<span class="n">masker</span> <span class="o">=</span> <span class="n">NiftiMasker</span><span class="p">(</span><span class="n">mask_img</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">detrend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                     <span class="n">memory</span><span class="o">=</span><span class="s2">&quot;nilearn_cache&quot;</span><span class="p">,</span> <span class="n">memory_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">masker</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Its shape corresponds to the number of time-points times the number of voxels in the mask.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To recover the original data shape (giving us a masked and z-scored BOLD series), we simply use the masker’s inverse transform:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">masked_epi</span> <span class="o">=</span> <span class="n">masker</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now visualize the masked epi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">math_img</span>
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_stat_map</span>
+
+<span class="n">max_zscores</span> <span class="o">=</span> <span class="n">math_img</span><span class="p">(</span><span class="s2">&quot;np.abs(img).max(axis=3)&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">=</span><span class="n">masked_epi</span><span class="p">)</span>
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">max_zscores</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">anat</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mf">.5</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+              <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Maximum Amplitude per Voxel in Mask&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simple-mvpa-example">
+<h1>Simple MVPA Example<a class="headerlink" href="#simple-mvpa-example" title="Permalink to this headline">¶</a></h1>
+<p>Multi-voxel pattern analysis (MVPA) is a general term for techniques that contrast conditions over multiple voxels. It’s very common to use machine learning models to generate statistics of interest.</p>
+<p>In this case, we’ll use the response patterns of voxels in the mask to predict if the eyes were <strong>closed</strong> or <strong>open</strong> during a resting-state fMRI recording. But before we can do MVPA, we still need to specify two important parameters:</p>
+<p><em><strong>First</strong></em>, we need to know the label for each volume. From the last section of the <a class="reference internal" href="machine_learning_preparation.html"><span class="doc std std-doc">Machine Learning Preparation</span></a> notebook, we know that we have a total of 384 volumes in our <code class="docutils literal notranslate"><span class="pre">dataset_ML.nii.gz</span></code> file and that it’s always 4 volumes of the condition <code class="docutils literal notranslate"><span class="pre">eyes</span> <span class="pre">closed</span></code>, followed by 4 volumes of the condition <code class="docutils literal notranslate"><span class="pre">eyes</span> <span class="pre">open</span></code>, etc. Therefore our labels should be as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">([[[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;open&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">48</span><span class="p">)])</span>
+<span class="n">labels</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em><strong>Second</strong></em>, we need the <code class="docutils literal notranslate"><span class="pre">chunks</span></code> parameter. This variable is important if we want to do for example cross-validation. In our case we would ideally create 48 chunks, one for each subject. But because a cross-validation of 48 chunks takes very long, let’s just create 6 chunks, containing always 8 subjects, i.e. 64 volumes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">([[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">64</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)])</span>
+<span class="n">chunks</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One way to do cross-validation is the so called <strong>Leave-one-out cross-validation</strong>. This approach trains on <code class="docutils literal notranslate"><span class="pre">(n</span> <span class="pre">-</span> <span class="pre">1)</span></code> chunks, and classifies the remaining chunk, and repeats this for every chunk, also called <strong>fold</strong>. Therefore, a 6-fold cross-validation is one that divides the whole data into 6 different chunks.</p>
+<p>Now that we have the labels and chunks ready, we’re only missing the classifier. In <code class="docutils literal notranslate"><span class="pre">Scikit-Learn</span></code>, there are <a class="reference external" href="http://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html">many to choose from</a>, let’s start with the most well known, a linear support vector classifier (SVC).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s specify the classifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;squared_hinge&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> The number of maximum iterations should ideally be much much bigger (around 1000), but was kept low here to reduce computation time.</p>
+<p>Now, we’re ready to train the classifier and do the cross-validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Performe the cross validation (takes time to compute)</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">LeaveOneGroupOut</span><span class="p">,</span> <span class="n">cross_val_score</span>
+<span class="n">cv_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span>
+                            <span class="n">X</span><span class="o">=</span><span class="n">samples</span><span class="p">,</span>
+                            <span class="n">y</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+                            <span class="n">groups</span><span class="o">=</span><span class="n">chunks</span><span class="p">,</span>
+                            <span class="n">cv</span><span class="o">=</span><span class="n">LeaveOneGroupOut</span><span class="p">(),</span>
+                            <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                            <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After the cross validation was computed we can extract the overall accuracy, as well as the accuracy for each individual fold (i.e. leave-one-out prediction). Mean (across subject) cross-validation accuracy is a common statistic for classification-based MVPA.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average accuracy = </span><span class="si">%.02f</span><span class="s1"> percent</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cv_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy per fold:&#39;</span><span class="p">,</span> <span class="n">cv_scores</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Wow, an average accuracy above 80%!!!</strong> What if we use another classifier? Let’s say a Gaussian Naive Bayes classifier?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s specify a Gaussian Naive Bayes classifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span>
+                            <span class="n">X</span><span class="o">=</span><span class="n">samples</span><span class="p">,</span>
+                            <span class="n">y</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+                            <span class="n">groups</span><span class="o">=</span><span class="n">chunks</span><span class="p">,</span>
+                            <span class="n">cv</span><span class="o">=</span><span class="n">LeaveOneGroupOut</span><span class="p">(),</span>
+                            <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                            <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average accuracy = </span><span class="si">%.02f</span><span class="s1"> percent</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cv_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy per fold:&#39;</span><span class="p">,</span> <span class="n">cv_scores</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That was much quicker but less accurate. As was expected. What about a Logistic Regression classifier?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s specify a Logistic Regression classifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span>
+                            <span class="n">X</span><span class="o">=</span><span class="n">samples</span><span class="p">,</span>
+                            <span class="n">y</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+                            <span class="n">groups</span><span class="o">=</span><span class="n">chunks</span><span class="p">,</span>
+                            <span class="n">cv</span><span class="o">=</span><span class="n">LeaveOneGroupOut</span><span class="p">(),</span>
+                            <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                            <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average accuracy = </span><span class="si">%.02f</span><span class="s1"> percent</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cv_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy per fold:&#39;</span><span class="p">,</span> <span class="n">cv_scores</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The prediction accuracy is again above <strong>80%</strong>, much better! But anyhow, how do we know if an accuracy value is significant or not? Well, one way to find this out is to do some permutation testing.</p>
+<div class="section" id="permutation-testing">
+<h2>Permutation testing<a class="headerlink" href="#permutation-testing" title="Permalink to this headline">¶</a></h2>
+<p>One way to test the quality of the prediction accuracy is to run the cross-validation multiple times, but permutate the labels of the volumes randomly. Afterward we can compare the accuracy value of the correct labels to the ones with the random / false labels. Luckily <code class="docutils literal notranslate"><span class="pre">Scikit-learn</span></code> already has a function that does this for us. So let’s do it.</p>
+<p><strong>Note</strong>: We chose again the <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code> classifier to reduce the computation time per cross-validation. Additionally, we chose the number of iterations under <code class="docutils literal notranslate"><span class="pre">n_permutations</span></code> for the permutation testing very low, to reduce computation time as well. This value should ideally be much higher, at least 100.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s chose again the linear SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the permuation function</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">permutation_test_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the permuation cross-validation</span>
+<span class="n">null_cv_scores</span> <span class="o">=</span> <span class="n">permutation_test_score</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span>
+                                        <span class="n">X</span><span class="o">=</span><span class="n">samples</span><span class="p">,</span>
+                                        <span class="n">y</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+                                        <span class="n">groups</span><span class="o">=</span><span class="n">chunks</span><span class="p">,</span>
+                                        <span class="n">cv</span><span class="o">=</span><span class="n">LeaveOneGroupOut</span><span class="p">(),</span>
+                                        <span class="n">n_permutations</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+                                        <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                                        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, let’s take a look at the results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Prediction accuracy: </span><span class="si">%.02f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">null_cv_scores</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span>
+      <span class="s1">&#39;p-value: </span><span class="si">%.04f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">null_cv_scores</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+      <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Great! This means… Using resting-state fMRI images, we can predict if a person had their eyes open or closed with an accuracy significantly above chance level!</p>
+</div>
+</div>
+<div class="section" id="which-region-is-driving-the-classification">
+<h1>Which region is driving the classification?<a class="headerlink" href="#which-region-is-driving-the-classification" title="Permalink to this headline">¶</a></h1>
+<p>With a simple MVPA approach, we unfortunately don’t know which regions are driving the classification accuracy. We just know that all voxels in the mask allow the classification of the two classes, but why? We need a better technique that tells us where in the head we should look.</p>
+<p>There are many different ways to figure out which region is important for classification, but let us introduce you two different approaches that you can use in <code class="docutils literal notranslate"><span class="pre">nilearn</span></code>: <code class="docutils literal notranslate"><span class="pre">SpaceNet</span></code> and  <code class="docutils literal notranslate"><span class="pre">Searchlight</span></code></p>
+<div class="section" id="spacenet-decoding-with-spatial-structure-for-better-maps">
+<h2>SpaceNet: decoding with spatial structure for better maps<a class="headerlink" href="#spacenet-decoding-with-spatial-structure-for-better-maps" title="Permalink to this headline">¶</a></h2>
+<p>SpaceNet implements spatial penalties which improve brain decoding power as well as decoder maps. The results are brain maps which are both sparse (i.e regression coefficients are zero everywhere, except at predictive voxels) and structured (blobby). For more detail, check out <code class="docutils literal notranslate"><span class="pre">nilearn</span></code>’s section about <a class="reference external" href="http://nilearn.github.io/decoding/space_net.html">SpaceNet</a>.</p>
+<p>To train a SpaceNet on our data, let’s first split the data into a training set (chunk 0-4) and a test set (chunk 5).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two masks that specify the training and the test set </span>
+<span class="n">mask_test</span> <span class="o">=</span> <span class="n">chunks</span> <span class="o">==</span> <span class="mi">5</span>
+<span class="n">mask_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">mask_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply this sample mask to X (fMRI data) and y (behavioral labels)</span>
+<span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">index_img</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">index_img</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">mask_train</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">mask_train</span><span class="p">]</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">index_img</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">mask_test</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">mask_test</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can fit the SpaceNet to our data with a TV-l1 penalty. <em><strong>Note</strong></em> again, that we reduced the number of <code class="docutils literal notranslate"><span class="pre">max_iter</span></code> to have a quick computation. In a realistic case this value should be around 1000.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.decoding</span> <span class="kn">import</span> <span class="n">SpaceNetClassifier</span>
+
+<span class="c1"># Fit model on train data and predict on test data</span>
+<span class="n">decoder</span> <span class="o">=</span> <span class="n">SpaceNetClassifier</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;tv-l1&#39;</span><span class="p">,</span>
+                             <span class="n">mask</span><span class="o">=</span><span class="n">get_mask</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">),</span>
+                             <span class="n">max_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                             <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                             <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                             <span class="n">memory</span><span class="o">=</span><span class="s2">&quot;nilearn_cache&quot;</span><span class="p">,</span>
+                             <span class="n">memory_level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                             <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that the <code class="docutils literal notranslate"><span class="pre">SpaceNet</span></code> is fitted to the training data. Let’s see how well it does in predicting the test data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict the labels of the test data</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">decoder</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrun average accuracy</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mf">100.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TV-l1  classification accuracy : </span><span class="si">%g%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again above 80% prediction accuracy? But we wanted to know what’s driving this prediction. So let’s take a look at the fitting coefficients.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_stat_map</span><span class="p">,</span> <span class="n">show</span>
+<span class="n">coef_img</span> <span class="o">=</span> <span class="n">decoder</span><span class="o">.</span><span class="n">coef_img_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the searchlight results on the glass brain</span>
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_glass_brain</span>
+<span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">coef_img</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;lyrz&#39;</span><span class="p">,</span> <span class="n">symmetric_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;graph-net: accuracy </span><span class="si">%g%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cool! As expected the visual cortex (in the back of the head) and the eyes are driving the classification!</p>
+</div>
+<div class="section" id="searchlight">
+<h2>Searchlight<a class="headerlink" href="#searchlight" title="Permalink to this headline">¶</a></h2>
+<p>Now the next question is: How high would the prediction accuracy be if we only take one small region to do the classification?</p>
+<p>To answer this question we can use something that is called a <strong>Searchlight</strong> approach. The searchlight approach was first proposed by <a class="reference external" href="https://pdfs.semanticscholar.org/985c/ceaca8606443f9129616a26bbbbf952f2d7f.pdf">Kriegeskorte et al., 2006</a>. It is a widely used approach for the study of the fine-grained patterns of information in fMRI analysis. Its principle is relatively simple: a small group of neighboring features is extracted from the data, and the prediction function is instantiated on these features only. The resulting prediction accuracy is thus associated with all the features within the group, or only with the feature on the center. This yields a map of local fine-grained information, that can be used for assessing hypothesis on the local spatial layout of the neural code under investigation.</p>
+<p>You can do a searchlight analysis in <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.decoding</span> <span class="kn">import</span> <span class="n">SearchLight</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the mask in which the searchlight should be performed</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">get_mask</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the classifier to use</span>
+<span class="c1"># Let&#39;s use again a GaussainNB classifier to reduce computation time</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the radius of the searchlight sphere  that will scan the volume</span>
+<span class="c1"># (the bigger the longer the computation)</span>
+<span class="n">sphere_radius</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># in mm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we’re ready to create the searchlight object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create searchlight object</span>
+<span class="n">sl</span> <span class="o">=</span> <span class="n">SearchLight</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span>
+                 <span class="n">process_mask_img</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+                 <span class="n">radius</span><span class="o">=</span><span class="n">sphere_radius</span><span class="p">,</span>
+                 <span class="n">estimator</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span>
+                 <span class="n">cv</span><span class="o">=</span><span class="n">LeaveOneGroupOut</span><span class="p">(),</span>
+                 <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the searchlight algorithm</span>
+<span class="n">sl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">func</span><span class="p">),</span> <span class="n">labels</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">chunks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That took a while. So let’s take a look at the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First we need to put the searchlight output back into an MRI image</span>
+<span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">new_img_like</span>
+<span class="n">searchlight_img</span> <span class="o">=</span> <span class="n">new_img_like</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">sl</span><span class="o">.</span><span class="n">scores_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can plot the results. Let’s plot it once on the glass brain and once from the side. For better interpretation on where the peaks are, let’s set a minimum accuracy threshold of 60%.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_glass_brain</span>
+<span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">searchlight_img</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;lyrz&#39;</span><span class="p">,</span>
+                 <span class="n">threshold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Searchlight Prediction Accuracy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_stat_map</span>
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">searchlight_img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">anat</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Searchlight Prediction Accuracy&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected and already seen before, the hotspots with high prediction accuracy are around the primary visual cortex (in the back of the head) and around the eyes.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./advanced"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="machine_learning_preparation.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Preparation Machine Learning</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="machine_learning_keras.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code>/<code class="docutils literal notranslate"><span class="pre">Keras</span></code></p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
