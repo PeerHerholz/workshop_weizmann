@@ -1,8 +1,8 @@
-# GORELLA Code of Conduct
+# Code of Conduct
 
 Hello 👋, 
 
-GORELLA is dedicated to providing an environment where people are kind and respectful to each other, a harassment-free learning experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion. We do not tolerate harassment of event participants in any form. Sexual language and imagery is not appropriate for any event venue, including talks. Participants violating these rules may be sanctioned or expelled from the lecture at the discretion of the organizers.
+this workshop is dedicated to providing an environment where people are kind and respectful to each other, a harassment-free learning experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion. We do not tolerate harassment of event participants in any form. Sexual language and imagery is not appropriate for any event venue, including talks. Participants violating these rules may be sanctioned or expelled from the lecture at the discretion of the organizers.
 
 This could really be the end of that code of conduct, but some forms of harassment and negative behavior are fairly hard to identify at first. Please read carefully through the rest of the document to make sure you avoid them. There is also a section to know what to do and expect if you experience behavior that deviates from this code of conduct.
 
@@ -28,7 +28,7 @@ Incidents can take the form of “microaggressions,” which is a damaging form 
 
 ### *Respecting differences*  
 Participants come from many cultures and backgrounds. We therefore expect everyone to be very respectful of different cultural practices, attitudes, and beliefs. This includes being aware of preferred titles and pronouns, as well as using a respectful tone of voice.
-While we do not assume GORELLA participants know the cultural practices of every ethnic and cultural group, we expect members to recognize and respect differences within our community. This means being open to learning from and educating others, as well as educating yourself.
+While we do not assume participants know the cultural practices of every ethnic and cultural group, we expect members to recognize and respect differences within our community. This means being open to learning from and educating others, as well as educating yourself.
 
 ### *How to treat each other*  
 👍 Be respectful and value each other’s ideas, styles and viewpoints.  

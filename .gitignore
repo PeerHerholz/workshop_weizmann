@@ -5,4 +5,4 @@
 .idea/
 
 # build
-lecture/_build/*
+workshop/_build/*

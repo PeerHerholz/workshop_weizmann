@@ -1,0 +1,32 @@
+root: index
+format: jb-book
+chapters:
+- file: overview
+- file: setup
+- file: outline
+- file: prerequisites
+  sections:
+    - file: prerequisites/intro_to_shell
+    - file: prerequisites/intro_to_git_and_github
+    - file: prerequisites/intro_jupyter    
+    - file: prerequisites/intro_python
+    - file: prerequisites/python_numpy
+    - file: prerequisites/python_scipy        
+    - file: prerequisites/python_visualization    
+    - file: prerequisites/intro_statistics
+    - file: prerequisites/python_scikit        
+- file: data_nipype
+  sections:
+    - file: data_nipype/image_manipulation_nibabel
+    - file: data_nipype/image_manipulation_nilearn    
+- file: advanced
+  sections:
+    - file: advanced/pybids
+    - file: advanced/statistical_analyses_MRI
+    - file: advanced/functional_connectivity
+    - file: advanced/machine_learning_preparation
+    - file: advanced/machine_learning_nilearn
+    - file: advanced/machine_learning_keras
+    - file: advanced/Predicting_age_with_machine_learning
+- file: break
+- file: CoC
