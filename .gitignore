@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# PyCharm
+.idea/
+
+# build
+lecture/_build/*
