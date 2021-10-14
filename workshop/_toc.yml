@@ -15,10 +15,58 @@ chapters:
     - file: prerequisites/python_visualization    
     - file: prerequisites/intro_statistics
     - file: prerequisites/python_scikit        
-- file: data_nipype
+- file: data/data
   sections:
-    - file: data_nipype/image_manipulation_nibabel
-    - file: data_nipype/image_manipulation_nilearn    
+    - file: data/image_manipulation_nibabel
+    - file: data/image_manipulation_nilearn    
+- file: nipype/nipype_overview
+  sections:
+    - file: nipype/nipype_intro
+      sections:
+        - file: nipype/notebooks/introduction_nipype
+        - file: nipype/notebooks/introduction_showcase
+        - file: nipype/notebooks/introduction_quickstart
+        - file: nipype/notebooks/introduction_quickstart_non-neuroimaging
+    - file: nipype/nipype_basics
+      sections:
+        - file: nipype/notebooks/basic_interfaces
+        - file: nipype/notebooks/basic_nodes
+        - file: nipype/notebooks/basic_workflow
+        - file: nipype/notebooks/basic_graph_visualization
+        - file: nipype/notebooks/basic_data_input
+        - file: nipype/notebooks/basic_data_input_bids
+        - file: nipype/notebooks/basic_data_output
+        - file: nipype/notebooks/basic_plugins
+        - file: nipype/notebooks/basic_function_interface
+        - file: nipype/notebooks/basic_iteration
+        - file: nipype/notebooks/basic_mapnodes
+        - file: nipype/notebooks/basic_joinnodes
+        - file: nipype/notebooks/basic_errors_and_crashes
+        - file: nipype/notebooks/basic_debug
+        - file: nipype/notebooks/basic_model_specification
+        - file: nipype/notebooks/basic_execution_configuration
+        - file: nipype/notebooks/basic_import_workflow
+    - file: nipype/nipype_examples
+      sections:
+        - file: nipype/notebooks/example_preprocessing
+        - file: nipype/notebooks/example_1stlevel
+        - file: nipype/notebooks/example_normalize
+        - file: nipype/notebooks/example_2ndlevel
+        - file: nipype/notebooks/handson_preprocessing
+        - file: nipype/notebooks/handson_analysis
+    - file: nipype/nipype_advanced
+      sections:
+        - file: nipype/notebooks/advanced_create_interfaces
+        - file: nipype/notebooks/advanced_interfaces_caching
+        - file: nipype/notebooks/advanced_nipypecli
+        - file: nipype/notebooks/advanced_aws
+        - file: nipype/notebooks/advanced_sphinx_ext
+        - file: nipype/notebooks/advanced_spmmcr
+        - file: nipype/notebooks/advanced_mipav
+    - file: nipype/nipype_resources
+      sections:
+        - file: nipype/notebooks/resources_installation
+        - file: nipype/notebooks/resources_help      
 - file: advanced
   sections:
     - file: advanced/pybids
