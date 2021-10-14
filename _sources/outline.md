@@ -8,10 +8,10 @@ will entail examples of dedicated `advanced and specialized analyses` within whi
 | Time slot         | Topic | 
 |--------------|:-----:|
 | 10 AM - 11 AM |  [Explore MRI data with Nibabel and Nilearn]() |
-| 11:30 AM - 11:30 AM |  [Introduction to Nipype]() |
+| 11 AM - 11:30 AM |  [Introduction to Nipype]() |
 | 11:30 AM - 12:30 PM |  [ Exploration of Nipype’s building blocks]() |
 | 12:30 PM - 1 PM |  [Creating a Nipype Pipeline from A-Z]() |
-| 1 PM - 2 PM |  [Pipline for high field (7 Tesla)]() |
+| 1 PM - 2 PM |  [Complex processing pipelines based on Nipype]() |
 
 
 ## Session 2 - 31/10/2021
@@ -21,4 +21,5 @@ will entail examples of dedicated `advanced and specialized analyses` within whi
 | 10 AM - 11 AM |  [PyBIDS and statistical analysis of fMRI data]() |
 | 11 AM - 12 PM |  [Functional connectivity]() |
 | 12 PM - 1 PM |  [Machine learning - fMRI]() |
-| 1 PM - 2 PM |  [Machine learning - using fMRI to predict demographics]() |
+| 1 PM - 1:30 PM |  [Machine learning - using fMRI to predict demographics]() |
+| 1:30 PM - 2 PM |  [The python-neuroimaging ecosystem]() |
