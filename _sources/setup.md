@@ -426,7 +426,7 @@ Microsoft Edge is not modern, despite what Microsoft might try and otherwise tel
 Now that you've installed everything it's time to check that everything works as expected!
 Type the following into your terminal:
 
-    bash <( curl -s https://raw.githubusercontent.com/PeerHerholz/workshop_weizmann/master/check_install.s)
+    bash <( curl -s https://raw.githubusercontent.com/PeerHerholz/workshop_weizmann/master/check_install.sh)
 
 If you installed everything correctly you should see a message informing you as such.
 If any problems were detected you should receive some brief instructions on what is wrong with potential suggestions on how to remedy it.

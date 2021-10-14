@@ -66,7 +66,7 @@ You can checkout the respective sections:
 
 In case you have any questions or difficulties going through the workshop, please don’t hesitate a single second to get in touch with
 us. A great way to do this is to
-[open an issue](https://github.com/PeerHerholz/workshop_weizmann/issue) on the
+[open an issue](https://github.com/PeerHerholz/workshop_weizmann/issues) on the
 [GitHub site of the Workshop](https://github.com/PeerHerholz/workshop_weizmann) (also possible via the GitHub button at the top of the pages).
 We would also highly appreciate and value every feedback or idea or you
 might have (via [issues](https://github.com/PeerHerholz/workshop_weizmann) or [hypothes.is annotation feature](https://web.hypothes.is/) on the right).
