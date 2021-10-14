@@ -1,0 +1,990 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using Nipype Plugins &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Function Interface" href="basic_function_interface.html" />
+    <link rel="prev" title="Data Output" href="basic_data_output.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../prerequisites.html">
+   Course prerequisites
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_shell.html">
+     Introduction to the (unix) command line: bash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_git_and_github.html">
+     Introduction to git and github
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_jupyter.html">
+     Introduction to the jupyter ecosystem &amp; notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_numpy.html">
+     Introduction to NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scipy.html">
+     Introduction to SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_visualization.html">
+     Introduction to Visualization in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_statistics.html">
+     Introduction to Statistics in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scikit.html">
+     Introduction to scikit-learn &amp; scikit-image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../data/data.html">
+   Basics in data handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../nipype_overview.html">
+   Nipype
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_intro.html">
+     Introduction to Nipype
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_showcase.html">
+       Nipype Showcase
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart.html">
+       Nipype Quickstart
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart_non-neuroimaging.html">
+       Nipype Quickstart - non-imaging
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../nipype_basics.html">
+     Basic concepts
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_interfaces.html">
+       Interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_nodes.html">
+       Nodes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_workflow.html">
+       Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_graph_visualization.html">
+       Graph Visualization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input.html">
+       Data Input
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input_bids.html">
+       Data input for BIDS datasets
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_output.html">
+       Data Output
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Using Nipype Plugins
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_function_interface.html">
+       Function Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_iteration.html">
+       Iterables
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_mapnodes.html">
+       MapNode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_joinnodes.html">
+       JoinNode, synchronize and itersource
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_debug.html">
+       Debugging Nipype Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_execution_configuration.html">
+       Execution Configuration Options
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_examples.html">
+     Example workflows
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_preprocessing.html">
+       Example 1: Preprocessing Workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_1stlevel.html">
+       Example 2: 1st-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_normalize.html">
+       Example 3: Normalize data to MNI template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_2ndlevel.html">
+       Example 4: 2nd-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_preprocessing.html">
+       Hands-on 1: How to create a fMRI preprocessing workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_analysis.html">
+       Hands-on 2: How to create a fMRI analysis workflow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_advanced.html">
+     Advanced concepts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_create_interfaces.html">
+       Create interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_interfaces_caching.html">
+       Interface caching
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_nipypecli.html">
+       Nipype Command Line Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_aws.html">
+       Using Nipype with Amazon Web Services (AWS)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_sphinx_ext.html">
+       Sphinx extensions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_spmmcr.html">
+       Using SPM with MATLAB Common Runtime (MCR)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_mipav.html">
+       Using MIPAV, JIST, and CBS Tools
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_resources.html">
+     Resources
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_installation.html">
+       Download and install
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_help.html">
+       Where to find help
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/nipype/notebooks/basic_plugins.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fnipype/notebooks/basic_plugins.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/nipype/notebooks/basic_plugins.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/nipype/notebooks/basic_plugins.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debug">
+   Debug
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear">
+   Linear
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiproc">
+   MultiProc
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ipython">
+   IPython
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sge-pbs">
+   SGE/PBS
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sgegraph">
+     SGEGraph
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lsf">
+   LSF
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slurm">
+   SLURM
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slurmgraph">
+     SLURMGraph
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#htcondor">
+   HTCondor
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dagman">
+     DAGMan
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oar">
+   OAR
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qsub-emulation">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       qsub
+      </span>
+     </code>
+     emulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="using-nipype-plugins">
+<h1>Using Nipype Plugins<a class="headerlink" href="#using-nipype-plugins" title="Permalink to this headline">¶</a></h1>
+<p>The workflow engine supports a plugin architecture for workflow execution. The available plugins allow local and distributed execution of workflows and debugging. Each available plugin is described below.</p>
+<p>Current plugins are available for Linear, Multiprocessing, <a class="reference external" href="https://ipython.org/">IPython</a> distributed processing platforms and for direct processing on <a class="reference external" href="http://www.oracle.com/us/products/tools/oracle-grid-engine-075549.html">SGE</a>, <a class="reference external" href="http://www.clusterresources.com/products/torque-resource-manager.php">PBS</a>, <a class="reference external" href="http://www.cs.wisc.edu/htcondor/">HTCondor</a>, <a class="reference external" href="http://www.platform.com/Products/platform-lsf">LSF</a>, <code class="docutils literal notranslate"><span class="pre">OAR</span></code>, and <a class="reference external" href="http://slurm.schedmd.com/">SLURM</a>. We anticipate future plugins for the <a class="reference external" href="http://brainvisa.info/soma/soma-workflow/">Soma</a> workflow.</p>
+<div class="alert alert-info">
+**Note**:  
+Currently, the distributed processing plugins rely on the availability of a shared filesystem across computational nodes.  
+A variety of config options can control how execution behaves in this distributed context. These are listed later on in this page.
+</div>
+<p>All plugins can be executed with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="n">PLUGIN_NAME</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="n">ARGS_DICT</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Optional arguments:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>status_callback : a function handle
+max_jobs : maximum number of concurrent jobs
+max_tries : number of times to try submitting a job
+retry_timeout : amount of time to wait between tries
+</pre></div>
+</div>
+<div class="alert alert-info">
+**Note**: Except for the status_callback, the remaining arguments only apply to the distributed plugins: MultiProc / IPython(X) / SGE / PBS / HTCondor / HTCondorDAGMan / LSF
+</div><div class="section" id="debug">
+<h2>Debug<a class="headerlink" href="#debug" title="Permalink to this headline">¶</a></h2>
+<p>This plugin provides a simple mechanism to debug certain components of a workflow without executing any node.</p>
+<p>Mandatory arguments:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>callable :  A function handle that receives as arguments a node and a graph
+</pre></div>
+</div>
+<p>The function callable will be called for every node from a topological sort of the execution graph.</p>
+</div>
+<div class="section" id="linear">
+<h2>Linear<a class="headerlink" href="#linear" title="Permalink to this headline">¶</a></h2>
+<p>This plugin runs the workflow one node at a time in a single process locally. The order of the nodes is determined by a topological sort of the workflow:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;Linear&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="multiproc">
+<h2>MultiProc<a class="headerlink" href="#multiproc" title="Permalink to this headline">¶</a></h2>
+<p>Uses the <a class="reference external" href="http://www.python.org/">Python</a> multiprocessing library to distribute jobs as new processes on a local system.</p>
+<p>Optional arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_procs</span></code>:  Number of processes to launch in parallel, if not set number of processors/threads will be automatically detected</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">memory_gb</span></code>: Total memory available to be shared by all simultaneous tasks currently running, if not set it will be automatically set to 90% of system RAM.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raise_insufficient</span></code>: Raise exception when the estimated resources of a node exceed the total amount of resources available (memory and threads), when <code class="docutils literal notranslate"><span class="pre">False</span></code> (default), only a warning will be issued.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxtasksperchild</span></code>: number of nodes to run on each process before refreshing the worker (default: 10).</p></li>
+</ul>
+<p>To distribute processing on a multicore machine, simply call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will use all available CPUs. If on the other hand, you would like to restrict the number of used resources (to say 2 CPUs), you can call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ipython">
+<h2>IPython<a class="headerlink" href="#ipython" title="Permalink to this headline">¶</a></h2>
+<p>This plugin provides access to distributed computing using <a class="reference external" href="https://ipython.org/">IPython</a> parallel machinery.</p>
+<div class="alert alert-info">
+**Note**:  
+Please read the [IPython](https://ipython.org/) documentation to determine how to set up your cluster for distributed processing. This typically involves calling ipcluster.
+</div>
+<p>Once the clients have been started, any pipeline executed with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;IPython&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sge-pbs">
+<h2>SGE/PBS<a class="headerlink" href="#sge-pbs" title="Permalink to this headline">¶</a></h2>
+<p>In order to use nipype with <a class="reference external" href="http://www.oracle.com/us/products/tools/oracle-grid-engine-075549.html">SGE</a> or <a class="reference external" href="http://www.clusterresources.com/products/torque-resource-manager.php">PBS</a> you simply need to call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;SGE&#39;</span><span class="p">)</span>
+<span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;PBS&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Optional arguments:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>template: custom template file to use
+qsub_args: any other command line args to be passed to qsub.
+max_jobname_len: (PBS only) maximum length of the job name.  Default 15.
+</pre></div>
+</div>
+<p>For example, the following snippet executes the workflow on myqueue with a custom template:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;SGE&#39;</span><span class="p">,</span>
+             <span class="n">plugin_args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="s1">&#39;mytemplate.sh&#39;</span><span class="p">,</span>
+                              <span class="n">qsub_args</span><span class="o">=</span><span class="s1">&#39;-q myqueue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In addition to overall workflow configuration, you can use node level
+configuration for PBS/SGE:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">plugin_args</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;qsub_args&#39;</span><span class="p">:</span> <span class="s1">&#39;-l nodes=1:ppn=3&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>this would apply only to the node and is useful in situations, where a particular node might use more resources than other nodes in a workflow.</p>
+<div class="alert alert-info">
+**Note**: Setting the keyword `overwrite` would overwrite any global configuration with this local configuration:  
+```node.plugin_args = {'qsub_args': '-l nodes=1:ppn=3', 'overwrite': True}```
+</div><div class="section" id="sgegraph">
+<h3>SGEGraph<a class="headerlink" href="#sgegraph" title="Permalink to this headline">¶</a></h3>
+<p>SGEGraph is an execution plugin working with Sun Grid Engine that allows for  submitting the entire graph of dependent jobs at once. This way Nipype does not need to run a monitoring process - SGE takes care of this. The use of SGEGraph is preferred over SGE since the latter adds an unnecessary load on the submit machine.</p>
+<div class="alert alert-info">
+**Note**: When rerunning unfinished workflows using SGEGraph you may decide not to submit jobs for Nodes that previously finished running. This can speed up execution, but new or modified inputs that would previously trigger a Node to rerun will be ignored. The following option turns on this functionality:  
+```workflow.run(plugin='SGEGraph', plugin_args = {'dont_resubmit_completed_jobs': True})```
+</div></div>
+</div>
+<div class="section" id="lsf">
+<h2>LSF<a class="headerlink" href="#lsf" title="Permalink to this headline">¶</a></h2>
+<p>Submitting via LSF is almost identical to SGE above except for the optional arguments field:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;LSF&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Optional arguments:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>template: custom template file to use
+bsub_args: any other command line args to be passed to bsub.
+</pre></div>
+</div>
+</div>
+<div class="section" id="slurm">
+<h2>SLURM<a class="headerlink" href="#slurm" title="Permalink to this headline">¶</a></h2>
+<p>Submitting via SLURM is almost identical to SGE above except for the optional arguments field:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;SLURM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Optional arguments:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>template: custom template file to use
+sbatch_args: any other command line args to be passed to bsub.
+jobid_re: regular expression for custom job submission id search
+</pre></div>
+</div>
+<div class="section" id="slurmgraph">
+<h3>SLURMGraph<a class="headerlink" href="#slurmgraph" title="Permalink to this headline">¶</a></h3>
+<p>SLURMGraph is an execution plugin working with SLURM that allows for submitting the entire graph of dependent jobs at once. This way Nipype does not need to run a monitoring process - SLURM takes care of this. The use of SLURMGraph plugin is preferred over the vanilla SLURM plugin since the latter adds an unnecessary load on the submit machine.</p>
+<div class="alert alert-info">
+**Note**: When rerunning unfinished workflows using SLURMGraph you may decide not to submit jobs for Nodes that previously finished running. This can speed up execution, but new or modified inputs that would previously trigger a Node to rerun will be ignored. The following option turns on this functionality:  
+```workflow.run(plugin='SLURMGraph', plugin_args = {'dont_resubmit_completed_jobs': True})```
+</div></div>
+</div>
+<div class="section" id="htcondor">
+<h2>HTCondor<a class="headerlink" href="#htcondor" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dagman">
+<h3>DAGMan<a class="headerlink" href="#dagman" title="Permalink to this headline">¶</a></h3>
+<p>With its <a class="reference external" href="http://research.cs.wisc.edu/htcondor/dagman/dagman.html">DAGMan</a> component, <a class="reference external" href="http://www.cs.wisc.edu/htcondor/">HTCondor</a> (previously Condor) allows for submitting the entire graphs of dependent jobs at once (similar to SGEGraph and SLURMGraph). With the <code class="docutils literal notranslate"><span class="pre">CondorDAGMan</span></code> plug-in, Nipype can utilize this functionality to submit complete workflows directly and in a single step.  Consequently, and in contrast to other plug-ins, workflow execution returns almost instantaneously – Nipype is only used to generate the workflow graph, while job scheduling and dependency resolution are entirely managed by <a class="reference external" href="http://www.cs.wisc.edu/htcondor/">HTCondor</a>.</p>
+<p>Please note that although <a class="reference external" href="http://research.cs.wisc.edu/htcondor/dagman/dagman.html">DAGMan</a> supports specification of data dependencies as well as data provisioning on compute nodes this functionality is currently not supported by this plug-in. As with all other batch systems supported by Nipype, only HTCondor pools with a shared file system can be used to process Nipype workflows.</p>
+<p>Workflow execution with HTCondor DAGMan is done by calling:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;CondorDAGMan&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Job execution behavior can be tweaked with the following optional plug-in arguments. The value of most arguments can be a literal string or a filename, wherein the latter case the content of the file will be used as the argument value:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">submit_template</span></code> : submit spec template for individual jobs in a DAG (see CondorDAGManPlugin.default_submit_template for the default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initial_specs</span></code> : additional submit specs that are prepended to any job’s submit file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">override_specs</span></code> : additional submit specs that are appended to any job’s submit file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wrapper_cmd</span></code> : path to an executable that will be started instead of a node script. This is useful for wrapper script that executes certain functionality prior to or after a node runs. If this option is given the wrapper command is called with the respective Python executable and the path to the node script as final arguments</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wrapper_args</span></code> : optional additional arguments to a wrapper command</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dagman_args</span></code> : arguments to be prepended to the job execution script in the dagman call</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">block</span></code> : if True the plugin call will block until Condor has finished processing the entire workflow (default: False)</p></li>
+</ul>
+<p>Please see the <a class="reference external" href="http://research.cs.wisc.edu/htcondor/manual">HTCondor documentation</a> for details on possible configuration options and command line arguments.</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">wrapper_cmd</span></code> argument it is possible to combine Nipype workflow execution with checkpoint/migration functionality offered by, for example, <a class="reference external" href="http://dmtcp.sourceforge.net/">DMTCP</a>. This is especially useful in the case of workflows with long-running nodes, such as Freesurfer’s recon-all pipeline, where Condor’s job prioritization algorithm could lead to jobs being evicted from compute nodes in order to maximize overall throughput. With checkpoint/migration enabled such a job would be checkpointed prior eviction and resume work from the checkpointed state after being rescheduled – instead of restarting from scratch.</p>
+<p>On a Debian system, executing a workflow with support for checkpoint/migration for all nodes could look like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define common parameters</span>
+<span class="n">dmtcp_hdr</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">should_transfer_files = YES</span>
+<span class="s2">when_to_transfer_output = ON_EXIT_OR_EVICT</span>
+<span class="s2">kill_sig = 2</span>
+<span class="s2">environment = DMTCP_TMPDIR=./;JALIB_STDERR_PATH=/dev/null;DMTCP_PREFIX_ID=$(CLUSTER)_$(PROCESS)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">shim_args</span> <span class="o">=</span> <span class="s2">&quot;--log </span><span class="si">%(basename)s</span><span class="s2">.shimlog --stdout </span><span class="si">%(basename)s</span><span class="s2">.shimout --stderr </span><span class="si">%(basename)s</span><span class="s2">.shimerr&quot;</span>
+<span class="c1"># run workflow</span>
+<span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;CondorDAGMan&#39;</span><span class="p">,</span>
+    <span class="n">plugin_args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">initial_specs</span><span class="o">=</span><span class="n">dmtcp_hdr</span><span class="p">,</span>
+                     <span class="n">wrapper_cmd</span><span class="o">=</span><span class="s1">&#39;/usr/lib/condor/shim_dmtcp&#39;</span><span class="p">,</span>
+                     <span class="n">wrapper_args</span><span class="o">=</span><span class="n">shim_args</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="oar">
+<h2>OAR<a class="headerlink" href="#oar" title="Permalink to this headline">¶</a></h2>
+<p>In order to use nipype with OAR you simply need to call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;OAR&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Optional arguments:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>template: custom template file to use
+oar_args: any other command line args to be passed to qsub.
+max_jobname_len: (PBS only) maximum length of the job name.  Default 15.
+</pre></div>
+</div>
+<p>For example, the following snippet executes the workflow on myqueue with
+a custom template:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;oar&#39;</span><span class="p">,</span>
+             <span class="n">plugin_args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="s1">&#39;mytemplate.sh&#39;</span><span class="p">,</span>
+                              <span class="n">oarsub_args</span><span class="o">=</span><span class="s1">&#39;-q myqueue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In addition to overall workflow configuration, you can use node level configuration for OAR:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">plugin_args</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;overwrite&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;oarsub_args&#39;</span><span class="p">:</span> <span class="s1">&#39;-l &quot;nodes=1/cores=3&quot;&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>this would apply only to the node and is useful in situations, where a particular node might use more resources than other nodes in a workflow. You need to set the ‘overwrite’ flag to bypass the general settings-template you defined for the other nodes.</p>
+<div class="section" id="qsub-emulation">
+<h3><code class="docutils literal notranslate"><span class="pre">qsub</span></code> emulation<a class="headerlink" href="#qsub-emulation" title="Permalink to this headline">¶</a></h3>
+<div class="alert alert-info">
+**Note**: This plug-in is deprecated and users should migrate to the more robust and more versatile ``CondorDAGMan`` plug-in.
+</div>
+<p>Despite the differences between HTCondor and SGE-like batch systems the plugin usage (incl. supported arguments) is almost identical. The HTCondor plugin relies on a <code class="docutils literal notranslate"><span class="pre">qsub</span></code> emulation script for HTCondor, called <code class="docutils literal notranslate"><span class="pre">condor_qsub</span></code> that can be obtained from a <a class="reference external" href="http://anonscm.debian.org/gitweb/?p=pkg-exppsy/condor.git%3Ba=blob_plain%3Bf=debian/condor_qsub%3Bhb=HEAD">Git repository on git.debian.org</a>. This script is currently not shipped with a standard HTCondor distribution but is included in the HTCondor package from <a class="reference external" href="http://neuro.debian.net">http://neuro.debian.net</a>. It is sufficient to download this script and install it in any location on a system that is included in the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> configuration.</p>
+<p>Running a workflow in a HTCondor pool is done by calling:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;Condor&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The plugin supports a limited set of qsub arguments (<code class="docutils literal notranslate"><span class="pre">qsub_args</span></code>) that cover the most common use cases. The <code class="docutils literal notranslate"><span class="pre">condor_qsub</span></code> emulation script translates qsub arguments into the corresponding HTCondor terminology and handles the actual job submission. For details on supported options see the manpage of <code class="docutils literal notranslate"><span class="pre">condor_qsub</span></code>.</p>
+<p>Optional arguments:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>qsub_args: any other command line args to be passed to condor_qsub.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nipype/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="basic_data_output.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Data Output</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="basic_function_interface.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Function Interface</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,1024 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Execution Configuration Options &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Example workflows" href="../nipype_examples.html" />
+    <link rel="prev" title="Debugging Nipype Workflows" href="basic_debug.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../prerequisites.html">
+   Course prerequisites
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_shell.html">
+     Introduction to the (unix) command line: bash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_git_and_github.html">
+     Introduction to git and github
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_jupyter.html">
+     Introduction to the jupyter ecosystem &amp; notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_numpy.html">
+     Introduction to NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scipy.html">
+     Introduction to SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_visualization.html">
+     Introduction to Visualization in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_statistics.html">
+     Introduction to Statistics in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scikit.html">
+     Introduction to scikit-learn &amp; scikit-image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../data/data.html">
+   Basics in data handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../nipype_overview.html">
+   Nipype
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_intro.html">
+     Introduction to Nipype
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_showcase.html">
+       Nipype Showcase
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart.html">
+       Nipype Quickstart
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart_non-neuroimaging.html">
+       Nipype Quickstart - non-imaging
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../nipype_basics.html">
+     Basic concepts
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_interfaces.html">
+       Interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_nodes.html">
+       Nodes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_workflow.html">
+       Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_graph_visualization.html">
+       Graph Visualization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input.html">
+       Data Input
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input_bids.html">
+       Data input for BIDS datasets
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_output.html">
+       Data Output
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_plugins.html">
+       Using Nipype Plugins
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_function_interface.html">
+       Function Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_iteration.html">
+       Iterables
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_mapnodes.html">
+       MapNode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_joinnodes.html">
+       JoinNode, synchronize and itersource
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_debug.html">
+       Debugging Nipype Workflows
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Execution Configuration Options
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_examples.html">
+     Example workflows
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_preprocessing.html">
+       Example 1: Preprocessing Workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_1stlevel.html">
+       Example 2: 1st-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_normalize.html">
+       Example 3: Normalize data to MNI template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_2ndlevel.html">
+       Example 4: 2nd-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_preprocessing.html">
+       Hands-on 1: How to create a fMRI preprocessing workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_analysis.html">
+       Hands-on 2: How to create a fMRI analysis workflow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_advanced.html">
+     Advanced concepts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_create_interfaces.html">
+       Create interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_interfaces_caching.html">
+       Interface caching
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_nipypecli.html">
+       Nipype Command Line Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_aws.html">
+       Using Nipype with Amazon Web Services (AWS)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_sphinx_ext.html">
+       Sphinx extensions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_spmmcr.html">
+       Using SPM with MATLAB Common Runtime (MCR)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_mipav.html">
+       Using MIPAV, JIST, and CBS Tools
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_resources.html">
+     Resources
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_installation.html">
+       Download and install
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_help.html">
+       Where to find help
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/nipype/notebooks/basic_execution_configuration.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fnipype/notebooks/basic_execution_configuration.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/nipype/notebooks/basic_execution_configuration.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/nipype/notebooks/basic_execution_configuration.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Execution Configuration Options
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logging">
+     Logging
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#execution">
+     Execution
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resource-monitor">
+     Resource Monitor
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example">
+   Example
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enabling-logging-to-file">
+     Enabling logging to file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#debug-configuration">
+     Debug configuration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-workflow-node-level">
+   Global, workflow &amp; node level
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#at-the-global-level">
+     At the global level:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#at-the-workflow-level">
+     At the workflow level:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#at-the-node-level">
+     At the node level:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="execution-configuration-options">
+<h1>Execution Configuration Options<a class="headerlink" href="#execution-configuration-options" title="Permalink to this headline">¶</a></h1>
+<p>Nipype gives you many liberties on how to create workflows, but the execution of them uses a lot of default parameters. But you have of course all the freedom to change them as you like.</p>
+<p>Nipype looks for the configuration options in the local folder under the name <code class="docutils literal notranslate"><span class="pre">nipype.cfg</span></code> and in <code class="docutils literal notranslate"><span class="pre">~/.nipype/nipype.cfg</span></code> (in this order). It can be divided into <strong>Logging</strong> and <strong>Execution</strong> options. A few of the possible options are the following:</p>
+<div class="section" id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">workflow_level</span></code></strong>: How detailed the logs regarding workflow should be<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">INFO</span></code> and <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">INFO</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">utils_level</span></code></strong>: How detailed the logs regarding nipype utils, like file operations (for example overwriting warning) or the resource profiler, should be<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">INFO</span></code> and <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">INFO</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">interface_level</span></code></strong>: How detailed the logs regarding interface execution should be<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">INFO</span></code> and <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">INFO</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">filemanip_level</span></code></strong> (deprecated as of 1.0): How detailed the logs regarding file operations (for example overwriting warning) should be<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">INFO</span></code> and <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">log_to_file</span></code></strong>: Indicates whether logging should also send the output to a file<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">log_directory</span></code></strong>: Where to store logs.<br />
+(string, default value: home directory)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">log_size</span></code></strong>: Size of a single log file.<br />
+(integer, default value: 254000)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">log_rotate</span></code></strong>: How many rotations should the log file make.<br />
+(integer, default value: 4)</p></li>
+</ul>
+</div>
+<div class="section" id="execution">
+<h2>Execution<a class="headerlink" href="#execution" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">plugin</span></code></strong>: This defines which execution plugin to use.<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiProc</span></code>, <code class="docutils literal notranslate"><span class="pre">SGE</span></code>, <code class="docutils literal notranslate"><span class="pre">IPython</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">Linear</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">stop_on_first_crash</span></code></strong>: Should the workflow stop upon the first node crashing or try to execute as many
+nodes as possible?<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">stop_on_first_rerun</span></code></strong>: Should the workflow stop upon the first node trying to recompute (by that we mean rerunning a node that has been run before - this can happen due changed inputs and/or hash_method since the last run).<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">hash_method</span></code></strong>: Should the input files be checked for changes using their content (slow, but 100% accurate) or just their size and modification date (fast, but potentially prone to errors)?<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">content</span></code> and <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">keep_inputs</span></code></strong>: Ensures that all inputs that are created in the nodes working directory are
+kept after node execution<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">single_thread_matlab</span></code></strong>: Should all of the Matlab interfaces (including SPM) use only one thread? This is useful if you are parallelizing your workflow using MultiProc or IPython on a single multicore machine.<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">true</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">display_variable</span></code></strong>: Override the <code class="docutils literal notranslate"><span class="pre">$DISPLAY</span></code> environment variable for interfaces that require an X server. This option is useful if there is a running X server, but <code class="docutils literal notranslate"><span class="pre">$DISPLAY</span></code> was not defined in nipype’s environment. For example, if an X server is listening on the default port of 6000, set <code class="docutils literal notranslate"><span class="pre">display_variable</span> <span class="pre">=</span> <span class="pre">:0</span></code> to enable nipype interfaces to use it. It may also point to displays provided by VNC, <a class="reference external" href="http://www.x.org/archive/X11R7.5/doc/man/man1/Xnest.1.html">xnest</a> or <a class="reference external" href="http://www.x.org/archive/X11R6.8.1/doc/Xvfb.1.html">Xvfb</a>.<br />
+If neither <code class="docutils literal notranslate"><span class="pre">display_variable</span></code> nor the <code class="docutils literal notranslate"><span class="pre">$DISPLAY</span></code> environment variable is     set, nipype will try to configure a new virtual server using Xvfb.<br />
+(possible values: any X server address; default value: not set)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">remove_unnecessary_outputs</span></code></strong>: This will remove any interface outputs not needed by the workflow. If the
+required outputs from a node changes, rerunning the workflow will rerun the
+node. Outputs of leaf nodes (nodes whose outputs are not connected to any
+other nodes) will never be deleted independent of this parameter.<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">true</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">try_hard_link_datasink</span></code></strong>: When the DataSink is used to produce an organized output file outside
+of nipypes internal cache structure, a file system hard link will be
+attempted first. A hard link allows multiple file paths to point to the
+same physical storage location on disk if the conditions allow. By
+referring to the same physical file on disk (instead of copying files
+byte-by-byte) we can avoid unnecessary data duplication.  If hard links
+are not supported for the source or destination paths specified, then
+a standard byte-by-byte copy is used.<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">true</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">use_relative_paths</span></code></strong>: Should the paths stored in results (and used to look for inputs)
+be relative or absolute. Relative paths allow moving the whole
+working directory around but may cause problems with
+symlinks.<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">local_hash_check</span></code></strong>: Perform the hash check on the job submission machine. This option minimizes
+the number of jobs submitted to a cluster engine or a multiprocessing pool
+to only those that need to be rerun.<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">true</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">job_finished_timeout</span></code></strong>: When batch jobs are submitted through, SGE/PBS/Condor they could be killed
+externally. Nipype checks to see if a results file exists to determine if
+the node has completed. This timeout determines for how long this check is
+done after a job finish is detected. (float in seconds; default value: 5)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">remove_node_directories</span></code></strong> (EXPERIMENTAL): Removes directories whose outputs have already been used
+up. Doesn’t work with IdentiInterface or any node that patches
+data through (without copying)<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">stop_on_unknown_version</span></code></strong>: If this is set to True, an underlying interface will raise an error, when no
+version information is available. Please notify developers or submit a patch.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">parameterize_dirs</span></code></strong>: If this is set to True, the node’s output directory will contain full
+parameterization of any iterable, otherwise parameterizations over 32
+characters will be replaced by their hash.<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">true</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">poll_sleep_duration</span></code></strong>: This controls how long the job submission loop will sleep between submitting
+all pending jobs and checking for job completion. To be nice to cluster
+schedulers the default is set to 2 seconds.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">xvfb_max_wait</span></code></strong>: Maximum time (in seconds) to wait for Xvfb to start, if the _redirect_x
+parameter of an Interface is True.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">crashfile_format</span></code></strong>: This option controls the file type of any crashfile generated. Pklz
+crashfiles allow interactive debugging and rerunning of nodes, while text
+crashfiles allow portability across machines and shorter load time.<br />
+(possible values: <code class="docutils literal notranslate"><span class="pre">pklz</span></code> and <code class="docutils literal notranslate"><span class="pre">txt</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">pklz</span></code>)</p></li>
+</ul>
+</div>
+<div class="section" id="resource-monitor">
+<h2>Resource Monitor<a class="headerlink" href="#resource-monitor" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">enabled</span></code></strong>: Enables monitoring the resources occupation (possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> and
+<code class="docutils literal notranslate"><span class="pre">false</span></code>; default value: <code class="docutils literal notranslate"><span class="pre">false</span></code>). All the following options will be
+dismissed if the resource monitor is not enabled.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sample_frequency</span></code></strong>: Sampling period (in seconds) between measurements of resources (memory, cpus)
+being used by an interface<br />
+(default value: <code class="docutils literal notranslate"><span class="pre">1</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">summary_file</span></code></strong>: Indicates where the summary file collecting all profiling information from the
+resource monitor should be stored after execution of a workflow.
+The <code class="docutils literal notranslate"><span class="pre">summary_file</span></code> does not apply to interfaces run independently.
+(unset by default, in which case the summary file will be written out to
+<code class="docutils literal notranslate"><span class="pre">&lt;base_dir&gt;/resource_monitor.json</span></code> of the top-level workflow).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">summary_append</span></code></strong>: Append to an existing summary file (only applies to workflows).<br />
+(default value: <code class="docutils literal notranslate"><span class="pre">true</span></code>, possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[logging]
+workflow_level = DEBUG
+
+[execution]
+stop_on_first_crash = true
+hash_method = timestamp
+display_variable = :1
+
+[monitoring]
+enabled = false
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Workflow.config</span></code> property has a form of a nested dictionary reflecting the structure of the <code class="docutils literal notranslate"><span class="pre">.cfg</span></code> file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">Workflow</span>
+<span class="n">myworkflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myworkflow&#39;</span><span class="p">)</span>
+<span class="n">myworkflow</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;execution&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;stop_on_first_rerun&#39;</span><span class="p">:</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;hash_method&#39;</span><span class="p">:</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also directly set global config options in your workflow script. An
+example is shown below. This needs to be called before you import the
+pipeline or the logger. Otherwise, logging level will not be reset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">logging</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">workflow_level</span> <span class="o">=</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">),</span>
+         <span class="n">execution</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;stop_on_first_crash&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                    <span class="s1">&#39;hash_method&#39;</span><span class="p">:</span> <span class="s1">&#39;content&#39;</span><span class="p">})</span>
+<span class="n">config</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="enabling-logging-to-file">
+<h2>Enabling logging to file<a class="headerlink" href="#enabling-logging-to-file" title="Permalink to this headline">¶</a></h2>
+<p>By default, logging to file is disabled. One can enable and write the file to
+a location of choice as in the example below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">logging</span>
+<span class="n">config</span><span class="o">.</span><span class="n">update_config</span><span class="p">({</span><span class="s1">&#39;logging&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;log_directory&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span>
+                                  <span class="s1">&#39;log_to_file&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}})</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">update_logging</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The logging update line is necessary to change the behavior of logging such as
+output directory, logging level, etc.</p>
+</div>
+<div class="section" id="debug-configuration">
+<h2>Debug configuration<a class="headerlink" href="#debug-configuration" title="Permalink to this headline">¶</a></h2>
+<p>To enable debug mode, one can insert the following lines:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="n">config</span><span class="o">.</span><span class="n">enable_debug_mode</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this mode the following variables are set:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;execution&#39;</span><span class="p">,</span> <span class="s1">&#39;stop_on_first_crash&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;execution&#39;</span><span class="p">,</span> <span class="s1">&#39;remove_unnecessary_outputs&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;execution&#39;</span><span class="p">,</span> <span class="s1">&#39;keep_inputs&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;logging&#39;</span><span class="p">,</span> <span class="s1">&#39;workflow_level&#39;</span><span class="p">,</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;logging&#39;</span><span class="p">,</span> <span class="s1">&#39;interface_level&#39;</span><span class="p">,</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;logging&#39;</span><span class="p">,</span> <span class="s1">&#39;utils_level&#39;</span><span class="p">,</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The primary loggers (<code class="docutils literal notranslate"><span class="pre">workflow</span></code>, <code class="docutils literal notranslate"><span class="pre">interface</span></code> and <code class="docutils literal notranslate"><span class="pre">utils</span></code>) are also reset to level <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>.</p>
+<p>You may wish to adjust these manually using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="o">&lt;</span><span class="n">logger</span><span class="o">&gt;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="global-workflow-node-level">
+<h1>Global, workflow &amp; node level<a class="headerlink" href="#global-workflow-node-level" title="Permalink to this headline">¶</a></h1>
+<p>The configuration options can be changed globally (i.e. for all workflows), for just a workflow, or for just a node. The implementations look as follows (note that you should first create directories if you want to change <code class="docutils literal notranslate"><span class="pre">crashdump_dir</span></code> and <code class="docutils literal notranslate"><span class="pre">log_directory</span></code>):</p>
+<div class="section" id="at-the-global-level">
+<h2>At the global level:<a class="headerlink" href="#at-the-global-level" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;/output/log_folder&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;/output/crash_folder&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">config_dict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;execution&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;remove_unnecessary_outputs&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;keep_inputs&#39;</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;poll_sleep_duration&#39;</span><span class="p">:</span> <span class="s1">&#39;60&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;stop_on_first_rerun&#39;</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;hash_method&#39;</span><span class="p">:</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;local_hash_check&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;create_report&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;crashdump_dir&#39;</span><span class="p">:</span> <span class="s1">&#39;/output/crash_folder&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;use_relative_paths&#39;</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;job_finished_timeout&#39;</span><span class="p">:</span> <span class="s1">&#39;5&#39;</span><span class="p">},</span>
+             <span class="s1">&#39;logging&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;workflow_level&#39;</span><span class="p">:</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;filemanip_level&#39;</span><span class="p">:</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;interface_level&#39;</span><span class="p">:</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;log_directory&#39;</span><span class="p">:</span> <span class="s1">&#39;/output/log_folder&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;log_to_file&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">}}</span>
+<span class="n">config</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">config_dict</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">update_logging</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="at-the-workflow-level">
+<h2>At the workflow level:<a class="headerlink" href="#at-the-workflow-level" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">Workflow</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;config_test&quot;</span><span class="p">)</span>
+
+<span class="c1"># Change execution parameters</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;execution&#39;</span><span class="p">][</span><span class="s1">&#39;stop_on_first_crash&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;true&#39;</span>
+
+<span class="c1"># Change logging parameters</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;logging&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;workflow_level&#39;</span> <span class="p">:</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;filemanip_level&#39;</span> <span class="p">:</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;interface_level&#39;</span> <span class="p">:</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;log_to_file&#39;</span> <span class="p">:</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;log_directory&#39;</span> <span class="p">:</span> <span class="s1">&#39;/output/log_folder&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="at-the-node-level">
+<h2>At the node level:<a class="headerlink" href="#at-the-node-level" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">BET</span>
+
+<span class="n">bet</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">BET</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;config_test&quot;</span><span class="p">)</span>
+
+<span class="n">bet</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;execution&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;keep_unnecessary_outputs&#39;</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nipype/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="basic_debug.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Debugging Nipype Workflows</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../nipype_examples.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Example workflows</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interface caching &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Nipype Command Line Interface" href="advanced_nipypecli.html" />
+    <link rel="prev" title="Create interfaces" href="advanced_create_interfaces.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../prerequisites.html">
+   Course prerequisites
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_shell.html">
+     Introduction to the (unix) command line: bash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_git_and_github.html">
+     Introduction to git and github
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_jupyter.html">
+     Introduction to the jupyter ecosystem &amp; notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_numpy.html">
+     Introduction to NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scipy.html">
+     Introduction to SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_visualization.html">
+     Introduction to Visualization in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_statistics.html">
+     Introduction to Statistics in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scikit.html">
+     Introduction to scikit-learn &amp; scikit-image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../data/data.html">
+   Basics in data handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../nipype_overview.html">
+   Nipype
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_intro.html">
+     Introduction to Nipype
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_showcase.html">
+       Nipype Showcase
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart.html">
+       Nipype Quickstart
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart_non-neuroimaging.html">
+       Nipype Quickstart - non-imaging
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_basics.html">
+     Basic concepts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_interfaces.html">
+       Interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_nodes.html">
+       Nodes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_workflow.html">
+       Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_graph_visualization.html">
+       Graph Visualization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input.html">
+       Data Input
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input_bids.html">
+       Data input for BIDS datasets
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_output.html">
+       Data Output
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_plugins.html">
+       Using Nipype Plugins
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_function_interface.html">
+       Function Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_iteration.html">
+       Iterables
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_mapnodes.html">
+       MapNode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_joinnodes.html">
+       JoinNode, synchronize and itersource
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_debug.html">
+       Debugging Nipype Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_execution_configuration.html">
+       Execution Configuration Options
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_examples.html">
+     Example workflows
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_preprocessing.html">
+       Example 1: Preprocessing Workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_1stlevel.html">
+       Example 2: 1st-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_normalize.html">
+       Example 3: Normalize data to MNI template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_2ndlevel.html">
+       Example 4: 2nd-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_preprocessing.html">
+       Hands-on 1: How to create a fMRI preprocessing workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_analysis.html">
+       Hands-on 2: How to create a fMRI analysis workflow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../nipype_advanced.html">
+     Advanced concepts
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_create_interfaces.html">
+       Create interfaces
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Interface caching
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_nipypecli.html">
+       Nipype Command Line Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_aws.html">
+       Using Nipype with Amazon Web Services (AWS)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_sphinx_ext.html">
+       Sphinx extensions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_spmmcr.html">
+       Using SPM with MATLAB Common Runtime (MCR)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_mipav.html">
+       Using MIPAV, JIST, and CBS Tools
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_resources.html">
+     Resources
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_installation.html">
+       Download and install
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_help.html">
+       Where to find help
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/nipype/notebooks/advanced_interfaces_caching.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fnipype/notebooks/advanced_interfaces_caching.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/nipype/notebooks/advanced_interfaces_caching.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/nipype/notebooks/advanced_interfaces_caching.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interface-caching-why-and-how">
+   Interface caching: why and how
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-big-picture-view-using-the-memory-object">
+   A big picture view: using the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Memory
+    </span>
+   </code>
+   object
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#usage-patterns-working-efficiently-with-caching">
+   Usage patterns: working efficiently with caching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#api-reference">
+   API reference
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="interface-caching">
+<h1>Interface caching<a class="headerlink" href="#interface-caching" title="Permalink to this headline">¶</a></h1>
+<p>This section details the interface-caching mechanism, exposed in the <code class="docutils literal notranslate"><span class="pre">nipype.caching</span></code> module.</p>
+<div class="section" id="interface-caching-why-and-how">
+<h2>Interface caching: why and how<a class="headerlink" href="#interface-caching-why-and-how" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pipelines</span></code> (also called <code class="docutils literal notranslate"><span class="pre">workflows</span></code>) specify processing by an execution graph. This is useful because it opens the door to dependency checking and enables</p>
+<ul class="simple">
+<li><p>to minimize recomputations,</p></li>
+<li><p>to have the execution engine transparently deal with intermediate file manipulations.</p></li>
+</ul>
+<p>They, however, do not blend in well with arbitrary Python code, as they must rely on their own execution engine.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> give fine control of the execution of each step with a thin wrapper on the underlying software. As a result that can easily be inserted in Python code.</p>
+<p>However, they force the user to specify explicit input and output file names and cannot do any caching.</p>
+</li>
+</ul>
+<p>This is why nipype exposes an intermediate mechanism, <code class="docutils literal notranslate"><span class="pre">caching</span></code> that provides transparent output file management and caching within imperative Python code rather than a workflow.</p>
+</div>
+<div class="section" id="a-big-picture-view-using-the-memory-object">
+<h2>A big picture view: using the <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html#memory"><code class="docutils literal notranslate"><span class="pre">Memory</span></code></a> object<a class="headerlink" href="#a-big-picture-view-using-the-memory-object" title="Permalink to this headline">¶</a></h2>
+<p>nipype caching relies on the <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html#memory"><code class="docutils literal notranslate"><span class="pre">Memory</span></code></a> class: it creates an
+execution context that is bound to a disk cache:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.caching</span> <span class="kn">import</span> <span class="n">Memory</span>
+<span class="n">mem</span> <span class="o">=</span> <span class="n">Memory</span><span class="p">(</span><span class="n">base_dir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the caching directory is a subdirectory called <code class="docutils literal notranslate"><span class="pre">nipype_mem</span></code> of the given <code class="docutils literal notranslate"><span class="pre">base_dir</span></code>. This is done to avoid polluting the base director.</p>
+<p>In the corresponding execution context, nipype interfaces can be turned into callables that can be used as functions using the <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html#nipype.caching.memory.Memory.cache"><code class="docutils literal notranslate"><span class="pre">Memory.cache</span></code></a> method. For instance, if we want to run the fslMerge command on a set of files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces</span> <span class="kn">import</span> <span class="n">fsl</span>
+<span class="n">fsl_merge</span> <span class="o">=</span> <span class="n">mem</span><span class="o">.</span><span class="n">cache</span><span class="p">(</span><span class="n">fsl</span><span class="o">.</span><span class="n">Merge</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html#nipype.caching.memory.Memory.cache"><code class="docutils literal notranslate"><span class="pre">Memory.cache</span></code></a> method takes interfaces <strong>classes</strong>, and not instances.</p>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">fsl_merge</span></code> object can be applied as a function to parameters, that will form the inputs of the <code class="docutils literal notranslate"><span class="pre">merge</span></code> fsl commands. Those inputs are given as keyword arguments, bearing the same name as the name in the inputs specs of the interface. In IPython, you can also get the argument list by using the <code class="docutils literal notranslate"><span class="pre">fsl_merge?</span></code> syntax to inspect the docs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>In [3]: fsl_merge?
+String Form:PipeFunc(nipype.interfaces.fsl.utils.Merge,
+                     base_dir=/home/varoquau/dev/nipype/nipype/caching/nipype_mem)
+Namespace:  Interactive
+File:       /home/varoquau/dev/nipype/nipype/caching/memory.py
+Definition: fsl_merge(self, **kwargs)
+Docstring:  Use fslmerge to concatenate images
+
+Inputs
+------
+
+Mandatory:
+dimension: dimension along which the file will be merged
+in_files:  None
+
+Optional:
+args: Additional parameters to the command
+environ: Environment variables (default={})
+ignore_exception: Print an error message instead of throwing an exception in case the interface fails to run (default=False)
+merged_file: None
+output_type: FSL output type
+
+Outputs
+-------
+merged_file: None
+Class Docstring:
+...
+</pre></div>
+</div>
+<p>Thus <code class="docutils literal notranslate"><span class="pre">fsl_merge</span></code> is applied to parameters as such:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">fsl_merge</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">in_files</span><span class="o">=</span><span class="p">[</span><span class="n">filepath</span><span class="p">,</span> <span class="n">filepath</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The results are standard nipype nodes results. In particular, they expose an <code class="docutils literal notranslate"><span class="pre">outputs</span></code> attribute that carries all the outputs of the process, as specified by the docs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">merged_file</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, and most important, if the node is applied to the same input parameters, it is not computed, and the results are reloaded from the disk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">fsl_merge</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">in_files</span><span class="o">=</span><span class="p">[</span><span class="n">filepath</span><span class="p">,</span> <span class="n">filepath</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once the <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html#memory"><code class="docutils literal notranslate"><span class="pre">Memory</span></code></a> is set up and you are applying it to data, an important thing to keep in mind is that you are using up disk cache. It might be useful to clean it using the methods that <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html#memory"><code class="docutils literal notranslate"><span class="pre">Memory</span></code></a> provides for this: <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html#nipype.caching.memory.Memory.clear_previous_runs"><code class="docutils literal notranslate"><span class="pre">Memory.clear_previous_runs</span></code></a>, <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html#nipype.caching.memory.Memory.clear_runs_since"><code class="docutils literal notranslate"><span class="pre">Memory.clear_runs_since</span></code></a>.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>A full-blown example showing how to stage multiple operations can be found in the <a class="reference external" href="http://nipype.readthedocs.io/en/latest/_downloads/howto_caching_example.py"><code class="docutils literal notranslate"><span class="pre">caching_example.py</span></code></a> file.</p>
+</div>
+</div>
+<div class="section" id="usage-patterns-working-efficiently-with-caching">
+<h2>Usage patterns: working efficiently with caching<a class="headerlink" href="#usage-patterns-working-efficiently-with-caching" title="Permalink to this headline">¶</a></h2>
+<p>The goal of the <code class="docutils literal notranslate"><span class="pre">caching</span></code> module is to enable writing plain Python code rather than workflows. Use it: instead of data grabber nodes, use for instance the <code class="docutils literal notranslate"><span class="pre">glob</span></code> module. To vary parameters, use <code class="docutils literal notranslate"><span class="pre">for</span></code> loops. To make reusable code, write Python functions.</p>
+<p>One good rule of thumb to respect is to avoid the usage of explicit filenames apart from the outermost inputs and outputs of your processing. The reason being that the caching mechanism of <code class="docutils literal notranslate"><span class="pre">nipy.caching</span></code> takes care of generating the unique hashes, ensuring that, when you vary parameters, files are not overridden by the output of different computations.</p>
+<div class="alert alert-info">
+**Debugging**:  
+If you need to inspect the running environment of the nodes, it may be useful to know where they were executed. With `nipype.caching`, you do not control this location as it is encoded by hashes.  
+To find out where an operation has been persisted, simply look in it's output variable:  
+```out.runtime.cwd```
+</div>
+<p>Finally, the more you explore different parameters, the more you risk creating cached results that will never be reused. Keep in mind that it may be useful to flush the cache using <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html#nipype.caching.memory.Memory.clear_previous_runs"><code class="docutils literal notranslate"><span class="pre">Memory.clear_previous_runs</span></code></a> or <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html#nipype.caching.memory.Memory.clear_runs_since"><code class="docutils literal notranslate"><span class="pre">Memory.clear_runs_since</span></code></a>.</p>
+</div>
+<div class="section" id="api-reference">
+<h2>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h2>
+<p>For more info about the API, go to <a class="reference external" href="http://nipype.readthedocs.io/en/latest/api/generated/nipype.caching.memory.html"><code class="docutils literal notranslate"><span class="pre">caching.memory</span></code></a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nipype/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="advanced_create_interfaces.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Create interfaces</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="advanced_nipypecli.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Nipype Command Line Interface</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,1900 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create interfaces &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Interface caching" href="advanced_interfaces_caching.html" />
+    <link rel="prev" title="Advanced concepts" href="../nipype_advanced.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../prerequisites.html">
+   Course prerequisites
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_shell.html">
+     Introduction to the (unix) command line: bash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_git_and_github.html">
+     Introduction to git and github
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_jupyter.html">
+     Introduction to the jupyter ecosystem &amp; notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_numpy.html">
+     Introduction to NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scipy.html">
+     Introduction to SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_visualization.html">
+     Introduction to Visualization in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_statistics.html">
+     Introduction to Statistics in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scikit.html">
+     Introduction to scikit-learn &amp; scikit-image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../data/data.html">
+   Basics in data handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../nipype_overview.html">
+   Nipype
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_intro.html">
+     Introduction to Nipype
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_showcase.html">
+       Nipype Showcase
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart.html">
+       Nipype Quickstart
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart_non-neuroimaging.html">
+       Nipype Quickstart - non-imaging
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_basics.html">
+     Basic concepts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_interfaces.html">
+       Interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_nodes.html">
+       Nodes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_workflow.html">
+       Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_graph_visualization.html">
+       Graph Visualization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input.html">
+       Data Input
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input_bids.html">
+       Data input for BIDS datasets
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_output.html">
+       Data Output
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_plugins.html">
+       Using Nipype Plugins
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_function_interface.html">
+       Function Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_iteration.html">
+       Iterables
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_mapnodes.html">
+       MapNode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_joinnodes.html">
+       JoinNode, synchronize and itersource
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_debug.html">
+       Debugging Nipype Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_execution_configuration.html">
+       Execution Configuration Options
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_examples.html">
+     Example workflows
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_preprocessing.html">
+       Example 1: Preprocessing Workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_1stlevel.html">
+       Example 2: 1st-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_normalize.html">
+       Example 3: Normalize data to MNI template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_2ndlevel.html">
+       Example 4: 2nd-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_preprocessing.html">
+       Hands-on 1: How to create a fMRI preprocessing workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_analysis.html">
+       Hands-on 2: How to create a fMRI analysis workflow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../nipype_advanced.html">
+     Advanced concepts
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Create interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_interfaces_caching.html">
+       Interface caching
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_nipypecli.html">
+       Nipype Command Line Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_aws.html">
+       Using Nipype with Amazon Web Services (AWS)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_sphinx_ext.html">
+       Sphinx extensions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_spmmcr.html">
+       Using SPM with MATLAB Common Runtime (MCR)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_mipav.html">
+       Using MIPAV, JIST, and CBS Tools
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_resources.html">
+     Resources
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_installation.html">
+       Download and install
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_help.html">
+       Where to find help
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/nipype/notebooks/advanced_create_interfaces.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fnipype/notebooks/advanced_create_interfaces.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/nipype/notebooks/advanced_create_interfaces.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/nipype/notebooks/advanced_create_interfaces.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Create interfaces
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interfaces-vs-workflows">
+     Interfaces vs. Workflows
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-of-an-already-implemented-interface">
+   Example of an already implemented interface
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-of-interface-fsl-s-bet">
+     Example of interface: FSL’s
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       BET
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-the-main-parts-of-a-nipype-interface">
+   What are the main parts of a Nipype interface?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-commandline-interface">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     CommandLine
+    </span>
+   </code>
+   interface
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-quick-example">
+     A quick example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-your-own-commandline-interface">
+     Create your own
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       CommandLine
+      </span>
+     </code>
+     interface
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#so-let-s-plan-our-implementation">
+       So let’s plan our implementation:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#specifying-the-inputs">
+       Specifying the inputs
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#specifying-the-outputs">
+       Specifying the outputs
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#we-are-almost-there-final-needs">
+       We are almost there - final needs
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summary-of-a-commandline-interface">
+       Summary of a
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         CommandLine
+        </span>
+       </code>
+       interface
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#wrapping-up-fast-use-case-for-simple-commandline-wrapper">
+       Wrapping up - fast use case for simple
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         CommandLine
+        </span>
+       </code>
+       wrapper
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-your-own-python-interface">
+   Create your own
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Python
+    </span>
+   </code>
+   interface
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-approach-function-interface">
+     Quick approach -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Function
+      </span>
+     </code>
+     interface
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#complete-approach-pure-python-interface">
+     Complete approach - pure
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Python
+      </span>
+     </code>
+     interface
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-your-own-matlab-interface">
+   Create your own
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     MATLAB
+    </span>
+   </code>
+   interface
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparation">
+     Preparation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-by-step-implementation">
+     Step by step implementation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#putting-it-all-together">
+     Putting it all together
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="create-interfaces">
+<h1>Create interfaces<a class="headerlink" href="#create-interfaces" title="Permalink to this headline">¶</a></h1>
+<p>This section is meant for the more advanced user. In it we will discuss how you can create your own interface, i.e. wrapping your own code, so that you can use it with Nipype.</p>
+<p>In this notebook we will show you:</p>
+<ol class="simple">
+<li><p>Example of an already implemented interface</p></li>
+<li><p>What are the main parts of a Nipype interface?</p></li>
+<li><p>How to wrap a CommandLine interface?</p></li>
+<li><p>How to wrap a Python interface?</p></li>
+<li><p>How to wrap a MATLAB interface?</p></li>
+</ol>
+<p>But before we can start, let’s recap again the difference between interfaces and workflows.</p>
+<div class="section" id="interfaces-vs-workflows">
+<h2>Interfaces vs. Workflows<a class="headerlink" href="#interfaces-vs-workflows" title="Permalink to this headline">¶</a></h2>
+<p>Interfaces are the building blocks that solve well-defined tasks. We solve more complex tasks by combining interfaces with workflows:</p>
+<table style="width: 100%; font-size: 14px;">
+  <thead>
+    <th style="text-align:left">Interfaces</th>
+    <th style="text-align:left">Workflows</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">Wrap *unitary* tasks</td>
+      <td style="text-align:left">Wrap *meta*-tasks
+        <li style="text-align:left">implemented with nipype interfaces wrapped inside ``Node`` objects</li>
+        <li style="text-align:left">subworkflows can also be added to a workflow without any wrapping</li>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Keep track of the inputs and outputs, and check their expected types</td>
+      <td style="text-align:left">Do not have inputs/outputs, but expose them from the interfaces wrapped inside</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Do not cache results (unless you use [interface caching](advanced_interfaces_caching.ipynb))</td>
+      <td style="text-align:left">Cache results</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Run by a nipype plugin</td>
+      <td style="text-align:left">Run by a nipype plugin</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="section" id="example-of-an-already-implemented-interface">
+<h1>Example of an already implemented interface<a class="headerlink" href="#example-of-an-already-implemented-interface" title="Permalink to this headline">¶</a></h1>
+<p>For this notebook, we’ll work on the following T1-weighted dataset located in <code class="docutils literal notranslate"><span class="pre">/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_anat</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-of-interface-fsl-s-bet">
+<h2>Example of interface: FSL’s <code class="docutils literal notranslate"><span class="pre">BET</span></code><a class="headerlink" href="#example-of-interface-fsl-s-bet" title="Permalink to this headline">¶</a></h2>
+<p>Nipype offers a series of Python interfaces to various external packages (e.g. FSL, SPM or FreeSurfer) even if they themselves are written in programming languages other than python. Such interfaces know what sort of options their corresponding tool has and how to execute it.</p>
+<p>To illustrate why interfaces are so useful, let’s have a look at the brain extraction algorithm <a class="reference external" href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET">BET</a> from FSL. Once in its original framework and once in the Nipype framework.</p>
+<p>The tool can be run directly in a bash shell using the following command line:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz \
+    /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w_bet.nii.gz
+</pre></div>
+</div>
+</div>
+</div>
+<p>… which yields the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w_bet.nii.gz&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using nipype, the equivalent is a bit more verbose:</p>
+<ul class="simple">
+<li><p>line 1: The first line imports the interface</p></li>
+<li><p>line 2: Then, the interface is instantiated. We provide here the input file.</p></li>
+<li><p>line 3: Finally, we run the interface</p></li>
+<li><p>line 4: The output file name can be automatically handled by nipype, and we will use that feature here</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">BET</span>
+<span class="n">skullstrip</span> <span class="o">=</span> <span class="n">BET</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">skullstrip</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">out_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can verify that the result is exactly the same as before. Please note that, since we are using a Python environment, we use the result of the execution to point our <code class="docutils literal notranslate"><span class="pre">plot_anat</span></code> function to the output image of running BET:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">out_file</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="what-are-the-main-parts-of-a-nipype-interface">
+<h1>What are the main parts of a Nipype interface?<a class="headerlink" href="#what-are-the-main-parts-of-a-nipype-interface" title="Permalink to this headline">¶</a></h1>
+<p>Nipype is designed to ease writing interfaces for new software. Nipype interfaces are designed with three elements that are intuitive:</p>
+<ul class="simple">
+<li><p>A specification of inputs (or the <code class="docutils literal notranslate"><span class="pre">InputSpec</span></code>)</p></li>
+<li><p>A specification of outputs (or the <code class="docutils literal notranslate"><span class="pre">OutputSpec</span></code>)</p></li>
+<li><p>An interface <em>core</em> which implements the <code class="docutils literal notranslate"><span class="pre">run()</span></code> method we’ve seen before for BET, and which puts together inputs and outputs.</p></li>
+</ul>
+</div>
+<div class="section" id="the-commandline-interface">
+<h1>The <code class="docutils literal notranslate"><span class="pre">CommandLine</span></code> interface<a class="headerlink" href="#the-commandline-interface" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="a-quick-example">
+<h2>A quick example<a class="headerlink" href="#a-quick-example" title="Permalink to this headline">¶</a></h2>
+<p>The easiest and quickest way to run any command line is the <code class="docutils literal notranslate"><span class="pre">CommandLine</span></code> interface, which has a very simple specification of inputs ready to use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="n">CommandLine</span>
+<span class="n">CommandLine</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a quick example, let’s wrap bash’s <code class="docutils literal notranslate"><span class="pre">ls</span></code> with Nipype:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nipype_ls</span> <span class="o">=</span> <span class="n">CommandLine</span><span class="p">(</span><span class="s1">&#39;ls&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="s1">&#39;-lh&#39;</span><span class="p">,</span> <span class="n">terminal_output</span><span class="o">=</span><span class="s1">&#39;allatonce&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we have a Python object <code class="docutils literal notranslate"><span class="pre">nipype_ls</span></code> that is a runnable nipype interface. After execution, Nipype interface returns a result object. We can retrieve the output of our <code class="docutils literal notranslate"><span class="pre">ls</span></code> invocation from the <code class="docutils literal notranslate"><span class="pre">result.runtime</span></code> property:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">nipype_ls</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-your-own-commandline-interface">
+<h2>Create your own <code class="docutils literal notranslate"><span class="pre">CommandLine</span></code> interface<a class="headerlink" href="#create-your-own-commandline-interface" title="Permalink to this headline">¶</a></h2>
+<p>Let’s create a Nipype Interface for a very simple tool called <code class="docutils literal notranslate"><span class="pre">antsTransformInfo</span></code> from the <a class="reference external" href="http://stnava.github.io/ANTs/">ANTs</a> package. This tool is so simple it does not even have a usage description for bash. Using it with a file, gives us the following result:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transform.tfm
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="so-let-s-plan-our-implementation">
+<h3>So let’s plan our implementation:<a class="headerlink" href="#so-let-s-plan-our-implementation" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>The command line name is <code class="docutils literal notranslate"><span class="pre">antsTransformInfo</span></code>.</p></li>
+<li><p>It only accepts one text file (containing an ITK transform file) as input, and it is a positional argument.</p></li>
+<li><p>It prints out the properties of the transform in the input file. For the purpose of this notebook, we are only interested in extracting the translation values.</p></li>
+</ol>
+<p>For the first item of this roadmap, we will just need to derive a new Python class from the <code class="docutils literal notranslate"><span class="pre">nipype.interfaces.base.CommandLine</span></code> base. To indicate the appropriate command line, we set the member <code class="docutils literal notranslate"><span class="pre">_cmd</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TransformInfo</span><span class="p">(</span><span class="n">CommandLine</span><span class="p">):</span>
+    <span class="n">_cmd</span> <span class="o">=</span> <span class="s1">&#39;antsTransformInfo&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is enough to have a nipype compatible interface for this tool:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TransformInfo</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="specifying-the-inputs">
+<h3>Specifying the inputs<a class="headerlink" href="#specifying-the-inputs" title="Permalink to this headline">¶</a></h3>
+<p>However, the <code class="docutils literal notranslate"><span class="pre">args</span></code> argument is too generic and does not deviate much from just running it in bash, or directly using <code class="docutils literal notranslate"><span class="pre">subprocess.Popen</span></code>. Let’s define the inputs specification for the interface, extending the <code class="docutils literal notranslate"><span class="pre">nipype.interfaces.base.CommandLineInputSpec</span></code> class.</p>
+<p>The inputs are implemented using the Enthought traits package. For now, we’ll use the <code class="docutils literal notranslate"><span class="pre">File</span></code> trait extension of nipype:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="n">CommandLineInputSpec</span><span class="p">,</span> <span class="n">File</span>
+
+<span class="k">class</span> <span class="nc">TransformInfoInputSpec</span><span class="p">(</span><span class="n">CommandLineInputSpec</span><span class="p">):</span>
+    <span class="n">in_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">argstr</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                   <span class="n">position</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the input transform file&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some settings are done for this <code class="docutils literal notranslate"><span class="pre">File</span></code> object:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">exists=True</span></code> indicates Nipype that the file must exist when it is set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mandatory=True</span></code> checks that this input was set before running because the program would crash otherwise</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">argstr='%s'</span></code> indicates how this input parameter should be formatted</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">position=0</span></code> indicates  that this is the first positional argument</p></li>
+</ul>
+<p>We can now decorate our <code class="docutils literal notranslate"><span class="pre">TransformInfo</span></code> core class with its input, by setting the <code class="docutils literal notranslate"><span class="pre">input_spec</span></code> member:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TransformInfo</span><span class="p">(</span><span class="n">CommandLine</span><span class="p">):</span>
+    <span class="n">_cmd</span> <span class="o">=</span> <span class="s1">&#39;antsTransformInfo&#39;</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">TransformInfoInputSpec</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our interface now has one mandatory input, and inherits some optional inputs from the <code class="docutils literal notranslate"><span class="pre">CommandLineInputSpec</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TransformInfo</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One interesting feature of the Nipype interface is that the underlying command line can be checked using the object property <code class="docutils literal notranslate"><span class="pre">cmdline</span></code>. The command line can only be built when the mandatory inputs are set, so let’s instantiate our new Interface for the first time, and check the underlying command line:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_info_interface</span> <span class="o">=</span> <span class="n">TransformInfo</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/home/neuro/workshop/nipype_tutorial/notebooks/scripts/transform.tfm&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_info_interface</span><span class="o">.</span><span class="n">cmdline</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nipype will make sure that the parameters fulfill their prescribed attributes. For instance, <code class="docutils literal notranslate"><span class="pre">in_file</span></code> is mandatory. An error is issued if we build the command line or try to run this interface without it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">TransformInfo</span><span class="p">()</span><span class="o">.</span><span class="n">cmdline</span>
+
+<span class="k">except</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It crashed with...&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ValueError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It will also complain if we try to set a non-existent file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">my_info_interface</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">in_file</span> <span class="o">=</span> <span class="s1">&#39;idontexist.tfm&#39;</span>
+
+<span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It crashed with...&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TraitError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="specifying-the-outputs">
+<h3>Specifying the outputs<a class="headerlink" href="#specifying-the-outputs" title="Permalink to this headline">¶</a></h3>
+<p>The outputs are defined in a similar way. Let’s define a custom output for our interface which is a list of three float element. The output traits are derived from a simpler base class called <code class="docutils literal notranslate"><span class="pre">TraitedSpec</span></code>. We also import the two data representations we need <code class="docutils literal notranslate"><span class="pre">List</span></code> and <code class="docutils literal notranslate"><span class="pre">Float</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="n">TraitedSpec</span><span class="p">,</span> <span class="n">traits</span>
+
+<span class="k">class</span> <span class="nc">TransformInfoOutputSpec</span><span class="p">(</span><span class="n">TraitedSpec</span><span class="p">):</span>
+    <span class="n">translation</span> <span class="o">=</span> <span class="n">traits</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">traits</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the translation component of the input transform&#39;</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">TransformInfo</span><span class="p">(</span><span class="n">CommandLine</span><span class="p">):</span>
+    <span class="n">_cmd</span> <span class="o">=</span> <span class="s1">&#39;antsTransformInfo&#39;</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">TransformInfoInputSpec</span>
+    <span class="n">output_spec</span> <span class="o">=</span> <span class="n">TransformInfoOutputSpec</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now, our new output is in place:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TransformInfo</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="we-are-almost-there-final-needs">
+<h3>We are almost there - final needs<a class="headerlink" href="#we-are-almost-there-final-needs" title="Permalink to this headline">¶</a></h3>
+<p>If we run the interface, we’ll be able to see that this tool only writes some text to the standard output, but we just want to extract the <code class="docutils literal notranslate"><span class="pre">Translation</span></code> field and generate a Python object from it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_info_interface</span> <span class="o">=</span> <span class="n">TransformInfo</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/home/neuro/workshop/nipype_tutorial/notebooks/scripts/transform.tfm&#39;</span><span class="p">,</span>
+                                  <span class="n">terminal_output</span><span class="o">=</span><span class="s1">&#39;allatonce&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">my_info_interface</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to complete the functionality of the <code class="docutils literal notranslate"><span class="pre">run()</span></code> member of our interface to parse the standard output. This is done extending its <code class="docutils literal notranslate"><span class="pre">_run_interface()</span></code> member.</p>
+<p>When we define outputs, generally they need to be explicitly wired in the <code class="docutils literal notranslate"><span class="pre">_list_outputs()</span></code> member of the core class. Let’s see how we can <em>complete</em> those:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TransformInfo</span><span class="p">(</span><span class="n">CommandLine</span><span class="p">):</span>
+    <span class="n">_cmd</span> <span class="o">=</span> <span class="s1">&#39;antsTransformInfo&#39;</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">TransformInfoInputSpec</span>
+    <span class="n">output_spec</span> <span class="o">=</span> <span class="n">TransformInfoOutputSpec</span>
+            
+    <span class="k">def</span> <span class="nf">_run_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runtime</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">re</span>
+        
+        <span class="c1"># Run the command line as a natural CommandLine interface</span>
+        <span class="n">runtime</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">TransformInfo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_run_interface</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
+
+        <span class="c1"># Search transform in the standard output</span>
+        <span class="n">expr_tra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;Translation:\s+\[(?P&lt;translation&gt;[0-9\.-]+,\s[0-9\.-]+,\s[0-9\.-]+)\]&#39;</span><span class="p">)</span>
+        <span class="n">trans</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">expr_tra</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">runtime</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;translation&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)]</span>
+        
+        <span class="c1"># Save it for later use in _list_outputs</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_result&#39;</span><span class="p">,</span> <span class="n">trans</span><span class="p">)</span>
+        
+        <span class="c1"># Good to go</span>
+        <span class="k">return</span> <span class="n">runtime</span>
+    
+    <span class="k">def</span> <span class="nf">_list_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="c1"># Get the attribute saved during _run_interface</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;translation&#39;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_result&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s run this interface (we set <code class="docutils literal notranslate"><span class="pre">terminal_output='allatonce'</span></code> to reduce the length of this manual, default would otherwise be <code class="docutils literal notranslate"><span class="pre">'stream'</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_info_interface</span> <span class="o">=</span> <span class="n">TransformInfo</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/home/neuro/workshop/nipype_tutorial/notebooks/scripts/transform.tfm&#39;</span><span class="p">,</span>
+                                  <span class="n">terminal_output</span><span class="o">=</span><span class="s1">&#39;allatonce&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">my_info_interface</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can retrieve our outcome of interest as an output:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">translation</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="summary-of-a-commandline-interface">
+<h3>Summary of a <code class="docutils literal notranslate"><span class="pre">CommandLine</span></code> interface<a class="headerlink" href="#summary-of-a-commandline-interface" title="Permalink to this headline">¶</a></h3>
+<p>Now putting it all togehter, it looks as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="p">(</span><span class="n">CommandLine</span><span class="p">,</span> <span class="n">CommandLineInputSpec</span><span class="p">,</span>
+                                    <span class="n">TraitedSpec</span><span class="p">,</span> <span class="n">traits</span><span class="p">,</span> <span class="n">File</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">TransformInfoInputSpec</span><span class="p">(</span><span class="n">CommandLineInputSpec</span><span class="p">):</span>
+    <span class="n">in_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">argstr</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                   <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the input transform file&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">TransformInfoOutputSpec</span><span class="p">(</span><span class="n">TraitedSpec</span><span class="p">):</span>
+    <span class="n">translation</span> <span class="o">=</span> <span class="n">traits</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">traits</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the translation component of the input transform&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">TransformInfo</span><span class="p">(</span><span class="n">CommandLine</span><span class="p">):</span>
+    <span class="n">_cmd</span> <span class="o">=</span> <span class="s1">&#39;antsTransformInfo&#39;</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">TransformInfoInputSpec</span>
+    <span class="n">output_spec</span> <span class="o">=</span> <span class="n">TransformInfoOutputSpec</span>
+            
+    <span class="k">def</span> <span class="nf">_run_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runtime</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">re</span>
+        
+        <span class="c1"># Run the command line as a natural CommandLine interface</span>
+        <span class="n">runtime</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">TransformInfo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_run_interface</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
+
+        <span class="c1"># Search transform in the standard output</span>
+        <span class="n">expr_tra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;Translation:\s+\[(?P&lt;translation&gt;[0-9\.-]+,\s[0-9\.-]+,\s[0-9\.-]+)\]&#39;</span><span class="p">)</span>
+        <span class="n">trans</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">expr_tra</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">runtime</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;translation&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)]</span>
+        
+        <span class="c1"># Save it for later use in _list_outputs</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_result&#39;</span><span class="p">,</span> <span class="n">trans</span><span class="p">)</span>
+        
+        <span class="c1"># Good to go</span>
+        <span class="k">return</span> <span class="n">runtime</span>
+    
+    <span class="k">def</span> <span class="nf">_list_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="c1"># Get the attribute saved during _run_interface</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;translation&#39;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_result&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_info_interface</span> <span class="o">=</span> <span class="n">TransformInfo</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/home/neuro/workshop/nipype_tutorial/notebooks/scripts/transform.tfm&#39;</span><span class="p">,</span>
+                                  <span class="n">terminal_output</span><span class="o">=</span><span class="s1">&#39;allatonce&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">my_info_interface</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">translation</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="wrapping-up-fast-use-case-for-simple-commandline-wrapper">
+<h3>Wrapping up - fast use case for simple <code class="docutils literal notranslate"><span class="pre">CommandLine</span></code> wrapper<a class="headerlink" href="#wrapping-up-fast-use-case-for-simple-commandline-wrapper" title="Permalink to this headline">¶</a></h3>
+<p>For more standard neuroimaging software, generally we will just have to specify simple flags, i.e. input and output images and some additional parameters. If that is the case, then there is no need to extend the <code class="docutils literal notranslate"><span class="pre">run()</span></code> method.</p>
+<p>Let’s look at a quick, partial, implementation of FSL’s BET:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="n">CommandLineInputSpec</span><span class="p">,</span> <span class="n">File</span><span class="p">,</span> <span class="n">TraitedSpec</span>
+
+<span class="k">class</span> <span class="nc">CustomBETInputSpec</span><span class="p">(</span><span class="n">CommandLineInputSpec</span><span class="p">):</span>
+    <span class="n">in_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">argstr</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the input image&#39;</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">traits</span><span class="o">.</span><span class="n">Bool</span><span class="p">(</span><span class="n">mandatory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">argstr</span><span class="o">=</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;create binary mask image&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Do not set exists=True for output files!</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">argstr</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the output image&#39;</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">CustomBETOutputSpec</span><span class="p">(</span><span class="n">TraitedSpec</span><span class="p">):</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the output image&#39;</span><span class="p">)</span>
+    <span class="n">mask_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s2">&quot;path/name of binary brain mask (if generated)&quot;</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">CustomBET</span><span class="p">(</span><span class="n">CommandLine</span><span class="p">):</span>
+    <span class="n">_cmd</span> <span class="o">=</span> <span class="s1">&#39;bet&#39;</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">CustomBETInputSpec</span>
+    <span class="n">output_spec</span> <span class="o">=</span> <span class="n">CustomBETOutputSpec</span>
+    
+    <span class="k">def</span> <span class="nf">_list_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># Get the attribute saved during _run_interface</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;out_file&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">out_file</span><span class="p">,</span>
+                <span class="s1">&#39;mask_file&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">out_file</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;brain&#39;</span><span class="p">,</span> <span class="s1">&#39;brain_mask&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_custom_bet</span> <span class="o">=</span> <span class="n">CustomBET</span><span class="p">()</span>
+<span class="n">my_custom_bet</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">in_file</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span>
+<span class="n">my_custom_bet</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">out_file</span> <span class="o">=</span> <span class="s1">&#39;sub-01_T1w_brain.nii.gz&#39;</span>
+<span class="n">my_custom_bet</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">my_custom_bet</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">out_file</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-your-own-python-interface">
+<h1>Create your own <code class="docutils literal notranslate"><span class="pre">Python</span></code> interface<a class="headerlink" href="#create-your-own-python-interface" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">CommandLine</span></code> interface is great, but my tool is already in Python - can I wrap it natively?</p>
+<p>Sure. Let’s solve the following problem: Let’s say we have a Python function that takes an input image and a list of three translations (x, y, z) in mm, and then writes a resampled image after the translation has been applied:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">translate_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">translation</span><span class="p">,</span> <span class="n">out_file</span><span class="p">):</span>
+
+    <span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nb</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">from</span> <span class="nn">scipy.ndimage.interpolation</span> <span class="kn">import</span> <span class="n">affine_transform</span>
+    
+    <span class="c1"># Load the data</span>
+    <span class="n">nii</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">nii</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+    
+    <span class="c1"># Create the transformation matrix</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">trans</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">translation</span><span class="p">)</span> <span class="o">/</span> <span class="n">nii</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get_zooms</span><span class="p">()[:</span><span class="mi">3</span><span class="p">])</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">])</span>
+    
+    <span class="c1"># Apply the transformation matrix</span>
+    <span class="n">newdata</span> <span class="o">=</span> <span class="n">affine_transform</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">matrix</span><span class="o">=</span><span class="n">matrix</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">trans</span><span class="p">)</span>
+    
+    <span class="c1"># Save the new data in a new NIfTI image</span>
+    <span class="n">nb</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">newdata</span><span class="p">,</span> <span class="n">nii</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span> <span class="n">nii</span><span class="o">.</span><span class="n">header</span><span class="p">)</span><span class="o">.</span><span class="n">to_filename</span><span class="p">(</span><span class="n">out_file</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Translated file now is here: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">out_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how this function operates:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">orig_image</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span>
+<span class="n">translation</span> <span class="o">=</span> <span class="p">[</span><span class="mf">20.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">]</span>
+<span class="n">translated_image</span> <span class="o">=</span> <span class="s1">&#39;translated.nii.gz&#39;</span>
+
+<span class="c1"># Let&#39;s run the translate_image function on our inputs</span>
+<span class="n">translate_image</span><span class="p">(</span><span class="n">orig_image</span><span class="p">,</span>
+                <span class="n">translation</span><span class="p">,</span>
+                <span class="n">translated_image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that the function was executed, let’s plot the original and the translated image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="n">orig_image</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="s1">&#39;translated.nii.gz&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Perfect, we see that the translation was applied.</p>
+<div class="section" id="quick-approach-function-interface">
+<h2>Quick approach - <code class="docutils literal notranslate"><span class="pre">Function</span></code> interface<a class="headerlink" href="#quick-approach-function-interface" title="Permalink to this headline">¶</a></h2>
+<p>Don’t reinvent the wheel if it’s not necessary. If like in this case, we have a well-defined function we want to run with Nipype, it is fairly easy to solve it with the <code class="docutils literal notranslate"><span class="pre">Function</span></code> interface:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.utility</span> <span class="kn">import</span> <span class="n">Function</span>
+
+<span class="n">my_python_interface</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span>
+    <span class="n">input_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="s1">&#39;translation&#39;</span><span class="p">,</span> <span class="s1">&#39;out_file&#39;</span><span class="p">],</span>
+    <span class="n">output_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;out_file&#39;</span><span class="p">],</span>
+    <span class="n">function</span><span class="o">=</span><span class="n">translate_image</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The arguments of <code class="docutils literal notranslate"><span class="pre">translate_image</span></code> should ideally be listed in the same order and with the same names as in the signature of the function. The same should be the case for the outputs. Finally, the <code class="docutils literal notranslate"><span class="pre">Function</span></code> interface takes a <code class="docutils literal notranslate"><span class="pre">function</span></code> input that is pointed to your python code.</p>
+<p><em><strong>Note</strong></em>: The inputs and outputs do not pass any kind of conformity checking: the function node will take any kind of data type for their inputs and outputs.</p>
+<p>There are some other limitations to the <code class="docutils literal notranslate"><span class="pre">Function</span></code> interface when used inside workflows. Additionally, the function must be totally self-contained, since it will run with no global context. In practice, it means that <strong>all the imported modules and variables must be defined within the context of the function</strong>.</p>
+<p>For more, check out the <span class="xref myst">Function Node</span> notebook.</p>
+<p>Back to our <code class="docutils literal notranslate"><span class="pre">Function</span></code> interface. You can run it as any other interface object of Nipype:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set inputs</span>
+<span class="n">my_python_interface</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">img</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span>
+<span class="n">my_python_interface</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">translation</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">35.0</span><span class="p">,</span> <span class="mf">35.0</span><span class="p">,</span> <span class="mf">35.0</span><span class="p">]</span>
+<span class="n">my_python_interface</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">out_file</span> <span class="o">=</span> <span class="s1">&#39;translated_functioninterface.nii.gz&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the interface</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">my_python_interface</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the result</span>
+<span class="n">plot_anat</span><span class="p">(</span><span class="s1">&#39;translated_functioninterface.nii.gz&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="complete-approach-pure-python-interface">
+<h2>Complete approach - pure <code class="docutils literal notranslate"><span class="pre">Python</span></code> interface<a class="headerlink" href="#complete-approach-pure-python-interface" title="Permalink to this headline">¶</a></h2>
+<p>Now, we face the problem of interfacing something different from a command line. Therefore, the <code class="docutils literal notranslate"><span class="pre">CommandLine</span></code> base class will not help us here. The specification of the inputs and outputs, though, will work the same way.</p>
+<p>Let’s start from that point on. Our Python function takes in three inputs: (1) the input image, (2) the translation and (3) an output image.</p>
+<p>The specification of inputs and outputs must be familiar to you at this point. Please note that now, input specification is derived from <code class="docutils literal notranslate"><span class="pre">BaseInterfaceInputSpec</span></code>, which is a bit thinner than <code class="docutils literal notranslate"><span class="pre">CommandLineInputSpec</span></code>. The output specification can be derived from <code class="docutils literal notranslate"><span class="pre">TraitedSpec</span></code> as before:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="n">BaseInterfaceInputSpec</span><span class="p">,</span> <span class="n">File</span><span class="p">,</span> <span class="n">TraitedSpec</span>
+
+<span class="k">class</span> <span class="nc">TranslateImageInputSpec</span><span class="p">(</span><span class="n">BaseInterfaceInputSpec</span><span class="p">):</span>
+    <span class="n">in_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the input image&#39;</span><span class="p">)</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the output image&#39;</span><span class="p">)</span> <span class="c1"># Do not set exists=True !!</span>
+    <span class="n">translation</span> <span class="o">=</span> <span class="n">traits</span><span class="o">.</span><span class="n">List</span><span class="p">([</span><span class="mf">50.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">traits</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="n">usedefault</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the translation component of the input transform&#39;</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">TranslateImageOutputSpec</span><span class="p">(</span><span class="n">TraitedSpec</span><span class="p">):</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the output image&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarily to the change of base class for the input specification, the core of our new interface will derive from <code class="docutils literal notranslate"><span class="pre">BaseInterface</span></code> instead of <code class="docutils literal notranslate"><span class="pre">CommandLineInterface</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="n">BaseInterface</span>
+
+<span class="k">class</span> <span class="nc">TranslateImage</span><span class="p">(</span><span class="n">BaseInterface</span><span class="p">):</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">TranslateImageInputSpec</span>
+    <span class="n">output_spec</span> <span class="o">=</span> <span class="n">TranslateImageOutputSpec</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>At this point, we have defined a pure python interface but it is unable to do anything because we didn’t implement a <code class="docutils literal notranslate"><span class="pre">_run_interface()</span></code> method yet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TranslateImage</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What happens if we try to run such an interface without specifying the <code class="docutils literal notranslate"><span class="pre">_run_interface()</span></code> function?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">will_fail_at_run</span> <span class="o">=</span> <span class="n">TranslateImage</span><span class="p">(</span>
+    <span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">,</span>
+    <span class="n">out_file</span><span class="o">=</span><span class="s1">&#39;translated.nii.gz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">will_fail_at_run</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="k">except</span><span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It crashed with...&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NotImplementedError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, let’s implement the missing part. As we would imagine, this needs to be very similar to what we did before with the <code class="docutils literal notranslate"><span class="pre">TransformInfo</span></code> interface:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TranslateImage</span><span class="p">(</span><span class="n">BaseInterface</span><span class="p">):</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">TranslateImageInputSpec</span>
+    <span class="n">output_spec</span> <span class="o">=</span> <span class="n">TranslateImageOutputSpec</span>
+    
+    <span class="k">def</span> <span class="nf">_run_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runtime</span><span class="p">):</span>
+        
+        <span class="c1"># Call our python code here:</span>
+        <span class="n">translate_image</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">in_file</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">translation</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">out_file</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># And we are done</span>
+        <span class="k">return</span> <span class="n">runtime</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we run it know, our interface will get further:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">half_works</span> <span class="o">=</span> <span class="n">TranslateImage</span><span class="p">(</span>
+    <span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">,</span>
+    <span class="n">out_file</span><span class="o">=</span><span class="s1">&#39;translated_nipype.nii.gz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">half_works</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="k">except</span><span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It crashed with...&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NotImplementedError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>… but still, it crashes becasue we haven’t specified any <code class="docutils literal notranslate"><span class="pre">_list_outputs()</span></code> method. I.e. our python function is called, but the interface crashes when the execution arrives to retrieving the outputs.</p>
+<p>Let’s fix that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="n">BaseInterfaceInputSpec</span><span class="p">,</span> <span class="n">BaseInterface</span><span class="p">,</span> <span class="n">File</span><span class="p">,</span> <span class="n">TraitedSpec</span>
+
+<span class="k">class</span> <span class="nc">TranslateImageInputSpec</span><span class="p">(</span><span class="n">BaseInterfaceInputSpec</span><span class="p">):</span>
+    <span class="n">in_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the input image&#39;</span><span class="p">)</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the output image&#39;</span><span class="p">)</span> <span class="c1"># Do not set exists=True !!</span>
+    <span class="n">translation</span> <span class="o">=</span> <span class="n">traits</span><span class="o">.</span><span class="n">List</span><span class="p">([</span><span class="mf">50.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">traits</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="n">usedefault</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the translation component of the input transform&#39;</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">TranslateImageOutputSpec</span><span class="p">(</span><span class="n">TraitedSpec</span><span class="p">):</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;the output image&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">TranslateImage</span><span class="p">(</span><span class="n">BaseInterface</span><span class="p">):</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">TranslateImageInputSpec</span>
+    <span class="n">output_spec</span> <span class="o">=</span> <span class="n">TranslateImageOutputSpec</span>
+    
+    <span class="k">def</span> <span class="nf">_run_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runtime</span><span class="p">):</span>
+
+        <span class="c1"># Call our python code here:</span>
+        <span class="n">translate_image</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">in_file</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">translation</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">out_file</span>
+        <span class="p">)</span>
+        <span class="c1"># And we are done</span>
+        <span class="k">return</span> <span class="n">runtime</span>
+
+    <span class="k">def</span> <span class="nf">_list_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;out_file&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">out_file</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we have everything together. So let’s run it and visualize the output file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">this_works</span> <span class="o">=</span> <span class="n">TranslateImage</span><span class="p">(</span>
+    <span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">,</span>
+    <span class="n">out_file</span><span class="o">=</span><span class="s1">&#39;translated_nipype.nii.gz&#39;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">this_works</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">out_file</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-your-own-matlab-interface">
+<h1>Create your own <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> interface<a class="headerlink" href="#create-your-own-matlab-interface" title="Permalink to this headline">¶</a></h1>
+<p>Last but not least, let’s take a look at how we would create a <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> interface. For this purpose, let’s say we want to run some matlab code that counts the number of voxels in an MRI image with intensity larger than zero. Such a value could give us an estimation of the brain volume (in voxels) of a skull-stripped image.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code>, our code looks as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">load</span> <span class="n">input_image</span><span class="o">.</span><span class="n">mat</span><span class="p">;</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">(:)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following example uses <code class="docutils literal notranslate"><span class="pre">scipy.io.savemat</span></code> to convert the input image to <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> format. Once the file is loaded we can quickly extract the estimated total volume.</p>
+<p><em><strong>Note:</strong></em> For the purpose of this example, we will be using the freely available <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> alternative <code class="docutils literal notranslate"><span class="pre">Octave</span></code>. But the implementation of a <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> interface will be identical.</p>
+<div class="section" id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
+<p>As before, we need to specify an <code class="docutils literal notranslate"><span class="pre">InputSpec</span></code> and an <code class="docutils literal notranslate"><span class="pre">OutputSpec</span></code> class. The input class will expect a <code class="docutils literal notranslate"><span class="pre">file</span></code> as an input and the <code class="docutils literal notranslate"><span class="pre">script</span></code> containing the code that we would like to run, and the output class will give us back the total <code class="docutils literal notranslate"><span class="pre">volume</span></code>.</p>
+<p>In the context of a <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> interface, this is implemented as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="p">(</span><span class="n">CommandLine</span><span class="p">,</span> <span class="n">traits</span><span class="p">,</span> <span class="n">TraitedSpec</span><span class="p">,</span>
+                                    <span class="n">BaseInterface</span><span class="p">,</span> <span class="n">BaseInterfaceInputSpec</span><span class="p">,</span> <span class="n">File</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">BrainVolumeMATLABInputSpec</span><span class="p">(</span><span class="n">BaseInterfaceInputSpec</span><span class="p">):</span>
+    <span class="n">in_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">script_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">BrainVolumeMATLABOutputSpec</span><span class="p">(</span><span class="n">TraitedSpec</span><span class="p">):</span>
+    <span class="n">volume</span> <span class="o">=</span> <span class="n">traits</span><span class="o">.</span><span class="n">Int</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;brain volume&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">BrainVolumeMATLAB</span><span class="p">(</span><span class="n">BaseInterface</span><span class="p">):</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">BrainVolumeMATLABInputSpec</span>
+    <span class="n">output_spec</span> <span class="o">=</span> <span class="n">BrainVolumeMATLABOutputSpec</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="step-by-step-implementation">
+<h2>Step by step implementation<a class="headerlink" href="#step-by-step-implementation" title="Permalink to this headline">¶</a></h2>
+<p>Now, we have to specify what should happen, once the interface is run. As we said earlier, we want to:</p>
+<ol class="simple">
+<li><p>load the image data and save it in a mat file</p></li>
+<li><p>load the script</p></li>
+<li><p>replace the put the relevant information into the script</p></li>
+<li><p>run the script</p></li>
+<li><p>extract the results</p></li>
+</ol>
+<p>This all can be implemented with the following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the interface inputs</span>
+<span class="n">in_file</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span>
+<span class="n">script_file</span> <span class="o">=</span> <span class="s1">&#39;/home/neuro/workshop/nipype_tutorial/notebooks/scripts/brainvolume.m&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat scripts/brainvolume.m
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">savemat</span>
+
+<span class="c1"># 1. save the image in matlab format as tmp_image.mat</span>
+<span class="n">tmp_image</span> <span class="o">=</span> <span class="s1">&#39;tmp_image.mat&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">in_file</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">savemat</span><span class="p">(</span><span class="n">tmp_image</span><span class="p">,</span> <span class="p">{</span><span class="sa">b</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">},</span> <span class="n">do_compression</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. load script</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">script_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">script_file</span><span class="p">:</span>
+    <span class="n">script_content</span> <span class="o">=</span> <span class="n">script_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3. replace the input_image.mat file with the actual input of this interface</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;newscript.m&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">script_file</span><span class="p">:</span>
+    <span class="n">script_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">script_content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;input_image.mat&#39;</span><span class="p">,</span> <span class="s1">&#39;tmp_image.mat&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4. run the matlab script</span>
+<span class="n">mlab</span> <span class="o">=</span> <span class="n">CommandLine</span><span class="p">(</span><span class="s1">&#39;octave&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="s1">&#39;newscript.m&#39;</span><span class="p">,</span> <span class="n">terminal_output</span><span class="o">=</span><span class="s1">&#39;stream&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mlab</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 5. extract the volume estimation from the output</span>
+<span class="n">expr_tra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;total\ =\s+(?P&lt;total&gt;[0-9]+)&#39;</span><span class="p">)</span>
+<span class="n">volume</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">expr_tra</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()[</span><span class="s1">&#39;total&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="putting-it-all-together">
+<h2>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h2>
+<p>Now we just need to put this all together in the <code class="docutils literal notranslate"><span class="pre">_run_interface()</span></code> method and add a <code class="docutils literal notranslate"><span class="pre">_list_outputs()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="p">(</span><span class="n">CommandLine</span><span class="p">,</span> <span class="n">traits</span><span class="p">,</span> <span class="n">TraitedSpec</span><span class="p">,</span>
+                                    <span class="n">BaseInterface</span><span class="p">,</span> <span class="n">BaseInterfaceInputSpec</span><span class="p">,</span> <span class="n">File</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">savemat</span>
+
+<span class="k">class</span> <span class="nc">BrainVolumeMATLABInputSpec</span><span class="p">(</span><span class="n">BaseInterfaceInputSpec</span><span class="p">):</span>
+    <span class="n">in_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">script_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">BrainVolumeMATLABOutputSpec</span><span class="p">(</span><span class="n">TraitedSpec</span><span class="p">):</span>
+    <span class="n">volume</span> <span class="o">=</span> <span class="n">traits</span><span class="o">.</span><span class="n">Int</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;brain volume&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">BrainVolumeMATLAB</span><span class="p">(</span><span class="n">BaseInterface</span><span class="p">):</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">BrainVolumeMATLABInputSpec</span>
+    <span class="n">output_spec</span> <span class="o">=</span> <span class="n">BrainVolumeMATLABOutputSpec</span>
+
+    <span class="k">def</span> <span class="nf">_run_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runtime</span><span class="p">):</span> 
+        <span class="c1"># Save the image in matlab format as tmp_image.mat</span>
+        <span class="n">tmp_image</span> <span class="o">=</span> <span class="s1">&#39;tmp_image.mat&#39;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">in_file</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+        <span class="n">savemat</span><span class="p">(</span><span class="n">tmp_image</span><span class="p">,</span> <span class="p">{</span><span class="sa">b</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">},</span> <span class="n">do_compression</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+        <span class="c1"># Load script</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">script_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">script_file</span><span class="p">:</span>
+            <span class="n">script_content</span> <span class="o">=</span> <span class="n">script_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        
+        <span class="c1"># Replace the input_image.mat file for the actual input of this interface</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;newscript.m&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">script_file</span><span class="p">:</span>
+            <span class="n">script_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">script_content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;input_image.mat&#39;</span><span class="p">,</span> <span class="s1">&#39;tmp_image.mat&#39;</span><span class="p">))</span>
+
+        <span class="c1"># Run a matlab command</span>
+        <span class="n">mlab</span> <span class="o">=</span> <span class="n">CommandLine</span><span class="p">(</span><span class="s1">&#39;octave&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="s1">&#39;newscript.m&#39;</span><span class="p">,</span> <span class="n">terminal_output</span><span class="o">=</span><span class="s1">&#39;stream&#39;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">mlab</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+        
+        <span class="n">expr_tra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;total\ =\s+(?P&lt;total&gt;[0-9]+)&#39;</span><span class="p">)</span>
+        <span class="n">volume</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">expr_tra</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()[</span><span class="s1">&#39;total&#39;</span><span class="p">])</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_result&#39;</span><span class="p">,</span> <span class="n">volume</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">runtime</span>
+
+    <span class="k">def</span> <span class="nf">_list_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_outputs</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_result&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">outputs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s test it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matlab</span> <span class="o">=</span> <span class="n">BrainVolumeMATLAB</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">,</span>
+                           <span class="n">script_file</span><span class="o">=</span><span class="s1">&#39;/home/neuro/workshop/nipype_tutorial/notebooks/scripts/brainvolume.m&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see in the example above that everything works fine. But now, let’s say that we want to save the total brain volume to a file and give the location of this file back as an output. How would you do that?</p>
+</div>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>Modify the <code class="docutils literal notranslate"><span class="pre">BrainVolumeMATLAB</span></code> interface so that it has one more <strong>output</strong> called <code class="docutils literal notranslate"><span class="pre">out_file</span></code>, that points to a text file where we write the volume in voxels. The name of the <code class="docutils literal notranslate"><span class="pre">out_file</span></code> can be hard coded to <code class="docutils literal notranslate"><span class="pre">volume.txt</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your solution here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="p">(</span><span class="n">CommandLine</span><span class="p">,</span> <span class="n">traits</span><span class="p">,</span> <span class="n">TraitedSpec</span><span class="p">,</span>
+                                    <span class="n">BaseInterface</span><span class="p">,</span> <span class="n">BaseInterfaceInputSpec</span><span class="p">,</span> <span class="n">File</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">savemat</span>
+
+<span class="k">class</span> <span class="nc">BrainVolumeMATLABInputSpec</span><span class="p">(</span><span class="n">BaseInterfaceInputSpec</span><span class="p">):</span>
+    <span class="n">in_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">script_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">BrainVolumeMATLABOutputSpec</span><span class="p">(</span><span class="n">TraitedSpec</span><span class="p">):</span>
+    <span class="n">volume</span> <span class="o">=</span> <span class="n">traits</span><span class="o">.</span><span class="n">Int</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;brain volume&#39;</span><span class="p">)</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;output file containing total brain volume&#39;</span><span class="p">)</span>  <span class="c1"># This line was added</span>
+
+<span class="k">class</span> <span class="nc">BrainVolumeMATLAB</span><span class="p">(</span><span class="n">BaseInterface</span><span class="p">):</span>
+    <span class="n">input_spec</span> <span class="o">=</span> <span class="n">BrainVolumeMATLABInputSpec</span>
+    <span class="n">output_spec</span> <span class="o">=</span> <span class="n">BrainVolumeMATLABOutputSpec</span>
+
+    <span class="k">def</span> <span class="nf">_run_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runtime</span><span class="p">):</span> 
+        <span class="c1"># Save the image in matlab format as tmp_image.mat</span>
+        <span class="n">tmp_image</span> <span class="o">=</span> <span class="s1">&#39;tmp_image.mat&#39;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">in_file</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+        <span class="n">savemat</span><span class="p">(</span><span class="n">tmp_image</span><span class="p">,</span> <span class="p">{</span><span class="sa">b</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">},</span> <span class="n">do_compression</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+        <span class="c1"># Load script</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">script_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">script_file</span><span class="p">:</span>
+            <span class="n">script_content</span> <span class="o">=</span> <span class="n">script_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        
+        <span class="c1"># Replace the input_image.mat file for the actual input of this interface</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;newscript.m&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">script_file</span><span class="p">:</span>
+            <span class="n">script_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">script_content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;input_image.mat&#39;</span><span class="p">,</span> <span class="s1">&#39;tmp_image.mat&#39;</span><span class="p">))</span>
+
+        <span class="c1"># Run a matlab command</span>
+        <span class="n">mlab</span> <span class="o">=</span> <span class="n">CommandLine</span><span class="p">(</span><span class="s1">&#39;octave&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="s1">&#39;newscript.m&#39;</span><span class="p">,</span> <span class="n">terminal_output</span><span class="o">=</span><span class="s1">&#39;stream&#39;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">mlab</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+        
+        <span class="n">expr_tra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;total\ =\s+(?P&lt;total&gt;[0-9]+)&#39;</span><span class="p">)</span>
+        <span class="n">volume</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">expr_tra</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()[</span><span class="s1">&#39;total&#39;</span><span class="p">])</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_result&#39;</span><span class="p">,</span> <span class="n">volume</span><span class="p">)</span>
+        
+        <span class="c1"># Write total brain volume into a file</span>
+        <span class="n">out_fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;volume.txt&#39;</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_out_file&#39;</span><span class="p">,</span> <span class="n">out_fname</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;volume.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
+            <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">volume</span>)
+        
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">runtime</span>
+
+    <span class="k">def</span> <span class="nf">_list_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_outputs</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_result&#39;</span><span class="p">)</span>
+        <span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;out_file&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_out_file&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">outputs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s test if it works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matlab</span> <span class="o">=</span> <span class="n">BrainVolumeMATLAB</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">,</span>
+                           <span class="n">script_file</span><span class="o">=</span><span class="s1">&#39;/home/neuro/workshop/nipype_tutorial/notebooks/scripts/brainvolume.m&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>No errors, perfect. Did we get the right file?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">out_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And what about the content of this file?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat volume.txt
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nipype/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../nipype_advanced.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Advanced concepts</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="advanced_interfaces_caching.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Interface caching</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,1195 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Errors and Crashes &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../prerequisites.html">
+   Course prerequisites
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_shell.html">
+     Introduction to the (unix) command line: bash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_git_and_github.html">
+     Introduction to git and github
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_jupyter.html">
+     Introduction to the jupyter ecosystem &amp; notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_numpy.html">
+     Introduction to NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scipy.html">
+     Introduction to SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_visualization.html">
+     Introduction to Visualization in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_statistics.html">
+     Introduction to Statistics in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scikit.html">
+     Introduction to scikit-learn &amp; scikit-image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../data/data.html">
+   Basics in data handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../nipype_overview.html">
+   Nipype
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_intro.html">
+     Introduction to Nipype
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_showcase.html">
+       Nipype Showcase
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart.html">
+       Nipype Quickstart
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart_non-neuroimaging.html">
+       Nipype Quickstart - non-imaging
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_basics.html">
+     Basic concepts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_interfaces.html">
+       Interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_nodes.html">
+       Nodes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_workflow.html">
+       Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_graph_visualization.html">
+       Graph Visualization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input.html">
+       Data Input
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input_bids.html">
+       Data input for BIDS datasets
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_output.html">
+       Data Output
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_plugins.html">
+       Using Nipype Plugins
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_function_interface.html">
+       Function Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_iteration.html">
+       Iterables
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_mapnodes.html">
+       MapNode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_joinnodes.html">
+       JoinNode, synchronize and itersource
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_debug.html">
+       Debugging Nipype Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_execution_configuration.html">
+       Execution Configuration Options
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_examples.html">
+     Example workflows
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_preprocessing.html">
+       Example 1: Preprocessing Workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_1stlevel.html">
+       Example 2: 1st-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_normalize.html">
+       Example 3: Normalize data to MNI template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_2ndlevel.html">
+       Example 4: 2nd-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_preprocessing.html">
+       Hands-on 1: How to create a fMRI preprocessing workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_analysis.html">
+       Hands-on 2: How to create a fMRI analysis workflow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_advanced.html">
+     Advanced concepts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_create_interfaces.html">
+       Create interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_interfaces_caching.html">
+       Interface caching
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_nipypecli.html">
+       Nipype Command Line Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_aws.html">
+       Using Nipype with Amazon Web Services (AWS)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_sphinx_ext.html">
+       Sphinx extensions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_spmmcr.html">
+       Using SPM with MATLAB Common Runtime (MCR)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_mipav.html">
+       Using MIPAV, JIST, and CBS Tools
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_resources.html">
+     Resources
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_installation.html">
+       Download and install
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_help.html">
+       Where to find help
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/nipype/notebooks/basic_error_and_crashes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fnipype/notebooks/basic_error_and_crashes.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/nipype/notebooks/basic_error_and_crashes.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/nipype/notebooks/basic_error_and_crashes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-crash-1-file-doesn-t-exist">
+   Example Crash 1: File doesn’t exist
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-the-crash">
+     Creating the crash
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#investigating-the-crash">
+     Investigating the crash
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-the-crashfile">
+     Reading the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       crashfile
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-crash-2-wrong-input-type-or-typo-in-the-parameter">
+   Example Crash 2: Wrong Input Type or Typo in the parameter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-crash-3-giving-an-array-as-input-where-a-single-file-is-expected">
+   Example Crash 3: Giving an array as input where a single file is expected
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-crash-4-spm-doesn-t-like-nii-gz-files">
+   Example Crash 4: SPM doesn’t like
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     *.nii.gz
+    </span>
+   </code>
+   files
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spm-problem-1-with-nii-gz-files">
+     SPM Problem 1 with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       *.nii.gz
+      </span>
+     </code>
+     files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spm-problem-2-with-nii-gz-files">
+     SPM problem 2 with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       *.nii.gz
+      </span>
+     </code>
+     files
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-crash-5-nipype-cannot-find-the-right-software">
+   Example Crash 5: Nipype cannot find the right software
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-crash-6-you-forget-mandatory-inputs-or-use-input-fields-that-don-t-exist">
+   Example Crash 6: You forget mandatory inputs or use input fields that don’t exist
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forgetting-mandatory-input-fields">
+     Forgetting mandatory input fields
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-input-fields-that-don-t-exist">
+     Using input fields that don’t exist
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-crash-7-trying-to-connect-a-node-to-an-input-field-that-is-already-occupied">
+   Example Crash 7: Trying to connect a node to an input field that is already occupied
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="errors-and-crashes">
+<h1>Errors and Crashes<a class="headerlink" href="#errors-and-crashes" title="Permalink to this headline">¶</a></h1>
+<p>Probably the most important chapter in this section is about how to handle error and crashes. Because at the beginning you will run into a few.</p>
+<p>For example:</p>
+<ol class="simple">
+<li><p>You specified filenames or paths that <strong>don’t exist</strong>.</p></li>
+<li><p>You try to give an interface a <code class="docutils literal notranslate"><span class="pre">string</span></code> as input, where a <code class="docutils literal notranslate"><span class="pre">float</span></code> value is expected or you try to specify a parameter that doesn’t exist. Be sure to use the right <strong><code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">type</span></code></strong> and input name.</p></li>
+<li><p>You wanted to give a list of inputs <code class="docutils literal notranslate"><span class="pre">[func1.nii,</span> <span class="pre">func2.nii,</span> <span class="pre">func3.nii]</span></code> to a node that only expects one input file. <strong><code class="docutils literal notranslate"><span class="pre">MapNode</span></code></strong> is your solution.</p></li>
+<li><p>You wanted to run SPM’s motion correction on compressed NIfTI files, i.e. <code class="docutils literal notranslate"><span class="pre">*.nii.gz</span></code>? <strong>SPM</strong> cannot handle that. Nipype’s <strong><code class="docutils literal notranslate"><span class="pre">Gunzip</span></code></strong> interface can help.</p></li>
+<li><p>You haven’t set up all necessary <strong>environment variables</strong>. Nipype, for example, doesn’t find your MATLAB or SPM version.</p></li>
+<li><p>You <strong>forget</strong> to specify a <strong>mandatory input</strong> field.</p></li>
+<li><p>You try to <strong>connect</strong> a node to an input field that another node is <strong>already connected</strong> to.</p></li>
+</ol>
+<p><strong>Important</strong> note about <code class="docutils literal notranslate"><span class="pre">crashfiles</span></code>. <code class="docutils literal notranslate"><span class="pre">Crashfiles</span></code> are only created when you run a workflow, not during building a workflow. If you have a typo in a folder path, because they didn’t happen during runtime, but still during workflow building.</p>
+<div class="section" id="example-crash-1-file-doesn-t-exist">
+<h2>Example Crash 1: File doesn’t exist<a class="headerlink" href="#example-crash-1-file-doesn-t-exist" title="Permalink to this headline">¶</a></h2>
+<p>When creating a new workflow, very often the initial errors are <code class="docutils literal notranslate"><span class="pre">OSError</span></code>, meaning Nipype cannot find the right files. For example, let’s try to run a workflow on <code class="docutils literal notranslate"><span class="pre">sub-11</span></code>, that in our dataset doesn’t exist.</p>
+<div class="section" id="creating-the-crash">
+<h3>Creating the crash<a class="headerlink" href="#creating-the-crash" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">SelectFiles</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">Workflow</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">abspath</span> <span class="k">as</span> <span class="n">opap</span>
+<span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">MCFLIRT</span><span class="p">,</span> <span class="n">IsotropicSmooth</span>
+
+<span class="c1"># Create SelectFiles node</span>
+<span class="n">templates</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;func&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{subject_id}</span><span class="s1">/ses-test/func/</span><span class="si">{subject_id}</span><span class="s1">_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span><span class="p">}</span>
+<span class="n">sf</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">SelectFiles</span><span class="p">(</span><span class="n">templates</span><span class="p">),</span>
+          <span class="n">name</span><span class="o">=</span><span class="s1">&#39;selectfiles&#39;</span><span class="p">)</span>
+<span class="n">sf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">base_directory</span> <span class="o">=</span> <span class="n">opap</span><span class="p">(</span><span class="s1">&#39;/data/ds000114&#39;</span><span class="p">)</span>
+<span class="n">sf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">subject_id</span> <span class="o">=</span> <span class="s1">&#39;sub-11&#39;</span>
+
+<span class="c1"># Create Motion Correction Node</span>
+<span class="n">mcflirt</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">MCFLIRT</span><span class="p">(</span><span class="n">mean_vol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">save_plots</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+               <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mcflirt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create Smoothing node</span>
+<span class="n">smooth</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">IsotropicSmooth</span><span class="p">(</span><span class="n">fwhm</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+              <span class="n">name</span><span class="o">=</span><span class="s1">&#39;smooth&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a preprocessing workflow</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;preprocWF&quot;</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="s1">&#39;working_dir&#39;</span>
+
+<span class="c1"># Connect the three nodes to each other</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">sf</span><span class="p">,</span> <span class="n">mcflirt</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;func&quot;</span><span class="p">,</span> <span class="s2">&quot;in_file&quot;</span><span class="p">)]),</span>
+            <span class="p">(</span><span class="n">mcflirt</span><span class="p">,</span> <span class="n">smooth</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;out_file&quot;</span><span class="p">,</span> <span class="s2">&quot;in_file&quot;</span><span class="p">)])])</span>
+
+<span class="c1"># Let&#39;s run the workflow</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RuntimeError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="investigating-the-crash">
+<h3>Investigating the crash<a class="headerlink" href="#investigating-the-crash" title="Permalink to this headline">¶</a></h3>
+<p>Hidden, in the log file you can find the relevant information:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>OSError: No files were found matching func template: /data/ds000114/sub-11/ses-test/func/sub-11_ses-test_task-fingerfootlips_bold.nii.gz
+Interface SelectFiles failed to run. 
+
+170904-05:48:13,727 workflow INFO:
+     ***********************************
+170904-05:48:13,728 workflow ERROR:
+     could not run node: preprocWF.selectfiles
+170904-05:48:13,730 workflow INFO:
+     crashfile: /repos/nipype_tutorial/notebooks/crash-20170904-054813-neuro-selectfiles-15f5400a-452e-4e0c-ae99-fc0d4b9a44f3.pklz
+170904-05:48:13,731 workflow INFO:
+     ***********************************
+</pre></div>
+</div>
+<p>This part tells you that it’s an <strong><code class="docutils literal notranslate"><span class="pre">OSError</span></code></strong> and that it looked for the file <strong><code class="docutils literal notranslate"><span class="pre">/data/ds000114/sub-11/ses-test/func/sub-11_ses-test_task-fingerfootlips_bold.nii.gz</span></code></strong>.</p>
+<p>After the line <code class="docutils literal notranslate"><span class="pre">***********************************</span></code>, you can additional see, that it’s the node <strong><code class="docutils literal notranslate"><span class="pre">preprocWF.selectfiles</span></code></strong> that crasehd and that you can find a <strong><code class="docutils literal notranslate"><span class="pre">crashfile</span></code></strong> to this crash under <strong><code class="docutils literal notranslate"><span class="pre">/opt/tutorial/notebooks</span></code></strong>.</p>
+</div>
+<div class="section" id="reading-the-crashfile">
+<h3>Reading the <code class="docutils literal notranslate"><span class="pre">crashfile</span></code><a class="headerlink" href="#reading-the-crashfile" title="Permalink to this headline">¶</a></h3>
+<p>To get the full picture of the error, we can read the content of the <code class="docutils literal notranslate"><span class="pre">crashfile</span></code> (that has <code class="docutils literal notranslate"><span class="pre">pklz</span></code> format by default) with the <code class="docutils literal notranslate"><span class="pre">bash</span></code> command <code class="docutils literal notranslate"><span class="pre">nipypecli</span> <span class="pre">crash</span></code>. We will get the same information as above, but additionally, we can also see directly the input values of the Node that crashed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nipypecli crash <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/crash-*selectfiles-*.pklz
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">nipypecli</span></code> allows you to rerun the crashed node using an additional option <code class="docutils literal notranslate"><span class="pre">-r</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nipypecli crash -r <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/crash-*selectfiles-*.pklz
+</pre></div>
+</div>
+</div>
+</div>
+<p>When running in the terminal you can also try options that <strong>enable the Python or Ipython debugger when re-executing: <code class="docutils literal notranslate"><span class="pre">-d</span></code> or <code class="docutils literal notranslate"><span class="pre">-i</span></code></strong>.</p>
+<p><strong>If you don’t want to have an option to rerun the crashed workflow, you can change the format of crashfile to a text format.</strong> You can either change this in a configuration file (you can read more <a class="reference internal" href="basic_execution_configuration.html"><span class="doc std std-doc">here</span></a>), or you can directly change the <code class="docutils literal notranslate"><span class="pre">wf.config</span></code> dictionary before running the workflow.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wf</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;execution&#39;</span><span class="p">][</span><span class="s1">&#39;crashfile_format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;txt&#39;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RuntimeError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now you should have a new text file with your crash report.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/crash-*selectfiles-*.txt
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="example-crash-2-wrong-input-type-or-typo-in-the-parameter">
+<h2>Example Crash 2: Wrong Input Type or Typo in the parameter<a class="headerlink" href="#example-crash-2-wrong-input-type-or-typo-in-the-parameter" title="Permalink to this headline">¶</a></h2>
+<p>Very simple, if an interface expects a <code class="docutils literal notranslate"><span class="pre">float</span></code> as input, but you give it a <code class="docutils literal notranslate"><span class="pre">string</span></code>, it will crash:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">IsotropicSmooth</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">smooth</span> <span class="o">=</span> <span class="n">IsotropicSmooth</span><span class="p">(</span><span class="n">fwhm</span><span class="o">=</span><span class="s1">&#39;4&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;TraitError&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TraitError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will give you the error: <strong><code class="docutils literal notranslate"><span class="pre">TraitError</span></code></strong><code class="docutils literal notranslate"><span class="pre">:</span> <span class="pre">The</span> <span class="pre">'fwhm'</span> <span class="pre">trait</span> <span class="pre">of</span> <span class="pre">an</span> <span class="pre">IsotropicSmoothInput</span> <span class="pre">instance</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">a</span> <span class="pre">float,</span> <span class="pre">but</span> <span class="pre">a</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">'4'</span> <span class="pre">&lt;type</span> <span class="pre">'str'&gt;</span> <span class="pre">was</span> <span class="pre">specified.</span></code></p>
+<p>To make sure that you are using the right input types, just check the <code class="docutils literal notranslate"><span class="pre">help</span></code> section of a given interface. There you can see <strong><code class="docutils literal notranslate"><span class="pre">fwhm:</span> <span class="pre">(a</span> <span class="pre">float)</span></code></strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IsotropicSmooth</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In a similar way, you will also get an error message if the input type is correct but you have a type in the name:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>TraitError: The &#39;output_type&#39; trait of an IsotropicSmoothInput instance must be u&#39;NIFTI_PAIR&#39; or u&#39;NIFTI_PAIR_GZ&#39; or u&#39;NIFTI_GZ&#39; or u&#39;NIFTI&#39;, but a value of &#39;NIFTIiii&#39; &lt;type &#39;str&#39;&gt; was specified.
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">IsotropicSmooth</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">smooth</span> <span class="o">=</span> <span class="n">IsotropicSmooth</span><span class="p">(</span><span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;NIFTIiii&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;TraitError&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TraitError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="example-crash-3-giving-an-array-as-input-where-a-single-file-is-expected">
+<h2>Example Crash 3: Giving an array as input where a single file is expected<a class="headerlink" href="#example-crash-3-giving-an-array-as-input-where-a-single-file-is-expected" title="Permalink to this headline">¶</a></h2>
+<p>As you can see in the <a class="reference internal" href="basic_mapnodes.html"><span class="doc std std-doc">MapNode</span></a> example, if you try to feed an array as an input into a field that only expects a single file, you will get a <strong><code class="docutils literal notranslate"><span class="pre">TraitError</span></code></strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.algorithms.misc</span> <span class="kn">import</span> <span class="n">Gunzip</span>
+<span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">Node</span>
+
+<span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span><span class="p">]</span>
+
+<span class="n">gunzip</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">Gunzip</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;gunzip&#39;</span><span class="p">,)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">gunzip</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">in_file</span> <span class="o">=</span> <span class="n">files</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;TraitError&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TraitError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This can be solved by using a <code class="docutils literal notranslate"><span class="pre">MapNode</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">MapNode</span>
+<span class="n">gunzip</span> <span class="o">=</span> <span class="n">MapNode</span><span class="p">(</span><span class="n">Gunzip</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;gunzip&#39;</span><span class="p">,</span> <span class="n">iterfield</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;in_file&#39;</span><span class="p">])</span>
+<span class="n">gunzip</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">in_file</span> <span class="o">=</span> <span class="n">files</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, make sure that you specify files that actually exist, otherwise you will have a <code class="docutils literal notranslate"><span class="pre">TraitError</span></code> again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/data/ds000114/sub-01/func/sub-01_task-fingerfootlips_bold.nii.gz&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;/data/ds000114/sub-03/func/sub-03_task-fingerfootlips_bold.nii.gz&#39;</span><span class="p">]</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">gunzip</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">in_file</span> <span class="o">=</span> <span class="n">files</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;TraitError&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TraitError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>By the way, not that those crashes don’t create a <code class="docutils literal notranslate"><span class="pre">crashfile</span></code>, because they didn’t happen during runtime, but still during workflow building.</strong></p>
+</div>
+<div class="section" id="example-crash-4-spm-doesn-t-like-nii-gz-files">
+<h2>Example Crash 4: SPM doesn’t like <code class="docutils literal notranslate"><span class="pre">*.nii.gz</span></code> files<a class="headerlink" href="#example-crash-4-spm-doesn-t-like-nii-gz-files" title="Permalink to this headline">¶</a></h2>
+<p>SPM12 cannot handle compressed NIfTI files (<code class="docutils literal notranslate"><span class="pre">*nii.gz</span></code>). If you try to run the node nonetheless, it can give you different kind of problems:</p>
+<div class="section" id="spm-problem-1-with-nii-gz-files">
+<h3>SPM Problem 1 with <code class="docutils literal notranslate"><span class="pre">*.nii.gz</span></code> files<a class="headerlink" href="#spm-problem-1-with-nii-gz-files" title="Permalink to this headline">¶</a></h3>
+<p>SPM12 has a problem with handling <code class="docutils literal notranslate"><span class="pre">*.nii.gz</span></code> files. For it a compressed functional image has no temporal dimension and therefore seems to be just a 3D file. So if we try to run the <code class="docutils literal notranslate"><span class="pre">Realign</span></code> interface on a compressed file, we will get a <strong><code class="docutils literal notranslate"><span class="pre">TraitError</span></code></strong> error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.spm</span> <span class="kn">import</span> <span class="n">Smooth</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">smooth</span> <span class="o">=</span> <span class="n">Smooth</span><span class="p">(</span><span class="n">in_files</span><span class="o">=</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;TraitError&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TraitError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="spm-problem-2-with-nii-gz-files">
+<h3>SPM problem 2 with <code class="docutils literal notranslate"><span class="pre">*.nii.gz</span></code> files<a class="headerlink" href="#spm-problem-2-with-nii-gz-files" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes <strong><code class="docutils literal notranslate"><span class="pre">TraitError</span></code></strong> can be more misleading.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.spm</span> <span class="kn">import</span> <span class="n">Realign</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">realign</span> <span class="o">=</span> <span class="n">Realign</span><span class="p">(</span><span class="n">in_files</span><span class="o">=</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;TraitError&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TraitError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>This issue can be solved by unzipping the compressed NIfTI file before giving it as an input to an SPM node.</strong> This can either be done by using the <code class="docutils literal notranslate"><span class="pre">Gunzip</span></code> interface from Nipype or even better if the input is coming from a FSL interface, most of them have an input filed <code class="docutils literal notranslate"><span class="pre">output_type='NIFTI'</span></code>, that you can set to NIFIT.</p>
+</div>
+</div>
+<div class="section" id="example-crash-5-nipype-cannot-find-the-right-software">
+<h2>Example Crash 5: Nipype cannot find the right software<a class="headerlink" href="#example-crash-5-nipype-cannot-find-the-right-software" title="Permalink to this headline">¶</a></h2>
+<p>Especially at the beginning, just after installation, you sometimes forgot to specify some environment variables. If you try to use an interface where the environment variables of the software are not specified, e.g. if you try to run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.freesurfer</span> <span class="kn">import</span> <span class="n">MRIConvert</span>
+<span class="n">convert</span> <span class="o">=</span> <span class="n">MRIConvert</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">,</span>
+                     <span class="n">out_type</span><span class="o">=</span><span class="s1">&#39;nii&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>you might get an errors, such as:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>IOError: command &#39;mri_convert&#39; could not be found on host mnotter
+Interface MRIConvert failed to run.
+</pre></div>
+</div>
+<p>Or if you try to use SPM, but forgot to tell Nipype where to find it. If you forgot to tell the system where to find MATLAB (or MCR), then you will get the same kind of error as above. But if you forgot to specify which SPM you want to use, you’ll get the following <strong><code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code></strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Standard error:
+MATLAB code threw an exception:
+SPM not in matlab path
+</pre></div>
+</div>
+<p>You can solve this issue by specifying the path to your SPM version:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.matlab</span> <span class="kn">import</span> <span class="n">MatlabCommand</span>
+<span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_paths</span><span class="p">(</span><span class="s1">&#39;/opt/spm12-r7219/spm12_mcr/spm12&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-crash-6-you-forget-mandatory-inputs-or-use-input-fields-that-don-t-exist">
+<h2>Example Crash 6: You forget mandatory inputs or use input fields that don’t exist<a class="headerlink" href="#example-crash-6-you-forget-mandatory-inputs-or-use-input-fields-that-don-t-exist" title="Permalink to this headline">¶</a></h2>
+<p>One of the simpler errors are the ones connected to input and output fields.</p>
+<div class="section" id="forgetting-mandatory-input-fields">
+<h3>Forgetting mandatory input fields<a class="headerlink" href="#forgetting-mandatory-input-fields" title="Permalink to this headline">¶</a></h3>
+<p>Let’s see what happens if you forget a <strong><code class="docutils literal notranslate"><span class="pre">[Mandatory]</span></code></strong> input field.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.spm</span> <span class="kn">import</span> <span class="n">Realign</span>
+<span class="n">realign</span> <span class="o">=</span> <span class="n">Realign</span><span class="p">(</span><span class="n">register_to_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">realign</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ValueError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This gives you the error:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ValueError: Realign requires a value for input &#39;in_files&#39;. For a list of required inputs, see Realign.help()
+</pre></div>
+</div>
+<p>As described by the error text, if we use the <code class="docutils literal notranslate"><span class="pre">help()</span></code> function, we can actually see, which inputs are mandatory and which are optional.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">realign</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-input-fields-that-don-t-exist">
+<h3>Using input fields that don’t exist<a class="headerlink" href="#using-input-fields-that-don-t-exist" title="Permalink to this headline">¶</a></h3>
+<p>Let’s see what happens if we try to specify a parameter that doesn’t exist as an input field:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.afni</span> <span class="kn">import</span> <span class="n">Despike</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">despike</span> <span class="o">=</span> <span class="n">Despike</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span><span class="p">,</span>
+                      <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;NIFTI&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;TraitError&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TraitError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This results in the <strong><code class="docutils literal notranslate"><span class="pre">TraitError</span></code></strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>TraitError: Cannot set the undefined &#39;output_type&#39; attribute of a &#39;DespikeInputSpec&#39; object.
+</pre></div>
+</div>
+<p>So what went wrong? If you use the <code class="docutils literal notranslate"><span class="pre">help()</span></code> function, you will see that the correct input filed is called <strong><code class="docutils literal notranslate"><span class="pre">outputtype</span></code></strong> and not <strong><code class="docutils literal notranslate"><span class="pre">output_type</span></code></strong>.</p>
+</div>
+</div>
+<div class="section" id="example-crash-7-trying-to-connect-a-node-to-an-input-field-that-is-already-occupied">
+<h2>Example Crash 7: Trying to connect a node to an input field that is already occupied<a class="headerlink" href="#example-crash-7-trying-to-connect-a-node-to-an-input-field-that-is-already-occupied" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes when you build a new workflow, you might forget that an output field was already connected and you try to connect a new node to the already occupied field.</p>
+<p>First, let’s create a simple workflow:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">SelectFiles</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">Workflow</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">abspath</span> <span class="k">as</span> <span class="n">opap</span>
+<span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">MCFLIRT</span><span class="p">,</span> <span class="n">IsotropicSmooth</span>
+
+<span class="c1"># Create SelectFiles node</span>
+<span class="n">templates</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;func&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{subject_id}</span><span class="s1">/func/</span><span class="si">{subject_id}</span><span class="s1">_task-fingerfootlips_bold.nii.gz&#39;</span><span class="p">}</span>
+<span class="n">sf</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">SelectFiles</span><span class="p">(</span><span class="n">templates</span><span class="p">),</span>
+          <span class="n">name</span><span class="o">=</span><span class="s1">&#39;selectfiles&#39;</span><span class="p">)</span>
+<span class="n">sf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">base_directory</span> <span class="o">=</span> <span class="n">opap</span><span class="p">(</span><span class="s1">&#39;/data/ds000114&#39;</span><span class="p">)</span>
+<span class="n">sf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">subject_id</span> <span class="o">=</span> <span class="s1">&#39;sub-01&#39;</span>
+
+<span class="c1"># Create Motion Correction Node</span>
+<span class="n">mcflirt</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">MCFLIRT</span><span class="p">(</span><span class="n">mean_vol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">save_plots</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+               <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mcflirt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create Smoothing node</span>
+<span class="n">smooth</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">IsotropicSmooth</span><span class="p">(</span><span class="n">fwhm</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+              <span class="n">name</span><span class="o">=</span><span class="s1">&#39;smooth&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a preprocessing workflow</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;preprocWF&quot;</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="s1">&#39;working_dir&#39;</span>
+
+<span class="c1"># Connect the three nodes to each other</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">sf</span><span class="p">,</span> <span class="n">mcflirt</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;func&quot;</span><span class="p">,</span> <span class="s2">&quot;in_file&quot;</span><span class="p">)]),</span>
+            <span class="p">(</span><span class="n">mcflirt</span><span class="p">,</span> <span class="n">smooth</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;out_file&quot;</span><span class="p">,</span> <span class="s2">&quot;in_file&quot;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s create a new node and connect it to the already occupied input field <code class="docutils literal notranslate"><span class="pre">in_file</span></code> of the <code class="docutils literal notranslate"><span class="pre">smooth</span></code> node:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new node</span>
+<span class="n">mcflirt_NEW</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">MCFLIRT</span><span class="p">(</span><span class="n">mean_vol</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                   <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mcflirt_NEW&#39;</span><span class="p">)</span>
+
+<span class="c1"># Connect it to an already connected input field</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">mcflirt_NEW</span><span class="p">,</span> <span class="n">smooth</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;out_file&quot;</span><span class="p">,</span> <span class="s2">&quot;in_file&quot;</span><span class="p">)])])</span>
+<span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will lead to the error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ne">Exception</span><span class="p">:</span> 
+<span class="n">Trying</span> <span class="n">to</span> <span class="n">connect</span> <span class="n">preprocWF</span><span class="o">.</span><span class="n">mcflirt_NEW</span><span class="p">:</span><span class="n">out_file</span> <span class="n">to</span> <span class="n">preprocWF</span><span class="o">.</span><span class="n">smooth</span><span class="p">:</span><span class="n">in_file</span> <span class="n">but</span> <span class="nb">input</span> <span class="s1">&#39;in_file&#39;</span> <span class="n">of</span> <span class="n">node</span> <span class="s1">&#39;preprocWF.smooth&#39;</span> <span class="ow">is</span> <span class="n">already</span> <span class="n">connected</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nipype/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

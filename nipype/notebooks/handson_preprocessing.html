@@ -1,0 +1,1965 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hands-on 1: How to create a fMRI preprocessing workflow &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Hands-on 2: How to create a fMRI analysis workflow" href="handson_analysis.html" />
+    <link rel="prev" title="Example 4: 2nd-level Analysis" href="example_2ndlevel.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../prerequisites.html">
+   Course prerequisites
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_shell.html">
+     Introduction to the (unix) command line: bash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_to_git_and_github.html">
+     Introduction to git and github
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_jupyter.html">
+     Introduction to the jupyter ecosystem &amp; notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_numpy.html">
+     Introduction to NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scipy.html">
+     Introduction to SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_visualization.html">
+     Introduction to Visualization in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/intro_statistics.html">
+     Introduction to Statistics in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prerequisites/python_scikit.html">
+     Introduction to scikit-learn &amp; scikit-image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../data/data.html">
+   Basics in data handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../nipype_overview.html">
+   Nipype
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_intro.html">
+     Introduction to Nipype
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_showcase.html">
+       Nipype Showcase
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart.html">
+       Nipype Quickstart
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="introduction_quickstart_non-neuroimaging.html">
+       Nipype Quickstart - non-imaging
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_basics.html">
+     Basic concepts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_interfaces.html">
+       Interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_nodes.html">
+       Nodes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_workflow.html">
+       Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_graph_visualization.html">
+       Graph Visualization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input.html">
+       Data Input
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_input_bids.html">
+       Data input for BIDS datasets
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_data_output.html">
+       Data Output
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_plugins.html">
+       Using Nipype Plugins
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_function_interface.html">
+       Function Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_iteration.html">
+       Iterables
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_mapnodes.html">
+       MapNode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_joinnodes.html">
+       JoinNode, synchronize and itersource
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_debug.html">
+       Debugging Nipype Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="basic_execution_configuration.html">
+       Execution Configuration Options
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../nipype_examples.html">
+     Example workflows
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_preprocessing.html">
+       Example 1: Preprocessing Workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_1stlevel.html">
+       Example 2: 1st-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_normalize.html">
+       Example 3: Normalize data to MNI template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="example_2ndlevel.html">
+       Example 4: 2nd-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Hands-on 1: How to create a fMRI preprocessing workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="handson_analysis.html">
+       Hands-on 2: How to create a fMRI analysis workflow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_advanced.html">
+     Advanced concepts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_create_interfaces.html">
+       Create interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_interfaces_caching.html">
+       Interface caching
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_nipypecli.html">
+       Nipype Command Line Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_aws.html">
+       Using Nipype with Amazon Web Services (AWS)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_sphinx_ext.html">
+       Sphinx extensions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_spmmcr.html">
+       Using SPM with MATLAB Common Runtime (MCR)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="advanced_mipav.html">
+       Using MIPAV, JIST, and CBS Tools
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../nipype_resources.html">
+     Resources
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_installation.html">
+       Download and install
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="resources_help.html">
+       Where to find help
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/nipype/notebooks/handson_preprocessing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fnipype/notebooks/handson_preprocessing.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/nipype/notebooks/handson_preprocessing.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/nipype/notebooks/handson_preprocessing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Hands-on 1: How to create a fMRI preprocessing workflow
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparation">
+     Preparation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preprocessing-workflow-structure">
+   Preprocessing Workflow Structure
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports">
+     Imports
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-nodes-and-workflow-connections">
+     Create Nodes and Workflow connections
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#workflow">
+       Workflow
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gunzip">
+       Gunzip
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#drop-dummy-scans">
+       Drop Dummy Scans
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#slice-time-correction">
+       Slice Time Correction
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#motion-correction">
+       Motion Correction
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#artifact-detection">
+       Artifact Detection
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#segmentation-of-anatomical-image">
+       Segmentation of anatomical image
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compute-coregistration-matrix">
+       Compute Coregistration Matrix
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#apply-coregistration-matrix-to-functional-image">
+       Apply Coregistration Matrix to functional image
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#smoothing">
+       Smoothing
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#create-binary-mask">
+       Create Binary Mask
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#apply-the-binary-mask">
+       Apply the binary mask
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#remove-linear-trends-in-functional-images">
+       Remove linear trends in functional images
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datainput-with-selectfiles-and-iterables">
+     Datainput with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SelectFiles
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       iterables
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-the-workflow">
+     Visualize the workflow
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-the-workflow">
+     Run the Workflow
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inspect-output">
+     Inspect output
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#motion-correction-and-artifact-detection">
+       Motion Correction and Artifact Detection
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#masks-and-probability-maps">
+       Masks and Probability maps
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#functional-image-transformations">
+       Functional Image transformations
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-output-with-datasink">
+     Data output with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DataSink
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Run the workflow
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-preprocessing-workflow-on-6-right-handed-subjects">
+     Run Preprocessing workflow on 6 right-handed subjects
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="hands-on-1-how-to-create-a-fmri-preprocessing-workflow">
+<h1>Hands-on 1: How to create a fMRI preprocessing workflow<a class="headerlink" href="#hands-on-1-how-to-create-a-fmri-preprocessing-workflow" title="Permalink to this headline">¶</a></h1>
+<p>The purpose of this section is that you set-up a complete fMRI analysis workflow yourself. So that in the end, you are able to perform the analysis from A-Z, i.e. from preprocessing to group analysis. This section will cover the preprocessing part, and the section <a class="reference internal" href="handson_analysis.html"><span class="doc std std-doc">Hands-on 2: Analysis</span></a> will handle the analysis part.</p>
+<p>We will use this opportunity to show you some nice additional interfaces/nodes that might not be relevant to your usual analysis. But it’s always nice to know that they exist. And hopefully, this will encourage you to investigate all other interfaces that Nipype can bring to the tip of your finger.</p>
+<div class="section" id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
+<p>Before we can start with anything we first need to download the data. For this hands-on, we will only use the right-handed subjects 2-4 and 7-9. This can be done very quickly with the following <code class="docutils literal notranslate"><span class="pre">datalad</span></code> command.</p>
+<p><strong>Note:</strong> This might take a while, as datalad needs to download ~200MB of data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+datalad get -J 4 -d /data/ds000114 \
+    /data/ds000114/sub-0[234789]/ses-test/anat/sub-0[234789]_ses-test_T1w.nii.gz \
+    /data/ds000114/sub-0[234789]/ses-test/func/*fingerfootlips*
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="preprocessing-workflow-structure">
+<h1>Preprocessing Workflow Structure<a class="headerlink" href="#preprocessing-workflow-structure" title="Permalink to this headline">¶</a></h1>
+<p>So let’s get our hands dirty. First things first, it’s always good to know which interfaces you want to use in your workflow and in which order you want to execute them. For the preprocessing workflow, I recommend that we use the following nodes:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> 1. Gunzip (Nipype)
+ 2. Drop Dummy Scans (FSL)
+ 3. Slice Time Correction (SPM)
+ 4. Motion Correction (SPM)
+ 5. Artifact Detection
+ 6. Segmentation (SPM)
+ 7. Coregistration (FSL)
+ 8. Smoothing (FSL)
+ 9. Apply Binary Mask (FSL)
+10. Remove Linear Trends (Nipype)
+</pre></div>
+</div>
+<p><strong>Note:</strong> This workflow might be overkill concerning data manipulation, but it hopefully serves as a good Nipype exercise.</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<p>It’s always best to have all relevant module imports at the beginning of your script. So let’s import what we most certainly need.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># Get the Node and Workflow object</span>
+<span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">Workflow</span>
+
+<span class="c1"># Specify which SPM to use</span>
+<span class="kn">from</span> <span class="nn">nipype.interfaces.matlab</span> <span class="kn">import</span> <span class="n">MatlabCommand</span>
+<span class="n">MatlabCommand</span><span class="o">.</span><span class="n">set_default_paths</span><span class="p">(</span><span class="s1">&#39;/opt/spm12-r7219/spm12_mcr/spm12&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> Ideally you would also put the imports of all the interfaces that you use here at the top. But as we will develop the workflow step by step, we can also import the relevant modules as we go.</p>
+</div>
+<div class="section" id="create-nodes-and-workflow-connections">
+<h2>Create Nodes and Workflow connections<a class="headerlink" href="#create-nodes-and-workflow-connections" title="Permalink to this headline">¶</a></h2>
+<p>Let’s create all the nodes that we need! Make sure to specify all relevant inputs and keep in mind which ones you later on need to connect in your pipeline.</p>
+<div class="section" id="workflow">
+<h3>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h3>
+<p>We recommend to create the workflow and establish all its connections at a later place in your script. This helps to have everything nicely together. But for this hands-on example, it makes sense to establish the connections between the nodes as we go.</p>
+<p>And for this, we first need to create a workflow:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the workflow here</span>
+<span class="c1"># Hint: use &#39;base_dir&#39; to specify where to store the working directory</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;work_preproc&#39;</span><span class="p">,</span> <span class="n">base_dir</span><span class="o">=</span><span class="s1">&#39;/output/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gunzip">
+<h3>Gunzip<a class="headerlink" href="#gunzip" title="Permalink to this headline">¶</a></h3>
+<p>I’ve already created the <code class="docutils literal notranslate"><span class="pre">Gunzip</span></code> node as a template for the other nodes. Also, we’ve specified an <code class="docutils literal notranslate"><span class="pre">in_file</span></code> here so that we can directly test the nodes without worrying about the Input/Output data stream to the workflow. This will be taken care of in a later section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.algorithms.misc</span> <span class="kn">import</span> <span class="n">Gunzip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify example input file</span>
+<span class="n">func_file</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span>
+
+<span class="c1"># Initiate Gunzip node</span>
+<span class="n">gunzip_func</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">Gunzip</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="n">func_file</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;gunzip_func&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="drop-dummy-scans">
+<h3>Drop Dummy Scans<a class="headerlink" href="#drop-dummy-scans" title="Permalink to this headline">¶</a></h3>
+<p>The functional images of this dataset were recorded with 4 dummy scans at the beginning (see the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3641991/">corresponding publication</a>). But those dummy scans were not yet taken out from the functional images.</p>
+<p>To better illustrate this, let’s plot the time course of a random voxel of the just defined <code class="docutils literal notranslate"><span class="pre">func_file</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">func_file</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="p">:]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the figure above, we see that at the very beginning there are extreme values, which hint to the fact that steady state wasn’t reached yet. Therefore, we want to exclude the dummy scans from the original data. This can be achieved with FSL’s <code class="docutils literal notranslate"><span class="pre">ExtractROI</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">ExtractROI</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">extract</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">ExtractROI</span><span class="p">(</span><span class="n">t_min</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">t_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;NIFTI&#39;</span><span class="p">),</span>
+               <span class="n">name</span><span class="o">=</span><span class="s2">&quot;extract&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">ExtractROI</span></code> node can now be connected to the <code class="docutils literal notranslate"><span class="pre">gunzip_func</span></code> node from above. To do this, we use the following command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">gunzip_func</span><span class="p">,</span> <span class="n">extract</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="slice-time-correction">
+<h3>Slice Time Correction<a class="headerlink" href="#slice-time-correction" title="Permalink to this headline">¶</a></h3>
+<p>Now to the next step. Let’s us SPM’s <code class="docutils literal notranslate"><span class="pre">SliceTiming</span></code> to correct for slice wise acquisition of the volumes. As a reminder, the tutorial dataset was recorded…</p>
+<ul class="simple">
+<li><p>with a time repetition (TR) of 2.5 seconds</p></li>
+<li><p>with 30 slices per volume</p></li>
+<li><p>in an interleaved fashion, i.e. slice order is [1, 3, 5, 7, …, 2, 4, 6, …, 30]</p></li>
+<li><p>with a time acquisition (TA) of 2.4167 seconds, i.e. <code class="docutils literal notranslate"><span class="pre">TR-(TR/num_slices)</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.spm</span> <span class="kn">import</span> <span class="n">SliceTiming</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slice_order</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">slice_order</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiate SliceTiming node here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slicetime</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">SliceTiming</span><span class="p">(</span><span class="n">num_slices</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                             <span class="n">ref_slice</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+                             <span class="n">slice_order</span><span class="o">=</span><span class="n">slice_order</span><span class="p">,</span>
+                             <span class="n">time_repetition</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
+                             <span class="n">time_acquisition</span><span class="o">=</span><span class="mf">2.5</span><span class="o">-</span><span class="p">(</span><span class="mf">2.5</span><span class="o">/</span><span class="mi">30</span><span class="p">)),</span>
+                 <span class="n">name</span><span class="o">=</span><span class="s1">&#39;slicetime&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now the next step is to connect the <code class="docutils literal notranslate"><span class="pre">SliceTiming</span></code> node to the rest of the workflow, i.e. the <code class="docutils literal notranslate"><span class="pre">ExtractROI</span></code> node.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect SliceTiming node to the other nodes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">extract</span><span class="p">,</span> <span class="n">slicetime</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;roi_file&#39;</span><span class="p">,</span> <span class="s1">&#39;in_files&#39;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="motion-correction">
+<h3>Motion Correction<a class="headerlink" href="#motion-correction" title="Permalink to this headline">¶</a></h3>
+<p>To correct for motion in the scanner, we will be using FSL’s <code class="docutils literal notranslate"><span class="pre">MCFLIRT</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">MCFLIRT</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initate MCFLIRT node here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcflirt</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">MCFLIRT</span><span class="p">(</span><span class="n">mean_vol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">save_plots</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+               <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mcflirt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Connect the <code class="docutils literal notranslate"><span class="pre">MCFLIRT</span></code> node to the rest of the workflow.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect MCFLIRT node to the other nodes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">slicetime</span><span class="p">,</span> <span class="n">mcflirt</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;timecorrected_files&#39;</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="artifact-detection">
+<h3>Artifact Detection<a class="headerlink" href="#artifact-detection" title="Permalink to this headline">¶</a></h3>
+<p>We will use the really cool and useful <code class="docutils literal notranslate"><span class="pre">ArtifactDetection</span></code> tool from Nipype to detect motion and intensity outliers in the functional images. The interface is initiated as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.algorithms.rapidart</span> <span class="kn">import</span> <span class="n">ArtifactDetect</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">art</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">ArtifactDetect</span><span class="p">(</span><span class="n">norm_threshold</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                          <span class="n">zintensity_threshold</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                          <span class="n">mask_type</span><span class="o">=</span><span class="s1">&#39;spm_global&#39;</span><span class="p">,</span>
+                          <span class="n">parameter_source</span><span class="o">=</span><span class="s1">&#39;FSL&#39;</span><span class="p">,</span>
+                          <span class="n">use_differences</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+                          <span class="n">plot_type</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">),</span>
+           <span class="n">name</span><span class="o">=</span><span class="s2">&quot;art&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The parameters above mean the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">norm_threshold</span></code> - Threshold to use to detect motion-related outliers when composite motion is being used</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zintensity_threshold</span></code> - Intensity Z-threshold use to detection images that deviate from the mean</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mask_type</span></code> - Type of mask that should be used to mask the functional data. <em>spm_global</em> uses an spm_global like calculation to determine the brain mask</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parameter_source</span></code> - Source of movement parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_differences</span></code> - If you want to use differences between successive motion (first element) and intensity parameter (second element) estimates in order to determine outliers</p></li>
+</ul>
+<p>And this is how you connect this node to the rest of the workflow:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">mcflirt</span><span class="p">,</span> <span class="n">art</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;realigned_files&#39;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s1">&#39;par_file&#39;</span><span class="p">,</span> <span class="s1">&#39;realignment_parameters&#39;</span><span class="p">)])</span>
+                 <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="segmentation-of-anatomical-image">
+<h3>Segmentation of anatomical image<a class="headerlink" href="#segmentation-of-anatomical-image" title="Permalink to this headline">¶</a></h3>
+<p>Now let’s work on the anatomical image. In particular, let’s use SPM’s <code class="docutils literal notranslate"><span class="pre">NewSegment</span></code> to create probability maps for the gray matter, white matter tissue and CSF.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.spm</span> <span class="kn">import</span> <span class="n">NewSegment</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the following tissue specification to get a GM and WM probability map</span>
+<span class="n">tpm_img</span> <span class="o">=</span><span class="s1">&#39;/opt/spm12-r7219/spm12_mcr/spm12/tpm/TPM.nii&#39;</span>
+<span class="n">tissue1</span> <span class="o">=</span> <span class="p">((</span><span class="n">tpm_img</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+<span class="n">tissue2</span> <span class="o">=</span> <span class="p">((</span><span class="n">tpm_img</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+<span class="n">tissue3</span> <span class="o">=</span> <span class="p">((</span><span class="n">tpm_img</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+<span class="n">tissue4</span> <span class="o">=</span> <span class="p">((</span><span class="n">tpm_img</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span><span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+<span class="n">tissue5</span> <span class="o">=</span> <span class="p">((</span><span class="n">tpm_img</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span><span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+<span class="n">tissue6</span> <span class="o">=</span> <span class="p">((</span><span class="n">tpm_img</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span><span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+<span class="n">tissues</span> <span class="o">=</span> <span class="p">[</span><span class="n">tissue1</span><span class="p">,</span> <span class="n">tissue2</span><span class="p">,</span> <span class="n">tissue3</span><span class="p">,</span> <span class="n">tissue4</span><span class="p">,</span> <span class="n">tissue5</span><span class="p">,</span> <span class="n">tissue6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiate NewSegment node here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segment</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">NewSegment</span><span class="p">(</span><span class="n">tissues</span><span class="o">=</span><span class="n">tissues</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;segment&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will again be using a <code class="docutils literal notranslate"><span class="pre">Gunzip</span></code> node to unzip the anatomical image that we then want to use as input to the segmentation node. We again also need to specify the anatomical image that we want to use in this case. As before, this will later also be handled directly by the Input/Output stream.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify example input file</span>
+<span class="n">anat_file</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/sub-07/ses-test/anat/sub-07_ses-test_T1w.nii.gz&#39;</span>
+
+<span class="c1"># Initiate Gunzip node</span>
+<span class="n">gunzip_anat</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">Gunzip</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="n">anat_file</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;gunzip_anat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can connect the <code class="docutils literal notranslate"><span class="pre">NewSegment</span></code> node to the rest of the workflow.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect NewSegment node to the other nodes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">gunzip_anat</span><span class="p">,</span> <span class="n">segment</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;channel_files&#39;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compute-coregistration-matrix">
+<h3>Compute Coregistration Matrix<a class="headerlink" href="#compute-coregistration-matrix" title="Permalink to this headline">¶</a></h3>
+<p>As a next step, we will make sure that the functional images are coregistered to the anatomical image. For this, we will use FSL’s <code class="docutils literal notranslate"><span class="pre">FLIRT</span></code> function. As we just created a white matter probability map, we can use this together with the Boundary-Based Registration (BBR) cost function to optimize the image coregistration. As some helpful notes…</p>
+<ul class="simple">
+<li><p>use a degree of freedom of 6</p></li>
+<li><p>specify the cost function as <code class="docutils literal notranslate"><span class="pre">bbr</span></code></p></li>
+<li><p>use the <code class="docutils literal notranslate"><span class="pre">schedule='/usr/share/fsl/5.0/etc/flirtsch/bbr.sch'</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">FLIRT</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiate FLIRT node here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coreg</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">FLIRT</span><span class="p">(</span><span class="n">dof</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                   <span class="n">cost</span><span class="o">=</span><span class="s1">&#39;bbr&#39;</span><span class="p">,</span>
+                   <span class="n">schedule</span><span class="o">=</span><span class="s1">&#39;/usr/share/fsl/5.0/etc/flirtsch/bbr.sch&#39;</span><span class="p">,</span>
+                   <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;NIFTI&#39;</span><span class="p">),</span>
+             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;coreg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect FLIRT node to the other nodes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">gunzip_anat</span><span class="p">,</span> <span class="n">coreg</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">)]),</span>
+                 <span class="p">(</span><span class="n">mcflirt</span><span class="p">,</span> <span class="n">coreg</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;mean_img&#39;</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)])</span>
+                 <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned above, the <code class="docutils literal notranslate"><span class="pre">bbr</span></code> routine can use the subject-specific white matter probability map to guide the coregistration. But for this, we need to create a binary mask out of the WM probability map. This can easily be done by FSL’s <code class="docutils literal notranslate"><span class="pre">Threshold</span></code> interface.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">Threshold</span>
+
+<span class="c1"># Threshold - Threshold WM probability image</span>
+<span class="n">threshold_WM</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">Threshold</span><span class="p">(</span><span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                              <span class="n">args</span><span class="o">=</span><span class="s1">&#39;-bin&#39;</span><span class="p">,</span>
+                              <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;NIFTI&#39;</span><span class="p">),</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;threshold_WM&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, to select the WM probability map that the <code class="docutils literal notranslate"><span class="pre">NewSegment</span></code> node created, we need some helper function. Because the output field <code class="docutils literal notranslate"><span class="pre">partial_volume_files</span></code> form the segmentation node, will give us a list of files, i.e. <code class="docutils literal notranslate"><span class="pre">[[GM_prob],</span> <span class="pre">[WM_prob],</span> <span class="pre">[],</span> <span class="pre">[],</span> <span class="pre">[],</span> <span class="pre">[]]</span></code>. Therefore, using the following function, we can select only the last element of this list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select WM segmentation file from segmentation output</span>
+<span class="k">def</span> <span class="nf">get_wm</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">files</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Connecting the segmentation node with the threshold node</span>
+<span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">segment</span><span class="p">,</span> <span class="n">threshold_WM</span><span class="p">,</span> <span class="p">[((</span><span class="s1">&#39;native_class_images&#39;</span><span class="p">,</span> <span class="n">get_wm</span><span class="p">),</span>
+                                           <span class="s1">&#39;in_file&#39;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can just connect this <code class="docutils literal notranslate"><span class="pre">Threshold</span></code> node to the coregistration node from above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect Threshold node to coregistration node above here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">threshold_WM</span><span class="p">,</span> <span class="n">coreg</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;wm_seg&#39;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="apply-coregistration-matrix-to-functional-image">
+<h3>Apply Coregistration Matrix to functional image<a class="headerlink" href="#apply-coregistration-matrix-to-functional-image" title="Permalink to this headline">¶</a></h3>
+<p>Now that we know the coregistration matrix to correctly overlay the functional mean image on the subject-specific anatomy, we need to apply to coregistration to the whole time series. This can be achieved with FSL’s <code class="docutils literal notranslate"><span class="pre">FLIRT</span></code> as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the isometric voxel resolution you want after coregistration</span>
+<span class="n">desired_voxel_iso</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># Apply coregistration warp to functional images</span>
+<span class="n">applywarp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">FLIRT</span><span class="p">(</span><span class="n">interp</span><span class="o">=</span><span class="s1">&#39;spline&#39;</span><span class="p">,</span>
+                       <span class="n">apply_isoxfm</span><span class="o">=</span><span class="n">desired_voxel_iso</span><span class="p">,</span>
+                       <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;NIFTI&#39;</span><span class="p">),</span>
+                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;applywarp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><span style="color:red">Important</span></strong>: As you can see above, we also specified a variable <code class="docutils literal notranslate"><span class="pre">desired_voxel_iso</span></code>. This is very important at this stage, otherwise <code class="docutils literal notranslate"><span class="pre">FLIRT</span></code> will transform your functional images to a resolution of the anatomical image, which will dramatically increase the file size (e.g. to 1-10GB per file). If you don’t want to change the voxel resolution, use the additional parameter <code class="docutils literal notranslate"><span class="pre">no_resample=True</span></code>. Important, for this to work, you still need to define <code class="docutils literal notranslate"><span class="pre">apply_isoxfm</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connecting the ApplyWarp node to all the other nodes</span>
+<span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">mcflirt</span><span class="p">,</span> <span class="n">applywarp</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)]),</span>
+                 <span class="p">(</span><span class="n">coreg</span><span class="p">,</span> <span class="n">applywarp</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_matrix_file&#39;</span><span class="p">,</span> <span class="s1">&#39;in_matrix_file&#39;</span><span class="p">)]),</span>
+                 <span class="p">(</span><span class="n">gunzip_anat</span><span class="p">,</span> <span class="n">applywarp</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">)])</span>
+                 <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="smoothing">
+<h3>Smoothing<a class="headerlink" href="#smoothing" title="Permalink to this headline">¶</a></h3>
+<p>Next step is image smoothing. The most simple way to do this is to use FSL’s or SPM’s <code class="docutils literal notranslate"><span class="pre">Smooth</span></code> function. But for learning purposes, let’s use FSL’s <code class="docutils literal notranslate"><span class="pre">SUSAN</span></code> workflow as it is implemented in Nipype. Note that this time, we are importing a workflow instead of an interface.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">niflow.nipype1.workflows.fmri.fsl.preprocess</span> <span class="kn">import</span> <span class="n">create_susan_smooth</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you type <code class="docutils literal notranslate"><span class="pre">create_susan_smooth?</span></code> you can see how to specify the input variables to the susan workflow. In particular, they are…</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fwhm</span></code>: set this value to 4 (or whichever value you want)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mask_file</span></code>: will be created in a later step</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_file</span></code>: will be handled while connection to other nodes in the preproc workflow</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiate SUSAN workflow here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">susan</span> <span class="o">=</span> <span class="n">create_susan_smooth</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;susan&#39;</span><span class="p">)</span>
+<span class="n">susan</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">inputnode</span><span class="o">.</span><span class="n">fwhm</span> <span class="o">=</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect Threshold node to coregistration node above here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">applywarp</span><span class="p">,</span> <span class="n">susan</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;inputnode.in_files&#39;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-binary-mask">
+<h3>Create Binary Mask<a class="headerlink" href="#create-binary-mask" title="Permalink to this headline">¶</a></h3>
+<p>There are many possible approaches on how you can mask your functional images. One of them is not at all, one is with a simple brain mask and one that only considers certain kind of brain tissue, e.g. gray matter.</p>
+<p>For the current example, we want to create a dilated gray matter mask. For this purpose we need to:</p>
+<ol class="simple">
+<li><p>Resample the gray matter probability map to the same resolution as the functional images</p></li>
+<li><p>Threshold this resampled probability map at a specific value</p></li>
+<li><p>Dilate this mask by some voxels to make the mask less conservative and more inclusive</p></li>
+</ol>
+<p>The first step can be done in many ways (eg. using freesurfer’s <code class="docutils literal notranslate"><span class="pre">mri_convert</span></code>, <code class="docutils literal notranslate"><span class="pre">nibabel</span></code>) but in our case, we will use FSL’s <code class="docutils literal notranslate"><span class="pre">FLIRT</span></code>. The trick is to use the probability mask, as input file and a reference file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">FLIRT</span>
+
+<span class="c1"># Initiate resample node</span>
+<span class="n">resample</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">FLIRT</span><span class="p">(</span><span class="n">apply_isoxfm</span><span class="o">=</span><span class="n">desired_voxel_iso</span><span class="p">,</span>
+                      <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;NIFTI&#39;</span><span class="p">),</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resample&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The second and third step can luckily be done with just one node. We can take almost the same <code class="docutils literal notranslate"><span class="pre">Threshold</span></code> node as above. We just need to add another additional argument: <code class="docutils literal notranslate"><span class="pre">-dilF</span></code> - which applies a maximum filtering of all voxels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">Threshold</span>
+
+<span class="c1"># Threshold - Threshold GM probability image</span>
+<span class="n">mask_GM</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">Threshold</span><span class="p">(</span><span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                         <span class="n">args</span><span class="o">=</span><span class="s1">&#39;-bin -dilF&#39;</span><span class="p">,</span>
+                         <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;NIFTI&#39;</span><span class="p">),</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mask_GM&quot;</span><span class="p">)</span>
+
+<span class="c1"># Select GM segmentation file from segmentation output</span>
+<span class="k">def</span> <span class="nf">get_gm</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can connect the resample and the gray matter mask node to the segmentation node and each other.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">segment</span><span class="p">,</span> <span class="n">resample</span><span class="p">,</span> <span class="p">[((</span><span class="s1">&#39;native_class_images&#39;</span><span class="p">,</span> <span class="n">get_gm</span><span class="p">),</span> <span class="s1">&#39;in_file&#39;</span><span class="p">),</span>
+                                      <span class="p">((</span><span class="s1">&#39;native_class_images&#39;</span><span class="p">,</span> <span class="n">get_gm</span><span class="p">),</span> <span class="s1">&#39;reference&#39;</span><span class="p">)</span>
+                                      <span class="p">]),</span>
+                 <span class="p">(</span><span class="n">resample</span><span class="p">,</span> <span class="n">mask_GM</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)])</span>
+                 <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This should do the trick.</p>
+</div>
+<div class="section" id="apply-the-binary-mask">
+<h3>Apply the binary mask<a class="headerlink" href="#apply-the-binary-mask" title="Permalink to this headline">¶</a></h3>
+<p>Now we can connect this dilated gray matter mask to the susan node, as well as actually applying this to the resulting smoothed images.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect gray matter Mask node to the susan workflow here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">mask_GM</span><span class="p">,</span> <span class="n">susan</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;inputnode.mask_file&#39;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To apply the mask to the smoothed functional images, we will use FSL’s <code class="docutils literal notranslate"><span class="pre">ApplyMask</span></code> interface.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.fsl</span> <span class="kn">import</span> <span class="n">ApplyMask</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Important:</strong> The susan workflow gives out a list of files, i.e. <code class="docutils literal notranslate"><span class="pre">[smoothed_func.nii]</span></code> instead of just the filename directly. If we would use a normal <code class="docutils literal notranslate"><span class="pre">Node</span></code> for <code class="docutils literal notranslate"><span class="pre">ApplyMask</span></code> this would lead to the following error:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>TraitError: The &#39;in_file&#39; trait of an ApplyMaskInput instance must be an existing file name, but a value of [&#39;/output/work_preproc/susan/smooth/mapflow/_smooth0/asub-07_ses-test_task-fingerfootlips_bold_mcf_flirt_smooth.nii.gz&#39;] &lt;class &#39;list&#39;&gt; was specified.
+</pre></div>
+</div>
+<p>To prevent this we will be using a <code class="docutils literal notranslate"><span class="pre">MapNode</span></code> and specify the <code class="docutils literal notranslate"><span class="pre">in_file</span></code> as it’s iterfield. Like this, the node is capable to handle a list of inputs as it will know that it has to apply itself iteratively to the list of inputs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">MapNode</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiate ApplyMask node here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask_func</span> <span class="o">=</span> <span class="n">MapNode</span><span class="p">(</span><span class="n">ApplyMask</span><span class="p">(</span><span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;NIFTI&#39;</span><span class="p">),</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mask_func&quot;</span><span class="p">,</span> 
+                    <span class="n">iterfield</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;in_file&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect smoothed susan output file to ApplyMask node here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">susan</span><span class="p">,</span> <span class="n">mask_func</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;outputnode.smoothed_files&#39;</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)]),</span>
+                 <span class="p">(</span><span class="n">mask_GM</span><span class="p">,</span> <span class="n">mask_func</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;mask_file&#39;</span><span class="p">)])</span>
+                 <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="remove-linear-trends-in-functional-images">
+<h3>Remove linear trends in functional images<a class="headerlink" href="#remove-linear-trends-in-functional-images" title="Permalink to this headline">¶</a></h3>
+<p>Last but not least. Let’s use Nipype’s <code class="docutils literal notranslate"><span class="pre">TSNR</span></code> module to remove linear and quadratic trends in the functionally smoothed images. For this, you only have to specify the <code class="docutils literal notranslate"><span class="pre">regress_poly</span></code> parameter in the node initiation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.algorithms.confounds</span> <span class="kn">import</span> <span class="n">TSNR</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiate TSNR node here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">detrend</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">TSNR</span><span class="p">(</span><span class="n">regress_poly</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;detrend&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect the detrend node to the other nodes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">mask_func</span><span class="p">,</span> <span class="n">detrend</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="datainput-with-selectfiles-and-iterables">
+<h2>Datainput with <code class="docutils literal notranslate"><span class="pre">SelectFiles</span></code> and <code class="docutils literal notranslate"><span class="pre">iterables</span></code><a class="headerlink" href="#datainput-with-selectfiles-and-iterables" title="Permalink to this headline">¶</a></h2>
+<p>This is all nice and well. But so far we still had to specify the input values for <code class="docutils literal notranslate"><span class="pre">gunzip_anat</span></code> and <code class="docutils literal notranslate"><span class="pre">gunzip_func</span></code> ourselves. How can we scale this up to multiple subjects and/or multiple functional images and make the workflow take the input directly from the BIDS dataset?</p>
+<p>For this, we need <a class="reference external" href="../../../nipype_tutorial/notebooks/basic_data_input.ipynb#SelectFiles"><code class="docutils literal notranslate"><span class="pre">SelectFiles</span></code></a> and <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">iterables</span></code></span>! It’s rather simple, specify a template and fill-up the placeholder variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the SelectFiles</span>
+<span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">SelectFiles</span>
+
+<span class="c1"># String template with {}-based strings</span>
+<span class="n">templates</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;anat&#39;</span><span class="p">:</span> <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">/ses-</span><span class="si">{ses_id}</span><span class="s1">/anat/&#39;</span>
+                     <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">_ses-test_T1w.nii.gz&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;func&#39;</span><span class="p">:</span> <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">/ses-</span><span class="si">{ses_id}</span><span class="s1">/func/&#39;</span>
+                     <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">_ses-</span><span class="si">{ses_id}</span><span class="s1">_task-</span><span class="si">{task_id}</span><span class="s1">_bold.nii.gz&#39;</span><span class="p">}</span>
+
+<span class="c1"># Create SelectFiles node</span>
+<span class="n">sf</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">SelectFiles</span><span class="p">(</span><span class="n">templates</span><span class="p">,</span>
+                      <span class="n">base_directory</span><span class="o">=</span><span class="s1">&#39;/data/ds000114&#39;</span><span class="p">,</span>
+                      <span class="n">sort_filelist</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+          <span class="n">name</span><span class="o">=</span><span class="s1">&#39;selectfiles&#39;</span><span class="p">)</span>
+<span class="n">sf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">ses_id</span><span class="o">=</span><span class="s1">&#39;test&#39;</span>
+<span class="n">sf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;fingerfootlips&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can specify over which subjects the workflow should iterate. To test the workflow, let’s still just look at subject 7.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subject_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;07&#39;</span><span class="p">]</span>
+<span class="n">sf</span><span class="o">.</span><span class="n">iterables</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;subject_id&#39;</span><span class="p">,</span> <span class="n">subject_list</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect SelectFiles node to the other nodes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">sf</span><span class="p">,</span> <span class="n">gunzip_anat</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;anat&#39;</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)]),</span>
+                 <span class="p">(</span><span class="n">sf</span><span class="p">,</span> <span class="n">gunzip_func</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;func&#39;</span><span class="p">,</span> <span class="s1">&#39;in_file&#39;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="visualize-the-workflow">
+<h2>Visualize the workflow<a class="headerlink" href="#visualize-the-workflow" title="Permalink to this headline">¶</a></h2>
+<p>Now that we’re done. Let’s look at the workflow that we just created.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create preproc output graph</span>
+<span class="n">preproc</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span><span class="n">graph2use</span><span class="o">=</span><span class="s1">&#39;colored&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">simple_form</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Visualize the graph</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;/output/work_preproc/graph.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">750</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="run-the-workflow">
+<h2>Run the Workflow<a class="headerlink" href="#run-the-workflow" title="Permalink to this headline">¶</a></h2>
+<p>Now we are ready to run the workflow! Be careful about the <code class="docutils literal notranslate"><span class="pre">n_procs</span></code> parameter if you run a workflow in <code class="docutils literal notranslate"><span class="pre">'MultiProc'</span></code> mode. <code class="docutils literal notranslate"><span class="pre">n_procs</span></code> specifies the number of jobs/cores your computer will use to run the workflow. If this number is too high your computer will try to execute too many things at once and will most likely crash.</p>
+<p><strong>Note</strong>: If  you’re using a Docker container and FLIRT fails to run without any good reason, you might need to change memory settings in the Docker preferences (6 GB should be enough for this workflow).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="inspect-output">
+<h2>Inspect output<a class="headerlink" href="#inspect-output" title="Permalink to this headline">¶</a></h2>
+<p>What did we actually do? Let’s look at all the data that was created.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree /output/work_preproc/ -I <span class="s1">&#39;*js|*json|*pklz|_report|*dot|*html|*txt|*.m&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>But what did we do specifically? Well, let’s investigate.</p>
+<div class="section" id="motion-correction-and-artifact-detection">
+<h3>Motion Correction and Artifact Detection<a class="headerlink" href="#motion-correction-and-artifact-detection" title="Permalink to this headline">¶</a></h3>
+<p>How much did the subject move in the scanner and where there any outliers in the functional images?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the motion paramters</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">par</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;/output/work_preproc/_subject_id_07/mcflirt/&#39;</span>
+                 <span class="s1">&#39;asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz.par&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;rotation (radians)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">par</span><span class="p">[</span><span class="mi">0</span><span class="p">:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">par</span><span class="p">[</span><span class="mi">0</span><span class="p">:,</span> <span class="mi">3</span><span class="p">:])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (TR)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;translation (mm)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The motion parameters seems to look ok. What about the detection of artifacts?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Showing the artifact detection output</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+<span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;/output/work_preproc/_subject_id_07/art/&#39;</span>
+    <span class="s1">&#39;plot.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.svg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Which volumes are problematic?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outliers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;/output/work_preproc/_subject_id_07/art/&#39;</span>
+                      <span class="s1">&#39;art.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_outliers.txt&#39;</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">outliers</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="masks-and-probability-maps">
+<h3>Masks and Probability maps<a class="headerlink" href="#masks-and-probability-maps" title="Permalink to this headline">¶</a></h3>
+<p>Let’s see what all the masks and probability maps look like. For this, we will use <code class="docutils literal notranslate"><span class="pre">nilearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">plot_anat</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span> <span class="k">as</span> <span class="n">nli</span>
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_stat_map</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;/output/work_preproc/_subject_id_07/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, let’s look at the tissue probability maps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anat</span> <span class="o">=</span> <span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;gunzip_anat/sub-07_ses-test_T1w.nii&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_stat_map</span><span class="p">(</span>
+    <span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;segment/c1sub-07_ses-test_T1w.nii&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;GM prob. map&#39;</span><span class="p">,</span>  <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">anat</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_stat_map</span><span class="p">(</span>
+    <span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;segment/c2sub-07_ses-test_T1w.nii&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;WM prob. map&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">anat</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_stat_map</span><span class="p">(</span>
+    <span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;segment/c3sub-07_ses-test_T1w.nii&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CSF prob. map&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">anat</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And how does the gray matter mask look like that we used on the functional images?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_stat_map</span><span class="p">(</span>
+    <span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;mask_GM/c1sub-07_ses-test_T1w_flirt_thresh.nii&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;dilated GM Mask&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">anat</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="functional-image-transformations">
+<h3>Functional Image transformations<a class="headerlink" href="#functional-image-transformations" title="Permalink to this headline">¶</a></h3>
+<p>Let’s also investigate the transformation that we applied to the functional images.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span> <span class="k">as</span> <span class="n">nli</span>
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_epi</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;/output/work_preproc/_subject_id_07/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_epi</span><span class="p">(</span><span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;mcflirt/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg.nii.gz&#39;</span><span class="p">,</span>
+         <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Motion Corrected mean image&#39;</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+         <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;applywarp/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii&#39;</span><span class="p">)</span>
+<span class="n">plot_epi</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Coregistred mean image&#39;</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+         <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="s1">&#39;/output/work_preproc/susan/_subject_id_07/smooth/mapflow/_smooth0/&#39;</span>
+                    <span class="s1">&#39;asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">plot_epi</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Smoothed mean image&#39;</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+         <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;mask_func/mapflow/_mask_func0/&#39;</span>
+                    <span class="s1">&#39;asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth_masked.nii&#39;</span><span class="p">)</span>
+<span class="n">plot_epi</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Masked mean image&#39;</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+         <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_epi</span><span class="p">(</span><span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;detrend/mean.nii.gz&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Detrended mean image&#39;</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span>
+         <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s all nice and beautiful, but what did smoothing and detrending actually do to the data?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;/output/work_preproc/_subject_id_07/&#39;</span>
+
+<span class="c1"># Load the relevant datasets</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;applywarp/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii&#39;</span><span class="p">)</span>
+<span class="n">smooth</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/output/work_preproc/susan/_subject_id_07/smooth/mapflow/&#39;</span>
+                 <span class="s1">&#39;_smooth0/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">detrended_data</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">output</span> <span class="o">+</span> <span class="s1">&#39;detrend/detrend.nii.gz&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot a representative voxel</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">43</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">smooth</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">detrended_data</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;motion corrected&#39;</span><span class="p">,</span> <span class="s1">&#39;smoothed&#39;</span><span class="p">,</span> <span class="s1">&#39;detrended&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-output-with-datasink">
+<h2>Data output with <code class="docutils literal notranslate"><span class="pre">DataSink</span></code><a class="headerlink" href="#data-output-with-datasink" title="Permalink to this headline">¶</a></h2>
+<p>The results look fine, but we don’t need all those temporary files. So let’s use Datasink to keep only those files that we actually need for the 1st and 2nd level analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nipype.interfaces.io</span> <span class="kn">import</span> <span class="n">DataSink</span>
+
+<span class="c1"># Initiate the datasink node</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="s1">&#39;datasink_handson&#39;</span>
+<span class="n">datasink</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">DataSink</span><span class="p">(</span><span class="n">base_directory</span><span class="o">=</span><span class="s1">&#39;/output/&#39;</span><span class="p">,</span>
+                         <span class="n">container</span><span class="o">=</span><span class="n">output_folder</span><span class="p">),</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;datasink&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now the next step is to specify all the output that we want to keep in our output folder <code class="docutils literal notranslate"><span class="pre">output</span></code>. Make sure to keep:</p>
+<ul class="simple">
+<li><p>from the artifact detection node the outlier file as well as the outlier plot</p></li>
+<li><p>from the motion correction node the motion parameters</p></li>
+<li><p>from the last node, the detrended functional image</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect nodes to datasink here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">connect</span><span class="p">([(</span><span class="n">art</span><span class="p">,</span> <span class="n">datasink</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;outlier_files&#39;</span><span class="p">,</span> <span class="s1">&#39;preproc.@outlier_files&#39;</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s1">&#39;plot_files&#39;</span><span class="p">,</span> <span class="s1">&#39;preproc.@plot_files&#39;</span><span class="p">)]),</span>
+                 <span class="p">(</span><span class="n">mcflirt</span><span class="p">,</span> <span class="n">datasink</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;par_file&#39;</span><span class="p">,</span> <span class="s1">&#39;preproc.@par&#39;</span><span class="p">)]),</span>
+                 <span class="p">(</span><span class="n">detrend</span><span class="p">,</span> <span class="n">datasink</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;detrended_file&#39;</span><span class="p">,</span> <span class="s1">&#39;preproc.@func&#39;</span><span class="p">)]),</span>
+                 <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Run the workflow<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>After adding the datasink folder, let’s run the preprocessing workflow again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preproc</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look now at the output of this datasink folder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree /output/datasink_handson -I <span class="s1">&#39;*js|*json|*pklz|_report|*dot|*html|*txt|*.m&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Much better! But we’re still not there yet. There are many unnecessary file specifiers that we can get rid off. To do so, we can use <code class="docutils literal notranslate"><span class="pre">DataSink</span></code>’s <code class="docutils literal notranslate"><span class="pre">substitutions</span></code> parameter. For this, we create a list of tuples: on the left, we specify the string that we want to replace and on the right, with what we want to replace it with.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Use the following substitutions for the DataSink output</span>
+<span class="n">substitutions</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;asub&#39;</span><span class="p">,</span> <span class="s1">&#39;sub&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;_ses-test_task-fingerfootlips_bold_roi_mcf&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;.nii.gz.par&#39;</span><span class="p">,</span> <span class="s1">&#39;.par&#39;</span><span class="p">),</span>
+                 <span class="p">]</span>
+
+<span class="c1"># To get rid of the folder &#39;_subject_id_07&#39; and renaming detrend</span>
+<span class="n">substitutions</span> <span class="o">+=</span> <span class="p">[(</span><span class="s1">&#39;_subject_id_</span><span class="si">%s</span><span class="s1">/detrend&#39;</span> <span class="o">%</span> <span class="n">s</span><span class="p">,</span>
+                   <span class="s1">&#39;_subject_id_</span><span class="si">%s</span><span class="s1">/sub-</span><span class="si">%s</span><span class="s1">_detrend&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">subject_list</span><span class="p">]</span>
+<span class="n">substitutions</span> <span class="o">+=</span> <span class="p">[(</span><span class="s1">&#39;_subject_id_</span><span class="si">%s</span><span class="s1">/&#39;</span> <span class="o">%</span> <span class="n">s</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">subject_list</span><span class="p">]</span>
+<span class="n">datasink</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">substitutions</span> <span class="o">=</span> <span class="n">substitutions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before we run the preprocessing workflow again, let’s first delete the current output folder:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delets the current output folder</span>
+<span class="o">!</span>rm -rf /output/datasink_handson
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Runs the preprocessing workflow again, this time with substitutions</span>
+<span class="n">preproc</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree /output/datasink_handson -I <span class="s1">&#39;*js|*json|*pklz|_report|*dot|*html|*.m&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="run-preprocessing-workflow-on-6-right-handed-subjects">
+<h2>Run Preprocessing workflow on 6 right-handed subjects<a class="headerlink" href="#run-preprocessing-workflow-on-6-right-handed-subjects" title="Permalink to this headline">¶</a></h2>
+<p>Perfect! Now let’s run the whole workflow for right-handed subjects. For this, you just need to change the <code class="docutils literal notranslate"><span class="pre">subject_list</span></code> variable and run again the places where this variable is used (i.e. <code class="docutils literal notranslate"><span class="pre">sf.iterables</span></code> and in <code class="docutils literal notranslate"><span class="pre">DataSink</span></code> <code class="docutils literal notranslate"><span class="pre">substitutions</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update &#39;subject_list&#39; and its dependencies here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subject_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;02&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span> <span class="s1">&#39;07&#39;</span><span class="p">,</span> <span class="s1">&#39;08&#39;</span><span class="p">,</span> <span class="s1">&#39;09&#39;</span><span class="p">]</span>
+
+<span class="n">sf</span><span class="o">.</span><span class="n">iterables</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;subject_id&#39;</span><span class="p">,</span> <span class="n">subject_list</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To get rid of the folder &#39;_subject_id_02&#39; and renaming detrend</span>
+<span class="n">substitutions</span> <span class="o">+=</span> <span class="p">[(</span><span class="s1">&#39;_subject_id_</span><span class="si">%s</span><span class="s1">/detrend&#39;</span> <span class="o">%</span> <span class="n">s</span><span class="p">,</span>
+                   <span class="s1">&#39;_subject_id_</span><span class="si">%s</span><span class="s1">/sub-</span><span class="si">%s</span><span class="s1">_detrend&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">subject_list</span><span class="p">]</span>
+<span class="n">substitutions</span> <span class="o">+=</span> <span class="p">[(</span><span class="s1">&#39;_subject_id_</span><span class="si">%s</span><span class="s1">/&#39;</span> <span class="o">%</span> <span class="n">s</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">subject_list</span><span class="p">]</span>
+<span class="n">datasink</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">substitutions</span> <span class="o">=</span> <span class="n">substitutions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can run the workflow again, this time for all right handed subjects in parallel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Runs the preprocessing workflow again, this time with substitutions</span>
+<span class="n">preproc</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we’re ready for the next section <a class="reference internal" href="handson_analysis.html"><span class="doc std std-doc">Hands-on 2: How to create a fMRI analysis workflow</span></a>!</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nipype/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="example_2ndlevel.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Example 4: 2nd-level Analysis</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="handson_analysis.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Hands-on 2: How to create a fMRI analysis workflow</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
