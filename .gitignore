@@ -6,3 +6,9 @@
 
 # build
 workshop/_build/*
+
+workshop/data/*
+
+workshop/prerequisites/.ipynb*
+
+workshop/prerequisites/_pycache_/*
