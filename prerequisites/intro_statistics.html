@@ -898,10 +898,6 @@
                 
   <div class="section" id="introduction-to-statistics-in-python">
 <h1>Introduction to Statistics in python<a class="headerlink" href="#introduction-to-statistics-in-python" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://peerherholz.github.io/">Peer Herholz (he/him)</a><br />
-Postdoctoral researcher - <a class="reference external" href="https://neurodatascience.github.io/">NeuroDataScience lab</a> at <a class="reference external" href="https://www.mcgill.ca/neuro/">MNI</a>/<a class="reference external" href="https://www.mcgill.ca/">McGill</a>, <a class="reference external" href="https://sites.google.com/view/unique-neuro-ai">UNIQUE</a><br />
-Member - <a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">BIDS</a>, <a class="reference external" href="https://www.repronim.org/">ReproNim</a>, <a class="reference external" href="https://brainhack.org/">Brainhack</a>, <a class="reference external" href="https://www.cneuromod.ca/">Neuromod</a>, <a class="reference external" href="https://ohbm-environment.org/">OHBM SEA-SIG</a></p>
-<p><img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/Twitter%20social%20icons%20-%20circle%20-%20blue.png" alt="logo" title="Twitter" width="32" height="20" /> <img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/GitHub-Mark-120px-plus.png" alt="logo" title="Github" width="30" height="20" />     &#64;peerherholz</p>
 <p>In this section, we will cover how you can use Python to do some statistics. There are many packages to do so, but we will focus on four:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pandas.pydata.org/">pandas</a></p></li>
@@ -922,14 +918,38 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org/crn/datasets/ds003709/snapshots/1.0.0/files/participants.tsv
+curl https://openneuro.org/crn/datasets/ds003709/snapshots/1.0.0/files/participants.tsv -o /data/participants_stats.tsv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  1761    0  1761    0     0  14238      0 --:--:-- --:--:-- --:--:-- 14201
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head participants_stats.tsv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head /data/participants_stats.tsv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>participant_id	sex	age	handedness	group	MFQ	SHAPS
+sub-20900	M	17	RIGHT	HV	0.0	1.0
+sub-22686	M	16	RIGHT	HV	2.0	10.0
+sub-23017	F	17	RIGHT	MDD	15.0	6.0
+sub-23108	F	16	RIGHT	HV	0.0	7.0
+sub-23303	F	16	RIGHT	HV	0.0	0.0
+sub-23399	F	17	RIGHT	MDD	1.0	14.0
+sub-23520	F	17	RIGHT	MDD	7.0	22.0
+sub-23540	F	16	RIGHT	MDD	5.0	21.0
+sub-23546	F	17	RIGHT	MDD	1.0	0.0
 </pre></div>
 </div>
 </div>
@@ -946,11 +966,553 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;participants_stats.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/data/participants_stats.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
 <span class="n">data</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>participant_id</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>handedness</th>
+      <th>group</th>
+      <th>MFQ</th>
+      <th>SHAPS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sub-20900</td>
+      <td>M</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sub-22686</td>
+      <td>M</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>2.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sub-23017</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>15.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sub-23108</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sub-23303</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sub-23399</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>1.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sub-23520</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>7.0</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>sub-23540</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>5.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sub-23546</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>sub-23549</td>
+      <td>M</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>4.0</td>
+      <td>20.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>sub-23564</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>2.0</td>
+      <td>15.0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>sub-23576</td>
+      <td>F</td>
+      <td>15</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>9.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>sub-23593</td>
+      <td>F</td>
+      <td>15</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>16.0</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>sub-23607</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>6.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>sub-23613</td>
+      <td>F</td>
+      <td>14</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>sub-23625</td>
+      <td>F</td>
+      <td>14</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>8.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>sub-23639</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>4.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>sub-23643</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>13.0</td>
+      <td>17.0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>sub-23649</td>
+      <td>F</td>
+      <td>15</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>15.0</td>
+      <td>16.0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>sub-23652</td>
+      <td>M</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>8.0</td>
+      <td>17.0</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>sub-23673</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>sub-23674</td>
+      <td>F</td>
+      <td>15</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>6.0</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>sub-23689</td>
+      <td>F</td>
+      <td>18</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>5.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>sub-23717</td>
+      <td>M</td>
+      <td>16</td>
+      <td>AMBIDEXTROUS</td>
+      <td>MDD</td>
+      <td>9.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>sub-23718</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>sub-23720</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>5.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>sub-23757</td>
+      <td>F</td>
+      <td>14</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>sub-23780</td>
+      <td>F</td>
+      <td>18</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>15.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>sub-23783</td>
+      <td>F</td>
+      <td>14</td>
+      <td>LEFT</td>
+      <td>MDD</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>sub-23798</td>
+      <td>F</td>
+      <td>15</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>8.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>sub-23814</td>
+      <td>F</td>
+      <td>13</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>20.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>sub-23817</td>
+      <td>F</td>
+      <td>15</td>
+      <td>LEFT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>sub-23820</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>sub-23823</td>
+      <td>M</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>5.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>sub-23830</td>
+      <td>M</td>
+      <td>16</td>
+      <td>LEFT</td>
+      <td>MDD</td>
+      <td>14.0</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>sub-23834</td>
+      <td>F</td>
+      <td>13</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>2.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>sub-23843</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>1.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>sub-23856</td>
+      <td>F</td>
+      <td>12</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>1.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>sub-23866</td>
+      <td>M</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>4.0</td>
+      <td>15.0</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>sub-23867</td>
+      <td>F</td>
+      <td>14</td>
+      <td>AMBIDEXTROUS</td>
+      <td>MDD</td>
+      <td>11.0</td>
+      <td>25.0</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>sub-23880</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>sub-23890</td>
+      <td>F</td>
+      <td>14</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>sub-23901</td>
+      <td>M</td>
+      <td>15</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>NaN</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>sub-23903</td>
+      <td>F</td>
+      <td>15</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>16.0</td>
+      <td>11.0</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>sub-23905</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>4.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>sub-23919</td>
+      <td>M</td>
+      <td>14</td>
+      <td>LEFT</td>
+      <td>MDD</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>sub-23937</td>
+      <td>F</td>
+      <td>15</td>
+      <td>AMBIDEXTROUS</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>sub-23943</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>8.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>sub-23951</td>
+      <td>F</td>
+      <td>13</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>8.0</td>
+      <td>11.0</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>sub-23952</td>
+      <td>M</td>
+      <td>15</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>5.0</td>
+      <td>16.0</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>sub-23969</td>
+      <td>F</td>
+      <td>15</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="creating-from-arrays">
@@ -973,6 +1535,64 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>t</th>
+      <th>sin</th>
+      <th>cos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-6.000000</td>
+      <td>0.279415</td>
+      <td>0.960170</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-5.368421</td>
+      <td>0.792419</td>
+      <td>0.609977</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-4.736842</td>
+      <td>0.999701</td>
+      <td>0.024451</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-4.105263</td>
+      <td>0.821291</td>
+      <td>-0.570509</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-3.473684</td>
+      <td>0.326021</td>
+      <td>-0.945363</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p><strong>Other inputs</strong>: <a class="reference external" href="http://pandas.pydata.org">pandas</a> can input data from SQL, excel files, or other formats. See the <a class="reference external" href="http://pandas.pydata.org">pandas documentation</a>.</p>
 </div>
@@ -986,6 +1606,11 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(51, 7)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -993,10 +1618,25 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;participant_id&#39;, &#39;sex&#39;, &#39;age&#39;, &#39;handedness&#39;, &#39;group&#39;, &#39;MFQ&#39;, &#39;SHAPS&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>  <span class="c1"># Columns can be addressed by name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     HV
+1     HV
+2    MDD
+3     HV
+4     HV
+Name: group, dtype: object
 </pre></div>
 </div>
 </div>
@@ -1008,6 +1648,11 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.5294117647058822
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>Note:</strong> For a quick view on a large dataframe, use its <code class="docutils literal notranslate"><span class="pre">describe</span></code> <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.describe</span></code>.</p>
 <div class="cell docutils container">
@@ -1016,11 +1661,99 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>MFQ</th>
+      <th>SHAPS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>51.000000</td>
+      <td>46.000000</td>
+      <td>46.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>15.568627</td>
+      <td>5.739130</td>
+      <td>9.195652</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.360219</td>
+      <td>5.511341</td>
+      <td>7.759208</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>12.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>15.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>16.000000</td>
+      <td>5.000000</td>
+      <td>8.500000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>17.000000</td>
+      <td>8.000000</td>
+      <td>15.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>18.000000</td>
+      <td>20.000000</td>
+      <td>26.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Frequency count for a given column</span>
 <span class="n">data</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16    15
+17    12
+15    11
+14     7
+13     3
+18     2
+12     1
+Name: age, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1032,6 +1765,108 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>HV</th>
+      <th>MDD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="section" id="the-split-apply-combine-pattern">
 <h4>The <a class="reference external" href="https://www.jstatsoft.org/article/view/v040i01/v40i01.pdf">split-apply-combine</a> pattern<a class="headerlink" href="#the-split-apply-combine-pattern" title="Permalink to this headline">¶</a></h4>
@@ -1054,6 +1889,12 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;HV&#39;, 1.5294117647058822)
+(&#39;MDD&#39;, 8.206896551724139)
+</pre></div>
+</div>
+</div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">groupby_group</span></code> is a powerful object that exposes many operations on the resulting group of <code class="docutils literal notranslate"><span class="pre">dataframes</span></code>:</p>
 <div class="cell docutils container">
@@ -1062,6 +1903,52 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>MFQ</th>
+      <th>SHAPS</th>
+    </tr>
+    <tr>
+      <th>group</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>HV</th>
+      <td>15.450000</td>
+      <td>1.529412</td>
+      <td>4.235294</td>
+    </tr>
+    <tr>
+      <th>MDD</th>
+      <td>15.645161</td>
+      <td>8.206897</td>
+      <td>12.103448</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 </div>
@@ -1078,6 +1965,9 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_statistics_28_0.png" src="../_images/intro_statistics_28_0.png" />
+</div>
 </div>
 <div class="section" id="scatter-matrices">
 <h4>Scatter matrices<a class="headerlink" href="#scatter-matrices" title="Permalink to this headline">¶</a></h4>
@@ -1086,6 +1976,9 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;MFQ&#39;</span><span class="p">,</span> <span class="s1">&#39;SHAPS&#39;</span><span class="p">]]);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_statistics_30_0.png" src="../_images/intro_statistics_30_0.png" />
 </div>
 </div>
 </div>
@@ -1097,12 +1990,97 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>participant_id</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>handedness</th>
+      <th>group</th>
+      <th>MFQ</th>
+      <th>SHAPS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sub-20900</td>
+      <td>M</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sub-22686</td>
+      <td>M</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>2.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sub-23017</td>
+      <td>F</td>
+      <td>17</td>
+      <td>RIGHT</td>
+      <td>MDD</td>
+      <td>15.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sub-23108</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sub-23303</td>
+      <td>F</td>
+      <td>16</td>
+      <td>RIGHT</td>
+      <td>HV</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_statistics_33_0.png" src="../_images/intro_statistics_33_0.png" />
 </div>
 </div>
 <img src="https://github.com/raphaelvallat/pingouin/blob/master/docs/pictures/logo_pingouin.png?raw=true" width="50%"/>
@@ -1146,6 +2124,50 @@ curl --silent --output /dev/null -O participants_stats.tsv https://openneuro.org
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>n</th>
+      <th>r</th>
+      <th>CI95%</th>
+      <th>r2</th>
+      <th>adj_r2</th>
+      <th>p-val</th>
+      <th>BF10</th>
+      <th>power</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>pearson</th>
+      <td>45</td>
+      <td>0.457</td>
+      <td>[0.19, 0.66]</td>
+      <td>0.209</td>
+      <td>0.171</td>
+      <td>0.001601</td>
+      <td>16.321</td>
+      <td>0.898</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 </div>
@@ -1174,15 +2196,20 @@ Nevertheless it is essential to first test the distribution of your data to deci
 <p>Standard procedure to test for normal distribution. Tests if the distribution of you data deviates significtanly from a normal distribution.
 returns:</p>
 <ul class="simple">
-<li><p>normal : boolean
-True if x comes from a normal distribution.</p></li>
-<li><p>p : float
-P-value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">normal</span></code> : <code class="docutils literal notranslate"><span class="pre">boolean</span></code>
+<code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> comes from a <code class="docutils literal notranslate"><span class="pre">normal</span> <span class="pre">distribution</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span></code> : <code class="docutils literal notranslate"><span class="pre">float</span></code>
+<code class="docutils literal notranslate"><span class="pre">P-value</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return a boolean (true if normal) and the associated p-value</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;normaltest&#39;</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(True, 1.0)
 </pre></div>
 </div>
 </div>
@@ -1206,6 +2233,11 @@ P-value.</p></li>
 <span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="mi">30</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">multivariate_normality</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(True, 0.7523511059223016)
 </pre></div>
 </div>
 </div>
@@ -1233,6 +2265,11 @@ P-value.</p></li>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(False, 0.002, 302.823, 20, 2.142051582323624e-52)
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="testing-for-homoscedasticity">
@@ -1255,7 +2292,15 @@ This function first tests if the data are normally distributed using the <strong
 <span class="n">array_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">array_1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">array_2</span><span class="p">))</span>
 
-<span class="n">pg</span><span class="o">.</span><span class="n">homoscedasticity</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dv</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">homoscedasticity</span><span class="p">(</span><span class="n">array_1</span><span class="p">,</span> <span class="n">array_2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2729265592243306 0.6022425373276372
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(False, 0.0)
 </pre></div>
 </div>
 </div>
@@ -1277,6 +2322,48 @@ This function first tests if the data are normally distributed using the <strong
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>T</th>
+      <th>p-val</th>
+      <th>dof</th>
+      <th>tail</th>
+      <th>cohen-d</th>
+      <th>power</th>
+      <th>BF10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>T-test</th>
+      <td>7.063</td>
+      <td>8.228161e-09</td>
+      <td>45</td>
+      <td>two-sided</td>
+      <td>1.041</td>
+      <td>1.0</td>
+      <td>1527145.713</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="sample-t-test-testing-for-difference-across-populations">
@@ -1297,6 +2384,50 @@ were different. To test if this is significant, we do a 2-sample t-test:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>T</th>
+      <th>p-val</th>
+      <th>dof</th>
+      <th>dof-corr</th>
+      <th>tail</th>
+      <th>cohen-d</th>
+      <th>power</th>
+      <th>BF10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>T-test</th>
+      <td>5.866</td>
+      <td>6.718419e-07</td>
+      <td>44</td>
+      <td>40.991061</td>
+      <td>two-sided</td>
+      <td>1.486</td>
+      <td>0.997</td>
+      <td>22256.489</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="plot-achieved-power-of-a-paired-t-test">
@@ -1324,6 +2455,9 @@ were different. To test if this is significant, we do a 2-sample t-test:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_statistics_58_0.png" src="../_images/intro_statistics_58_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="non-parametric-tests">
@@ -1344,6 +2478,42 @@ Mwu tests the hypothesis that data in x and y are samples from continuous distri
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>U-val</th>
+      <th>p-val</th>
+      <th>RBC</th>
+      <th>CLES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MWU</th>
+      <td>442.0</td>
+      <td>0.000008</td>
+      <td>-0.793103</td>
+      <td>0.872211</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>“<code class="docutils literal notranslate"><span class="pre">Wilcoxon</span> <span class="pre">signed-rank</span> <span class="pre">test</span></code> is the non-parametric version of the paired T-test.</p>
 <p>The Wilcoxon signed-rank test tests the null hypothesis that two related paired samples come from the same distribution. A continuity correction is applied by default.” - <a class="reference external" href="https://pingouin-stats.org/generated/pingouin.wilcoxon.html#pingouin.wilcoxon">wilcoxon - func</a></p>
@@ -1358,6 +2528,49 @@ Mwu tests the hypothesis that data in x and y are samples from continuous distri
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Medians = 20.00 - 25.50
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/scipy/stats/morestats.py:2879: UserWarning: Sample size too small for normal approximation.
+  warnings.warn(&quot;Sample size too small for normal approximation.&quot;)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W-val</th>
+      <th>p-val</th>
+      <th>RBC</th>
+      <th>CLES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Wilcoxon</th>
+      <td>9.0</td>
+      <td>0.043089</td>
+      <td>0.5</td>
+      <td>0.609375</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <center><img src="https://docs.scipy.org/doc/numpy-1.5.x/_static/scipyshiny_small.png" width="20%"></center>
 </div>
@@ -1381,6 +2594,11 @@ Mwu tests the hypothesis that data in x and y are samples from continuous distri
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_1sampResult(statistic=7.062650755155121, pvalue=8.228161269771835e-09)
+</pre></div>
+</div>
+</div>
 </div>
 <p>With a p-value of 8^-09 we can claim that the population mean for the <code class="docutils literal notranslate"><span class="pre">MFQ</span></code> is not <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 </div>
@@ -1392,6 +2610,11 @@ with <code class="docutils literal notranslate"><span class="pre">scipy.stats.tt
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">MDD_MFQ</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">HV_MFQ</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=4.863337342528167, pvalue=1.5121907363581306e-05)
 </pre></div>
 </div>
 </div>
@@ -1407,6 +2630,11 @@ with <code class="docutils literal notranslate"><span class="pre">scipy.stats.tt
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=-2.4632108396344363, pvalue=0.01567217083007739)
+</pre></div>
+</div>
+</div>
 </div>
 <p>The problem with this approach is that it forgets that there are links
 between observations: <code class="docutils literal notranslate"><span class="pre">MFQ</span></code> and <code class="docutils literal notranslate"><span class="pre">SHAPS</span></code> are measured on the same individuals.</p>
@@ -1418,6 +2646,11 @@ can be removed, using a “paired test”, or <a class="reference external" href
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_relResult(statistic=-3.006858621511653, pvalue=0.004308118483154467)
+</pre></div>
+</div>
+</div>
 </div>
 <p>This is equivalent to a 1-sample test on the difference::</p>
 <div class="cell docutils container">
@@ -1426,11 +2659,21 @@ can be removed, using a “paired test”, or <a class="reference external" href
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_1sampResult(statistic=nan, pvalue=nan)
+</pre></div>
+</div>
+</div>
 </div>
 <p>T-tests assume Gaussian errors. We can use a <a class="reference external" href="https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test">Wilcoxon signed-rank test</a>, that relaxes this assumption:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;SHAPS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WilcoxonResult(statistic=177.0, pvalue=0.004985029827378135)
 </pre></div>
 </div>
 </div>
@@ -1471,6 +2714,9 @@ can be removed, using a “paired test”, or <a class="reference external" href
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_statistics_83_0.png" src="../_images/intro_statistics_83_0.png" />
+</div>
 </div>
 <p>Then we specify an OLS model and fit it:</p>
 <div class="cell docutils container">
@@ -1489,6 +2735,35 @@ can be removed, using a “paired test”, or <a class="reference external" href
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.804
+Model:                            OLS   Adj. R-squared:                  0.794
+Method:                 Least Squares   F-statistic:                     74.03
+Date:                Sun, 17 Oct 2021   Prob (F-statistic):           8.56e-08
+Time:                        16:14:47   Log-Likelihood:                -57.988
+No. Observations:                  20   AIC:                             120.0
+Df Residuals:                      18   BIC:                             122.0
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     -5.5335      1.036     -5.342      0.000      -7.710      -3.357
+x              2.9369      0.341      8.604      0.000       2.220       3.654
+==============================================================================
+Omnibus:                        0.100   Durbin-Watson:                   2.956
+Prob(Omnibus):                  0.951   Jarque-Bera (JB):                0.322
+Skew:                          -0.058   Prob(JB):                        0.851
+Kurtosis:                       2.390   Cond. No.                         3.03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="terminology">
 <h3>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h3>
@@ -1500,7 +2775,7 @@ can be removed, using a “paired test”, or <a class="reference external" href
 <p>Let us go back to our data. We can write a comparison between <code class="docutils literal notranslate"><span class="pre">MFQ</span></code> of <code class="docutils literal notranslate"><span class="pre">MDD</span></code> and <code class="docutils literal notranslate"><span class="pre">HV</span></code> groups using a linear model:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;participants_stats.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/data/participants_stats.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1509,6 +2784,35 @@ can be removed, using a “paired test”, or <a class="reference external" href
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s2">&quot;MFQ ~ group + 1&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    MFQ   R-squared:                       0.350
+Model:                            OLS   Adj. R-squared:                  0.335
+Method:                 Least Squares   F-statistic:                     23.65
+Date:                Sun, 17 Oct 2021   Prob (F-statistic):           1.51e-05
+Time:                        16:14:54   Log-Likelihood:                -133.38
+No. Observations:                  46   AIC:                             270.8
+Df Residuals:                      44   BIC:                             274.4
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+================================================================================
+                   coef    std err          t      P&gt;|t|      [0.025      0.975]
+--------------------------------------------------------------------------------
+Intercept        1.5294      1.090      1.403      0.168      -0.668       3.727
+group[T.MDD]     6.6775      1.373      4.863      0.000       3.910       9.445
+==============================================================================
+Omnibus:                        2.463   Durbin-Watson:                   1.836
+Prob(Omnibus):                  0.292   Jarque-Bera (JB):                1.930
+Skew:                           0.502   Prob(JB):                        0.381
+Kurtosis:                       3.012   Cond. No.                         3.05
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </pre></div>
 </div>
 </div>
@@ -1534,6 +2838,24 @@ can be removed, using a “paired test”, or <a class="reference external" href
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     MOI   type
+0    0.0    MFQ
+8    1.0    MFQ
+16   4.0    MFQ
+24   NaN    MFQ
+32   0.0    MFQ
+40   0.0    MFQ
+48   8.0    MFQ
+5   14.0  SHAPS
+13   2.0  SHAPS
+21   9.0  SHAPS
+29   8.0  SHAPS
+37  14.0  SHAPS
+45   1.0  SHAPS
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1542,11 +2864,45 @@ can be removed, using a “paired test”, or <a class="reference external" href
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    MOI   R-squared:                       0.063
+Model:                            OLS   Adj. R-squared:                  0.053
+Method:                 Least Squares   F-statistic:                     6.067
+Date:                Sun, 17 Oct 2021   Prob (F-statistic):             0.0157
+Time:                        16:14:56   Log-Likelihood:                -304.93
+No. Observations:                  92   AIC:                             613.9
+Df Residuals:                      90   BIC:                             618.9
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept         5.7391      0.992      5.784      0.000       3.768       7.710
+type[T.SHAPS]     3.4565      1.403      2.463      0.016       0.669       6.244
+==============================================================================
+Omnibus:                        6.740   Durbin-Watson:                   1.892
+Prob(Omnibus):                  0.034   Jarque-Bera (JB):                6.017
+Skew:                           0.548   Prob(JB):                       0.0494
+Kurtosis:                       2.391   Cond. No.                         2.62
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can see that we retrieve the same values for t-test and corresponding p-values for the effect of the type of MOI than the previous t-test:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MFQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;SHAPS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=-2.4632108396344363, pvalue=0.01567217083007739)
 </pre></div>
 </div>
 </div>
@@ -1586,6 +2942,12 @@ variable) with 2 variables <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Z&#39;)
+</pre></div>
+</div>
+<img alt="../_images/intro_statistics_100_1.png" src="../_images/intro_statistics_100_1.png" />
+</div>
 </div>
 <div class="section" id="example-the-iris-dataset">
 <h3>Example: the iris dataset<a class="headerlink" href="#example-the-iris-dataset" title="Permalink to this headline">¶</a></h3>
@@ -1609,11 +2971,45 @@ variable) with 2 variables <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_statistics_102_0.png" src="../_images/intro_statistics_102_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;sepal_width ~ species + petal_length&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            sepal_width   R-squared:                       0.486
+Model:                            OLS   Adj. R-squared:                  0.476
+Method:                 Least Squares   F-statistic:                     46.08
+Date:                Sun, 17 Oct 2021   Prob (F-statistic):           5.14e-21
+Time:                        16:14:59   Log-Likelihood:                -37.808
+No. Observations:                 150   AIC:                             83.62
+Df Residuals:                     146   BIC:                             95.66
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+=========================================================================================
+                            coef    std err          t      P&gt;|t|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                 2.9919      0.099     30.206      0.000       2.796       3.188
+species[T.versicolor]    -1.4927      0.181     -8.264      0.000      -1.850      -1.136
+species[T.virginica]     -1.6741      0.255     -6.557      0.000      -2.179      -1.170
+petal_length              0.2983      0.060      4.932      0.000       0.179       0.418
+==============================================================================
+Omnibus:                        3.167   Durbin-Watson:                   1.771
+Prob(Omnibus):                  0.205   Jarque-Bera (JB):                3.214
+Skew:                          -0.121   Prob(JB):                        0.200
+Kurtosis:                       3.675   Cond. No.                         54.0
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </pre></div>
 </div>
 </div>
@@ -1626,6 +3022,11 @@ variable) with 2 variables <code class="docutils literal notranslate"><span clas
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">f_test</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;F test: F=array([[3.26191465]]), p=0.07296614041660528, df_denom=146, df_num=1&gt;
 </pre></div>
 </div>
 </div>
@@ -1691,6 +3092,115 @@ variable) with 2 variables <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:31: ParserWarning: Falling back to the &#39;python&#39; engine because the &#39;c&#39; engine does not support skipfooter; you can avoid this warning by specifying engine=&#39;python&#39;.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EDUCATION</th>
+      <th>SOUTH</th>
+      <th>SEX</th>
+      <th>EXPERIENCE</th>
+      <th>UNION</th>
+      <th>WAGE</th>
+      <th>AGE</th>
+      <th>RACE</th>
+      <th>OCCUPATION</th>
+      <th>SECTOR</th>
+      <th>MARR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8</td>
+      <td>0</td>
+      <td>1</td>
+      <td>21</td>
+      <td>0</td>
+      <td>0.707570</td>
+      <td>35</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>9</td>
+      <td>0</td>
+      <td>1</td>
+      <td>42</td>
+      <td>0</td>
+      <td>0.694605</td>
+      <td>57</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.824126</td>
+      <td>19</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>12</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0.602060</td>
+      <td>22</td>
+      <td>3</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12</td>
+      <td>0</td>
+      <td>0</td>
+      <td>17</td>
+      <td>0</td>
+      <td>0.875061</td>
+      <td>35</td>
+      <td>3</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="section" id="pairplot-scatter-matrices">
 <h2>Pairplot: scatter matrices<a class="headerlink" href="#pairplot-scatter-matrices" title="Permalink to this headline">¶</a></h2>
@@ -1703,6 +3213,12 @@ variable) with 2 variables <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7fe5c444a350&gt;
+</pre></div>
+</div>
+<img alt="../_images/intro_statistics_111_1.png" src="../_images/intro_statistics_111_1.png" />
+</div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Categorical</span> <span class="pre">variables</span></code> can be plotted as the <code class="docutils literal notranslate"><span class="pre">hue</span></code>:</p>
 <div class="cell docutils container">
@@ -1710,6 +3226,12 @@ variable) with 2 variables <code class="docutils literal notranslate"><span clas
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seaborn</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WAGE&#39;</span><span class="p">,</span> <span class="s1">&#39;AGE&#39;</span><span class="p">,</span> <span class="s1">&#39;EDUCATION&#39;</span><span class="p">],</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;reg&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;SEX&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7fe5c2183e10&gt;
+</pre></div>
+</div>
+<img alt="../_images/intro_statistics_113_1.png" src="../_images/intro_statistics_113_1.png" />
 </div>
 </div>
 </div>
@@ -1721,6 +3243,12 @@ variable) with 2 variables <code class="docutils literal notranslate"><span clas
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seaborn</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;WAGE&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;EDUCATION&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7fe5c23700d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/intro_statistics_115_1.png" src="../_images/intro_statistics_115_1.png" />
 </div>
 </div>
 <div class="section" id="robust-regression">
@@ -1739,6 +3267,12 @@ variable) with 2 variables <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7fe5caa1f9d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/intro_statistics_118_1.png" src="../_images/intro_statistics_118_1.png" />
+</div>
 </div>
 <p>The plot above is made of two different fits. We need to formulate a single model that tests for a variance of slope across the population. This is done via an <a class="reference external" href="http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions">“interaction”</a>.</p>
 <div class="cell docutils container">
@@ -1746,6 +3280,37 @@ variable) with 2 variables <code class="docutils literal notranslate"><span clas
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;WAGE ~ EDUCATION + SEX + EDUCATION * SEX&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   WAGE   R-squared:                       0.198
+Model:                            OLS   Adj. R-squared:                  0.194
+Method:                 Least Squares   F-statistic:                     43.72
+Date:                Sun, 17 Oct 2021   Prob (F-statistic):           2.94e-25
+Time:                        16:15:09   Log-Likelihood:                 88.503
+No. Observations:                 534   AIC:                            -169.0
+Df Residuals:                     530   BIC:                            -151.9
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept         0.5748      0.058      9.861      0.000       0.460       0.689
+EDUCATION         0.0281      0.004      6.411      0.000       0.019       0.037
+SEX              -0.2750      0.093     -2.972      0.003      -0.457      -0.093
+EDUCATION:SEX     0.0134      0.007      1.919      0.056      -0.000       0.027
+==============================================================================
+Omnibus:                        4.838   Durbin-Watson:                   1.825
+Prob(Omnibus):                  0.089   Jarque-Bera (JB):                5.000
+Skew:                          -0.156   Prob(JB):                       0.0821
+Kurtosis:                       3.356   Cond. No.                         170.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </pre></div>
 </div>
 </div>
@@ -1771,16 +3336,16 @@ variable) with 2 variables <code class="docutils literal notranslate"><span clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-root-py"
+            mode: "conda-env-neuro-py"
         },
         kernelOptions: {
-            kernelName: "conda-root-py",
+            kernelName: "conda-env-neuro-py",
             path: "./prerequisites"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-root-py'</script>
+    <script>kernelName = 'conda-env-neuro-py'</script>
 
               </div>
               

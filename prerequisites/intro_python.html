@@ -1055,10 +1055,6 @@
                 
   <div class="section" id="introduction-to-python">
 <h1>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://peerherholz.github.io/">Peer Herholz (he/him)</a><br />
-Postdoctoral researcher - <a class="reference external" href="https://neurodatascience.github.io/">NeuroDataScience lab</a> at <a class="reference external" href="https://www.mcgill.ca/neuro/">MNI</a>/<a class="reference external" href="https://www.mcgill.ca/">McGill</a>, <a class="reference external" href="https://sites.google.com/view/unique-neuro-ai">UNIQUE</a><br />
-Member - <a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">BIDS</a>, <a class="reference external" href="https://www.repronim.org/">ReproNim</a>, <a class="reference external" href="https://brainhack.org/">Brainhack</a>, <a class="reference external" href="https://www.cneuromod.ca/">Neuromod</a>, <a class="reference external" href="https://ohbm-environment.org/">OHBM SEA-SIG</a></p>
-<p><img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/Twitter%20social%20icons%20-%20circle%20-%20blue.png" alt="logo" title="Twitter" width="32" height="20" /> <img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/GitHub-Mark-120px-plus.png" alt="logo" title="Github" width="30" height="20" />     &#64;peerherholz</p>
 <div class="section" id="before-we-get-started-1">
 <h2>Before we get started 1…<a class="headerlink" href="#before-we-get-started-1" title="Permalink to this headline">¶</a></h2>
 <br>
@@ -1249,6 +1245,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
 </div>
 <p>Importing the whole module us often times unnecessary and can lead to longer loading time or increase the memory consumption. An alternative to the previous method, we can also choose to import only a few selected functions from a module by explicitly listing which ones we want to import:</p>
 <div class="cell docutils container">
@@ -1258,6 +1259,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 <span class="n">x</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
@@ -1271,6 +1277,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 <span class="n">x</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">number_pi</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>180.0
 </pre></div>
 </div>
 </div>
@@ -1297,6 +1308,17 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function log in module math:
+
+log(...)
+    log(x, [base=math.e])
+    Return the logarithm of x to the given base.
+    
+    If the base not specified, returns the natural logarithm (base e) of x.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1304,10 +1326,20 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.302585092994046
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.3219280948873626
 </pre></div>
 </div>
 </div>
@@ -1343,6 +1375,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
+</pre></div>
+</div>
+</div>
 </div>
 <p>If we assign a new value to a variable, its type can change.</p>
 <div class="cell docutils container">
@@ -1358,6 +1395,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
 </div>
 <p>If we try to use a variable that has not yet been defined we get an <code class="docutils literal notranslate"><span class="pre">NameError</span></code> (Note, that we will use in the notebooks <code class="docutils literal notranslate"><span class="pre">try/except</span></code> blocks to handle the exception, so the notebook doesn’t stop. The code below will try to execute <code class="docutils literal notranslate"><span class="pre">print</span></code> function and if the <code class="docutils literal notranslate"><span class="pre">NameError</span></code> occurs the error message will be printed. Otherwise, an error will be raised. Later in this notebook you will learn more about exception handling.):</p>
 <div class="cell docutils container">
@@ -1368,6 +1410,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NameError&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NameError name &#39;y&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1402,12 +1449,22 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># float</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
 </pre></div>
 </div>
 </div>
@@ -1422,6 +1479,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bool
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1429,6 +1491,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span>
 
 <span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
 </pre></div>
 </div>
 </div>
@@ -1450,6 +1517,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, -1, 2, 1]
+</pre></div>
+</div>
+</div>
 </div>
 <p>In Python 2.7, what kind of division (<code class="docutils literal notranslate"><span class="pre">/</span></code>) will be executed, depends on the type of the numbers involved. If all numbers are integers, the division will be an integer division, otherwise, it will be a float division. In Python 3 this has been changed and fractions aren’t lost when dividing integers (for integer division you can use another operator, <code class="docutils literal notranslate"><span class="pre">//</span></code>).</p>
 <div class="cell docutils container">
@@ -1461,11 +1533,22 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5
+0.5
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note! The power operator in python isn&#39;t ^, but **</span>
 <span class="mi">2</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
 </pre></div>
 </div>
 </div>
@@ -1479,6 +1562,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1486,10 +1574,20 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="ow">or</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -1503,6 +1601,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(True, False)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1510,10 +1613,20 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(False, False)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(True, True)
 </pre></div>
 </div>
 </div>
@@ -1525,11 +1638,21 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># not equal to</span>
 <span class="mi">2</span> <span class="o">!=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -1548,6 +1671,13 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+False
+True
+</pre></div>
+</div>
+</div>
 </div>
 <ul class="simple">
 <li><p>String comparison</p></li>
@@ -1558,10 +1688,20 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;x&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s2">&quot;Hello World&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -1576,6 +1716,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
 </div>
 <p>The command <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">*</span> <span class="pre">2</span></code>, can be shortcut to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*=</span> <span class="pre">2</span></code>. This also works with <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code> and <code class="docutils literal notranslate"><span class="pre">/=</span></code>.</p>
 <div class="cell docutils container">
@@ -1583,6 +1728,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">b</span> <span class="o">*=</span> <span class="mi">3</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
 </pre></div>
 </div>
 </div>
@@ -1601,11 +1751,21 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># length of the string: number of characters in string</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
 </pre></div>
 </div>
 </div>
@@ -1618,11 +1778,21 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello test
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can index a character in a string using <code class="docutils literal notranslate"><span class="pre">[]</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;H&#39;
 </pre></div>
 </div>
 </div>
@@ -1635,11 +1805,21 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p>If we omit either (or both) of <code class="docutils literal notranslate"><span class="pre">start</span></code> or <code class="docutils literal notranslate"><span class="pre">stop</span></code> from <code class="docutils literal notranslate"><span class="pre">[start:stop]</span></code>, the default is the beginning and the end of the string, respectively:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello&#39;
 </pre></div>
 </div>
 </div>
@@ -1650,10 +1830,20 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;world&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello world&#39;
 </pre></div>
 </div>
 </div>
@@ -1665,10 +1855,20 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello world&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hlowrd&#39;
 </pre></div>
 </div>
 </div>
@@ -1682,12 +1882,24 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str1str2str3
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;str1&quot;</span> <span class="s2">&quot;str2&quot;</span> <span class="s2">&quot;str3&quot;</span><span class="p">)</span>      <span class="c1"># The print function concatenates strings differently</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;str2&quot;</span><span class="p">,</span> <span class="s2">&quot;str3&quot;</span><span class="p">)</span>    <span class="c1"># depending on how the inputs are specified</span>
 <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;str2&quot;</span><span class="p">,</span> <span class="s2">&quot;str3&quot;</span><span class="p">))</span>  <span class="c1"># See the three different outputs below</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str1str2str3
+str1 str2 str3
+(&#39;str1&#39;, &#39;str2&#39;, &#39;str3&#39;)
 </pre></div>
 </div>
 </div>
@@ -1698,10 +1910,20 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str1 1.0 False
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;value = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">1</span>.0)       # we can use C-style string formatting
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>value = 1.000000
 </pre></div>
 </div>
 </div>
@@ -1715,6 +1937,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>value1 = 3.14. value2 = 1
+</pre></div>
+</div>
+</div>
 </div>
 <p>The same string can be written using the new style string formatting.</p>
 <div class="cell docutils container">
@@ -1722,6 +1949,11 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span> <span class="o">=</span> <span class="s1">&#39;value1 = </span><span class="si">{:.2f}</span><span class="s1">, value2 = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">3.1415</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>value1 = 3.14, value2 = 1.5
 </pre></div>
 </div>
 </div>
@@ -1734,10 +1966,24 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Newlines are indicated by 
+And tabs by 	.
+Newlines are indicated by \nAnd tabs by \t. Printed as rawstring
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">Number: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">String: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Nipype&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="s2">&quot;-&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name: Nipype
+Number: 3
+String: ---
 </pre></div>
 </div>
 </div>
@@ -1751,10 +1997,22 @@ Member - <a class="reference external" href="https://bids-specification.readthed
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is
+a multiline
+string.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This </span><span class="si">{verb}</span><span class="s2"> a </span><span class="si">{noun}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">noun</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">verb</span> <span class="o">=</span> <span class="s2">&quot;is&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is a test.
 </pre></div>
 </div>
 </div>
@@ -1782,6 +2040,11 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;This is a multi-line string. This is the first line.\nThis is the second line.\n&quot;What\&#39;s your name?,&quot; I asked.\nHe said &quot;Bond, James Bond.&quot;\n&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1798,6 +2061,12 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;list&#39;&gt;
+[1, 2, 3, 4]
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can use the same slicing techniques to manipulate lists as we could use on strings:</p>
 <div class="cell docutils container">
@@ -1808,11 +2077,23 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4]
+[2, 3]
+[1, 3]
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>Heads up MATLAB users:</strong> Indexing starts at 0!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 </pre></div>
 </div>
 </div>
@@ -1826,6 +2107,11 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, &#39;a&#39;, 1.0]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Python lists can be inhomogeneous and arbitrarily nested:</p>
 <div class="cell docutils container">
@@ -1833,6 +2119,11 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nested_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">]]]]]</span>
 
 <span class="n">nested_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, [2, [3, [4, [5]]]]]
 </pre></div>
 </div>
 </div>
@@ -1845,6 +2136,11 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 <span class="n">step</span> <span class="o">=</span> <span class="mi">2</span>
 
 <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 12, 14, 16, 18, 20, 22, 24, 26, 28]
 </pre></div>
 </div>
 </div>
@@ -1861,6 +2157,14 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello world
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39; &#39;, &#39;w&#39;, &#39;o&#39;, &#39;r&#39;, &#39;l&#39;, &#39;d&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1868,6 +2172,11 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 <span class="n">s2</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39; &#39;, &#39;H&#39;, &#39;d&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;o&#39;, &#39;r&#39;, &#39;w&#39;]
 </pre></div>
 </div>
 </div>
@@ -1888,6 +2197,11 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;A&#39;, &#39;d&#39;, &#39;d&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can modify lists by assigning new values to elements in the list. In technical jargon, lists are <em>mutable</em>.</p>
 <div class="cell docutils container">
@@ -1899,12 +2213,22 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;A&#39;, &#39;p&#39;, &#39;t&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;A&#39;, &#39;s&#39;, &#39;m&#39;]
 </pre></div>
 </div>
 </div>
@@ -1923,6 +2247,11 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;i&#39;, &#39;n&#39;, &#39;s&#39;, &#39;e&#39;, &#39;r&#39;, &#39;t&#39;, &#39;A&#39;, &#39;s&#39;, &#39;m&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Remove first element with specific value using ‘remove’</p>
 <div class="cell docutils container">
@@ -1930,6 +2259,11 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;i&#39;, &#39;n&#39;, &#39;s&#39;, &#39;e&#39;, &#39;r&#39;, &#39;t&#39;, &#39;s&#39;, &#39;m&#39;]
 </pre></div>
 </div>
 </div>
@@ -1941,6 +2275,11 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 <span class="k">del</span> <span class="n">l</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;i&#39;, &#39;n&#39;, &#39;s&#39;, &#39;e&#39;, &#39;r&#39;, &#39;t&#39;]
 </pre></div>
 </div>
 </div>
@@ -1967,6 +2306,12 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;tuple&#39;&gt;
+(10, 20)
+</pre></div>
+</div>
+</div>
 </div>
 <p>If we try to assign a new value to an element in a tuple we get an error:</p>
 <div class="cell docutils container">
@@ -1977,6 +2322,11 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TypeError:&quot;</span><span class="p">,</span> <span class="n">er</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TypeError: &#39;tuple&#39; object does not support item assignment
 </pre></div>
 </div>
 </div>
@@ -2007,11 +2357,22 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;dict&#39;&gt;
+{&#39;parameter1&#39;: 1.0, &#39;parameter2&#39;: 2.0, &#39;parameter3&#39;: 3.0}
+</pre></div>
+</div>
+</div>
 </div>
 <p>Dictionary entries can only be accessed by their key name.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter2&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0
 </pre></div>
 </div>
 </div>
@@ -2021,6 +2382,13 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter1 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter1&quot;</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter2 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter2&quot;</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter3 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter3&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>parameter1 = 1.0
+parameter2 = 2.0
+parameter3 = 3.0
 </pre></div>
 </div>
 </div>
@@ -2037,6 +2405,14 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter2 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter2&quot;</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter3 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter3&quot;</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameter4 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameter4&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>parameter1 = A
+parameter2 = B
+parameter3 = 3.0
+parameter4 = D
 </pre></div>
 </div>
 </div>
@@ -2069,6 +2445,12 @@ All white space i.e. spaces and tabs, within the quotes, are preserved as-is.</p
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Value is &#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I repeat, the value is &#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Value is  5
+I repeat, the value is  5
 </pre></div>
 </div>
 </div>
@@ -2106,6 +2488,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>statement1 and statement2 are False
+</pre></div>
+</div>
+</div>
 </div>
 <p>For the first time, here we encountered a peculiar and unusual aspect of the Python programming language: Program blocks are defined by their indentation level. In Python, the extent of a code block is defined by the indentation level (usually a tab or say four white spaces). This means that we have to be careful to indent our code correctly, or else we will get syntax errors.</p>
 <p><strong>Examples:</strong></p>
@@ -2117,6 +2504,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
 <span class="k">if</span> <span class="n">statement1</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">statement2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;both statement1 and statement2 are True&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>both statement1 and statement2 are True
 </pre></div>
 </div>
 </div>
@@ -2152,6 +2544,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>now outside the if block
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2168,12 +2565,27 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+</pre></div>
+</div>
+</div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over the elements of the supplied list and executes the containing block once for each element. Any kind of list can be used in the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span> <span class="c1"># by default range start at 0</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
 </pre></div>
 </div>
 </div>
@@ -2186,11 +2598,29 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3
+-2
+-1
+0
+1
+2
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;scientific&quot;</span><span class="p">,</span> <span class="s2">&quot;computing&quot;</span><span class="p">,</span> <span class="s2">&quot;with&quot;</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scientific
+computing
+with
+python
 </pre></div>
 </div>
 </div>
@@ -2203,12 +2633,30 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>parameter1 = A
+parameter2 = B
+parameter3 = 3.0
+parameter4 = D
+</pre></div>
+</div>
+</div>
 </div>
 <p>Sometimes it is useful to have access to the indices of the values when iterating over a list. We can use the <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> function for this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 -3
+1 -2
+2 -1
+3 0
+4 1
+5 2
 </pre></div>
 </div>
 </div>
@@ -2241,6 +2689,15 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+0
+1
+2
+3
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>List comprehensions: Creating lists using <code class="docutils literal notranslate"><span class="pre">for</span></code> loops</strong>:</p>
 <p>A convenient and compact way to initialize lists:</p>
@@ -2249,6 +2706,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 4, 9, 16]
 </pre></div>
 </div>
 </div>
@@ -2267,6 +2729,16 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+done
+</pre></div>
+</div>
+</div>
 </div>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">&quot;done&quot;</span></code> statement is not part of the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop body because of the difference in the indentation.</p>
 </div>
@@ -2281,6 +2753,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
 
 <span class="n">say_hello</span><span class="p">()</span> <span class="c1"># call the function</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hello world
 </pre></div>
 </div>
 </div>
@@ -2319,6 +2796,12 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 is maximum
+7 is equal to 7
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>Very important</strong>: Variables inside a function are treated as local variables and therefore don’t interfere with variables outside the scope of the function.</p>
 <div class="cell docutils container">
@@ -2332,6 +2815,13 @@ One thing you should remember is that wrong indentation rises <code class="docut
 
 <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x is still&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is 50
+Changed local x to 2
+x is still 50
 </pre></div>
 </div>
 </div>
@@ -2350,6 +2840,13 @@ One thing you should remember is that wrong indentation rises <code class="docut
 
 <span class="n">func</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Value of x is&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is 50
+Changed global x to 2
+Value of x is 2
 </pre></div>
 </div>
 </div>
@@ -2373,10 +2870,23 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function func1 in module __main__:
+
+func1(s)
+    Print a string &#39;s&#39; and tell how many characters it has
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func1</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test has 4 characters
 </pre></div>
 </div>
 </div>
@@ -2399,6 +2909,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can return multiple values from a function using tuples (see above):</p>
 <div class="cell docutils container">
@@ -2418,6 +2933,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9, 27, 81)
+</pre></div>
+</div>
+</div>
 </div>
 <p>And if we know that a function returns multiple outputs, we can store them directly in multiple variables.</p>
 <div class="cell docutils container">
@@ -2425,6 +2945,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span> <span class="o">=</span> <span class="n">powers</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">x3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27
 </pre></div>
 </div>
 </div>
@@ -2464,10 +2989,23 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfunc</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>evaluating myfunc for x = 5 using exponent p = 2
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
 </pre></div>
 </div>
 </div>
@@ -2476,6 +3014,14 @@ One thing you should remember is that wrong indentation rises <code class="docut
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myfunc</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>evaluating myfunc for x = 7 using exponent p = 3
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>343
 </pre></div>
 </div>
 </div>
@@ -2495,6 +3041,14 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Formal arg: 1
+additioanl arg: two
+additioanl arg: 3
+additioanl arg: [1, 2, 3]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2506,6 +3060,17 @@ One thing you should remember is that wrong indentation rises <code class="docut
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;another keyword arg: </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
     
 <span class="n">kwargs_func</span><span class="p">(</span><span class="n">arg1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">myarg2</span><span class="o">=</span><span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="n">myarg3</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>kwargs is now a dictionary...
+Type: &lt;class &#39;dict&#39;&gt;
+Content: {&#39;myarg2&#39;: &#39;two&#39;, &#39;myarg3&#39;: 3}
+
+Formal arg: 1
+another keyword arg: myarg2: two
+another keyword arg: myarg3: 3
 </pre></div>
 </div>
 </div>
@@ -2532,12 +3097,22 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, 4)
+</pre></div>
+</div>
+</div>
 </div>
 <p>This technique is useful for example when we want to pass a simple function as an argument to another function, like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># map is a built-in python function</span>
 <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[9, 4, 1, 0, 1, 4, 9]
 </pre></div>
 </div>
 </div>
@@ -2595,6 +3170,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Point at [0.000000, 0.000000]
+</pre></div>
+</div>
+</div>
 </div>
 <p>To invoke a class method in the class instance <code class="docutils literal notranslate"><span class="pre">p</span></code>:</p>
 <div class="cell docutils container">
@@ -2607,6 +3187,12 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Point at [1.000000, 1.000000]
+Point at [1.250000, 2.500000]
+</pre></div>
+</div>
+</div>
 </div>
 <p>You can access any value of a class object directly, for example:</p>
 <div class="cell docutils container">
@@ -2616,6 +3202,12 @@ One thing you should remember is that wrong indentation rises <code class="docut
 <span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+Point at [10.000000, 0.000000]
 </pre></div>
 </div>
 </div>
@@ -2662,6 +3254,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mymodule.py
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">%%file</span></code> is called a cell-magic function and creates a file that has the following lines as content.</p>
 <p>We can import the module <code class="docutils literal notranslate"><span class="pre">mymodule</span></code> into our Python program using <code class="docutils literal notranslate"><span class="pre">import</span></code>:</p>
@@ -2679,6 +3276,54 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on module mymodule:
+
+NAME
+    mymodule
+
+DESCRIPTION
+    Example of a python module. Contains a variable called my_variable,
+    a function called my_function, and a class called MyClass.
+
+CLASSES
+    builtins.object
+        MyClass
+    
+    class MyClass(builtins.object)
+     |  Example class.
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  get_variable(self)
+     |  
+     |  set_variable(self, new_value)
+     |      Set self.variable to a new value
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+
+FUNCTIONS
+    my_function()
+        Example function
+
+DATA
+    my_variable = 0
+
+FILE
+    /home/neuro/workshop_weizmann/workshop/prerequisites/mymodule.py
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2686,10 +3331,20 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mymodule</span><span class="o">.</span><span class="n">my_function</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 </pre></div>
 </div>
 </div>
@@ -2702,12 +3357,22 @@ One thing you should remember is that wrong indentation rises <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
 </div>
 <p>If we make changes to the code in <code class="docutils literal notranslate"><span class="pre">mymodule.py</span></code>, we need to reload it using <code class="docutils literal notranslate"><span class="pre">reload</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
 <span class="n">reload</span><span class="p">(</span><span class="n">mymodule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;mymodule&#39; from &#39;/home/neuro/workshop_weizmann/workshop/prerequisites/mymodule.py&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -2723,6 +3388,11 @@ One thing you should remember is that wrong indentation rises <code class="docut
     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;description of the error&quot;</span><span class="p">)</span>
 <span class="k">except</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
     <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Exception:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception: description of the error
 </pre></div>
 </div>
 </div>
@@ -2757,6 +3427,12 @@ except:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test
+Caught an exception
+</pre></div>
+</div>
+</div>
 </div>
 <p>To get information about the error, we can access the <code class="docutils literal notranslate"><span class="pre">Exception</span></code> class instance that describes the exception by using for example:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>except Exception as e:
@@ -2772,6 +3448,13 @@ except:
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Caught an exception:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 <span class="k">finally</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This block is executed after the try- and except-block.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test
+Caught an exception:name &#39;test&#39; is not defined
+This block is executed after the try- and except-block.
 </pre></div>
 </div>
 </div>
@@ -2797,6 +3480,12 @@ except:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Oops, invalid.
+We&#39;re done with that.
+</pre></div>
+</div>
+</div>
 </div>
 <p>You will see more exception handling examples in this and other notebooks.</p>
 </div>
@@ -2819,6 +3508,11 @@ except:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing demographics.csv
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2833,6 +3527,11 @@ except:
 <span class="n">ds102</span>	<span class="n">sub008</span>	<span class="n">D</span>	<span class="mf">22.22</span>
 <span class="n">ds102</span>	<span class="n">sub009</span>	<span class="n">M</span>	<span class="mf">22.7</span>
 <span class="n">ds102</span>	<span class="n">sub010</span>	<span class="n">D</span>	<span class="mf">25.24</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing demographics.txt
 </pre></div>
 </div>
 </div>
@@ -2859,6 +3558,20 @@ except:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ds102&#39;, &#39;sub001&#39;, &#39;F&#39;, &#39;21.94&#39;]
+[&#39;ds102&#39;, &#39;sub002&#39;, &#39;M&#39;, &#39;22.79&#39;]
+[&#39;ds102&#39;, &#39;sub003&#39;, &#39;M&#39;, &#39;19.65&#39;]
+[&#39;ds102&#39;, &#39;sub004&#39;, &#39;M&#39;, &#39;25.98&#39;]
+[&#39;ds102&#39;, &#39;sub005&#39;, &#39;M&#39;, &#39;23.24&#39;]
+[&#39;ds102&#39;, &#39;sub006&#39;, &#39;M&#39;, &#39;23.27&#39;]
+[&#39;ds102&#39;, &#39;sub007&#39;, &#39;D&#39;, &#39;34.72&#39;]
+[&#39;ds102&#39;, &#39;sub008&#39;, &#39;D&#39;, &#39;22.22&#39;]
+[&#39;ds102&#39;, &#39;sub009&#39;, &#39;M&#39;, &#39;22.7&#39;]
+[&#39;ds102&#39;, &#39;sub010&#39;, &#39;D&#39;, &#39;25.24&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="writing-csv-files">
@@ -2870,6 +3583,20 @@ except:
 
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data_new</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub001&#39;, &#39;F&#39;, &#39;21.94&#39;]
+[&#39;sub002&#39;, &#39;M&#39;, &#39;22.79&#39;]
+[&#39;sub003&#39;, &#39;M&#39;, &#39;19.65&#39;]
+[&#39;sub004&#39;, &#39;M&#39;, &#39;25.98&#39;]
+[&#39;sub005&#39;, &#39;M&#39;, &#39;23.24&#39;]
+[&#39;sub006&#39;, &#39;M&#39;, &#39;23.27&#39;]
+[&#39;sub007&#39;, &#39;D&#39;, &#39;34.72&#39;]
+[&#39;sub008&#39;, &#39;D&#39;, &#39;22.22&#39;]
+[&#39;sub009&#39;, &#39;M&#39;, &#39;22.7&#39;]
+[&#39;sub010&#39;, &#39;D&#39;, &#39;25.24&#39;]
 </pre></div>
 </div>
 </div>
@@ -2892,6 +3619,29 @@ except:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sub001,F,21.94
+
+sub002,M,22.79
+
+sub003,M,19.65
+
+sub004,M,25.98
+
+sub005,M,23.24
+
+sub006,M,23.27
+
+sub007,D,34.72
+
+sub008,D,22.22
+
+sub009,M,22.7
+
+sub010,D,25.24
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="reading-txt-files">
@@ -2911,6 +3661,20 @@ except:
 
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">datatxt</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ds102&#39;, &#39;sub001&#39;, &#39;F&#39;, &#39;21.94&#39;]
+[&#39;ds102&#39;, &#39;sub002&#39;, &#39;M&#39;, &#39;22.79&#39;]
+[&#39;ds102&#39;, &#39;sub003&#39;, &#39;M&#39;, &#39;19.65&#39;]
+[&#39;ds102&#39;, &#39;sub004&#39;, &#39;M&#39;, &#39;25.98&#39;]
+[&#39;ds102&#39;, &#39;sub005&#39;, &#39;M&#39;, &#39;23.24&#39;]
+[&#39;ds102&#39;, &#39;sub006&#39;, &#39;M&#39;, &#39;23.27&#39;]
+[&#39;ds102&#39;, &#39;sub007&#39;, &#39;D&#39;, &#39;34.72&#39;]
+[&#39;ds102&#39;, &#39;sub008&#39;, &#39;D&#39;, &#39;22.22&#39;]
+[&#39;ds102&#39;, &#39;sub009&#39;, &#39;M&#39;, &#39;22.7&#39;]
+[&#39;ds102&#39;, &#39;sub010&#39;, &#39;D&#39;, &#39;25.24&#39;]
 </pre></div>
 </div>
 </div>
@@ -2947,6 +3711,20 @@ except:
 
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">datatxt</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ds102&#39;, &#39;sub001&#39;, &#39;F&#39;, &#39;21.94&#39;]
+[&#39;ds102&#39;, &#39;sub002&#39;, &#39;M&#39;, &#39;22.79&#39;]
+[&#39;ds102&#39;, &#39;sub003&#39;, &#39;M&#39;, &#39;19.65&#39;]
+[&#39;ds102&#39;, &#39;sub004&#39;, &#39;M&#39;, &#39;25.98&#39;]
+[&#39;ds102&#39;, &#39;sub005&#39;, &#39;M&#39;, &#39;23.24&#39;]
+[&#39;ds102&#39;, &#39;sub006&#39;, &#39;M&#39;, &#39;23.27&#39;]
+[&#39;ds102&#39;, &#39;sub007&#39;, &#39;D&#39;, &#39;34.72&#39;]
+[&#39;ds102&#39;, &#39;sub008&#39;, &#39;D&#39;, &#39;22.22&#39;]
+[&#39;ds102&#39;, &#39;sub009&#39;, &#39;M&#39;, &#39;22.7&#39;]
+[&#39;ds102&#39;, &#39;sub010&#39;, &#39;D&#39;, &#39;25.24&#39;]
 </pre></div>
 </div>
 </div>

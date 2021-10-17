@@ -734,10 +734,6 @@
                 
   <div class="section" id="introduction-to-scipy">
 <h1>Introduction to SciPy<a class="headerlink" href="#introduction-to-scipy" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://peerherholz.github.io/">Peer Herholz (he/him)</a><br />
-Postdoctoral researcher - <a class="reference external" href="https://neurodatascience.github.io/">NeuroDataScience lab</a> at <a class="reference external" href="https://www.mcgill.ca/neuro/">MNI</a>/<a class="reference external" href="https://www.mcgill.ca/">McGill</a>, <a class="reference external" href="https://sites.google.com/view/unique-neuro-ai">UNIQUE</a><br />
-Member - <a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">BIDS</a>, <a class="reference external" href="https://www.repronim.org/">ReproNim</a>, <a class="reference external" href="https://brainhack.org/">Brainhack</a>, <a class="reference external" href="https://www.cneuromod.ca/">Neuromod</a>, <a class="reference external" href="https://ohbm-environment.org/">OHBM SEA-SIG</a></p>
-<p><img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/Twitter%20social%20icons%20-%20circle%20-%20blue.png" alt="logo" title="Twitter" width="32" height="20" /> <img align="left" src="https://raw.githubusercontent.com/G0RELLA/gorella_mwn/master/lecture/static/GitHub-Mark-120px-plus.png" alt="logo" title="Github" width="30" height="20" />     &#64;peerherholz</p>
 <p><strong>Disclaimer:</strong> Most of the content in this notebook is coming from <a class="reference external" href="http://www.scipy-lectures.org/intro/index.html">www.scipy-lectures.org</a></p>
 </div>
 <div class="section" id="scipy-high-level-scientific-computing">
@@ -796,11 +792,23 @@ is:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file.mat
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">spio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="s1">&#39;file.mat&#39;</span><span class="p">)</span>
 <span class="n">data</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 1., 1.],
+       [1., 1., 1.],
+       [1., 1., 1.]])
 </pre></div>
 </div>
 </div>
@@ -829,6 +837,11 @@ is:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.0
+</pre></div>
+</div>
+</div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">scipy.linalg.inv</span></code> function computes the inverse of a square matrix:</p>
 <div class="cell docutils container">
@@ -840,12 +853,25 @@ is:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-2. ,  1. ],
+       [ 1.5, -0.5]])
+</pre></div>
+</div>
+</div>
 </div>
 <p>More advanced operations are available, for example <strong>singular-value decomposition (SVD)</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 1, 2],
+       [3, 4, 5],
+       [6, 7, 9]])
 </pre></div>
 </div>
 </div>
@@ -859,6 +885,11 @@ is:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([14.88982544,  0.45294236,  0.29654967])
+</pre></div>
+</div>
+</div>
 </div>
 <p>The original matrix can be re-composed by matrix multiplication of the outputs of <code class="docutils literal notranslate"><span class="pre">svd</span></code> with <code class="docutils literal notranslate"><span class="pre">np.dot</span></code>:</p>
 <div class="cell docutils container">
@@ -866,6 +897,13 @@ is:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sarr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
 <span class="n">svd_mat</span> <span class="o">=</span> <span class="n">uarr</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">sarr</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vharr</span><span class="p">)</span>
 <span class="n">svd_mat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 1., 2.],
+       [3., 4., 5.],
+       [6., 7., 9.]])
 </pre></div>
 </div>
 </div>
@@ -907,6 +945,9 @@ function:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_scipy_25_0.png" src="../_images/python_scipy_25_0.png" />
+</div>
 </div>
 <p>A cubic interpolation can also be selected by providing the <code class="docutils literal notranslate"><span class="pre">kind</span></code> optional keyword argument:</p>
 <div class="cell docutils container">
@@ -924,6 +965,12 @@ function:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f1e0bbe0fd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/python_scipy_28_1.png" src="../_images/python_scipy_28_1.png" />
 </div>
 </div>
 </div>
@@ -959,6 +1006,9 @@ function:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_scipy_33_0.png" src="../_images/python_scipy_33_0.png" />
+</div>
 </div>
 <p>If we know that the data lies on a sine wave, but not the amplitudes or the period, we can find those by least squares curve fitting. First, we have to define the test function to fit, here a sine with unknown amplitude and period:</p>
 <div class="cell docutils container">
@@ -978,6 +1028,11 @@ function:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.58100495 1.50430612]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -990,6 +1045,9 @@ function:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_scipy_38_0.png" src="../_images/python_scipy_38_0.png" />
 </div>
 </div>
 </div>
@@ -1013,6 +1071,9 @@ function:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_scipy_42_0.png" src="../_images/python_scipy_42_0.png" />
+</div>
 </div>
 <p>This function has a global minimum around -1.3 and a local minimum around 3.8.</p>
 <p>Searching for minimum can be done with <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code>, given a starting point <code class="docutils literal notranslate"><span class="pre">x0</span></code>, it returns the location of the minimum that it has found:</p>
@@ -1023,10 +1084,29 @@ function:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      fun: -7.945823375615215
+ hess_inv: array([[0.08589237]])
+      jac: array([-1.1920929e-06])
+  message: &#39;Optimization terminated successfully.&#39;
+     nfev: 18
+      nit: 5
+     njev: 6
+   status: 0
+  success: True
+        x: array([-1.30644012])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">x</span> <span class="c1"># The coordinate of the minimum</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.30644012])
 </pre></div>
 </div>
 </div>
@@ -1066,6 +1146,9 @@ and offers utilities to handle them. The main functions are:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_scipy_48_0.png" src="../_images/python_scipy_48_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1088,12 +1171,20 @@ and offers utilities to handle them. The main functions are:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_scipy_49_0.png" src="../_images/python_scipy_49_0.png" />
+</div>
 </div>
 <p>The peak signal frequency can be found with <code class="docutils literal notranslate"><span class="pre">sample_freq[power.argmax()]</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peak_freq</span> <span class="o">=</span> <span class="n">sample_freq</span><span class="p">[</span><span class="n">power</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]</span>
 <span class="n">peak_freq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5
 </pre></div>
 </div>
 </div>
@@ -1114,6 +1205,13 @@ and offers utilities to handle them. The main functions are:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/numpy/core/_asarray.py:85: ComplexWarning: Casting complex values to real discards the imaginary part
+  return array(a, dtype, copy=False, order=order)
+</pre></div>
+</div>
+<img alt="../_images/python_scipy_53_1.png" src="../_images/python_scipy_53_1.png" />
 </div>
 </div>
 </div>
@@ -1152,6 +1250,9 @@ and offers utilities to handle them. The main functions are:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_scipy_58_0.png" src="../_images/python_scipy_58_0.png" />
 </div>
 </div>
 </div>
