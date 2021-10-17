@@ -709,6 +709,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_interfaces_4_0.png" src="../../_images/basic_interfaces_4_0.png" />
+</div>
 </div>
 <p>In its simplest form, you can run BET by just specifying the input image and tell it what to name the output image:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>bet &lt;input&gt; &lt;output&gt;
@@ -733,11 +736,46 @@ bet ${FILENAME}.nii.gz /output/sub-01_ses-test_T1w_bet.nii.gz
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_interfaces_8_0.png" src="../../_images/basic_interfaces_8_0.png" />
+</div>
 </div>
 <p>Perfect! Exactly what we want. Hmm… what else could we want from BET? Well, it’s actually a fairly complicated program. As is the case for all FSL binaries, just call it with the help flag <code class="docutils literal notranslate"><span class="pre">-h</span></code> to see all its options.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>bet -h
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usage:    bet &lt;input&gt; &lt;output&gt; [options]
+
+Main bet2 options:
+  -o          generate brain surface outline overlaid onto original image
+  -m          generate binary brain mask
+  -s          generate approximate skull image
+  -n          don&#39;t generate segmented brain image output
+  -f &lt;f&gt;      fractional intensity threshold (0-&gt;1); default=0.5; smaller values give larger brain outline estimates
+  -g &lt;g&gt;      vertical gradient in fractional intensity threshold (-1-&gt;1); default=0; positive values give larger brain outline at bottom, smaller at top
+  -r &lt;r&gt;      head radius (mm not voxels); initial surface sphere is set to half of this
+  -c &lt;x y z&gt;  centre-of-gravity (voxels not mm) of initial mesh surface.
+  -t          apply thresholding to segmented brain image and mask
+  -e          generates brain surface as mesh in .vtk format
+
+Variations on default bet2 functionality (mutually exclusive options):
+  (default)   just run bet2
+  -R          robust brain centre estimation (iterates BET several times)
+  -S          eye &amp; optic nerve cleanup (can be useful in SIENA)
+  -B          bias field &amp; neck cleanup (can be useful in SIENA)
+  -Z          improve BET if FOV is very small in Z (by temporarily padding end slices)
+  -F          apply to 4D FMRI data (uses -f 0.3 and dilates brain mask slightly)
+  -A          run bet2 and then betsurf to get additional skull and scalp surfaces (includes registrations)
+  -A2 &lt;T2&gt;    as with -A, when also feeding in non-brain-extracted T2 (includes registrations)
+
+Miscellaneous options:
+  -v          verbose (switch on diagnostic messages)
+  -h          display this help, then exits
+  -d          debug (don&#39;t delete temporary intermediate images)
 </pre></div>
 </div>
 </div>
@@ -760,6 +798,13 @@ bet ${FILENAME}.nii.gz /output/sub-01_ses-test_T1w_bet.nii.gz -m
           <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nilearn/image/resampling.py:512: UserWarning: Casting data from int32 to float32
+  warnings.warn(&quot;Casting data from %s to %s&quot; % (data.dtype.name, aux))
+</pre></div>
+</div>
+<img alt="../../_images/basic_interfaces_13_1.png" src="../../_images/basic_interfaces_13_1.png" />
 </div>
 </div>
 <p>Now let’s look at the BET interface in Nipype. First, we have to import it.</p>
@@ -794,11 +839,19 @@ bet ${FILENAME}.nii.gz /output/sub-01_ses-test_T1w_bet.nii.gz -m
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_interfaces_20_0.png" src="../../_images/basic_interfaces_20_0.png" />
+</div>
 </div>
 <p>This is not surprising, because Nipype used exactly the same bash code that we were using in the original framework example above. To verify this, we can call the <code class="docutils literal notranslate"><span class="pre">cmdline</span></code> function of the constructed BET instance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">skullstrip</span><span class="o">.</span><span class="n">cmdline</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz /output/T1w_nipype_bet.nii.gz
 </pre></div>
 </div>
 </div>
@@ -822,6 +875,13 @@ bet ${FILENAME}.nii.gz /output/sub-01_ses-test_T1w_bet.nii.gz -m
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nilearn/image/resampling.py:512: UserWarning: Casting data from int32 to float32
+  warnings.warn(&quot;Casting data from %s to %s&quot; % (data.dtype.name, aux))
+</pre></div>
+</div>
+<img alt="../../_images/basic_interfaces_26_1.png" src="../../_images/basic_interfaces_26_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="help-function">
@@ -830,6 +890,148 @@ bet ${FILENAME}.nii.gz /output/sub-01_ses-test_T1w_bet.nii.gz -m
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BET</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wraps the executable command ``bet``.
+
+FSL BET wrapper for skull stripping
+
+For complete details, see the `BET Documentation.
+&lt;https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide&gt;`_
+
+Examples
+--------
+&gt;&gt;&gt; from nipype.interfaces import fsl
+&gt;&gt;&gt; btr = fsl.BET()
+&gt;&gt;&gt; btr.inputs.in_file = &#39;structural.nii&#39;
+&gt;&gt;&gt; btr.inputs.frac = 0.7
+&gt;&gt;&gt; btr.inputs.out_file = &#39;brain_anat.nii&#39;
+&gt;&gt;&gt; btr.cmdline
+&#39;bet structural.nii brain_anat.nii -f 0.70&#39;
+&gt;&gt;&gt; res = btr.run() # doctest: +SKIP
+
+Inputs::
+
+        [Mandatory]
+        in_file: (a pathlike object or string representing an existing file)
+                input file to skull strip
+                argument: ``%s``, position: 0
+
+        [Optional]
+        out_file: (a pathlike object or string representing a file)
+                name of output skull stripped image
+                argument: ``%s``, position: 1
+        outline: (a boolean)
+                create surface outline image
+                argument: ``-o``
+        mask: (a boolean)
+                create binary mask image
+                argument: ``-m``
+        skull: (a boolean)
+                create skull image
+                argument: ``-s``
+        no_output: (a boolean)
+                Don&#39;t generate segmented output
+                argument: ``-n``
+        frac: (a float)
+                fractional intensity threshold
+                argument: ``-f %.2f``
+        vertical_gradient: (a float)
+                vertical gradient in fractional intensity threshold (-1, 1)
+                argument: ``-g %.2f``
+        radius: (an integer)
+                head radius
+                argument: ``-r %d``
+        center: (a list of at most 3 items which are an integer)
+                center of gravity in voxels
+                argument: ``-c %s``
+        threshold: (a boolean)
+                apply thresholding to segmented brain image and mask
+                argument: ``-t``
+        mesh: (a boolean)
+                generate a vtk mesh brain surface
+                argument: ``-e``
+        robust: (a boolean)
+                robust brain centre estimation (iterates BET several times)
+                argument: ``-R``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        padding: (a boolean)
+                improve BET if FOV is very small in Z (by temporarily padding end
+                slices)
+                argument: ``-Z``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        remove_eyes: (a boolean)
+                eye &amp; optic nerve cleanup (can be useful in SIENA)
+                argument: ``-S``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        surfaces: (a boolean)
+                run bet2 and then betsurf to get additional skull and scalp surfaces
+                (includes registrations)
+                argument: ``-A``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        t2_guided: (a pathlike object or string representing a file)
+                as with creating surfaces, when also feeding in non-brain-extracted
+                T2 (includes registrations)
+                argument: ``-A2 %s``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        functional: (a boolean)
+                apply to 4D fMRI data
+                argument: ``-F``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        reduce_bias: (a boolean)
+                bias field and neck cleanup
+                argument: ``-B``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        output_type: (&#39;NIFTI&#39; or &#39;NIFTI_PAIR&#39; or &#39;NIFTI_GZ&#39; or
+                  &#39;NIFTI_PAIR_GZ&#39;)
+                FSL output type
+        args: (a string)
+                Additional parameters to the command
+                argument: ``%s``
+        environ: (a dictionary with keys which are a bytes or None or a value
+                  of class &#39;str&#39; and with values which are a bytes or None or a
+                  value of class &#39;str&#39;, nipype default value: {})
+                Environment variables
+
+Outputs::
+
+        out_file: (a pathlike object or string representing a file)
+                path/name of skullstripped file (if generated)
+        mask_file: (a pathlike object or string representing a file)
+                path/name of binary brain mask (if generated)
+        outline_file: (a pathlike object or string representing a file)
+                path/name of outline file (if generated)
+        meshfile: (a pathlike object or string representing a file)
+                path/name of vtk mesh file (if generated)
+        inskull_mask_file: (a pathlike object or string representing a file)
+                path/name of inskull mask (if generated)
+        inskull_mesh_file: (a pathlike object or string representing a file)
+                path/name of inskull mesh outline (if generated)
+        outskull_mask_file: (a pathlike object or string representing a file)
+                path/name of outskull mask (if generated)
+        outskull_mesh_file: (a pathlike object or string representing a file)
+                path/name of outskull mesh outline (if generated)
+        outskin_mask_file: (a pathlike object or string representing a file)
+                path/name of outskin mask (if generated)
+        outskin_mesh_file: (a pathlike object or string representing a file)
+                path/name of outskin mesh outline (if generated)
+        skull_mask_file: (a pathlike object or string representing a file)
+                path/name of skull mask (if generated)
+        skull_file: (a pathlike object or string representing a file)
+                path/name of skull file (if generated)
+
+References:
+-----------
+BibTeX(&#39;@article{JenkinsonBeckmannBehrensWoolrichSmith2012,author={M. Jenkinson, C.F. Beckmann, T.E. Behrens, M.W. Woolrich, and S.M. Smith},title={FSL},journal={NeuroImage},volume={62},pages={782-790},year={2012},}&#39;, key=&#39;JenkinsonBeckmannBehrensWoolrichSmith2012&#39;)
 </pre></div>
 </div>
 </div>
@@ -986,6 +1188,11 @@ Examples
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/T1w_nipype_bet_mask.nii.gz
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="interface-errors">
@@ -1001,6 +1208,11 @@ Examples
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ValueError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ValueError: BET requires a value for input &#39;in_file&#39;. For a list of required inputs, see BET.help()
 </pre></div>
 </div>
 </div>
@@ -1020,6 +1232,11 @@ Examples
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TraitError: The &#39;mask&#39; trait of a BETInputSpec instance must be a boolean, but a value of &#39;mask_file.nii&#39; &lt;class &#39;str&#39;&gt; was specified.
+</pre></div>
+</div>
+</div>
 </div>
 <p>Additionally, Nipype knows that, for inputs corresponding to files you are going to process, they should exist in your file system. If you pass a string that doesn’t correspond to an existing file, it will error and let you know:</p>
 <div class="cell docutils container">
@@ -1036,12 +1253,22 @@ Examples
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TraitError: The &#39;in_file&#39; trait of a BETInputSpec instance must be a pathlike object or string representing an existing file, but a value of &#39;/data/oops_a_typo.nii&#39; &lt;class &#39;str&#39;&gt; was specified.
+</pre></div>
+</div>
+</div>
 </div>
 <p>It turns out that for default output files, you don’t even need to specify a name. Nipype will know what files are going to be created and will generate a name for you:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skullstrip</span> <span class="o">=</span> <span class="n">BET</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s2">&quot;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">skullstrip</span><span class="o">.</span><span class="n">cmdline</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz /home/neuro/workshop_weizmann/workshop/nipype/notebooks/sub-01_ses-test_T1w_brain.nii.gz
 </pre></div>
 </div>
 </div>
@@ -1055,12 +1282,44 @@ Examples
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inskull_mask_file = &lt;undefined&gt;
+inskull_mesh_file = &lt;undefined&gt;
+mask_file = &lt;undefined&gt;
+meshfile = &lt;undefined&gt;
+out_file = /home/neuro/workshop_weizmann/workshop/nipype/notebooks/sub-01_ses-test_T1w_brain.nii.gz
+outline_file = &lt;undefined&gt;
+outskin_mask_file = &lt;undefined&gt;
+outskin_mesh_file = &lt;undefined&gt;
+outskull_mask_file = &lt;undefined&gt;
+outskull_mesh_file = &lt;undefined&gt;
+skull_file = &lt;undefined&gt;
+skull_mask_file = &lt;undefined&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>We see that four possible files can be generated by BET. Here we ran it in the most simple way possible, so it just generated an <code class="docutils literal notranslate"><span class="pre">out_file</span></code>, which is the skull-stripped image. Let’s see what happens when we generate a mask. By the way, you can also set inputs at runtime by including them as arguments to the <code class="docutils literal notranslate"><span class="pre">run</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res2</span> <span class="o">=</span> <span class="n">skullstrip</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">res2</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inskull_mask_file = &lt;undefined&gt;
+inskull_mesh_file = &lt;undefined&gt;
+mask_file = /home/neuro/workshop_weizmann/workshop/nipype/notebooks/sub-01_ses-test_T1w_brain_mask.nii.gz
+meshfile = &lt;undefined&gt;
+out_file = /home/neuro/workshop_weizmann/workshop/nipype/notebooks/sub-01_ses-test_T1w_brain.nii.gz
+outline_file = &lt;undefined&gt;
+outskin_mask_file = &lt;undefined&gt;
+outskin_mesh_file = &lt;undefined&gt;
+outskull_mask_file = &lt;undefined&gt;
+outskull_mesh_file = &lt;undefined&gt;
+skull_file = &lt;undefined&gt;
+skull_mask_file = &lt;undefined&gt;
 </pre></div>
 </div>
 </div>
@@ -1091,6 +1350,63 @@ Examples
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wraps the executable command ``fslmaths``.
+
+Use fslmaths to spatially smooth an image with a gaussian kernel.
+
+Inputs::
+
+        [Mandatory]
+        fwhm: (a float)
+                fwhm of smoothing kernel [mm]
+                argument: ``-s %.5f``, position: 4
+                mutually_exclusive: sigma
+        sigma: (a float)
+                sigma of smoothing kernel [mm]
+                argument: ``-s %.5f``, position: 4
+                mutually_exclusive: fwhm
+        in_file: (a pathlike object or string representing an existing file)
+                image to operate on
+                argument: ``%s``, position: 2
+
+        [Optional]
+        out_file: (a pathlike object or string representing a file)
+                image to write
+                argument: ``%s``, position: -2
+        internal_datatype: (&#39;float&#39; or &#39;char&#39; or &#39;int&#39; or &#39;short&#39; or &#39;double&#39;
+                  or &#39;input&#39;)
+                datatype to use for calculations (default is float)
+                argument: ``-dt %s``, position: 1
+        output_datatype: (&#39;float&#39; or &#39;char&#39; or &#39;int&#39; or &#39;short&#39; or &#39;double&#39;
+                  or &#39;input&#39;)
+                datatype to use for output (default uses input type)
+                argument: ``-odt %s``, position: -1
+        nan2zeros: (a boolean)
+                change NaNs to zeros before doing anything
+                argument: ``-nan``, position: 3
+        output_type: (&#39;NIFTI&#39; or &#39;NIFTI_PAIR&#39; or &#39;NIFTI_GZ&#39; or
+                  &#39;NIFTI_PAIR_GZ&#39;)
+                FSL output type
+        args: (a string)
+                Additional parameters to the command
+                argument: ``%s``
+        environ: (a dictionary with keys which are a bytes or None or a value
+                  of class &#39;str&#39; and with values which are a bytes or None or a
+                  value of class &#39;str&#39;, nipype default value: {})
+                Environment variables
+
+Outputs::
+
+        out_file: (a pathlike object or string representing an existing file)
+                image written after calculations
+
+References:
+-----------
+BibTeX(&#39;@article{JenkinsonBeckmannBehrensWoolrichSmith2012,author={M. Jenkinson, C.F. Beckmann, T.E. Behrens, M.W. Woolrich, and S.M. Smith},title={FSL},journal={NeuroImage},volume={62},pages={782-790},year={2012},}&#39;, key=&#39;JenkinsonBeckmannBehrensWoolrichSmith2012&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="exercise-2">
@@ -1110,6 +1426,11 @@ Examples
 <span class="n">smoothing</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">fwhm</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">smoothing</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">out_file</span> <span class="o">=</span> <span class="s2">&quot;/output/T1w_nipype_smooth.nii.gz&quot;</span>
 <span class="n">smoothing</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nipype.interfaces.base.support.InterfaceResult at 0x7f546f0ed4d0&gt;
 </pre></div>
 </div>
 </div>
@@ -1134,6 +1455,9 @@ Examples
           <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_interfaces_55_0.png" src="../../_images/basic_interfaces_55_0.png" />
 </div>
 </div>
 </div>

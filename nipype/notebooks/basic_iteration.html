@@ -700,6 +700,78 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:19:31,855 nipype.workflow INFO:
+	 Workflow smoothflow settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:19:31,860 nipype.workflow INFO:
+	 Running in parallel.
+211017-17:19:31,864 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 3/3.
+211017-17:19:31,922 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.skullstrip&quot; in &quot;/output/smoothflow/skullstrip&quot;.
+211017-17:19:31,933 nipype.workflow INFO:
+	 [Node] Running &quot;skullstrip&quot; (&quot;nipype.interfaces.fsl.preprocess.BET&quot;), a CommandLine Interface with command:
+bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz /output/smoothflow/skullstrip/sub-01_ses-test_T1w_brain.nii.gz -m
+211017-17:19:33,868 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 2/3.
+                     Currently running:
+                       * smoothflow.skullstrip
+211017-17:19:35,871 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.skullstrip&quot;.
+211017-17:19:37,873 nipype.workflow INFO:
+	 [Job 0] Completed (smoothflow.skullstrip).
+211017-17:19:37,876 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 3/3.
+211017-17:19:37,934 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.iso_smooth&quot; in &quot;/output/smoothflow/_fwhm_4/iso_smooth&quot;.
+211017-17:19:37,935 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.iso_smooth&quot; in &quot;/output/smoothflow/_fwhm_8/iso_smooth&quot;.
+211017-17:19:37,935 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.iso_smooth&quot; in &quot;/output/smoothflow/_fwhm_16/iso_smooth&quot;.
+211017-17:19:37,953 nipype.workflow INFO:
+	 [Node] Running &quot;iso_smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /output/smoothflow/skullstrip/sub-01_ses-test_T1w_brain.nii.gz -s 1.69864 /output/smoothflow/_fwhm_4/iso_smooth/sub-01_ses-test_T1w_brain_smooth.nii.gz
+211017-17:19:37,964 nipype.workflow INFO:
+	 [Node] Running &quot;iso_smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /output/smoothflow/skullstrip/sub-01_ses-test_T1w_brain.nii.gz -s 3.39729 /output/smoothflow/_fwhm_8/iso_smooth/sub-01_ses-test_T1w_brain_smooth.nii.gz
+211017-17:19:37,964 nipype.workflow INFO:
+	 [Node] Running &quot;iso_smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /output/smoothflow/skullstrip/sub-01_ses-test_T1w_brain.nii.gz -s 6.79457 /output/smoothflow/_fwhm_16/iso_smooth/sub-01_ses-test_T1w_brain_smooth.nii.gz
+211017-17:19:39,876 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 0 jobs ready. Free memory (GB): 1.15/1.75, Free processors: 0/3.
+                     Currently running:
+                       * smoothflow.iso_smooth
+                       * smoothflow.iso_smooth
+                       * smoothflow.iso_smooth
+211017-17:19:41,864 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.iso_smooth&quot;.
+211017-17:19:41,877 nipype.workflow INFO:
+	 [Job 3] Completed (smoothflow.iso_smooth).
+211017-17:19:41,880 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 1.35/1.75, Free processors: 1/3.
+                     Currently running:
+                       * smoothflow.iso_smooth
+                       * smoothflow.iso_smooth
+211017-17:19:44,557 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.iso_smooth&quot;.
+211017-17:19:45,881 nipype.workflow INFO:
+	 [Job 2] Completed (smoothflow.iso_smooth).
+211017-17:19:45,884 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 2/3.
+                     Currently running:
+                       * smoothflow.iso_smooth
+211017-17:19:50,524 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.iso_smooth&quot;.
+211017-17:19:51,894 nipype.workflow INFO:
+	 [Job 1] Completed (smoothflow.iso_smooth).
+211017-17:19:51,899 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 3/3.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f4d81d00910&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>Note</strong>, that <code class="docutils literal notranslate"><span class="pre">iterables</span></code> is set on a specific node (<code class="docutils literal notranslate"><span class="pre">isosmooth</span></code> in this case), but <code class="docutils literal notranslate"><span class="pre">Workflow</span></code> is needed to expend the graph to three subgraphs with three different versions of the <code class="docutils literal notranslate"><span class="pre">isosmooth</span></code> node.</p>
 <p>If we visualize the graph with <code class="docutils literal notranslate"><span class="pre">exec</span></code>, we can see where the parallelization actually takes place.</p>
@@ -712,11 +784,42 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:19:54,181 nipype.workflow INFO:
+	 Generated workflow graph: /output/smoothflow/graph.png (graph2use=exec, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_iteration_10_1.png" src="../../_images/basic_iteration_10_1.png" />
+</div>
 </div>
 <p>If you look at the structure in the workflow directory, you can also see, that for each smoothing, a specific folder was created, i.e. <code class="docutils literal notranslate"><span class="pre">_fwhm_16</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree /output/smoothflow -I <span class="s1">&#39;*txt|*pklz|report*|*.json|*js|*.dot|*.html&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/smoothflow
+├── _fwhm_16
+│   └── iso_smooth
+│       ├── _report
+│       └── sub-01_ses-test_T1w_brain_smooth.nii.gz
+├── _fwhm_4
+│   └── iso_smooth
+│       ├── _report
+│       └── sub-01_ses-test_T1w_brain_smooth.nii.gz
+├── _fwhm_8
+│   └── iso_smooth
+│       ├── _report
+│       └── sub-01_ses-test_T1w_brain_smooth.nii.gz
+├── graph_detailed.png
+├── graph.png
+└── skullstrip
+    ├── _report
+    └── sub-01_ses-test_T1w_brain.nii.gz
+
+11 directories, 6 files
 </pre></div>
 </div>
 </div>
@@ -738,6 +841,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_iteration_15_0.png" src="../../_images/basic_iteration_15_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -746,6 +852,9 @@
     <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">),</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_iteration_16_0.png" src="../../_images/basic_iteration_16_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -756,6 +865,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_iteration_17_0.png" src="../../_images/basic_iteration_17_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -765,6 +877,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_iteration_18_0.png" src="../../_images/basic_iteration_18_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -773,6 +888,9 @@
     <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">),</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_iteration_19_0.png" src="../../_images/basic_iteration_19_0.png" />
 </div>
 </div>
 </div>
@@ -826,11 +944,79 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:20:22,683 nipype.workflow INFO:
+	 Workflow choosing_subjects settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:20:22,748 nipype.workflow INFO:
+	 Running serially.
+211017-17:20:22,749 nipype.workflow INFO:
+	 [Node] Setting-up &quot;choosing_subjects.selectfiles&quot; in &quot;/tmp/tmpk5q8x_b2/choosing_subjects/_subject_id_07/selectfiles&quot;.
+211017-17:20:22,757 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:20:22,780 nipype.workflow INFO:
+	 [Node] Finished &quot;choosing_subjects.selectfiles&quot;.
+211017-17:20:22,782 nipype.workflow INFO:
+	 [Node] Setting-up &quot;choosing_subjects.datasink&quot; in &quot;/tmp/tmpy6rsnaja/choosing_subjects/_subject_id_07/datasink&quot;.
+211017-17:20:22,799 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211017-17:20:22,841 nipype.workflow INFO:
+	 [Node] Finished &quot;choosing_subjects.datasink&quot;.
+211017-17:20:22,842 nipype.workflow INFO:
+	 [Node] Setting-up &quot;choosing_subjects.selectfiles&quot; in &quot;/tmp/tmpfornacdh/choosing_subjects/_subject_id_03/selectfiles&quot;.
+211017-17:20:22,849 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:20:22,866 nipype.workflow INFO:
+	 [Node] Finished &quot;choosing_subjects.selectfiles&quot;.
+211017-17:20:22,868 nipype.workflow INFO:
+	 [Node] Setting-up &quot;choosing_subjects.datasink&quot; in &quot;/tmp/tmp5a4hkm9b/choosing_subjects/_subject_id_03/datasink&quot;.
+211017-17:20:22,885 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211017-17:20:22,914 nipype.workflow INFO:
+	 [Node] Finished &quot;choosing_subjects.datasink&quot;.
+211017-17:20:22,917 nipype.workflow INFO:
+	 [Node] Setting-up &quot;choosing_subjects.selectfiles&quot; in &quot;/tmp/tmp210f17gd/choosing_subjects/_subject_id_02/selectfiles&quot;.
+211017-17:20:22,923 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:20:22,936 nipype.workflow INFO:
+	 [Node] Finished &quot;choosing_subjects.selectfiles&quot;.
+211017-17:20:22,939 nipype.workflow INFO:
+	 [Node] Setting-up &quot;choosing_subjects.datasink&quot; in &quot;/tmp/tmpudpvc77z/choosing_subjects/_subject_id_02/datasink&quot;.
+211017-17:20:22,970 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211017-17:20:23,82 nipype.workflow INFO:
+	 [Node] Finished &quot;choosing_subjects.datasink&quot;.
+211017-17:20:23,89 nipype.workflow INFO:
+	 [Node] Setting-up &quot;choosing_subjects.selectfiles&quot; in &quot;/tmp/tmpdp0gzp83/choosing_subjects/_subject_id_01/selectfiles&quot;.
+211017-17:20:23,110 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:20:23,152 nipype.workflow INFO:
+	 [Node] Finished &quot;choosing_subjects.selectfiles&quot;.
+211017-17:20:23,155 nipype.workflow INFO:
+	 [Node] Setting-up &quot;choosing_subjects.datasink&quot; in &quot;/tmp/tmptj1wa1op/choosing_subjects/_subject_id_01/datasink&quot;.
+211017-17:20:23,172 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211017-17:20:23,204 nipype.workflow INFO:
+	 [Node] Finished &quot;choosing_subjects.datasink&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f4d75319d10&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now we can check that five anatomicl images are in <code class="docutils literal notranslate"><span class="pre">anat_files</span></code> directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> ls -lh /output/datasink/anat_files/
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 34M
+-rwxr--r-- 2 neuro root 8.3M Nov  5  2020 sub-01_ses-test_T1w.nii.gz
+-rwxr--r-- 2 neuro root 9.6M Nov  5  2020 sub-02_ses-test_T1w.nii.gz
+-rwxr--r-- 2 neuro root 7.7M Nov  5  2020 sub-03_ses-test_T1w.nii.gz
+-rwxr--r-- 2 neuro root 8.2M Nov  5  2020 sub-07_ses-test_T1w.nii.gz
 </pre></div>
 </div>
 </div>
@@ -883,6 +1069,85 @@
 <span class="c1"># we can print the results</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">res_ex1</span><span class="o">.</span><span class="n">nodes</span><span class="p">())[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:20:24,389 nipype.workflow INFO:
+	 Workflow exercise1 settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:20:24,446 nipype.workflow INFO:
+	 Running serially.
+211017-17:20:24,448 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.power&quot; in &quot;/tmp/tmp7fi3z2u3/exercise1/_number_7/power&quot;.
+211017-17:20:24,453 nipype.workflow INFO:
+	 [Node] Running &quot;power&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:20:24,462 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.power&quot;.
+211017-17:20:24,464 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.power&quot; in &quot;/tmp/tmp776t51tz/exercise1/_number_6/power&quot;.
+211017-17:20:24,471 nipype.workflow INFO:
+	 [Node] Running &quot;power&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:20:24,479 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.power&quot;.
+211017-17:20:24,482 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.power&quot; in &quot;/tmp/tmpmm9vfjkg/exercise1/_number_5/power&quot;.
+211017-17:20:24,488 nipype.workflow INFO:
+	 [Node] Running &quot;power&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:20:24,496 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.power&quot;.
+211017-17:20:24,497 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.power&quot; in &quot;/tmp/tmpi9yx_d7c/exercise1/_number_4/power&quot;.
+211017-17:20:24,503 nipype.workflow INFO:
+	 [Node] Running &quot;power&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:20:24,511 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.power&quot;.
+211017-17:20:24,513 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.power&quot; in &quot;/tmp/tmp2w9uvm3p/exercise1/_number_3/power&quot;.
+211017-17:20:24,521 nipype.workflow INFO:
+	 [Node] Running &quot;power&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:20:24,529 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.power&quot;.
+211017-17:20:24,531 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.power&quot; in &quot;/tmp/tmp1xts32fw/exercise1/_number_2/power&quot;.
+211017-17:20:24,536 nipype.workflow INFO:
+	 [Node] Running &quot;power&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:20:24,543 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.power&quot;.
+211017-17:20:24,544 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.power&quot; in &quot;/tmp/tmpjqxxi2ov/exercise1/_number_1/power&quot;.
+211017-17:20:24,549 nipype.workflow INFO:
+	 [Node] Running &quot;power&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:20:24,555 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.power&quot;.
+211017-17:20:24,557 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.power&quot; in &quot;/tmp/tmps6e8t0xy/exercise1/_number_0/power&quot;.
+211017-17:20:24,562 nipype.workflow INFO:
+	 [Node] Running &quot;power&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:20:24,571 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.power&quot;.
+
+pow = 1
+
+
+pow = 2
+
+
+pow = 4
+
+
+pow = 8
+
+
+pow = 16
+
+
+pow = 32
+
+
+pow = 64
+
+
+pow = 128
 </pre></div>
 </div>
 </div>

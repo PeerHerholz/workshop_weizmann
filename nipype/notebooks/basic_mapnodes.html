@@ -680,6 +680,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
 </div>
 <p>What if we wanted to square a list of numbers? We could set an iterable and just split up the workflow in multiple sub-workflows. But say we were making a simple workflow that squared a list of numbers and then summed them. The sum node would expect a list, but using an iterable would make a bunch of sum nodes, and each would get one number from the list. The solution here is to use a <code class="docutils literal notranslate"><span class="pre">MapNode</span></code>.</p>
 <div class="section" id="iterfield">
@@ -700,10 +705,47 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:58:52,265 nipype.workflow INFO:
+	 [Node] Setting-up &quot;square&quot; in &quot;/tmp/tmp52eg73s9/square&quot;.
+211017-17:58:52,276 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_square0&quot; in &quot;/tmp/tmp52eg73s9/square/mapflow/_square0&quot;.
+211017-17:58:52,280 nipype.workflow INFO:
+	 [Node] Running &quot;_square0&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,305 nipype.workflow INFO:
+	 [Node] Finished &quot;_square0&quot;.
+211017-17:58:52,309 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_square1&quot; in &quot;/tmp/tmp52eg73s9/square/mapflow/_square1&quot;.
+211017-17:58:52,324 nipype.workflow INFO:
+	 [Node] Running &quot;_square1&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,331 nipype.workflow INFO:
+	 [Node] Finished &quot;_square1&quot;.
+211017-17:58:52,336 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_square2&quot; in &quot;/tmp/tmp52eg73s9/square/mapflow/_square2&quot;.
+211017-17:58:52,344 nipype.workflow INFO:
+	 [Node] Running &quot;_square2&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,351 nipype.workflow INFO:
+	 [Node] Finished &quot;_square2&quot;.
+211017-17:58:52,354 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_square3&quot; in &quot;/tmp/tmp52eg73s9/square/mapflow/_square3&quot;.
+211017-17:58:52,361 nipype.workflow INFO:
+	 [Node] Running &quot;_square3&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,370 nipype.workflow INFO:
+	 [Node] Finished &quot;_square3&quot;.
+211017-17:58:52,374 nipype.workflow INFO:
+	 [Node] Finished &quot;square&quot;.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">f_x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 4, 9]
 </pre></div>
 </div>
 </div>
@@ -727,10 +769,47 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:58:52,426 nipype.workflow INFO:
+	 [Node] Setting-up &quot;power&quot; in &quot;/tmp/tmpk4mrv4ue/power&quot;.
+211017-17:58:52,437 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_power0&quot; in &quot;/tmp/tmpk4mrv4ue/power/mapflow/_power0&quot;.
+211017-17:58:52,444 nipype.workflow INFO:
+	 [Node] Running &quot;_power0&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,452 nipype.workflow INFO:
+	 [Node] Finished &quot;_power0&quot;.
+211017-17:58:52,454 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_power1&quot; in &quot;/tmp/tmpk4mrv4ue/power/mapflow/_power1&quot;.
+211017-17:58:52,463 nipype.workflow INFO:
+	 [Node] Running &quot;_power1&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,470 nipype.workflow INFO:
+	 [Node] Finished &quot;_power1&quot;.
+211017-17:58:52,473 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_power2&quot; in &quot;/tmp/tmpk4mrv4ue/power/mapflow/_power2&quot;.
+211017-17:58:52,477 nipype.workflow INFO:
+	 [Node] Running &quot;_power2&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,484 nipype.workflow INFO:
+	 [Node] Finished &quot;_power2&quot;.
+211017-17:58:52,487 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_power3&quot; in &quot;/tmp/tmpk4mrv4ue/power/mapflow/_power3&quot;.
+211017-17:58:52,495 nipype.workflow INFO:
+	 [Node] Running &quot;_power3&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,505 nipype.workflow INFO:
+	 [Node] Finished &quot;_power3&quot;.
+211017-17:58:52,510 nipype.workflow INFO:
+	 [Node] Finished &quot;power&quot;.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">f_xy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 1, 4, 27]
 </pre></div>
 </div>
 </div>
@@ -745,10 +824,47 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:58:52,536 nipype.workflow INFO:
+	 [Node] Setting-up &quot;power&quot; in &quot;/tmp/tmpks_3y7g6/power&quot;.
+211017-17:58:52,547 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_power0&quot; in &quot;/tmp/tmpks_3y7g6/power/mapflow/_power0&quot;.
+211017-17:58:52,550 nipype.workflow INFO:
+	 [Node] Running &quot;_power0&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,557 nipype.workflow INFO:
+	 [Node] Finished &quot;_power0&quot;.
+211017-17:58:52,561 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_power1&quot; in &quot;/tmp/tmpks_3y7g6/power/mapflow/_power1&quot;.
+211017-17:58:52,567 nipype.workflow INFO:
+	 [Node] Running &quot;_power1&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,577 nipype.workflow INFO:
+	 [Node] Finished &quot;_power1&quot;.
+211017-17:58:52,580 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_power2&quot; in &quot;/tmp/tmpks_3y7g6/power/mapflow/_power2&quot;.
+211017-17:58:52,585 nipype.workflow INFO:
+	 [Node] Running &quot;_power2&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,595 nipype.workflow INFO:
+	 [Node] Finished &quot;_power2&quot;.
+211017-17:58:52,599 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_power3&quot; in &quot;/tmp/tmpks_3y7g6/power/mapflow/_power3&quot;.
+211017-17:58:52,604 nipype.workflow INFO:
+	 [Node] Running &quot;_power3&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:52,614 nipype.workflow INFO:
+	 [Node] Finished &quot;_power3&quot;.
+211017-17:58:52,619 nipype.workflow INFO:
+	 [Node] Finished &quot;power&quot;.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">f_xy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 8, 27]
 </pre></div>
 </div>
 </div>
@@ -798,6 +914,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TraitError: The &#39;in_file&#39; trait of a GunzipInputSpec instance must be a pathlike object or string representing an existing file, but a value of &quot;[&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;, &#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;]&quot; &lt;class &#39;str&#39;&gt; was specified.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>TraitError: The <span class="s1">&#39;in_file&#39;</span> trait of a GunzipInputSpec instance must be an existing file name, but a value of <span class="o">[</span><span class="s1">&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span>, <span class="s1">&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span><span class="o">]</span> &lt;class <span class="s1">&#39;list&#39;</span>&gt; was specified.
 </pre></div>
@@ -819,6 +940,73 @@
 <span class="n">mcflow</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">gunzip</span><span class="p">,</span> <span class="s1">&#39;out_file&#39;</span><span class="p">,</span> <span class="n">realign</span><span class="p">,</span> <span class="s1">&#39;in_files&#39;</span><span class="p">)</span>
 <span class="n">mcflow</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="s1">&#39;/output&#39;</span>
 <span class="n">mcflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:58:53,160 nipype.workflow INFO:
+	 Workflow realign_with_spm settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:58:53,165 nipype.workflow INFO:
+	 Running in parallel.
+211017-17:58:53,169 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:58:55,175 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:58:55,251 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_gunzip0&quot; in &quot;/output/realign_with_spm/gunzip/mapflow/_gunzip0&quot;.
+211017-17:58:55,251 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_gunzip1&quot; in &quot;/output/realign_with_spm/gunzip/mapflow/_gunzip1&quot;.
+211017-17:58:55,258 nipype.workflow INFO:
+	 [Node] Running &quot;_gunzip0&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211017-17:58:55,261 nipype.workflow INFO:
+	 [Node] Running &quot;_gunzip1&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211017-17:58:55,744 nipype.workflow INFO:
+	 [Node] Finished &quot;_gunzip0&quot;.
+211017-17:58:55,744 nipype.workflow INFO:
+	 [Node] Finished &quot;_gunzip1&quot;.
+211017-17:58:57,179 nipype.workflow INFO:
+	 [Job 2] Completed (_gunzip0).
+211017-17:58:57,183 nipype.workflow INFO:
+	 [Job 3] Completed (_gunzip1).
+211017-17:58:57,188 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:58:57,267 nipype.workflow INFO:
+	 [Node] Setting-up &quot;realign_with_spm.gunzip&quot; in &quot;/output/realign_with_spm/gunzip&quot;.
+211017-17:58:57,281 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_gunzip0&quot; in &quot;/output/realign_with_spm/gunzip/mapflow/_gunzip0&quot;.
+211017-17:58:57,292 nipype.workflow INFO:
+	 [Node] Cached &quot;_gunzip0&quot; - collecting precomputed outputs
+211017-17:58:57,297 nipype.workflow INFO:
+	 [Node] &quot;_gunzip0&quot; found cached.
+211017-17:58:57,301 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_gunzip1&quot; in &quot;/output/realign_with_spm/gunzip/mapflow/_gunzip1&quot;.
+211017-17:58:57,312 nipype.workflow INFO:
+	 [Node] Cached &quot;_gunzip1&quot; - collecting precomputed outputs
+211017-17:58:57,316 nipype.workflow INFO:
+	 [Node] &quot;_gunzip1&quot; found cached.
+211017-17:58:57,327 nipype.workflow INFO:
+	 [Node] Finished &quot;realign_with_spm.gunzip&quot;.
+211017-17:58:59,139 nipype.workflow INFO:
+	 [Job 0] Completed (realign_with_spm.gunzip).
+211017-17:58:59,143 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:58:59,200 nipype.workflow INFO:
+	 [Node] Setting-up &quot;realign_with_spm.motion_correction&quot; in &quot;/output/realign_with_spm/motion_correction&quot;.
+211017-17:58:59,358 nipype.workflow INFO:
+	 [Node] Running &quot;motion_correction&quot; (&quot;nipype.interfaces.spm.preprocess.Realign&quot;)
+211017-17:59:01,140 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 3/4.
+                     Currently running:
+                       * realign_with_spm.motion_correction
+211017-18:00:26,608 nipype.workflow INFO:
+	 [Node] Finished &quot;realign_with_spm.motion_correction&quot;.
+211017-18:00:27,144 nipype.workflow INFO:
+	 [Job 1] Completed (realign_with_spm.motion_correction).
+211017-18:00:27,148 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7fe5f634e6d0&gt;
 </pre></div>
 </div>
 </div>
@@ -886,11 +1074,64 @@ $<span class="math notranslate nohighlight">\(\sum _{k=0}^{3} k! = 0! + 1! +2! +
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:00:29,156 nipype.workflow INFO:
+	 Workflow ex1 settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:00:29,190 nipype.workflow INFO:
+	 Running serially.
+211017-18:00:29,191 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ex1.range_list&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/ex1/range_list&quot;.
+211017-18:00:29,213 nipype.workflow INFO:
+	 [Node] Running &quot;range_list&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:00:29,252 nipype.workflow INFO:
+	 [Node] Finished &quot;ex1.range_list&quot;.
+211017-18:00:29,253 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ex1.factorial&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/ex1/factorial&quot;.
+211017-18:00:29,290 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_factorial0&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/ex1/factorial/mapflow/_factorial0&quot;.
+211017-18:00:29,313 nipype.workflow INFO:
+	 [Node] Running &quot;_factorial0&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:00:29,353 nipype.workflow INFO:
+	 [Node] Finished &quot;_factorial0&quot;.
+211017-18:00:29,362 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_factorial1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/ex1/factorial/mapflow/_factorial1&quot;.
+211017-18:00:29,385 nipype.workflow INFO:
+	 [Node] Running &quot;_factorial1&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:00:29,418 nipype.workflow INFO:
+	 [Node] Finished &quot;_factorial1&quot;.
+211017-18:00:29,426 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_factorial2&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/ex1/factorial/mapflow/_factorial2&quot;.
+211017-18:00:29,449 nipype.workflow INFO:
+	 [Node] Running &quot;_factorial2&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:00:29,491 nipype.workflow INFO:
+	 [Node] Finished &quot;_factorial2&quot;.
+211017-18:00:29,529 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_factorial3&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/ex1/factorial/mapflow/_factorial3&quot;.
+211017-18:00:29,637 nipype.workflow INFO:
+	 [Node] Running &quot;_factorial3&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:00:29,736 nipype.workflow INFO:
+	 [Node] Finished &quot;_factorial3&quot;.
+211017-18:00:29,771 nipype.workflow INFO:
+	 [Node] Finished &quot;ex1.factorial&quot;.
+211017-18:00:29,772 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ex1.summing&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/ex1/summing&quot;.
+211017-18:00:29,806 nipype.workflow INFO:
+	 [Node] Running &quot;summing&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:00:29,849 nipype.workflow INFO:
+	 [Node] Finished &quot;ex1.summing&quot;.
+</pre></div>
+</div>
+</div>
 </div>
 <p>let’s print all nodes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eg</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NodeView((ex1.range_list, ex1.factorial, ex1.summing))
 </pre></div>
 </div>
 </div>
@@ -902,12 +1143,24 @@ $<span class="math notranslate nohighlight">\(\sum _{k=0}^{3} k! = 0! + 1! +2! +
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sum_out = 10
+</pre></div>
+</div>
+</div>
 </div>
 <p>we can also check the results of two other nodes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">eg</span><span class="o">.</span><span class="n">nodes</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">eg</span><span class="o">.</span><span class="n">nodes</span><span class="p">())[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>range_list = [0, 1, 2, 3]
+
+Bunch(fact_out=[1, 1, 2, 6])
 </pre></div>
 </div>
 </div>

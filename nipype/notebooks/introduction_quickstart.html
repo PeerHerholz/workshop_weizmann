@@ -729,6 +729,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inskull_mask_file = &lt;undefined&gt;
+inskull_mesh_file = &lt;undefined&gt;
+mask_file = &lt;undefined&gt;
+meshfile = &lt;undefined&gt;
+out_file = /output/T1w_nipype_bet.nii.gz
+outline_file = &lt;undefined&gt;
+outskin_mask_file = &lt;undefined&gt;
+outskin_mesh_file = &lt;undefined&gt;
+outskull_mask_file = &lt;undefined&gt;
+outskull_mesh_file = &lt;undefined&gt;
+skull_file = &lt;undefined&gt;
+skull_mask_file = &lt;undefined&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>and we can plot the output file</p>
 <div class="cell docutils container">
@@ -738,11 +754,156 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/introduction_quickstart_13_0.png" src="../../_images/introduction_quickstart_13_0.png" />
+</div>
 </div>
 <p>you can always check the list of arguments using <code class="docutils literal notranslate"><span class="pre">help</span></code> method</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BET</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wraps the executable command ``bet``.
+
+FSL BET wrapper for skull stripping
+
+For complete details, see the `BET Documentation.
+&lt;https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide&gt;`_
+
+Examples
+--------
+&gt;&gt;&gt; from nipype.interfaces import fsl
+&gt;&gt;&gt; btr = fsl.BET()
+&gt;&gt;&gt; btr.inputs.in_file = &#39;structural.nii&#39;
+&gt;&gt;&gt; btr.inputs.frac = 0.7
+&gt;&gt;&gt; btr.inputs.out_file = &#39;brain_anat.nii&#39;
+&gt;&gt;&gt; btr.cmdline
+&#39;bet structural.nii brain_anat.nii -f 0.70&#39;
+&gt;&gt;&gt; res = btr.run() # doctest: +SKIP
+
+Inputs::
+
+        [Mandatory]
+        in_file: (a pathlike object or string representing an existing file)
+                input file to skull strip
+                argument: ``%s``, position: 0
+
+        [Optional]
+        out_file: (a pathlike object or string representing a file)
+                name of output skull stripped image
+                argument: ``%s``, position: 1
+        outline: (a boolean)
+                create surface outline image
+                argument: ``-o``
+        mask: (a boolean)
+                create binary mask image
+                argument: ``-m``
+        skull: (a boolean)
+                create skull image
+                argument: ``-s``
+        no_output: (a boolean)
+                Don&#39;t generate segmented output
+                argument: ``-n``
+        frac: (a float)
+                fractional intensity threshold
+                argument: ``-f %.2f``
+        vertical_gradient: (a float)
+                vertical gradient in fractional intensity threshold (-1, 1)
+                argument: ``-g %.2f``
+        radius: (an integer)
+                head radius
+                argument: ``-r %d``
+        center: (a list of at most 3 items which are an integer)
+                center of gravity in voxels
+                argument: ``-c %s``
+        threshold: (a boolean)
+                apply thresholding to segmented brain image and mask
+                argument: ``-t``
+        mesh: (a boolean)
+                generate a vtk mesh brain surface
+                argument: ``-e``
+        robust: (a boolean)
+                robust brain centre estimation (iterates BET several times)
+                argument: ``-R``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        padding: (a boolean)
+                improve BET if FOV is very small in Z (by temporarily padding end
+                slices)
+                argument: ``-Z``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        remove_eyes: (a boolean)
+                eye &amp; optic nerve cleanup (can be useful in SIENA)
+                argument: ``-S``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        surfaces: (a boolean)
+                run bet2 and then betsurf to get additional skull and scalp surfaces
+                (includes registrations)
+                argument: ``-A``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        t2_guided: (a pathlike object or string representing a file)
+                as with creating surfaces, when also feeding in non-brain-extracted
+                T2 (includes registrations)
+                argument: ``-A2 %s``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        functional: (a boolean)
+                apply to 4D fMRI data
+                argument: ``-F``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        reduce_bias: (a boolean)
+                bias field and neck cleanup
+                argument: ``-B``
+                mutually_exclusive: functional, reduce_bias, robust, padding,
+                  remove_eyes, surfaces, t2_guided
+        output_type: (&#39;NIFTI&#39; or &#39;NIFTI_PAIR&#39; or &#39;NIFTI_GZ&#39; or
+                  &#39;NIFTI_PAIR_GZ&#39;)
+                FSL output type
+        args: (a string)
+                Additional parameters to the command
+                argument: ``%s``
+        environ: (a dictionary with keys which are a bytes or None or a value
+                  of class &#39;str&#39; and with values which are a bytes or None or a
+                  value of class &#39;str&#39;, nipype default value: {})
+                Environment variables
+
+Outputs::
+
+        out_file: (a pathlike object or string representing a file)
+                path/name of skullstripped file (if generated)
+        mask_file: (a pathlike object or string representing a file)
+                path/name of binary brain mask (if generated)
+        outline_file: (a pathlike object or string representing a file)
+                path/name of outline file (if generated)
+        meshfile: (a pathlike object or string representing a file)
+                path/name of vtk mesh file (if generated)
+        inskull_mask_file: (a pathlike object or string representing a file)
+                path/name of inskull mask (if generated)
+        inskull_mesh_file: (a pathlike object or string representing a file)
+                path/name of inskull mesh outline (if generated)
+        outskull_mask_file: (a pathlike object or string representing a file)
+                path/name of outskull mask (if generated)
+        outskull_mesh_file: (a pathlike object or string representing a file)
+                path/name of outskull mesh outline (if generated)
+        outskin_mask_file: (a pathlike object or string representing a file)
+                path/name of outskin mask (if generated)
+        outskin_mesh_file: (a pathlike object or string representing a file)
+                path/name of outskin mesh outline (if generated)
+        skull_mask_file: (a pathlike object or string representing a file)
+                path/name of skull mask (if generated)
+        skull_file: (a pathlike object or string representing a file)
+                path/name of skull file (if generated)
+
+References:
+-----------
+BibTeX(&#39;@article{JenkinsonBeckmannBehrensWoolrichSmith2012,author={M. Jenkinson, C.F. Beckmann, T.E. Behrens, M.W. Woolrich, and S.M. Smith},title={FSL},journal={NeuroImage},volume={62},pages={782-790},year={2012},}&#39;, key=&#39;JenkinsonBeckmannBehrensWoolrichSmith2012&#39;)
 </pre></div>
 </div>
 </div>
@@ -763,6 +924,63 @@
 <span class="c1"># all this information can be found when we run `help` method. </span>
 <span class="c1"># note that you can either provide `in_file` and `fwhm` or `in_file` and `sigma`</span>
 <span class="n">IsotropicSmooth</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wraps the executable command ``fslmaths``.
+
+Use fslmaths to spatially smooth an image with a gaussian kernel.
+
+Inputs::
+
+        [Mandatory]
+        fwhm: (a float)
+                fwhm of smoothing kernel [mm]
+                argument: ``-s %.5f``, position: 4
+                mutually_exclusive: sigma
+        sigma: (a float)
+                sigma of smoothing kernel [mm]
+                argument: ``-s %.5f``, position: 4
+                mutually_exclusive: fwhm
+        in_file: (a pathlike object or string representing an existing file)
+                image to operate on
+                argument: ``%s``, position: 2
+
+        [Optional]
+        out_file: (a pathlike object or string representing a file)
+                image to write
+                argument: ``%s``, position: -2
+        internal_datatype: (&#39;float&#39; or &#39;char&#39; or &#39;int&#39; or &#39;short&#39; or &#39;double&#39;
+                  or &#39;input&#39;)
+                datatype to use for calculations (default is float)
+                argument: ``-dt %s``, position: 1
+        output_datatype: (&#39;float&#39; or &#39;char&#39; or &#39;int&#39; or &#39;short&#39; or &#39;double&#39;
+                  or &#39;input&#39;)
+                datatype to use for output (default uses input type)
+                argument: ``-odt %s``, position: -1
+        nan2zeros: (a boolean)
+                change NaNs to zeros before doing anything
+                argument: ``-nan``, position: 3
+        output_type: (&#39;NIFTI&#39; or &#39;NIFTI_PAIR&#39; or &#39;NIFTI_GZ&#39; or
+                  &#39;NIFTI_PAIR_GZ&#39;)
+                FSL output type
+        args: (a string)
+                Additional parameters to the command
+                argument: ``%s``
+        environ: (a dictionary with keys which are a bytes or None or a value
+                  of class &#39;str&#39; and with values which are a bytes or None or a
+                  value of class &#39;str&#39;, nipype default value: {})
+                Environment variables
+
+Outputs::
+
+        out_file: (a pathlike object or string representing an existing file)
+                image written after calculations
+
+References:
+-----------
+BibTeX(&#39;@article{JenkinsonBeckmannBehrensWoolrichSmith2012,author={M. Jenkinson, C.F. Beckmann, T.E. Behrens, M.W. Woolrich, and S.M. Smith},title={FSL},journal={NeuroImage},volume={62},pages={782-790},year={2012},}&#39;, key=&#39;JenkinsonBeckmannBehrensWoolrichSmith2012&#39;)
 </pre></div>
 </div>
 </div>
@@ -788,6 +1006,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nipype.interfaces.base.support.InterfaceResult at 0x7f21d8c068d0&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -796,6 +1019,9 @@
           <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/introduction_quickstart_22_0.png" src="../../_images/introduction_quickstart_22_0.png" />
 </div>
 </div>
 </div>
@@ -862,6 +1088,59 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wraps the executable command ``fslmaths``.
+
+Use fslmaths to apply a binary mask to another image.
+
+Inputs::
+
+        [Mandatory]
+        mask_file: (a pathlike object or string representing an existing
+                  file)
+                binary image defining mask space
+                argument: ``-mas %s``, position: 4
+        in_file: (a pathlike object or string representing an existing file)
+                image to operate on
+                argument: ``%s``, position: 2
+
+        [Optional]
+        out_file: (a pathlike object or string representing a file)
+                image to write
+                argument: ``%s``, position: -2
+        internal_datatype: (&#39;float&#39; or &#39;char&#39; or &#39;int&#39; or &#39;short&#39; or &#39;double&#39;
+                  or &#39;input&#39;)
+                datatype to use for calculations (default is float)
+                argument: ``-dt %s``, position: 1
+        output_datatype: (&#39;float&#39; or &#39;char&#39; or &#39;int&#39; or &#39;short&#39; or &#39;double&#39;
+                  or &#39;input&#39;)
+                datatype to use for output (default uses input type)
+                argument: ``-odt %s``, position: -1
+        nan2zeros: (a boolean)
+                change NaNs to zeros before doing anything
+                argument: ``-nan``, position: 3
+        output_type: (&#39;NIFTI&#39; or &#39;NIFTI_PAIR&#39; or &#39;NIFTI_GZ&#39; or
+                  &#39;NIFTI_PAIR_GZ&#39;)
+                FSL output type
+        args: (a string)
+                Additional parameters to the command
+                argument: ``%s``
+        environ: (a dictionary with keys which are a bytes or None or a value
+                  of class &#39;str&#39; and with values which are a bytes or None or a
+                  value of class &#39;str&#39;, nipype default value: {})
+                Environment variables
+
+Outputs::
+
+        out_file: (a pathlike object or string representing an existing file)
+                image written after calculations
+
+References:
+-----------
+BibTeX(&#39;@article{JenkinsonBeckmannBehrensWoolrichSmith2012,author={M. Jenkinson, C.F. Beckmann, T.E. Behrens, M.W. Woolrich, and S.M. Smith},title={FSL},journal={NeuroImage},volume={62},pages={782-790},year={2012},}&#39;, key=&#39;JenkinsonBeckmannBehrensWoolrichSmith2012&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <p>As you can see the interface takes two mandatory inputs: <code class="docutils literal notranslate"><span class="pre">in_file</span></code> and <code class="docutils literal notranslate"><span class="pre">mask_file</span></code>. We want to use the output of <code class="docutils literal notranslate"><span class="pre">smooth_node</span></code> as <code class="docutils literal notranslate"><span class="pre">in_file</span></code> and one of the output of <code class="docutils literal notranslate"><span class="pre">bet_file</span></code> (the <code class="docutils literal notranslate"><span class="pre">mask_file</span></code>) as <code class="docutils literal notranslate"><span class="pre">mask_file</span></code> input.</p>
 <p>** Let’s initialize a <code class="docutils literal notranslate"><span class="pre">Workflow</span></code>:**</p>
@@ -925,6 +1204,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:06:28,853 nipype.workflow INFO:
+	 Generated workflow graph: /output/working_dir/smoothflow/workflow_graph.png (graph2use=hierarchical, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/introduction_quickstart_50_1.png" src="../../_images/introduction_quickstart_50_1.png" />
+</div>
 </div>
 <p>you can also plot a more detailed graph:</p>
 <div class="cell docutils container">
@@ -934,6 +1220,13 @@
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;/output/working_dir/smoothflow/graph_detailed.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:06:29,188 nipype.workflow INFO:
+	 Generated workflow graph: /output/working_dir/smoothflow/graph.png (graph2use=flat, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/introduction_quickstart_52_1.png" src="../../_images/introduction_quickstart_52_1.png" />
 </div>
 </div>
 <p><strong>and now let’s run the workflow</strong></p>
@@ -952,6 +1245,39 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:06:29,229 nipype.workflow INFO:
+	 Workflow smoothflow settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:06:29,235 nipype.workflow INFO:
+	 Running serially.
+211017-18:06:29,236 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.smooth&quot; in &quot;/output/working_dir/smoothflow/smooth&quot;.
+211017-18:06:29,240 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;smoothflow.smooth&quot;.
+211017-18:06:29,248 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz -s 1.69864 /output/working_dir/smoothflow/smooth/sub-01_ses-test_T1w_smooth.nii.gz
+211017-18:06:34,51 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.smooth&quot;.
+211017-18:06:34,53 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.bet&quot; in &quot;/output/working_dir/smoothflow/bet&quot;.
+211017-18:06:34,62 nipype.workflow INFO:
+	 [Node] Running &quot;bet&quot; (&quot;nipype.interfaces.fsl.preprocess.BET&quot;), a CommandLine Interface with command:
+bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz /output/working_dir/smoothflow/bet/sub-01_ses-test_T1w_brain.nii.gz -m
+211017-18:06:38,253 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.bet&quot;.
+211017-18:06:38,255 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.mask&quot; in &quot;/output/working_dir/smoothflow/mask&quot;.
+211017-18:06:38,260 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;smoothflow.mask&quot;.
+211017-18:06:38,268 nipype.workflow INFO:
+	 [Node] Running &quot;mask&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/working_dir/smoothflow/smooth/sub-01_ses-test_T1w_smooth.nii.gz -mas /output/working_dir/smoothflow/bet/sub-01_ses-test_T1w_brain_mask.nii.gz /output/working_dir/smoothflow/mask/sub-01_ses-test_T1w_smooth_masked.nii.gz
+211017-18:06:39,321 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.mask&quot;.
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>and let’s look at the results</strong></p>
 <div class="cell docutils container">
@@ -961,11 +1287,80 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inskull_mask_file = &lt;undefined&gt;
+inskull_mesh_file = &lt;undefined&gt;
+mask_file = /output/working_dir/smoothflow/bet/sub-01_ses-test_T1w_brain_mask.nii.gz
+meshfile = &lt;undefined&gt;
+out_file = &lt;undefined&gt;
+outline_file = &lt;undefined&gt;
+outskin_mask_file = &lt;undefined&gt;
+outskin_mesh_file = &lt;undefined&gt;
+outskull_mask_file = &lt;undefined&gt;
+outskull_mesh_file = &lt;undefined&gt;
+skull_file = &lt;undefined&gt;
+skull_mask_file = &lt;undefined&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>we can see the fie structure that has been created:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> tree -L <span class="m">3</span> /output/working_dir/smoothflow/
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/working_dir/smoothflow/
+├── bet
+│   ├── _0x2b2810107930568498391215c9d2aa2f.json
+│   ├── command.txt
+│   ├── _inputs.pklz
+│   ├── _node.pklz
+│   ├── _report
+│   │   └── report.rst
+│   ├── result_bet.pklz
+│   └── sub-01_ses-test_T1w_brain_mask.nii.gz
+├── d3.js
+├── graph1.json
+├── graph_detailed.dot
+├── graph_detailed.png
+├── graph.dot
+├── graph.json
+├── graph.png
+├── index.html
+├── mask
+│   ├── _0x5eea37ef1dc0f3cace9eea2c7eada3b8.json
+│   ├── command.txt
+│   ├── _inputs.pklz
+│   ├── _node.pklz
+│   ├── _report
+│   │   └── report.rst
+│   ├── result_mask.pklz
+│   └── sub-01_ses-test_T1w_smooth_masked.nii.gz
+├── skullstrip
+│   ├── _0x2b2810107930568498391215c9d2aa2f.json
+│   ├── command.txt
+│   ├── _inputs.pklz
+│   ├── _node.pklz
+│   ├── _report
+│   │   └── report.rst
+│   ├── result_skullstrip.pklz
+│   └── sub-01_ses-test_T1w_brain_mask.nii.gz
+├── smooth
+│   ├── _0x9dbb0054da9b2a78c10b8c2f7ec2f8be.json
+│   ├── command.txt
+│   ├── _inputs.pklz
+│   ├── _node.pklz
+│   ├── _report
+│   │   └── report.rst
+│   ├── result_smooth.pklz
+│   └── sub-01_ses-test_T1w_smooth.nii.gz
+├── workflow_graph.dot
+└── workflow_graph.png
+
+8 directories, 38 files
 </pre></div>
 </div>
 </div>
@@ -1000,6 +1395,9 @@
     <span class="n">plot_slice</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/introduction_quickstart_62_0.png" src="../../_images/introduction_quickstart_62_0.png" />
 </div>
 </div>
 </div>
@@ -1052,6 +1450,63 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:06:41,241 nipype.workflow INFO:
+	 Workflow smoothflow_it settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:06:41,249 nipype.workflow INFO:
+	 Running serially.
+211017-18:06:41,251 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow_it.smooth&quot; in &quot;/output/working_dir/smoothflow_it/_fwhm_16/smooth&quot;.
+211017-18:06:41,259 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz -s 6.79457 /output/working_dir/smoothflow_it/_fwhm_16/smooth/sub-01_ses-test_T1w_smooth.nii.gz
+211017-18:06:54,512 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow_it.smooth&quot;.
+211017-18:06:54,514 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow_it.smooth&quot; in &quot;/output/working_dir/smoothflow_it/_fwhm_8/smooth&quot;.
+211017-18:06:54,522 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz -s 3.39729 /output/working_dir/smoothflow_it/_fwhm_8/smooth/sub-01_ses-test_T1w_smooth.nii.gz
+211017-18:07:01,786 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow_it.smooth&quot;.
+211017-18:07:01,787 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow_it.smooth&quot; in &quot;/output/working_dir/smoothflow_it/_fwhm_4/smooth&quot;.
+211017-18:07:01,793 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz -s 1.69864 /output/working_dir/smoothflow_it/_fwhm_4/smooth/sub-01_ses-test_T1w_smooth.nii.gz
+211017-18:07:06,540 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow_it.smooth&quot;.
+211017-18:07:06,542 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow_it.bet_node&quot; in &quot;/output/working_dir/smoothflow_it/bet_node&quot;.
+211017-18:07:06,552 nipype.workflow INFO:
+	 [Node] Running &quot;bet_node&quot; (&quot;nipype.interfaces.fsl.preprocess.BET&quot;), a CommandLine Interface with command:
+bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz /output/working_dir/smoothflow_it/bet_node/sub-01_ses-test_T1w_brain.nii.gz -m
+211017-18:07:10,787 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow_it.bet_node&quot;.
+211017-18:07:10,789 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow_it.mask&quot; in &quot;/output/working_dir/smoothflow_it/_fwhm_16/mask&quot;.
+211017-18:07:10,801 nipype.workflow INFO:
+	 [Node] Running &quot;mask&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/working_dir/smoothflow_it/_fwhm_16/smooth/sub-01_ses-test_T1w_smooth.nii.gz -mas /output/working_dir/smoothflow_it/bet_node/sub-01_ses-test_T1w_brain_mask.nii.gz /output/working_dir/smoothflow_it/_fwhm_16/mask/sub-01_ses-test_T1w_smooth_masked.nii.gz
+211017-18:07:11,940 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow_it.mask&quot;.
+211017-18:07:11,942 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow_it.mask&quot; in &quot;/output/working_dir/smoothflow_it/_fwhm_8/mask&quot;.
+211017-18:07:11,954 nipype.workflow INFO:
+	 [Node] Running &quot;mask&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/working_dir/smoothflow_it/_fwhm_8/smooth/sub-01_ses-test_T1w_smooth.nii.gz -mas /output/working_dir/smoothflow_it/bet_node/sub-01_ses-test_T1w_brain_mask.nii.gz /output/working_dir/smoothflow_it/_fwhm_8/mask/sub-01_ses-test_T1w_smooth_masked.nii.gz
+211017-18:07:13,3 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow_it.mask&quot;.
+211017-18:07:13,5 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow_it.mask&quot; in &quot;/output/working_dir/smoothflow_it/_fwhm_4/mask&quot;.
+211017-18:07:13,15 nipype.workflow INFO:
+	 [Node] Running &quot;mask&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/working_dir/smoothflow_it/_fwhm_4/smooth/sub-01_ses-test_T1w_smooth.nii.gz -mas /output/working_dir/smoothflow_it/bet_node/sub-01_ses-test_T1w_brain_mask.nii.gz /output/working_dir/smoothflow_it/_fwhm_4/mask/sub-01_ses-test_T1w_smooth_masked.nii.gz
+211017-18:07:14,53 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow_it.mask&quot;.
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>let’s see the graph</strong></p>
 <div class="cell docutils container">
@@ -1060,11 +1515,93 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[smoothflow_it.bet_node,
+ smoothflow_it.mask.a0,
+ smoothflow_it.smooth.aI.a0,
+ smoothflow_it.mask.a1,
+ smoothflow_it.smooth.aI.a1,
+ smoothflow_it.mask.a2,
+ smoothflow_it.smooth.aI.a2]
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can see the file structure that was created:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> tree -L <span class="m">3</span> /output/working_dir/smoothflow_it/
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/working_dir/smoothflow_it/
+├── bet_node
+│   ├── _0x2b2810107930568498391215c9d2aa2f.json
+│   ├── command.txt
+│   ├── _inputs.pklz
+│   ├── _node.pklz
+│   ├── _report
+│   │   └── report.rst
+│   ├── result_bet_node.pklz
+│   └── sub-01_ses-test_T1w_brain_mask.nii.gz
+├── d3.js
+├── _fwhm_16
+│   ├── mask
+│   │   ├── _0x5bb564d19dd3a9d33377896bd76a3117.json
+│   │   ├── command.txt
+│   │   ├── _inputs.pklz
+│   │   ├── _node.pklz
+│   │   ├── _report
+│   │   ├── result_mask.pklz
+│   │   └── sub-01_ses-test_T1w_smooth_masked.nii.gz
+│   └── smooth
+│       ├── _0x6eb6392f80f598d77a3e9d3e6e89e6b6.json
+│       ├── command.txt
+│       ├── _inputs.pklz
+│       ├── _node.pklz
+│       ├── _report
+│       ├── result_smooth.pklz
+│       └── sub-01_ses-test_T1w_smooth.nii.gz
+├── _fwhm_4
+│   ├── mask
+│   │   ├── _0x8d53721934e689d6195cb8f96b042204.json
+│   │   ├── command.txt
+│   │   ├── _inputs.pklz
+│   │   ├── _node.pklz
+│   │   ├── _report
+│   │   ├── result_mask.pklz
+│   │   └── sub-01_ses-test_T1w_smooth_masked.nii.gz
+│   └── smooth
+│       ├── _0x9dbb0054da9b2a78c10b8c2f7ec2f8be.json
+│       ├── command.txt
+│       ├── _inputs.pklz
+│       ├── _node.pklz
+│       ├── _report
+│       ├── result_smooth.pklz
+│       └── sub-01_ses-test_T1w_smooth.nii.gz
+├── _fwhm_8
+│   ├── mask
+│   │   ├── _0x516a5ee3394733fb0cad02f86046c9eb.json
+│   │   ├── command.txt
+│   │   ├── _inputs.pklz
+│   │   ├── _node.pklz
+│   │   ├── _report
+│   │   ├── result_mask.pklz
+│   │   └── sub-01_ses-test_T1w_smooth_masked.nii.gz
+│   └── smooth
+│       ├── _0x037eaeb0c31c15fa085096765ffeda22.json
+│       ├── command.txt
+│       ├── _inputs.pklz
+│       ├── _node.pklz
+│       ├── _report
+│       ├── result_smooth.pklz
+│       └── sub-01_ses-test_T1w_smooth.nii.gz
+├── graph1.json
+├── graph.json
+└── index.html
+
+17 directories, 47 files
 </pre></div>
 </div>
 </div>
@@ -1097,6 +1634,19 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:14,719 nipype.workflow INFO:
+	 [Node] Setting-up &quot;square&quot; in &quot;/tmp/tmpw7dfdzrl/square&quot;.
+211017-18:07:14,723 nipype.workflow INFO:
+	 [Node] Running &quot;square&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:14,728 nipype.workflow INFO:
+	 [Node] Finished &quot;square&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f_x = 4
+</pre></div>
+</div>
+</div>
 </div>
 <p>let’s try to ask for more values of <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
 <div class="cell docutils container">
@@ -1109,6 +1659,66 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:14,740 nipype.workflow INFO:
+	 [Node] Setting-up &quot;square&quot; in &quot;/tmp/tmpbsnbync0/square&quot;.
+211017-18:07:14,746 nipype.workflow INFO:
+	 [Node] Running &quot;square&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:14,752 nipype.workflow WARNING:
+	 Storing result file without outputs
+211017-18:07:14,753 nipype.workflow WARNING:
+	 [Node] Error on &quot;square&quot; (/tmp/tmpbsnbync0/square)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">41</span><span class="o">-</span><span class="n">e3deab85d48b</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">square_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;square&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">square_node</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">res</span> <span class="o">=</span> <span class="n">square_node</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">res</span><span class="o">.</span><span class="n">outputs</span>
+
+<span class="nn">/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py</span> in <span class="ni">run</span><span class="nt">(self, updatehash)</span>
+<span class="g g-Whitespace">    </span><span class="mi">514</span> 
+<span class="g g-Whitespace">    </span><span class="mi">515</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">516</span>             <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_interface</span><span class="p">(</span><span class="n">execute</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">517</span>         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span>             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;[Node] Error on &quot;</span><span class="si">%s</span><span class="s1">&quot; (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fullname</span><span class="p">,</span> <span class="n">outdir</span><span class="p">)</span>
+
+<span class="nn">/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py</span> in <span class="ni">_run_interface</span><span class="nt">(self, execute, updatehash)</span>
+<span class="g g-Whitespace">    </span><span class="mi">633</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_update_hash</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">634</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_results</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">635</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_command</span><span class="p">(</span><span class="n">execute</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span> 
+<span class="g g-Whitespace">    </span><span class="mi">637</span>     <span class="k">def</span> <span class="nf">_load_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py</span> in <span class="ni">_run_command</span><span class="nt">(self, execute, copyfiles)</span>
+<span class="g g-Whitespace">    </span><span class="mi">739</span>         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">740</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">741</span>             <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interface</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cwd</span><span class="o">=</span><span class="n">outdir</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">742</span>         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">msg</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">743</span>             <span class="n">result</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+
+<span class="nn">/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py</span> in <span class="ni">run</span><span class="nt">(self, cwd, ignore_exception, **inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span>         <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span>             <span class="n">runtime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pre_run_hook</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">419</span>             <span class="n">runtime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_interface</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span>             <span class="n">runtime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post_run_hook</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">421</span>             <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregate_outputs</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
+
+<span class="nn">/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/utility/wrappers.py</span> in <span class="ni">_run_interface</span><span class="nt">(self, runtime)</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span>                 <span class="n">args</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span> 
+<span class="ne">--&gt; </span><span class="mi">142</span>         <span class="n">out</span> <span class="o">=</span> <span class="n">function_handle</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_names</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">out</span>
+
+<span class="nn">&lt;string&gt;</span> in <span class="ni">square_func</span><span class="nt">(x)</span>
+
+<span class="ne">TypeError</span>: unsupported operand type(s) for ** or pow(): &#39;list&#39; and &#39;int&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>It will give an error since <code class="docutils literal notranslate"><span class="pre">square_func</span></code> do not accept list. But we can try <code class="docutils literal notranslate"><span class="pre">MapNode</span></code>:</strong></p>
 <div class="cell docutils container">
@@ -1117,6 +1727,29 @@
 <span class="n">square_mapnode</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">square_mapnode</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="n">res</span><span class="o">.</span><span class="n">outputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:34,906 nipype.workflow INFO:
+	 [Node] Setting-up &quot;square&quot; in &quot;/tmp/tmpq539bt4t/square&quot;.
+211017-18:07:34,913 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_square0&quot; in &quot;/tmp/tmpq539bt4t/square/mapflow/_square0&quot;.
+211017-18:07:34,916 nipype.workflow INFO:
+	 [Node] Running &quot;_square0&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:34,924 nipype.workflow INFO:
+	 [Node] Finished &quot;_square0&quot;.
+211017-18:07:34,928 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_square1&quot; in &quot;/tmp/tmpq539bt4t/square/mapflow/_square1&quot;.
+211017-18:07:34,934 nipype.workflow INFO:
+	 [Node] Running &quot;_square1&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:34,942 nipype.workflow INFO:
+	 [Node] Finished &quot;_square1&quot;.
+211017-18:07:34,946 nipype.workflow INFO:
+	 [Node] Finished &quot;square&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bunch(f_x=[4, 16])
 </pre></div>
 </div>
 </div>

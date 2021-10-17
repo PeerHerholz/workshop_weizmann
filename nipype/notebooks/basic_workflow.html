@@ -798,6 +798,9 @@ fslmaths /output/${ANAT_NAME}_smooth -mas /output/${ANAT_NAME}_brain_mask /outpu
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_workflow_7_0.png" src="../../_images/basic_workflow_7_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="example-2-interface-execution">
@@ -840,6 +843,9 @@ fslmaths /output/${ANAT_NAME}_smooth -mas /output/${ANAT_NAME}_brain_mask /outpu
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_workflow_10_0.png" src="../../_images/basic_workflow_10_0.png" />
+</div>
 </div>
 <p>This is more verbose, although it does have its advantages. There’s the automated input validation we saw previously, some of the options are named more meaningfully, and you don’t need to remember, for example, that fslmaths’ smoothing kernel is set in sigma instead of FWHM – Nipype does that conversion behind the scenes.</p>
 <div class="section" id="can-t-we-optimize-that-a-bit">
@@ -872,6 +878,9 @@ fslmaths /output/${ANAT_NAME}_smooth -mas /output/${ANAT_NAME}_brain_mask /outpu
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;test_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_workflow_12_0.png" src="../../_images/basic_workflow_12_0.png" />
 </div>
 </div>
 <p>Here we didn’t need to name the intermediate files; Nipype did that behind the scenes, and then we passed the result object (which knows those names) onto the next step in the processing stream. This is somewhat more concise than the example above, but it’s still a procedural script. And the dependency relationship between the stages of processing is not particularly obvious. To address these issues, and to provide solutions to problems we might not know we have yet, Nipype offers <strong>Workflows.</strong></p>
@@ -953,6 +962,13 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:00:41,533 nipype.workflow INFO:
+	 Generated workflow graph: /output/working_dir/smoothflow/workflow_graph.png (graph2use=hierarchical, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_workflow_21_1.png" src="../../_images/basic_workflow_21_1.png" />
+</div>
 </div>
 <p>This representation makes the dependency structure of the workflow obvious. (By the way, the names of the nodes in this graph are the names we gave our Node objects above, so pick something meaningful for those!)</p>
 <p>Certain graph types also allow you to further inspect the individual connections between the nodes. For example:</p>
@@ -964,6 +980,13 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:00:41,797 nipype.workflow INFO:
+	 Generated workflow graph: /output/working_dir/smoothflow/graph.png (graph2use=flat, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_workflow_23_1.png" src="../../_images/basic_workflow_23_1.png" />
+</div>
 </div>
 <p>Here you see very clearly, that the output <code class="docutils literal notranslate"><span class="pre">mask_file</span></code> of the <code class="docutils literal notranslate"><span class="pre">skullstrip</span></code> node is used as the input <code class="docutils literal notranslate"><span class="pre">mask_file</span></code> of the <code class="docutils literal notranslate"><span class="pre">mask</span></code> node. For more information on graph visualization, see the <a class="reference internal" href="basic_graph_visualization.html"><span class="doc std std-doc">Graph Visualization</span></a> section.</p>
 <p>But let’s come back to our example. At this point, all we’ve done is define the workflow. We haven’t executed any code yet. Much like Interface objects, the Workflow object has a <code class="docutils literal notranslate"><span class="pre">run</span></code> method that we can call so that it executes. Let’s do that and then examine the results.</p>
@@ -974,6 +997,38 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 
 <span class="c1"># Execute the workflow</span>
 <span class="n">wf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:00:41,847 nipype.workflow INFO:
+	 Workflow smoothflow settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:00:41,852 nipype.workflow INFO:
+	 Running serially.
+211017-18:00:41,854 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.smooth&quot; in &quot;/output/working_dir/smoothflow/smooth&quot;.
+211017-18:00:41,862 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz -s 1.69864 /output/working_dir/smoothflow/smooth/sub-01_ses-test_T1w_smooth.nii.gz
+211017-18:00:47,200 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.smooth&quot;.
+211017-18:00:47,202 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.skullstrip&quot; in &quot;/output/working_dir/smoothflow/skullstrip&quot;.
+211017-18:00:47,209 nipype.workflow INFO:
+	 [Node] Running &quot;skullstrip&quot; (&quot;nipype.interfaces.fsl.preprocess.BET&quot;), a CommandLine Interface with command:
+bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz /output/working_dir/smoothflow/skullstrip/sub-01_ses-test_T1w_brain.nii.gz -m
+211017-18:00:51,549 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.skullstrip&quot;.
+211017-18:00:51,550 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.mask&quot; in &quot;/output/working_dir/smoothflow/mask&quot;.
+211017-18:00:51,562 nipype.workflow INFO:
+	 [Node] Running &quot;mask&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/working_dir/smoothflow/smooth/sub-01_ses-test_T1w_smooth.nii.gz -mas /output/working_dir/smoothflow/skullstrip/sub-01_ses-test_T1w_brain_mask.nii.gz /output/working_dir/smoothflow/mask/sub-01_ses-test_T1w_smooth_masked.nii.gz
+211017-18:00:52,583 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.mask&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7fc7a5de41d0&gt;
 </pre></div>
 </div>
 </div>
@@ -992,12 +1047,37 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_workflow_28_0.png" src="../../_images/basic_workflow_28_0.png" />
+</div>
 </div>
 <p>Perfect!</p>
 <p>Let’s also have a closer look at the working directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree /output/working_dir/smoothflow/ -I <span class="s1">&#39;*js|*json|*html|*pklz|_report&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/working_dir/smoothflow/
+├── graph_detailed.dot
+├── graph_detailed.png
+├── graph.dot
+├── graph.png
+├── mask
+│   ├── command.txt
+│   └── sub-01_ses-test_T1w_smooth_masked.nii.gz
+├── skullstrip
+│   ├── command.txt
+│   └── sub-01_ses-test_T1w_brain_mask.nii.gz
+├── smooth
+│   ├── command.txt
+│   └── sub-01_ses-test_T1w_smooth.nii.gz
+├── workflow_graph.dot
+└── workflow_graph.png
+
+3 directories, 12 files
 </pre></div>
 </div>
 </div>
@@ -1038,6 +1118,13 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:00:54,607 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/susan_workflow.png (graph2use=hierarchical, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_workflow_39_1.png" src="../../_images/basic_workflow_39_1.png" />
+</div>
 </div>
 <p>We see that the workflow has an <code class="docutils literal notranslate"><span class="pre">inputnode</span></code> and an <code class="docutils literal notranslate"><span class="pre">outputnode</span></code>. While not strictly necessary, this is standard practice for workflows (especially those that are intended to be used as nested workflows in the context of a longer analysis graph) and makes it more clear how to connect inputs and outputs from this workflow.</p>
 <p>Let’s take a look at what those inputs and outputs are. Like Nodes, Workflows have <code class="docutils literal notranslate"><span class="pre">inputs</span></code> and <code class="docutils literal notranslate"><span class="pre">outputs</span></code> attributes that take a second sub-attribute corresponding to the specific node we want to make connections to.</p>
@@ -1048,11 +1135,96 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inputs:
+ 
+fwhm = &lt;undefined&gt;
+in_files = &lt;undefined&gt;
+mask_file = &lt;undefined&gt;
+
+Outputs:
+ 
+smoothed_files = None
+</pre></div>
+</div>
+</div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">inputnode</span></code> and <code class="docutils literal notranslate"><span class="pre">outputnode</span></code> are just conventions, and the Workflow object exposes connections to all of its component nodes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">susan</span><span class="o">.</span><span class="n">inputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inputnode = 
+fwhm = &lt;undefined&gt;
+in_files = &lt;undefined&gt;
+mask_file = &lt;undefined&gt;
+
+mask = 
+args = &lt;undefined&gt;
+environ = {&#39;FSLOUTPUTTYPE&#39;: &#39;NIFTI_GZ&#39;}
+mask_file = &lt;undefined&gt;
+op_string = -mas
+out_data_type = &lt;undefined&gt;
+out_file = &lt;undefined&gt;
+output_type = NIFTI_GZ
+suffix = _mask
+
+meanfunc2 = 
+args = &lt;undefined&gt;
+environ = {&#39;FSLOUTPUTTYPE&#39;: &#39;NIFTI_GZ&#39;}
+in_file2 = &lt;undefined&gt;
+mask_file = &lt;undefined&gt;
+op_string = -Tmean
+out_data_type = &lt;undefined&gt;
+out_file = &lt;undefined&gt;
+output_type = NIFTI_GZ
+suffix = _mean
+
+median = 
+args = &lt;undefined&gt;
+environ = {&#39;FSLOUTPUTTYPE&#39;: &#39;NIFTI_GZ&#39;}
+index_mask_file = &lt;undefined&gt;
+op_string = -k %s -p 50
+output_type = NIFTI_GZ
+split_4d = &lt;undefined&gt;
+
+merge = 
+axis = hstack
+no_flatten = False
+ravel_inputs = False
+
+multi_inputs = 
+function_str = def cartesian_product(fwhms, in_files, usans, btthresh):
+    from nipype.utils.filemanip import ensure_list
+    # ensure all inputs are lists
+    in_files = ensure_list(in_files)
+    fwhms = [fwhms] if isinstance(fwhms, (int, float)) else fwhms
+    # create cartesian product lists (s_&lt;name&gt; = single element of list)
+    cart_in_file = [
+        s_in_file for s_in_file in in_files for s_fwhm in fwhms
+    ]
+    cart_fwhm = [s_fwhm for s_in_file in in_files for s_fwhm in fwhms]
+    cart_usans = [s_usans for s_usans in usans for s_fwhm in fwhms]
+    cart_btthresh = [
+        s_btthresh for s_btthresh in btthresh for s_fwhm in fwhms
+    ]
+
+    return cart_in_file, cart_fwhm, cart_usans, cart_btthresh
+
+
+outputnode = 
+
+
+smooth = 
+args = &lt;undefined&gt;
+dimension = 3
+environ = {&#39;FSLOUTPUTTYPE&#39;: &#39;NIFTI_GZ&#39;}
+out_file = &lt;undefined&gt;
+output_type = NIFTI_GZ
+use_median = 1
 </pre></div>
 </div>
 </div>
@@ -1106,6 +1278,13 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:00:54,838 nipype.workflow INFO:
+	 Generated workflow graph: /output/working_dir/full_susanflow.png (graph2use=colored, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_workflow_49_1.png" src="../../_images/basic_workflow_49_1.png" />
+</div>
 </div>
 <p>We can see how there is a nested smoothing workflow (blue) in the place of our previous <code class="docutils literal notranslate"><span class="pre">smooth</span></code> node. This provides a very detailed view, but what if you just wanted to give a higher-level summary of the processing steps? After all, that is the purpose of encapsulating smaller streams in a nested workflow. That, fortunately, is an option when writing out the graph:</p>
 <div class="cell docutils container">
@@ -1116,11 +1295,107 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:00:55,145 nipype.workflow INFO:
+	 Generated workflow graph: /output/working_dir/full_susanflow_toplevel.png (graph2use=orig, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_workflow_51_1.png" src="../../_images/basic_workflow_51_1.png" />
+</div>
 </div>
 <p>That’s much more manageable. Now let’s execute the workflow</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wf2</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:00:55,172 nipype.workflow INFO:
+	 Workflow susanflow settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:00:55,185 nipype.workflow INFO:
+	 Running serially.
+211017-18:00:55,186 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.skullstrip&quot; in &quot;/output/working_dir/susanflow/skullstrip&quot;.
+211017-18:00:55,196 nipype.workflow INFO:
+	 [Node] Running &quot;skullstrip&quot; (&quot;nipype.interfaces.fsl.preprocess.BET&quot;), a CommandLine Interface with command:
+bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz /output/working_dir/susanflow/skullstrip/sub-01_ses-test_T1w_brain.nii.gz -m
+211017-18:00:59,616 nipype.workflow INFO:
+	 [Node] Finished &quot;susanflow.skullstrip&quot;.
+211017-18:00:59,618 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.mask&quot; in &quot;/output/working_dir/susanflow/susan_smooth/mask&quot;.
+211017-18:00:59,639 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask0&quot; in &quot;/output/working_dir/susanflow/susan_smooth/mask/mapflow/_mask0&quot;.
+211017-18:00:59,647 nipype.workflow INFO:
+	 [Node] Running &quot;_mask0&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz -mas /output/working_dir/susanflow/skullstrip/sub-01_ses-test_T1w_brain_mask.nii.gz /output/working_dir/susanflow/susan_smooth/mask/mapflow/_mask0/sub-01_ses-test_T1w_mask.nii.gz
+211017-18:01:00,917 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask0&quot;.
+211017-18:01:00,922 nipype.workflow INFO:
+	 [Node] Finished &quot;susanflow.susan_smooth.mask&quot;.
+211017-18:01:00,924 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.meanfunc2&quot; in &quot;/output/working_dir/susanflow/susan_smooth/meanfunc2&quot;.
+211017-18:01:00,939 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_meanfunc20&quot; in &quot;/output/working_dir/susanflow/susan_smooth/meanfunc2/mapflow/_meanfunc20&quot;.
+211017-18:01:00,946 nipype.workflow INFO:
+	 [Node] Running &quot;_meanfunc20&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/working_dir/susanflow/susan_smooth/mask/mapflow/_mask0/sub-01_ses-test_T1w_mask.nii.gz -Tmean /output/working_dir/susanflow/susan_smooth/meanfunc2/mapflow/_meanfunc20/sub-01_ses-test_T1w_mask_mean.nii.gz
+211017-18:01:04,527 nipype.workflow INFO:
+	 [Node] Finished &quot;_meanfunc20&quot;.
+211017-18:01:04,532 nipype.workflow INFO:
+	 [Node] Finished &quot;susanflow.susan_smooth.meanfunc2&quot;.
+211017-18:01:04,533 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.median&quot; in &quot;/output/working_dir/susanflow/susan_smooth/median&quot;.
+211017-18:01:04,546 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_median0&quot; in &quot;/output/working_dir/susanflow/susan_smooth/median/mapflow/_median0&quot;.
+211017-18:01:04,553 nipype.workflow INFO:
+	 [Node] Running &quot;_median0&quot; (&quot;nipype.interfaces.fsl.utils.ImageStats&quot;), a CommandLine Interface with command:
+fslstats /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz -k /output/working_dir/susanflow/skullstrip/sub-01_ses-test_T1w_brain_mask.nii.gz -p 50 
+211017-18:01:05,397 nipype.interface INFO:
+	 stdout 2021-10-17T18:01:05.397748:414.000000 
+211017-18:01:05,489 nipype.workflow INFO:
+	 [Node] Finished &quot;_median0&quot;.
+211017-18:01:05,492 nipype.workflow INFO:
+	 [Node] Finished &quot;susanflow.susan_smooth.median&quot;.
+211017-18:01:05,494 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.merge&quot; in &quot;/output/working_dir/susanflow/susan_smooth/merge&quot;.
+211017-18:01:05,503 nipype.workflow INFO:
+	 [Node] Running &quot;merge&quot; (&quot;nipype.interfaces.utility.base.Merge&quot;)
+211017-18:01:05,507 nipype.workflow INFO:
+	 [Node] Finished &quot;susanflow.susan_smooth.merge&quot;.
+211017-18:01:05,508 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.multi_inputs&quot; in &quot;/output/working_dir/susanflow/susan_smooth/multi_inputs&quot;.
+211017-18:01:05,518 nipype.workflow INFO:
+	 [Node] Running &quot;multi_inputs&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:01:05,523 nipype.workflow INFO:
+	 [Node] Finished &quot;susanflow.susan_smooth.multi_inputs&quot;.
+211017-18:01:05,525 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.smooth&quot; in &quot;/output/working_dir/susanflow/susan_smooth/smooth&quot;.
+211017-18:01:05,539 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_smooth0&quot; in &quot;/output/working_dir/susanflow/susan_smooth/smooth/mapflow/_smooth0&quot;.
+211017-18:01:05,544 nipype.workflow INFO:
+	 [Node] Running &quot;_smooth0&quot; (&quot;nipype.interfaces.fsl.preprocess.SUSAN&quot;), a CommandLine Interface with command:
+susan /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz 310.5000000000 1.6986436006 3 1 1 /output/working_dir/susanflow/susan_smooth/meanfunc2/mapflow/_meanfunc20/sub-01_ses-test_T1w_mask_mean.nii.gz 310.5000000000 /output/working_dir/susanflow/susan_smooth/smooth/mapflow/_smooth0/sub-01_ses-test_T1w_smooth.nii.gz
+211017-18:01:29,304 nipype.workflow INFO:
+	 [Node] Finished &quot;_smooth0&quot;.
+211017-18:01:29,309 nipype.workflow INFO:
+	 [Node] Finished &quot;susanflow.susan_smooth.smooth&quot;.
+211017-18:01:29,310 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.list_extract&quot; in &quot;/output/working_dir/susanflow/list_extract&quot;.
+211017-18:01:29,317 nipype.workflow INFO:
+	 [Node] Running &quot;list_extract&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:01:29,323 nipype.workflow INFO:
+	 [Node] Finished &quot;susanflow.list_extract&quot;.
+211017-18:01:29,324 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.mask&quot; in &quot;/output/working_dir/susanflow/mask&quot;.
+211017-18:01:29,334 nipype.workflow INFO:
+	 [Node] Running &quot;mask&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/working_dir/susanflow/susan_smooth/smooth/mapflow/_smooth0/sub-01_ses-test_T1w_smooth.nii.gz -mas /output/working_dir/susanflow/skullstrip/sub-01_ses-test_T1w_brain_mask.nii.gz /output/working_dir/susanflow/mask/sub-01_ses-test_T1w_smooth_masked.nii.gz
+211017-18:01:30,467 nipype.workflow INFO:
+	 [Node] Finished &quot;susanflow.mask&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7fc7a2348dd0&gt;
 </pre></div>
 </div>
 </div>
@@ -1138,6 +1413,9 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_workflow_55_0.png" src="../../_images/basic_workflow_55_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="so-why-are-workflows-so-great">
@@ -1149,6 +1427,65 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:01:31,172 nipype.workflow INFO:
+	 Workflow susanflow settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:01:31,183 nipype.workflow INFO:
+	 Running serially.
+211017-18:01:31,185 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.skullstrip&quot; in &quot;/output/working_dir/susanflow/skullstrip&quot;.
+211017-18:01:31,194 nipype.workflow INFO:
+	 [Node] Cached &quot;susanflow.skullstrip&quot; - collecting precomputed outputs
+211017-18:01:31,195 nipype.workflow INFO:
+	 [Node] &quot;susanflow.skullstrip&quot; found cached.
+211017-18:01:31,196 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.mask&quot; in &quot;/output/working_dir/susanflow/susan_smooth/mask&quot;.
+211017-18:01:31,203 nipype.workflow INFO:
+	 [Node] &quot;susanflow.susan_smooth.mask&quot; found cached.
+211017-18:01:31,204 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.meanfunc2&quot; in &quot;/output/working_dir/susanflow/susan_smooth/meanfunc2&quot;.
+211017-18:01:31,211 nipype.workflow INFO:
+	 [Node] &quot;susanflow.susan_smooth.meanfunc2&quot; found cached.
+211017-18:01:31,212 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.median&quot; in &quot;/output/working_dir/susanflow/susan_smooth/median&quot;.
+211017-18:01:31,219 nipype.workflow INFO:
+	 [Node] &quot;susanflow.susan_smooth.median&quot; found cached.
+211017-18:01:31,220 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.merge&quot; in &quot;/output/working_dir/susanflow/susan_smooth/merge&quot;.
+211017-18:01:31,232 nipype.workflow INFO:
+	 [Node] Cached &quot;susanflow.susan_smooth.merge&quot; - collecting precomputed outputs
+211017-18:01:31,233 nipype.workflow INFO:
+	 [Node] &quot;susanflow.susan_smooth.merge&quot; found cached.
+211017-18:01:31,234 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.multi_inputs&quot; in &quot;/output/working_dir/susanflow/susan_smooth/multi_inputs&quot;.
+211017-18:01:31,246 nipype.workflow INFO:
+	 [Node] Cached &quot;susanflow.susan_smooth.multi_inputs&quot; - collecting precomputed outputs
+211017-18:01:31,246 nipype.workflow INFO:
+	 [Node] &quot;susanflow.susan_smooth.multi_inputs&quot; found cached.
+211017-18:01:31,247 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.susan_smooth.smooth&quot; in &quot;/output/working_dir/susanflow/susan_smooth/smooth&quot;.
+211017-18:01:31,255 nipype.workflow INFO:
+	 [Node] &quot;susanflow.susan_smooth.smooth&quot; found cached.
+211017-18:01:31,256 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.list_extract&quot; in &quot;/output/working_dir/susanflow/list_extract&quot;.
+211017-18:01:31,263 nipype.workflow INFO:
+	 [Node] Cached &quot;susanflow.list_extract&quot; - collecting precomputed outputs
+211017-18:01:31,264 nipype.workflow INFO:
+	 [Node] &quot;susanflow.list_extract&quot; found cached.
+211017-18:01:31,265 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susanflow.mask&quot; in &quot;/output/working_dir/susanflow/mask&quot;.
+211017-18:01:31,275 nipype.workflow INFO:
+	 [Node] Cached &quot;susanflow.mask&quot; - collecting precomputed outputs
+211017-18:01:31,276 nipype.workflow INFO:
+	 [Node] &quot;susanflow.mask&quot; found cached.
+CPU times: user 57.8 ms, sys: 24.8 ms, total: 82.6 ms
+Wall time: 115 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7fc7a1566c50&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>That happened quickly! <strong>Workflows (actually this is handled by the Node code) are smart and know if their inputs have changed from the last time they are run. If they have not, they don’t recompute; they just turn around and pass out the resulting files from the previous run.</strong> This is done on a node-by-node basis, also.</p>
 <p>Let’s go back to the first workflow example. What happened if we just tweak one thing:</p>
@@ -1156,6 +1493,41 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">smooth</span><span class="o">.</span><span class="n">fwhm</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">wf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:01:31,294 nipype.workflow INFO:
+	 Workflow smoothflow settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:01:31,301 nipype.workflow INFO:
+	 Running serially.
+211017-18:01:31,302 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.smooth&quot; in &quot;/output/working_dir/smoothflow/smooth&quot;.
+211017-18:01:31,307 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;smoothflow.smooth&quot;.
+211017-18:01:31,322 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz -s 0.42466 /output/working_dir/smoothflow/smooth/sub-01_ses-test_T1w_smooth.nii.gz
+211017-18:01:34,155 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.smooth&quot;.
+211017-18:01:34,157 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.skullstrip&quot; in &quot;/output/working_dir/smoothflow/skullstrip&quot;.
+211017-18:01:34,161 nipype.workflow INFO:
+	 [Node] Cached &quot;smoothflow.skullstrip&quot; - collecting precomputed outputs
+211017-18:01:34,163 nipype.workflow INFO:
+	 [Node] &quot;smoothflow.skullstrip&quot; found cached.
+211017-18:01:34,165 nipype.workflow INFO:
+	 [Node] Setting-up &quot;smoothflow.mask&quot; in &quot;/output/working_dir/smoothflow/mask&quot;.
+211017-18:01:34,174 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;smoothflow.mask&quot;.
+211017-18:01:34,180 nipype.workflow INFO:
+	 [Node] Running &quot;mask&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/working_dir/smoothflow/smooth/sub-01_ses-test_T1w_smooth.nii.gz -mas /output/working_dir/smoothflow/skullstrip/sub-01_ses-test_T1w_brain_mask.nii.gz /output/working_dir/smoothflow/mask/sub-01_ses-test_T1w_smooth_masked.nii.gz
+211017-18:01:35,249 nipype.workflow INFO:
+	 [Node] Finished &quot;smoothflow.mask&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7fc7a15c7bd0&gt;
 </pre></div>
 </div>
 </div>
@@ -1247,6 +1619,13 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:01:35,422 nipype.workflow INFO:
+	 Generated workflow graph: /output/working_dir/exercise1/workflow_graph.png (graph2use=hierarchical, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_workflow_71_1.png" src="../../_images/basic_workflow_71_1.png" />
+</div>
 </div>
 <p>And more detailed graph:</p>
 <div class="cell docutils container">
@@ -1257,6 +1636,13 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:01:35,716 nipype.workflow INFO:
+	 Generated workflow graph: /output/working_dir/exercise1/graph.png (graph2use=flat, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_workflow_73_1.png" src="../../_images/basic_workflow_73_1.png" />
+</div>
 </div>
 <p>if everything works good, we’re ready to run the workflow:</p>
 <div class="cell docutils container">
@@ -1265,11 +1651,61 @@ connect([(source, dest, [(&quot;source_output1&quot;, &quot;dest_input1&quot;),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:01:35,734 nipype.workflow INFO:
+	 Workflow exercise1 settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:01:35,743 nipype.workflow INFO:
+	 Running serially.
+211017-18:01:35,744 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.extract&quot; in &quot;/output/working_dir/exercise1/extract&quot;.
+211017-18:01:35,754 nipype.workflow INFO:
+	 [Node] Running &quot;extract&quot; (&quot;nipype.interfaces.fsl.utils.ExtractROI&quot;), a CommandLine Interface with command:
+fslroi /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz /output/working_dir/exercise1/extract/sub-01_ses-test_task-fingerfootlips_bold_roi.nii 4 -1
+211017-18:01:36,349 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.extract&quot;.
+211017-18:01:36,350 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.mcflirt&quot; in &quot;/output/working_dir/exercise1/mcflirt&quot;.
+211017-18:01:36,362 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /output/working_dir/exercise1/extract/sub-01_ses-test_task-fingerfootlips_bold_roi.nii -meanvol -out /output/working_dir/exercise1/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_roi_mcf.nii
+211017-18:02:46,900 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.mcflirt&quot;.
+211017-18:02:46,902 nipype.workflow INFO:
+	 [Node] Setting-up &quot;exercise1.slicetimer&quot; in &quot;/output/working_dir/exercise1/slicetimer&quot;.
+211017-18:02:46,911 nipype.workflow INFO:
+	 [Node] Running &quot;slicetimer&quot; (&quot;nipype.interfaces.fsl.preprocess.SliceTimer&quot;), a CommandLine Interface with command:
+slicetimer --in=/output/working_dir/exercise1/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_roi_mcf.nii --odd --out=/output/working_dir/exercise1/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_roi_mcf_st.nii --repeat=2.500000
+211017-18:02:50,577 nipype.workflow INFO:
+	 [Node] Finished &quot;exercise1.slicetimer&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7fc7a153e390&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>we can now check the output:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> ls -lh /output/working_dir/exercise1
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 412K
+-rw-r--r-- 1 neuro users 319K Oct 17 18:01 d3.js
+drwxr-xr-x 3 neuro users 4.0K Oct 17 18:01 extract
+-rw-r--r-- 1 neuro users 1006 Oct 17 18:01 graph1.json
+-rw-r--r-- 1 neuro users  435 Oct 17 18:01 graph_detailed.dot
+-rw-r--r-- 1 neuro users  18K Oct 17 18:01 graph_detailed.png
+-rw-r--r-- 1 neuro users  149 Oct 17 18:01 graph.dot
+-rw-r--r-- 1 neuro users  380 Oct 17 18:01 graph.json
+-rw-r--r-- 1 neuro users  15K Oct 17 18:01 graph.png
+-rw-r--r-- 1 neuro users 6.6K Oct 17 18:01 index.html
+drwxr-xr-x 3 neuro users 4.0K Oct 17 18:02 mcflirt
+drwxr-xr-x 3 neuro users 4.0K Oct 17 18:02 slicetimer
+-rw-r--r-- 1 neuro users  266 Oct 17 18:01 workflow_graph.dot
+-rw-r--r-- 1 neuro users  14K Oct 17 18:01 workflow_graph.png
 </pre></div>
 </div>
 </div>

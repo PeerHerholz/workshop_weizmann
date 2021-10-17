@@ -818,6 +818,38 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:58:34,755 nipype.workflow INFO:
+	 Workflow testjoin settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:58:34,793 nipype.workflow INFO:
+	 Running serially.
+211017-17:58:34,796 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.get_data&quot; in &quot;/tmp/tmpd947muth/testjoin/_id_3/get_data&quot;.
+211017-17:58:34,801 nipype.workflow INFO:
+	 [Node] Running &quot;get_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:34,820 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.get_data&quot;.
+211017-17:58:34,821 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.get_data&quot; in &quot;/tmp/tmpa65pphaq/testjoin/_id_2/get_data&quot;.
+211017-17:58:34,826 nipype.workflow INFO:
+	 [Node] Running &quot;get_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:34,833 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.get_data&quot;.
+211017-17:58:34,834 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.get_data&quot; in &quot;/tmp/tmpyp62y5dz/testjoin/_id_1/get_data&quot;.
+211017-17:58:34,842 nipype.workflow INFO:
+	 [Node] Running &quot;get_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:34,851 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.get_data&quot;.
+211017-17:58:34,853 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.scale_data&quot; in &quot;/tmp/tmp7hdciny5/testjoin/scale_data&quot;.
+211017-17:58:34,867 nipype.workflow INFO:
+	 [Node] Running &quot;scale_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:34,880 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.scale_data&quot;.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -826,6 +858,13 @@
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;graph_detailed.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:58:35,132 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/graph.png (graph2use=exec, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_joinnodes_23_1.png" src="../../_images/basic_joinnodes_23_1.png" />
 </div>
 </div>
 <p>Now, let’s look at the input and output of the joinnode:</p>
@@ -836,10 +875,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data_scaled = [1217.0315662669173, 2744.9636514899635, 3046.9774571686444]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">inputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;function_str&#39;: &#39;def merge_and_scale_data(data2):\n    &quot;&quot;&quot;Scale the input list by 1000&quot;&quot;&quot;\n    import numpy as np\n    return (np.array(data2) * 1000).tolist()\n&#39;,
+ &#39;data2&#39;: [1.2170315662669173, 2.7449636514899636, 3.0469774571686443]}
 </pre></div>
 </div>
 </div>
@@ -891,6 +941,56 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:58:35,220 nipype.workflow INFO:
+	 Workflow testjoin settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:58:35,283 nipype.workflow INFO:
+	 Running serially.
+211017-17:58:35,285 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.get_data&quot; in &quot;/tmp/tmpwedf30h4/testjoin/_id_3/get_data&quot;.
+211017-17:58:35,295 nipype.workflow INFO:
+	 [Node] Running &quot;get_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:35,303 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.get_data&quot;.
+211017-17:58:35,305 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.scale_data&quot; in &quot;/tmp/tmpbs5eiex1/testjoin/_id_3/scale_data&quot;.
+211017-17:58:35,312 nipype.workflow INFO:
+	 [Node] Running &quot;scale_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:35,323 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.scale_data&quot;.
+211017-17:58:35,326 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.get_data&quot; in &quot;/tmp/tmp5lx_f4ju/testjoin/_id_2/get_data&quot;.
+211017-17:58:35,331 nipype.workflow INFO:
+	 [Node] Running &quot;get_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:35,340 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.get_data&quot;.
+211017-17:58:35,343 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.scale_data&quot; in &quot;/tmp/tmpv_w1w7p9/testjoin/_id_2/scale_data&quot;.
+211017-17:58:35,351 nipype.workflow INFO:
+	 [Node] Running &quot;scale_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:35,367 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.scale_data&quot;.
+211017-17:58:35,369 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.get_data&quot; in &quot;/tmp/tmpduqhlg6r/testjoin/_id_1/get_data&quot;.
+211017-17:58:35,376 nipype.workflow INFO:
+	 [Node] Running &quot;get_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:35,386 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.get_data&quot;.
+211017-17:58:35,388 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.scale_data&quot; in &quot;/tmp/tmp31ftmvro/testjoin/_id_1/scale_data&quot;.
+211017-17:58:35,401 nipype.workflow INFO:
+	 [Node] Running &quot;scale_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:35,409 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.scale_data&quot;.
+211017-17:58:35,410 nipype.workflow INFO:
+	 [Node] Setting-up &quot;testjoin.replicate_data&quot; in &quot;/tmp/tmpwdt8u7hr/testjoin/replicate_data&quot;.
+211017-17:58:35,426 nipype.workflow INFO:
+	 [Node] Running &quot;replicate_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:35,438 nipype.workflow INFO:
+	 [Node] Finished &quot;testjoin.replicate_data&quot;.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -898,6 +998,13 @@
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;graph_detailed.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:58:35,704 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/graph.png (graph2use=exec, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_joinnodes_30_1.png" src="../../_images/basic_joinnodes_30_1.png" />
 </div>
 </div>
 <div class="section" id="exercise-1">
@@ -1018,11 +1125,122 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:58:36,124 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/graph.png (graph2use=exec, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_joinnodes_38_1.png" src="../../_images/basic_joinnodes_38_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># and run the workflow</span>
 <span class="n">ex1_res</span> <span class="o">=</span> <span class="n">ex1_wf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:58:36,146 nipype.workflow INFO:
+	 Workflow sorting_dob settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:58:36,196 nipype.workflow INFO:
+	 Running serially.
+211017-17:58:36,198 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.splitting&quot; in &quot;/tmp/tmpa0k7vtmz/sorting_dob/_dob_string_12May1992/splitting&quot;.
+211017-17:58:36,203 nipype.workflow INFO:
+	 [Node] Running &quot;splitting&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,211 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.splitting&quot;.
+211017-17:58:36,212 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.cleaning&quot; in &quot;/tmp/tmpgmwqmi56/sorting_dob/_dob_string_12May1992/cleaning&quot;.
+211017-17:58:36,218 nipype.workflow INFO:
+	 [Node] Running &quot;cleaning&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,228 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.cleaning&quot;.
+211017-17:58:36,230 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.datetime&quot; in &quot;/tmp/tmpqbe44hu6/sorting_dob/_dob_string_12May1992/datetime&quot;.
+211017-17:58:36,236 nipype.workflow INFO:
+	 [Node] Running &quot;datetime&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,244 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.datetime&quot;.
+211017-17:58:36,245 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.splitting&quot; in &quot;/tmp/tmp9bwk1yxq/sorting_dob/_dob_string_June6.1988/splitting&quot;.
+211017-17:58:36,250 nipype.workflow INFO:
+	 [Node] Running &quot;splitting&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,259 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.splitting&quot;.
+211017-17:58:36,260 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.cleaning&quot; in &quot;/tmp/tmpm04ievem/sorting_dob/_dob_string_June6.1988/cleaning&quot;.
+211017-17:58:36,267 nipype.workflow INFO:
+	 [Node] Running &quot;cleaning&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,274 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.cleaning&quot;.
+211017-17:58:36,275 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.datetime&quot; in &quot;/tmp/tmpdn4yyo_p/sorting_dob/_dob_string_June6.1988/datetime&quot;.
+211017-17:58:36,281 nipype.workflow INFO:
+	 [Node] Running &quot;datetime&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,287 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.datetime&quot;.
+211017-17:58:36,288 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.splitting&quot; in &quot;/tmp/tmp_vulyv43/sorting_dob/_dob_string_April21782/splitting&quot;.
+211017-17:58:36,293 nipype.workflow INFO:
+	 [Node] Running &quot;splitting&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,303 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.splitting&quot;.
+211017-17:58:36,304 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.cleaning&quot; in &quot;/tmp/tmp0fv63bai/sorting_dob/_dob_string_April21782/cleaning&quot;.
+211017-17:58:36,309 nipype.workflow INFO:
+	 [Node] Running &quot;cleaning&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,317 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.cleaning&quot;.
+211017-17:58:36,318 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.datetime&quot; in &quot;/tmp/tmptwol95f9/sorting_dob/_dob_string_April21782/datetime&quot;.
+211017-17:58:36,325 nipype.workflow INFO:
+	 [Node] Running &quot;datetime&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,333 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.datetime&quot;.
+211017-17:58:36,334 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.splitting&quot; in &quot;/tmp/tmpn88cyhvn/sorting_dob/_dob_string_March51990/splitting&quot;.
+211017-17:58:36,340 nipype.workflow INFO:
+	 [Node] Running &quot;splitting&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,348 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.splitting&quot;.
+211017-17:58:36,350 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.cleaning&quot; in &quot;/tmp/tmpa9bspp1x/sorting_dob/_dob_string_March51990/cleaning&quot;.
+211017-17:58:36,355 nipype.workflow INFO:
+	 [Node] Running &quot;cleaning&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,366 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.cleaning&quot;.
+211017-17:58:36,367 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.datetime&quot; in &quot;/tmp/tmpvt72jqs4/sorting_dob/_dob_string_March51990/datetime&quot;.
+211017-17:58:36,378 nipype.workflow INFO:
+	 [Node] Running &quot;datetime&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,383 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.datetime&quot;.
+211017-17:58:36,384 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.splitting&quot; in &quot;/tmp/tmpa6t1_e00/sorting_dob/_dob_string_10February1984/splitting&quot;.
+211017-17:58:36,391 nipype.workflow INFO:
+	 [Node] Running &quot;splitting&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,399 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.splitting&quot;.
+211017-17:58:36,401 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.cleaning&quot; in &quot;/tmp/tmp23sedoyp/sorting_dob/_dob_string_10February1984/cleaning&quot;.
+211017-17:58:36,407 nipype.workflow INFO:
+	 [Node] Running &quot;cleaning&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,415 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.cleaning&quot;.
+211017-17:58:36,417 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.datetime&quot; in &quot;/tmp/tmpl6ko9goa/sorting_dob/_dob_string_10February1984/datetime&quot;.
+211017-17:58:36,422 nipype.workflow INFO:
+	 [Node] Running &quot;datetime&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,430 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.datetime&quot;.
+211017-17:58:36,431 nipype.workflow INFO:
+	 [Node] Setting-up &quot;sorting_dob.sorting&quot; in &quot;/tmp/tmp4xnniix3/sorting_dob/sorting&quot;.
+211017-17:58:36,442 nipype.workflow INFO:
+	 [Node] Running &quot;sorting&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:58:36,447 nipype.workflow INFO:
+	 [Node] Finished &quot;sorting_dob.sorting&quot;.
 </pre></div>
 </div>
 </div>
@@ -1034,11 +1252,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NodeView((sorting_dob.sorting, sorting_dob.splitting.aI.a0, sorting_dob.cleaning.a0, sorting_dob.datetime.a0, sorting_dob.splitting.aI.a1, sorting_dob.cleaning.a1, sorting_dob.datetime.a1, sorting_dob.splitting.aI.a2, sorting_dob.cleaning.a2, sorting_dob.datetime.a2, sorting_dob.splitting.aI.a3, sorting_dob.cleaning.a3, sorting_dob.datetime.a3, sorting_dob.splitting.aI.a4, sorting_dob.cleaning.a4, sorting_dob.datetime.a4))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># and check the results from sorting_dob.sorting</span>
 <span class="nb">list</span><span class="p">(</span><span class="n">ex1_res</span><span class="o">.</span><span class="n">nodes</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dob_sorted = [datetime.datetime(1782, 4, 2, 0, 0), datetime.datetime(1984, 2, 10, 0, 0), datetime.datetime(1988, 6, 6, 0, 0), datetime.datetime(1990, 3, 5, 0, 0), datetime.datetime(1992, 5, 12, 0, 0)]
 </pre></div>
 </div>
 </div>

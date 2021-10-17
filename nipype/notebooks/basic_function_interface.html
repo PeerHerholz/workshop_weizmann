@@ -682,10 +682,28 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:15:32,821 nipype.workflow INFO:
+	 [Node] Setting-up &quot;add_node&quot; in &quot;/tmp/tmpvz5_ju1z/add_node&quot;.
+211017-17:15:32,827 nipype.workflow INFO:
+	 [Node] Running &quot;add_node&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:15:32,841 nipype.workflow INFO:
+	 [Node] Finished &quot;add_node&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nipype.interfaces.base.support.InterfaceResult at 0x7f66484368d0&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">addtwo</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_output = 6
 </pre></div>
 </div>
 </div>
@@ -699,10 +717,28 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:15:32,876 nipype.workflow INFO:
+	 [Node] Setting-up &quot;add_node&quot; in &quot;/tmp/tmpai956m2q/add_node&quot;.
+211017-17:15:32,882 nipype.workflow INFO:
+	 [Node] Running &quot;add_node&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:15:32,888 nipype.workflow INFO:
+	 [Node] Finished &quot;add_node&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nipype.interfaces.base.support.InterfaceResult at 0x7f6648488450&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">addtwo</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>out = 10
 </pre></div>
 </div>
 </div>
@@ -772,6 +808,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:15:32,932 nipype.workflow INFO:
+	 [Node] Setting-up &quot;rndArray_node&quot; in &quot;/tmp/tmpivstknpm/rndArray_node&quot;.
+211017-17:15:32,937 nipype.workflow INFO:
+	 [Node] Running &quot;rndArray_node&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:15:32,952 nipype.workflow INFO:
+	 [Node] Finished &quot;rndArray_node&quot;.
+
+random_array = [[0.10980786 0.24955201 0.54628587]
+ [0.50111466 0.91632967 0.19999327]
+ [0.6824793  0.28224087 0.31246336]]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now, let’s see what happens if we move the import of <code class="docutils literal notranslate"><span class="pre">random</span></code> outside the scope of <code class="docutils literal notranslate"><span class="pre">get_random_array</span></code>:</p>
 <div class="cell docutils container">
@@ -803,6 +853,19 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NameError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:15:32,971 nipype.workflow INFO:
+	 [Node] Setting-up &quot;rndArray_node&quot; in &quot;/tmp/tmp8e4aw8dl/rndArray_node&quot;.
+211017-17:15:32,976 nipype.workflow INFO:
+	 [Node] Running &quot;rndArray_node&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:15:32,984 nipype.workflow WARNING:
+	 Storing result file without outputs
+211017-17:15:32,986 nipype.workflow WARNING:
+	 [Node] Error on &quot;rndArray_node&quot; (/tmp/tmp8e4aw8dl/rndArray_node)
+NameError: name &#39;random&#39; is not defined
 </pre></div>
 </div>
 </div>

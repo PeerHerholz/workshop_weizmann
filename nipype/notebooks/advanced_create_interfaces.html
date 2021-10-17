@@ -850,6 +850,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/advanced_create_interfaces_5_0.png" src="../../_images/advanced_create_interfaces_5_0.png" />
+</div>
 </div>
 <div class="section" id="example-of-interface-fsl-s-bet">
 <h2>Example of interface: FSL’s <code class="docutils literal notranslate"><span class="pre">BET</span></code><a class="headerlink" href="#example-of-interface-fsl-s-bet" title="Permalink to this headline">¶</a></h2>
@@ -872,6 +875,9 @@ bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz \
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/advanced_create_interfaces_10_0.png" src="../../_images/advanced_create_interfaces_10_0.png" />
+</div>
 </div>
 <p>Using nipype, the equivalent is a bit more verbose:</p>
 <ul class="simple">
@@ -889,6 +895,11 @@ bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz \
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/neuro/workshop_weizmann/workshop/nipype/notebooks/sub-01_ses-test_T1w_brain.nii.gz
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now we can verify that the result is exactly the same as before. Please note that, since we are using a Python environment, we use the result of the execution to point our <code class="docutils literal notranslate"><span class="pre">plot_anat</span></code> function to the output image of running BET:</p>
 <div class="cell docutils container">
@@ -896,6 +907,9 @@ bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz \
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">out_file</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/advanced_create_interfaces_14_0.png" src="../../_images/advanced_create_interfaces_14_0.png" />
 </div>
 </div>
 </div>
@@ -921,6 +935,53 @@ bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz \
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Implements functionality to interact with command line programs
+class must be instantiated with a command argument
+
+Parameters
+----------
+command : str
+    define base immutable `command` you wish to run
+args : str, optional
+    optional arguments passed to base `command`
+
+Examples
+--------
+&gt;&gt;&gt; import pprint
+&gt;&gt;&gt; from nipype.interfaces.base import CommandLine
+&gt;&gt;&gt; cli = CommandLine(command=&#39;ls&#39;, environ={&#39;DISPLAY&#39;: &#39;:1&#39;})
+&gt;&gt;&gt; cli.inputs.args = &#39;-al&#39;
+&gt;&gt;&gt; cli.cmdline
+&#39;ls -al&#39;
+
+&gt;&gt;&gt; # Use get_traitsfree() to check all inputs set
+&gt;&gt;&gt; pprint.pprint(cli.inputs.get_traitsfree())  # doctest:
+{&#39;args&#39;: &#39;-al&#39;,
+ &#39;environ&#39;: {&#39;DISPLAY&#39;: &#39;:1&#39;}}
+
+&gt;&gt;&gt; cli.inputs.get_hashval()[0][0]
+(&#39;args&#39;, &#39;-al&#39;)
+&gt;&gt;&gt; cli.inputs.get_hashval()[1]
+&#39;11c37f97649cd61627f4afe5136af8c0&#39;
+
+Inputs::
+
+        [Optional]
+        args: (a string)
+                Additional parameters to the command
+                argument: ``%s``
+        environ: (a dictionary with keys which are a bytes or None or a value
+                  of class &#39;str&#39; and with values which are a bytes or None or a
+                  value of class &#39;str&#39;, nipype default value: {})
+                Environment variables
+
+Outputs::
+
+        None
+</pre></div>
+</div>
+</div>
 </div>
 <p>As a quick example, let’s wrap bash’s <code class="docutils literal notranslate"><span class="pre">ls</span></code> with Nipype:</p>
 <div class="cell docutils container">
@@ -938,6 +999,53 @@ bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz \
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 3.0M
+-rw-rw-r-- 1 neuro users 6.0K Oct 14 12:54 advanced_aws.ipynb
+-rw-rw-r-- 1 neuro users  48K Oct 14 12:54 advanced_create_interfaces.ipynb
+-rw-rw-r-- 1 neuro users 9.1K Oct 14 12:54 advanced_interfaces_caching.ipynb
+-rw-rw-r-- 1 neuro users 1.5K Oct 14 12:54 advanced_mipav.ipynb
+-rw-rw-r-- 1 neuro users 1.1K Oct 14 12:54 advanced_nipypecli.ipynb
+-rw-rw-r-- 1 neuro users 5.6K Oct 14 12:54 advanced_sphinx_ext.ipynb
+-rw-rw-r-- 1 neuro users 2.1K Oct 14 12:54 advanced_spmmcr.ipynb
+-rw-rw-r-- 1 neuro users  14K Oct 14 12:54 basic_data_input_bids.ipynb
+-rw-rw-r-- 1 neuro users  28K Oct 14 12:54 basic_data_input.ipynb
+-rw-rw-r-- 1 neuro users  19K Oct 14 12:54 basic_data_output.ipynb
+-rw-rw-r-- 1 neuro users 4.1K Oct 14 12:54 basic_debug.ipynb
+-rw-rw-r-- 1 neuro users  21K Oct 14 12:54 basic_error_and_crashes.ipynb
+-rw-rw-r-- 1 neuro users  17K Oct 14 12:54 basic_execution_configuration.ipynb
+-rw-rw-r-- 1 neuro users 9.1K Oct 14 12:54 basic_function_interface.ipynb
+-rw-rw-r-- 1 neuro users  11K Oct 14 12:54 basic_graph_visualization.ipynb
+-rw-rw-r-- 1 neuro users 9.2K Oct 14 12:54 basic_import_workflows.ipynb
+-rw-rw-r-- 1 neuro users  25K Oct 14 12:54 basic_interfaces.ipynb
+-rw-rw-r-- 1 neuro users  12K Oct 14 12:54 basic_iteration.ipynb
+-rw-rw-r-- 1 neuro users  19K Oct 14 12:54 basic_joinnodes.ipynb
+-rw-rw-r-- 1 neuro users  13K Oct 14 12:54 basic_mapnodes.ipynb
+-rw-rw-r-- 1 neuro users 7.6K Oct 14 12:54 basic_model_specification_fmri.ipynb
+-rw-rw-r-- 1 neuro users 9.6K Oct 14 12:54 basic_nodes.ipynb
+-rw-rw-r-- 1 neuro users  17K Oct 14 12:54 basic_plugins.ipynb
+-rw-rw-r-- 1 neuro users  34K Oct 14 12:54 basic_workflow.ipynb
+-rw-rw-r-- 1 neuro users  24K Oct 14 12:54 example_1stlevel.ipynb
+-rw-rw-r-- 1 neuro users  20K Oct 14 12:54 example_2ndlevel.ipynb
+-rw-rw-r-- 1 neuro users  21K Oct 14 12:54 example_normalize.ipynb
+-rw-rw-r-- 1 neuro users  19K Oct 14 12:54 example_preprocessing.ipynb
+-rw-rw-r-- 1 neuro users  48K Oct 14 12:54 handson_analysis.ipynb
+-rw-rw-r-- 1 neuro users  51K Oct 14 12:54 handson_preprocessing.ipynb
+-rw-rw-r-- 1 neuro users 5.6K Oct 14 12:54 introduction_dataset.ipynb
+-rw-rw-r-- 1 neuro users 6.9K Oct 14 12:54 introduction_neurodocker.ipynb
+-rw-rw-r-- 1 neuro users  33K Oct 14 12:54 introduction_quickstart.ipynb
+-rw-rw-r-- 1 neuro users  33K Oct 14 13:50 introduction_quickstart_non-neuroimaging.ipynb
+-rw-rw-r-- 1 neuro users  11K Oct 14 12:54 introduction_showcase.ipynb
+-rw-rw-r-- 1 neuro users 650K Oct 14 12:54 remark-latest.min.js
+-rw-rw-r-- 1 neuro users 2.0K Oct 14 12:54 resources_help.ipynb
+-rw-rw-r-- 1 neuro users 6.8K Oct 14 12:54 resources_installation.ipynb
+-rw-rw-r-- 1 neuro users  19K Oct 14 12:54 resources_python_cheat_sheet.ipynb
+-rw-rw-r-- 1 neuro users 3.8K Oct 14 12:54 resources_resources.ipynb
+drwxr-xr-x 5 neuro users  160 Oct 14 12:54 scripts
+-rw-r--r-- 1 neuro users 1.7M Oct 17 16:35 sub-01_ses-test_T1w_brain.nii.gz
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="create-your-own-commandline-interface">
@@ -947,6 +1055,31 @@ bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz \
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transform.tfm
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transform file: /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transform.tfm
+AffineTransform (0x55fc2c6339d0)
+  RTTI typeinfo:   itk::AffineTransform&lt;double, 3u&gt;
+  Reference Count: 3
+  Modified Time: 660
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    1.0201 -0.00984231 0.00283729 
+    -0.245557 0.916396 0.324585 
+    -0.0198016 -0.00296066 0.988634 
+  Offset: [2.00569, -15.15, -1.26341]
+  Center: [-3.37801, 17.4338, 8.46811]
+  Translation: [1.79024, -13.0295, -1.34439]
+  Inverse: 
+    0.982713 0.0105343 -0.00627888 
+    0.256084 1.09282 -0.359526 
+    0.0204499 0.00348366 1.01029 
+  Singular: 0
 </pre></div>
 </div>
 </div>
@@ -971,6 +1104,26 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TransformInfo</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wraps the executable command ``antsTransformInfo``.
+
+Inputs::
+
+        [Optional]
+        args: (a string)
+                Additional parameters to the command
+                argument: ``%s``
+        environ: (a dictionary with keys which are a bytes or None or a value
+                  of class &#39;str&#39; and with values which are a bytes or None or a
+                  value of class &#39;str&#39;, nipype default value: {})
+                Environment variables
+
+Outputs::
+
+        None
 </pre></div>
 </div>
 </div>
@@ -1015,12 +1168,42 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wraps the executable command ``antsTransformInfo``.
+
+Inputs::
+
+        [Mandatory]
+        in_file: (a pathlike object or string representing an existing file)
+                the input transform file
+                argument: ``%s``, position: 0
+
+        [Optional]
+        args: (a string)
+                Additional parameters to the command
+                argument: ``%s``
+        environ: (a dictionary with keys which are a bytes or None or a value
+                  of class &#39;str&#39; and with values which are a bytes or None or a
+                  value of class &#39;str&#39;, nipype default value: {})
+                Environment variables
+
+Outputs::
+
+        None
+</pre></div>
+</div>
+</div>
 </div>
 <p>One interesting feature of the Nipype interface is that the underlying command line can be checked using the object property <code class="docutils literal notranslate"><span class="pre">cmdline</span></code>. The command line can only be built when the mandatory inputs are set, so let’s instantiate our new Interface for the first time, and check the underlying command line:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_info_interface</span> <span class="o">=</span> <span class="n">TransformInfo</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">&#39;/home/neuro/workshop/nipype_tutorial/notebooks/scripts/transform.tfm&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_info_interface</span><span class="o">.</span><span class="n">cmdline</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transform.tfm
 </pre></div>
 </div>
 </div>
@@ -1039,6 +1222,12 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It crashed with...
+ValueError: TransformInfo requires a value for input &#39;in_file&#39;. For a list of required inputs, see TransformInfo.help()
+</pre></div>
+</div>
+</div>
 </div>
 <p>It will also complain if we try to set a non-existent file:</p>
 <div class="cell docutils container">
@@ -1051,6 +1240,12 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TraitError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It crashed with...
+TraitError: The &#39;in_file&#39; trait of a TransformInfoInputSpec instance must be a pathlike object or string representing an existing file, but a value of &#39;idontexist.tfm&#39; &lt;class &#39;str&#39;&gt; was specified.
 </pre></div>
 </div>
 </div>
@@ -1081,6 +1276,32 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wraps the executable command ``antsTransformInfo``.
+
+Inputs::
+
+        [Mandatory]
+        in_file: (a pathlike object or string representing an existing file)
+                the input transform file
+                argument: ``%s``, position: 0
+
+        [Optional]
+        args: (a string)
+                Additional parameters to the command
+                argument: ``%s``
+        environ: (a dictionary with keys which are a bytes or None or a value
+                  of class &#39;str&#39; and with values which are a bytes or None or a
+                  value of class &#39;str&#39;, nipype default value: {})
+                Environment variables
+
+Outputs::
+
+        translation: (a list of items which are a float)
+                the translation component of the input transform
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="we-are-almost-there-final-needs">
@@ -1098,6 +1319,31 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transform file: /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transform.tfm
+AffineTransform (0x556f275389d0)
+  RTTI typeinfo:   itk::AffineTransform&lt;double, 3u&gt;
+  Reference Count: 3
+  Modified Time: 660
+  Debug: Off
+  Object Name: 
+  Observers: 
+    none
+  Matrix: 
+    1.0201 -0.00984231 0.00283729 
+    -0.245557 0.916396 0.324585 
+    -0.0198016 -0.00296066 0.988634 
+  Offset: [2.00569, -15.15, -1.26341]
+  Center: [-3.37801, 17.4338, 8.46811]
+  Translation: [1.79024, -13.0295, -1.34439]
+  Inverse: 
+    0.982713 0.0105343 -0.00627888 
+    0.256084 1.09282 -0.359526 
+    0.0204499 0.00348366 1.01029 
+  Singular: 0
 </pre></div>
 </div>
 </div>
@@ -1149,6 +1395,11 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">translation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.79024, -13.0295, -1.34439]
 </pre></div>
 </div>
 </div>
@@ -1207,6 +1458,11 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.79024, -13.0295, -1.34439]
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="wrapping-up-fast-use-case-for-simple-commandline-wrapper">
@@ -1259,6 +1515,9 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/advanced_create_interfaces_59_0.png" src="../../_images/advanced_create_interfaces_59_0.png" />
+</div>
 </div>
 </div>
 </div>
@@ -1308,6 +1567,11 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Translated file now is here: translated.nii.gz
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now that the function was executed, let’s plot the original and the translated image.</p>
 <div class="cell docutils container">
@@ -1316,12 +1580,18 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/advanced_create_interfaces_65_0.png" src="../../_images/advanced_create_interfaces_65_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="s1">&#39;translated.nii.gz&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/advanced_create_interfaces_66_0.png" src="../../_images/advanced_create_interfaces_66_0.png" />
 </div>
 </div>
 <p>Perfect, we see that the translation was applied.</p>
@@ -1363,6 +1633,11 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Translated file now is here: translated_functioninterface.nii.gz
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1370,6 +1645,9 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 <span class="n">plot_anat</span><span class="p">(</span><span class="s1">&#39;translated_functioninterface.nii.gz&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/advanced_create_interfaces_74_0.png" src="../../_images/advanced_create_interfaces_74_0.png" />
 </div>
 </div>
 </div>
@@ -1413,6 +1691,27 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inputs::
+
+        [Mandatory]
+        in_file: (a pathlike object or string representing an existing file)
+                the input image
+        out_file: (a pathlike object or string representing a file)
+                the output image
+
+        [Optional]
+        translation: (a list of items which are a float, nipype default
+                  value: [50.0, 0.0, 0.0])
+                the translation component of the input transform
+
+Outputs::
+
+        out_file: (a pathlike object or string representing a file)
+                the output image
+</pre></div>
+</div>
+</div>
 </div>
 <p>What happens if we try to run such an interface without specifying the <code class="docutils literal notranslate"><span class="pre">_run_interface()</span></code> function?</p>
 <div class="cell docutils container">
@@ -1434,6 +1733,12 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NotImplementedError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It crashed with...
+NotImplementedError: 
 </pre></div>
 </div>
 </div>
@@ -1480,6 +1785,13 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NotImplementedError:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Translated file now is here: translated_nipype.nii.gz
+It crashed with...
+NotImplementedError: 
 </pre></div>
 </div>
 </div>
@@ -1531,12 +1843,20 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Translated file now is here: translated_nipype.nii.gz
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">out_file</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/advanced_create_interfaces_93_0.png" src="../../_images/advanced_create_interfaces_93_0.png" />
 </div>
 </div>
 </div>
@@ -1601,6 +1921,12 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>load input_image.mat;
+total = sum(data(:) &gt; 0)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1642,6 +1968,16 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-16:37:01,228 nipype.interface INFO:
+	 stderr 2021-10-17T16:37:01.227641:octave: X11 DISPLAY environment variable not set
+211017-16:37:01,232 nipype.interface INFO:
+	 stderr 2021-10-17T16:37:01.227641:octave: disabling GUI features
+211017-16:37:02,385 nipype.interface INFO:
+	 stdout 2021-10-17T16:37:02.385092:total =  5308353
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1649,6 +1985,11 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 <span class="n">expr_tra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;total\ =\s+(?P&lt;total&gt;[0-9]+)&#39;</span><span class="p">)</span>
 <span class="n">volume</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">expr_tra</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()[</span><span class="s1">&#39;total&#39;</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5308353
 </pre></div>
 </div>
 </div>
@@ -1716,10 +2057,25 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-16:37:03,650 nipype.interface INFO:
+	 stderr 2021-10-17T16:37:03.650423:octave: X11 DISPLAY environment variable not set
+211017-16:37:03,654 nipype.interface INFO:
+	 stderr 2021-10-17T16:37:03.650423:octave: disabling GUI features
+211017-16:37:04,478 nipype.interface INFO:
+	 stdout 2021-10-17T16:37:04.478099:total =  5308353
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>volume = 5308353
 </pre></div>
 </div>
 </div>
@@ -1805,6 +2161,16 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-16:37:05,660 nipype.interface INFO:
+	 stderr 2021-10-17T16:37:05.660099:octave: X11 DISPLAY environment variable not set
+211017-16:37:05,662 nipype.interface INFO:
+	 stderr 2021-10-17T16:37:05.660099:octave: disabling GUI features
+211017-16:37:06,286 nipype.interface INFO:
+	 stdout 2021-10-17T16:37:06.286014:total =  5308353
+</pre></div>
+</div>
+</div>
 </div>
 <p>No errors, perfect. Did we get the right file?</p>
 <div class="cell docutils container">
@@ -1813,11 +2179,21 @@ antsTransformInfo /home/neuro/workshop/nipype_tutorial/notebooks/scripts/transfo
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/neuro/workshop_weizmann/workshop/nipype/notebooks/volume.txt
+</pre></div>
+</div>
+</div>
 </div>
 <p>And what about the content of this file?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat volume.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5308353
 </pre></div>
 </div>
 </div>

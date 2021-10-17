@@ -788,6 +788,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:15:45,985 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/graph_orig.png (graph2use=orig, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_graph_visualization_6_1.png" src="../../_images/basic_graph_visualization_6_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="flat-graph">
@@ -803,6 +810,13 @@
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;graph_flat.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:15:46,554 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/graph_flat.png (graph2use=flat, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_graph_visualization_8_1.png" src="../../_images/basic_graph_visualization_8_1.png" />
 </div>
 </div>
 </div>
@@ -821,6 +835,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:15:46,781 nipype.workflow INFO:
+	 Generated workflow graph: ./graph_hierarchical.png (graph2use=hierarchical, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_graph_visualization_10_1.png" src="../../_images/basic_graph_visualization_10_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="colored-graph">
@@ -836,6 +857,13 @@
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;graph_colored.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:15:46,985 nipype.workflow INFO:
+	 Generated workflow graph: ./graph_colored.png (graph2use=colored, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_graph_visualization_12_1.png" src="../../_images/basic_graph_visualization_12_1.png" />
 </div>
 </div>
 </div>
@@ -853,6 +881,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:15:47,425 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/graph_exec.png (graph2use=exec, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_graph_visualization_14_1.png" src="../../_images/basic_graph_visualization_14_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="detailed-graphs">
@@ -868,6 +903,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_graph_visualization_16_0.png" src="../../_images/basic_graph_visualization_16_0.png" />
+</div>
 </div>
 <p>Such a visualization might be more complicated to read, but it gives you a complete overview of a workflow and all its components.</p>
 </div>
@@ -880,6 +918,9 @@
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;graph_exec_detailed.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_graph_visualization_19_0.png" src="../../_images/basic_graph_visualization_19_0.png" />
 </div>
 </div>
 <p>In the middle left of the figure, we have three <code class="docutils literal notranslate"><span class="pre">preproc.smooth</span></code> nodes of the <code class="docutils literal notranslate"><span class="pre">spm</span></code> interface with the names “a0”, “a1” and “a2”. Those represent the three smoothing nodes with the <code class="docutils literal notranslate"><span class="pre">fwhm</span></code> parameter set to 4, 6 and 8. Now if those nodes would be connected to another workflow, this would mean that the workflow that follows would be depicted three times, each time for another input coming from the <code class="docutils literal notranslate"><span class="pre">preproc.smooth</span></code> node.</p>
@@ -899,6 +940,13 @@
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;graph_orig_notSimple.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:15:47,940 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/graph_orig_notSimple_detailed.png (graph2use=orig, simple_form=False).
+</pre></div>
+</div>
+<img alt="../../_images/basic_graph_visualization_22_1.png" src="../../_images/basic_graph_visualization_22_1.png" />
 </div>
 </div>
 </div>

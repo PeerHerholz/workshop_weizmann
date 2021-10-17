@@ -756,6 +756,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:13:04,666 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/graph.png (graph2use=orig, simple_form=True).
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/graph.png&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -764,6 +773,9 @@
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;preproc01/graph_detailed.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/introduction_showcase_16_0.png" src="../../_images/introduction_showcase_16_0.png" />
 </div>
 </div>
 </div>
@@ -785,6 +797,66 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:13:04,745 nipype.workflow INFO:
+	 Workflow preproc01 settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:13:04,775 nipype.workflow INFO:
+	 Running in parallel.
+211017-18:13:04,779 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 5/5.
+211017-18:13:04,860 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preproc01.slicetimer&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/slicetimer&quot;.
+211017-18:13:04,894 nipype.workflow INFO:
+	 [Node] Running &quot;slicetimer&quot; (&quot;nipype.interfaces.fsl.preprocess.SliceTimer&quot;), a CommandLine Interface with command:
+slicetimer --in=/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz --odd --out=/home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz --repeat=2.500000
+211017-18:13:06,783 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 4/5.
+                     Currently running:
+                       * preproc01.slicetimer
+211017-18:13:18,103 nipype.workflow INFO:
+	 [Node] Finished &quot;preproc01.slicetimer&quot;.
+211017-18:13:18,792 nipype.workflow INFO:
+	 [Job 0] Completed (preproc01.slicetimer).
+211017-18:13:18,796 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 5/5.
+211017-18:13:18,836 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preproc01.mcflirt&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/mcflirt&quot;.
+211017-18:13:18,890 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz -meanvol -out /home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -plots
+211017-18:13:20,796 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 4/5.
+                     Currently running:
+                       * preproc01.mcflirt
+211017-18:14:37,994 nipype.workflow INFO:
+	 [Node] Finished &quot;preproc01.mcflirt&quot;.
+211017-18:14:39,30 nipype.workflow INFO:
+	 [Job 1] Completed (preproc01.mcflirt).
+211017-18:14:39,34 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 5/5.
+211017-18:14:39,76 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preproc01.smooth&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/smooth&quot;.
+211017-18:14:39,131 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.utils.Smooth&quot;), a CommandLine Interface with command:
+fslmaths /home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -kernel gauss 1.699 -fmean sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+211017-18:14:41,63 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 4/5.
+                     Currently running:
+                       * preproc01.smooth
+211017-18:14:52,247 nipype.workflow INFO:
+	 [Node] Finished &quot;preproc01.smooth&quot;.
+211017-18:14:53,56 nipype.workflow INFO:
+	 [Job 2] Completed (preproc01.smooth).
+211017-18:14:53,59 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 5/5.
+CPU times: user 2.06 s, sys: 139 ms, total: 2.19 s
+Wall time: 1min 50s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f09b197d510&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
@@ -798,6 +870,24 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree preproc01 -I <span class="s1">&#39;*js|*json|*pklz|_report|*.dot|*html&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>preproc01
+├── graph_detailed.png
+├── graph.png
+├── mcflirt
+│   ├── command.txt
+│   └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz
+├── slicetimer
+│   ├── command.txt
+│   └── sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz
+└── smooth
+    ├── command.txt
+    └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+
+3 directories, 8 files
 </pre></div>
 </div>
 </div>
@@ -817,6 +907,44 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> preproc01.run(&#39;MultiProc&#39;, plugin_args={&#39;n_procs&#39;: 5})
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:14:55,793 nipype.workflow INFO:
+	 Workflow preproc01 settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:14:55,844 nipype.workflow INFO:
+	 Running in parallel.
+211017-18:14:55,848 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 5/5.
+211017-18:14:55,908 nipype.workflow INFO:
+	 [Job 0] Cached (preproc01.slicetimer).
+211017-18:14:57,927 nipype.workflow INFO:
+	 [Job 1] Cached (preproc01.mcflirt).
+211017-18:14:59,933 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;preproc01.smooth&quot;.
+211017-18:14:59,978 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preproc01.smooth&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/smooth&quot;.
+211017-18:14:59,989 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;preproc01.smooth&quot;.
+211017-18:15:00,64 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.utils.Smooth&quot;), a CommandLine Interface with command:
+fslmaths /home/neuro/workshop_weizmann/workshop/nipype/notebooks/preproc01/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -kernel gauss 0.849 -fmean sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+211017-18:15:01,829 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 4/5.
+                     Currently running:
+                       * preproc01.smooth
+211017-18:15:10,599 nipype.workflow INFO:
+	 [Node] Finished &quot;preproc01.smooth&quot;.
+211017-18:15:11,835 nipype.workflow INFO:
+	 [Job 2] Completed (preproc01.smooth).
+211017-18:15:11,837 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 5/5.
+CPU times: user 410 ms, sys: 88.2 ms, total: 498 ms
+Wall time: 18.1 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f09b1928c90&gt;
 </pre></div>
 </div>
 </div>
@@ -868,6 +996,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:15:14,299 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/graph.png (graph2use=flat, simple_form=True).
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/graph.png&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -877,11 +1014,220 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/introduction_showcase_38_0.png" src="../../_images/introduction_showcase_38_0.png" />
+</div>
 </div>
 <p>Ah… so now we can see that the <code class="docutils literal notranslate"><span class="pre">metaflow</span></code> has potential for parallelization. So let’s put it to test</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> metaflow.run(&#39;MultiProc&#39;, plugin_args={&#39;n_procs&#39;: 5})
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:15:14,337 nipype.workflow INFO:
+	 Workflow metaflow settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:15:14,368 nipype.workflow INFO:
+	 Running in parallel.
+211017-18:15:14,372 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 5 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 5/5.
+211017-18:15:14,443 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc02.slicetimer&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc02/slicetimer&quot;.
+211017-18:15:14,440 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc01.slicetimer&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc01/slicetimer&quot;.
+211017-18:15:14,444 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc03.slicetimer&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc03/slicetimer&quot;.
+211017-18:15:14,451 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc05.slicetimer&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc05/slicetimer&quot;.
+211017-18:15:14,445 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc04.slicetimer&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc04/slicetimer&quot;.
+211017-18:15:14,478 nipype.workflow INFO:
+	 [Node] Running &quot;slicetimer&quot; (&quot;nipype.interfaces.fsl.preprocess.SliceTimer&quot;), a CommandLine Interface with command:
+slicetimer --in=/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz --odd --out=/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc02/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz --repeat=2.500000
+211017-18:15:14,480 nipype.workflow INFO:
+	 [Node] Running &quot;slicetimer&quot; (&quot;nipype.interfaces.fsl.preprocess.SliceTimer&quot;), a CommandLine Interface with command:
+slicetimer --in=/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz --odd --out=/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc01/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz --repeat=2.500000
+211017-18:15:14,491 nipype.workflow INFO:
+	 [Node] Running &quot;slicetimer&quot; (&quot;nipype.interfaces.fsl.preprocess.SliceTimer&quot;), a CommandLine Interface with command:
+slicetimer --in=/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz --odd --out=/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc05/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz --repeat=2.500000
+211017-18:15:14,502 nipype.workflow INFO:
+	 [Node] Running &quot;slicetimer&quot; (&quot;nipype.interfaces.fsl.preprocess.SliceTimer&quot;), a CommandLine Interface with command:
+slicetimer --in=/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz --odd --out=/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc04/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz --repeat=2.500000
+211017-18:15:14,523 nipype.workflow INFO:
+	 [Node] Running &quot;slicetimer&quot; (&quot;nipype.interfaces.fsl.preprocess.SliceTimer&quot;), a CommandLine Interface with command:
+slicetimer --in=/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz --odd --out=/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc03/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz --repeat=2.500000
+211017-18:15:16,394 nipype.workflow INFO:
+	 [MultiProc] Running 5 tasks, and 0 jobs ready. Free memory (GB): 0.75/1.75, Free processors: 0/5.
+                     Currently running:
+                       * metaflow.preproc05.slicetimer
+                       * metaflow.preproc04.slicetimer
+                       * metaflow.preproc03.slicetimer
+                       * metaflow.preproc02.slicetimer
+                       * metaflow.preproc01.slicetimer
+211017-18:15:40,622 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc05.slicetimer&quot;.
+211017-18:15:40,783 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc02.slicetimer&quot;.
+211017-18:15:41,4 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc03.slicetimer&quot;.
+211017-18:15:41,69 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc04.slicetimer&quot;.
+211017-18:15:41,86 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc01.slicetimer&quot;.
+211017-18:15:42,372 nipype.workflow INFO:
+	 [Job 0] Completed (metaflow.preproc01.slicetimer).
+211017-18:15:42,376 nipype.workflow INFO:
+	 [Job 3] Completed (metaflow.preproc02.slicetimer).
+211017-18:15:42,379 nipype.workflow INFO:
+	 [Job 6] Completed (metaflow.preproc03.slicetimer).
+211017-18:15:42,380 nipype.workflow INFO:
+	 [Job 9] Completed (metaflow.preproc04.slicetimer).
+211017-18:15:42,384 nipype.workflow INFO:
+	 [Job 12] Completed (metaflow.preproc05.slicetimer).
+211017-18:15:42,388 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 5 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 5/5.
+211017-18:15:42,437 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc01.mcflirt&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc01/mcflirt&quot;.
+211017-18:15:42,438 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc02.mcflirt&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc02/mcflirt&quot;.
+211017-18:15:42,440 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc03.mcflirt&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc03/mcflirt&quot;.
+211017-18:15:42,442 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc04.mcflirt&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc04/mcflirt&quot;.
+211017-18:15:42,452 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc05.mcflirt&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc05/mcflirt&quot;.
+211017-18:15:42,515 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc01/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz -meanvol -out /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc01/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -plots
+211017-18:15:42,529 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc03/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz -meanvol -out /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc03/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -plots
+211017-18:15:42,530 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc04/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz -meanvol -out /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc04/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -plots
+211017-18:15:42,531 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc02/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz -meanvol -out /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc02/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -plots
+211017-18:15:42,535 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc05/slicetimer/sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz -meanvol -out /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc05/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -plots
+211017-18:15:44,899 nipype.workflow INFO:
+	 [MultiProc] Running 5 tasks, and 0 jobs ready. Free memory (GB): 0.75/1.75, Free processors: 0/5.
+                     Currently running:
+                       * metaflow.preproc05.mcflirt
+                       * metaflow.preproc04.mcflirt
+                       * metaflow.preproc03.mcflirt
+                       * metaflow.preproc02.mcflirt
+                       * metaflow.preproc01.mcflirt
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:18:17,924 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc01.mcflirt&quot;.
+211017-18:18:18,421 nipype.workflow INFO:
+	 [Job 1] Completed (metaflow.preproc01.mcflirt).
+211017-18:18:18,430 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 1 jobs ready. Free memory (GB): 0.95/1.75, Free processors: 1/5.
+                     Currently running:
+                       * metaflow.preproc05.mcflirt
+                       * metaflow.preproc04.mcflirt
+                       * metaflow.preproc03.mcflirt
+                       * metaflow.preproc02.mcflirt
+211017-18:18:18,529 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc01.smooth&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc01/smooth&quot;.
+211017-18:18:18,617 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.utils.Smooth&quot;), a CommandLine Interface with command:
+fslmaths /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc01/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -kernel gauss 0.849 -fmean sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+211017-18:18:20,425 nipype.workflow INFO:
+	 [MultiProc] Running 5 tasks, and 0 jobs ready. Free memory (GB): 0.75/1.75, Free processors: 0/5.
+                     Currently running:
+                       * metaflow.preproc01.smooth
+                       * metaflow.preproc05.mcflirt
+                       * metaflow.preproc04.mcflirt
+                       * metaflow.preproc03.mcflirt
+                       * metaflow.preproc02.mcflirt
+211017-18:18:22,605 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc05.mcflirt&quot;.
+211017-18:18:22,940 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc03.mcflirt&quot;.
+211017-18:18:23,5 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc02.mcflirt&quot;.
+211017-18:18:23,686 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc04.mcflirt&quot;.
+211017-18:18:24,426 nipype.workflow INFO:
+	 [Job 4] Completed (metaflow.preproc02.mcflirt).
+211017-18:18:24,429 nipype.workflow INFO:
+	 [Job 7] Completed (metaflow.preproc03.mcflirt).
+211017-18:18:24,431 nipype.workflow INFO:
+	 [Job 10] Completed (metaflow.preproc04.mcflirt).
+211017-18:18:24,436 nipype.workflow INFO:
+	 [Job 13] Completed (metaflow.preproc05.mcflirt).
+211017-18:18:24,442 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 4 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 4/5.
+                     Currently running:
+                       * metaflow.preproc01.smooth
+211017-18:18:24,498 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc02.smooth&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc02/smooth&quot;.
+211017-18:18:24,500 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc03.smooth&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc03/smooth&quot;.
+211017-18:18:24,512 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc05.smooth&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc05/smooth&quot;.
+211017-18:18:24,506 nipype.workflow INFO:
+	 [Node] Setting-up &quot;metaflow.preproc04.smooth&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc04/smooth&quot;.
+211017-18:18:24,605 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.utils.Smooth&quot;), a CommandLine Interface with command:
+fslmaths /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc03/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -kernel gauss 0.849 -fmean sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+211017-18:18:24,623 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.utils.Smooth&quot;), a CommandLine Interface with command:
+fslmaths /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc02/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -kernel gauss 0.849 -fmean sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+211017-18:18:24,669 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.utils.Smooth&quot;), a CommandLine Interface with command:
+fslmaths /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc05/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -kernel gauss 0.849 -fmean sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+211017-18:18:24,731 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.utils.Smooth&quot;), a CommandLine Interface with command:
+fslmaths /home/neuro/workshop_weizmann/workshop/nipype/notebooks/metaflow/preproc04/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz -kernel gauss 0.849 -fmean sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+211017-18:18:26,434 nipype.workflow INFO:
+	 [MultiProc] Running 5 tasks, and 0 jobs ready. Free memory (GB): 0.75/1.75, Free processors: 0/5.
+                     Currently running:
+                       * metaflow.preproc05.smooth
+                       * metaflow.preproc04.smooth
+                       * metaflow.preproc03.smooth
+                       * metaflow.preproc02.smooth
+                       * metaflow.preproc01.smooth
+211017-18:18:38,871 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc01.smooth&quot;.
+211017-18:18:40,516 nipype.workflow INFO:
+	 [Job 2] Completed (metaflow.preproc01.smooth).
+211017-18:18:40,522 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 0 jobs ready. Free memory (GB): 0.95/1.75, Free processors: 1/5.
+                     Currently running:
+                       * metaflow.preproc05.smooth
+                       * metaflow.preproc04.smooth
+                       * metaflow.preproc03.smooth
+                       * metaflow.preproc02.smooth
+211017-18:18:44,929 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc04.smooth&quot;.
+211017-18:18:45,98 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc03.smooth&quot;.
+211017-18:18:45,350 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc02.smooth&quot;.
+211017-18:18:45,405 nipype.workflow INFO:
+	 [Node] Finished &quot;metaflow.preproc05.smooth&quot;.
+211017-18:18:46,522 nipype.workflow INFO:
+	 [Job 5] Completed (metaflow.preproc02.smooth).
+211017-18:18:46,525 nipype.workflow INFO:
+	 [Job 8] Completed (metaflow.preproc03.smooth).
+211017-18:18:46,527 nipype.workflow INFO:
+	 [Job 11] Completed (metaflow.preproc04.smooth).
+211017-18:18:46,531 nipype.workflow INFO:
+	 [Job 14] Completed (metaflow.preproc05.smooth).
+211017-18:18:46,536 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 5/5.
+CPU times: user 792 ms, sys: 611 ms, total: 1.4 s
+Wall time: 3min 34s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f09b12c0a90&gt;
 </pre></div>
 </div>
 </div>
@@ -895,6 +1241,65 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree metaflow -I <span class="s1">&#39;*js|*json|*pklz|_report|*.dot|*html&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>metaflow
+├── graph_detailed.png
+├── graph.png
+├── preproc01
+│   ├── mcflirt
+│   │   ├── command.txt
+│   │   └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz
+│   ├── slicetimer
+│   │   ├── command.txt
+│   │   └── sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz
+│   └── smooth
+│       ├── command.txt
+│       └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+├── preproc02
+│   ├── mcflirt
+│   │   ├── command.txt
+│   │   └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz
+│   ├── slicetimer
+│   │   ├── command.txt
+│   │   └── sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz
+│   └── smooth
+│       ├── command.txt
+│       └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+├── preproc03
+│   ├── mcflirt
+│   │   ├── command.txt
+│   │   └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz
+│   ├── slicetimer
+│   │   ├── command.txt
+│   │   └── sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz
+│   └── smooth
+│       ├── command.txt
+│       └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+├── preproc04
+│   ├── mcflirt
+│   │   ├── command.txt
+│   │   └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz
+│   ├── slicetimer
+│   │   ├── command.txt
+│   │   └── sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz
+│   └── smooth
+│       ├── command.txt
+│       └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+└── preproc05
+    ├── mcflirt
+    │   ├── command.txt
+    │   └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf.nii.gz
+    ├── slicetimer
+    │   ├── command.txt
+    │   └── sub-01_ses-test_task-fingerfootlips_bold_st.nii.gz
+    └── smooth
+        ├── command.txt
+        └── sub-01_ses-test_task-fingerfootlips_bold_st_mcf_smooth.nii.gz
+
+20 directories, 32 files
 </pre></div>
 </div>
 </div>

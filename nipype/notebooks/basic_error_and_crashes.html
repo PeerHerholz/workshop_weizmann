@@ -771,6 +771,52 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:10:36,882 nipype.workflow INFO:
+	 Workflow preprocWF settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:10:36,921 nipype.workflow INFO:
+	 Running serially.
+211017-17:10:36,922 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.selectfiles&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/working_dir/preprocWF/selectfiles&quot;.
+211017-17:10:36,956 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:10:36,974 nipype.workflow WARNING:
+	 Storing result file without outputs
+211017-17:10:36,988 nipype.workflow WARNING:
+	 [Node] Error on &quot;preprocWF.selectfiles&quot; (/home/neuro/workshop_weizmann/workshop/nipype/notebooks/working_dir/preprocWF/selectfiles)
+211017-17:10:37,18 nipype.workflow ERROR:
+	 Node selectfiles failed to run on host 11746b08bfb7.
+211017-17:10:37,22 nipype.workflow ERROR:
+	 Saving crash info to /home/neuro/workshop_weizmann/workshop/nipype/notebooks/crash-20211017-171037-neuro-selectfiles-37d06f37-f3aa-43e8-a608-9010f91410f7.pklz
+Traceback (most recent call last):
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/plugins/linear.py&quot;, line 46, in run
+    node.run(updatehash=updatehash)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 516, in run
+    result = self._run_interface(execute=True)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 635, in _run_interface
+    return self._run_command(execute)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 741, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 421, in run
+    outputs = self.aggregate_outputs(runtime)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 498, in aggregate_outputs
+    predicted_outputs = self._list_outputs()  # Predictions from _list_outputs
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/io.py&quot;, line 1480, in _list_outputs
+    raise IOError(msg)
+OSError: No files were found matching func template: /data/ds000114/sub-11/ses-test/func/sub-11_ses-test_task-fingerfootlips_bold.nii.gz
+
+211017-17:10:37,33 nipype.workflow INFO:
+	 ***********************************
+211017-17:10:37,35 nipype.workflow ERROR:
+	 could not run node: preprocWF.selectfiles
+211017-17:10:37,38 nipype.workflow INFO:
+	 crashfile: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/crash-20211017-171037-neuro-selectfiles-37d06f37-f3aa-43e8-a608-9010f91410f7.pklz
+211017-17:10:37,43 nipype.workflow INFO:
+	 ***********************************
+RuntimeError: Workflow did not execute cleanly. Check log for details
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="investigating-the-crash">
@@ -801,11 +847,125 @@ Interface SelectFiles failed to run.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/crash-20211017-171037-neuro-selectfiles-37d06f37-f3aa-43e8-a608-9010f91410f7.pklz
+Node: preprocWF.selectfiles
+Working directory: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/working_dir/preprocWF/selectfiles
+
+
+Node inputs:
+
+base_directory = /data/ds000114
+force_lists = False
+raise_on_empty = True
+sort_filelist = True
+subject_id = sub-11
+
+
+
+Traceback: 
+Traceback (most recent call last):
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/plugins/linear.py&quot;, line 46, in run
+    node.run(updatehash=updatehash)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 516, in run
+    result = self._run_interface(execute=True)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 635, in _run_interface
+    return self._run_command(execute)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 741, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 421, in run
+    outputs = self.aggregate_outputs(runtime)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 498, in aggregate_outputs
+    predicted_outputs = self._list_outputs()  # Predictions from _list_outputs
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/io.py&quot;, line 1480, in _list_outputs
+    raise IOError(msg)
+OSError: No files were found matching func template: /data/ds000114/sub-11/ses-test/func/sub-11_ses-test_task-fingerfootlips_bold.nii.gz
+</pre></div>
+</div>
+</div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">nipypecli</span></code> allows you to rerun the crashed node using an additional option <code class="docutils literal notranslate"><span class="pre">-r</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nipypecli crash -r <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/crash-*selectfiles-*.pklz
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/crash-20211017-171037-neuro-selectfiles-37d06f37-f3aa-43e8-a608-9010f91410f7.pklz
+Node: preprocWF.selectfiles
+Working directory: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/working_dir/preprocWF/selectfiles
+
+
+Node inputs:
+
+base_directory = /data/ds000114
+force_lists = False
+raise_on_empty = True
+sort_filelist = True
+subject_id = sub-11
+
+
+
+Traceback: 
+Traceback (most recent call last):
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/plugins/linear.py&quot;, line 46, in run
+    node.run(updatehash=updatehash)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 516, in run
+    result = self._run_interface(execute=True)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 635, in _run_interface
+    return self._run_command(execute)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 741, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 421, in run
+    outputs = self.aggregate_outputs(runtime)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 498, in aggregate_outputs
+    predicted_outputs = self._list_outputs()  # Predictions from _list_outputs
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/io.py&quot;, line 1480, in _list_outputs
+    raise IOError(msg)
+OSError: No files were found matching func template: /data/ds000114/sub-11/ses-test/func/sub-11_ses-test_task-fingerfootlips_bold.nii.gz
+
+
+
+Rerunning node
+211017-17:10:39,432 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.selectfiles&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/working_dir/preprocWF/selectfiles&quot;.
+211017-17:10:39,476 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:10:39,482 nipype.workflow WARNING:
+	 Storing result file without outputs
+211017-17:10:39,489 nipype.workflow WARNING:
+	 [Node] Error on &quot;preprocWF.selectfiles&quot; (/home/neuro/workshop_weizmann/workshop/nipype/notebooks/working_dir/preprocWF/selectfiles)
+Traceback (most recent call last):
+  File &quot;/opt/miniconda-latest/envs/neuro/bin/nipypecli&quot;, line 8, in &lt;module&gt;
+    sys.exit(cli())
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/click/core.py&quot;, line 829, in __call__
+    return self.main(*args, **kwargs)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/click/core.py&quot;, line 782, in main
+    rv = self.invoke(ctx)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/click/core.py&quot;, line 1259, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/click/core.py&quot;, line 1066, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/click/core.py&quot;, line 610, in invoke
+    return callback(*args, **kwargs)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/scripts/cli.py&quot;, line 96, in crash
+    display_crash_file(crashfile, rerun, debug, dir)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/scripts/crash_files.py&quot;, line 81, in display_crash_file
+    node.run()
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 516, in run
+    result = self._run_interface(execute=True)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 635, in _run_interface
+    return self._run_command(execute)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 741, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 421, in run
+    outputs = self.aggregate_outputs(runtime)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 498, in aggregate_outputs
+    predicted_outputs = self._list_outputs()  # Predictions from _list_outputs
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/io.py&quot;, line 1480, in _list_outputs
+    raise IOError(msg)
+OSError: No files were found matching func template: /data/ds000114/sub-11/ses-test/func/sub-11_ses-test_task-fingerfootlips_bold.nii.gz
 </pre></div>
 </div>
 </div>
@@ -824,11 +984,88 @@ Interface SelectFiles failed to run.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:10:39,650 nipype.workflow INFO:
+	 Workflow preprocWF settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:10:39,698 nipype.workflow INFO:
+	 Running serially.
+211017-17:10:39,699 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.selectfiles&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/working_dir/preprocWF/selectfiles&quot;.
+211017-17:10:39,761 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:10:39,765 nipype.workflow WARNING:
+	 Storing result file without outputs
+211017-17:10:39,778 nipype.workflow WARNING:
+	 [Node] Error on &quot;preprocWF.selectfiles&quot; (/home/neuro/workshop_weizmann/workshop/nipype/notebooks/working_dir/preprocWF/selectfiles)
+211017-17:10:39,799 nipype.workflow ERROR:
+	 Node selectfiles failed to run on host 11746b08bfb7.
+211017-17:10:39,801 nipype.workflow ERROR:
+	 Saving crash info to /home/neuro/workshop_weizmann/workshop/nipype/notebooks/crash-20211017-171039-neuro-selectfiles-f56abef1-3008-4e84-941c-c2800895302b.txt
+Traceback (most recent call last):
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/plugins/linear.py&quot;, line 46, in run
+    node.run(updatehash=updatehash)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 516, in run
+    result = self._run_interface(execute=True)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 635, in _run_interface
+    return self._run_command(execute)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 741, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 421, in run
+    outputs = self.aggregate_outputs(runtime)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 498, in aggregate_outputs
+    predicted_outputs = self._list_outputs()  # Predictions from _list_outputs
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/io.py&quot;, line 1480, in _list_outputs
+    raise IOError(msg)
+OSError: No files were found matching func template: /data/ds000114/sub-11/ses-test/func/sub-11_ses-test_task-fingerfootlips_bold.nii.gz
+
+211017-17:10:39,810 nipype.workflow INFO:
+	 ***********************************
+211017-17:10:39,811 nipype.workflow ERROR:
+	 could not run node: preprocWF.selectfiles
+211017-17:10:39,814 nipype.workflow INFO:
+	 crashfile: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/crash-20211017-171039-neuro-selectfiles-f56abef1-3008-4e84-941c-c2800895302b.txt
+211017-17:10:39,816 nipype.workflow INFO:
+	 ***********************************
+RuntimeError: Workflow did not execute cleanly. Check log for details
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now you should have a new text file with your crash report.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/crash-*selectfiles-*.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Node: preprocWF.selectfiles
+Working directory: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/working_dir/preprocWF/selectfiles
+
+Node inputs:
+
+base_directory = /data/ds000114
+force_lists = False
+raise_on_empty = True
+sort_filelist = True
+subject_id = sub-11
+
+Traceback (most recent call last):
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/plugins/linear.py&quot;, line 46, in run
+    node.run(updatehash=updatehash)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 516, in run
+    result = self._run_interface(execute=True)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 635, in _run_interface
+    return self._run_command(execute)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 741, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 421, in run
+    outputs = self.aggregate_outputs(runtime)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 498, in aggregate_outputs
+    predicted_outputs = self._list_outputs()  # Predictions from _list_outputs
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/io.py&quot;, line 1480, in _list_outputs
+    raise IOError(msg)
+OSError: No files were found matching func template: /data/ds000114/sub-11/ses-test/func/sub-11_ses-test_task-fingerfootlips_bold.nii.gz
 </pre></div>
 </div>
 </div>
@@ -853,12 +1090,74 @@ Interface SelectFiles failed to run.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TraitError: The &#39;fwhm&#39; trait of an IsotropicSmoothInput instance must be a float, but a value of &#39;4&#39; &lt;class &#39;str&#39;&gt; was specified.
+</pre></div>
+</div>
+</div>
 </div>
 <p>This will give you the error: <strong><code class="docutils literal notranslate"><span class="pre">TraitError</span></code></strong><code class="docutils literal notranslate"><span class="pre">:</span> <span class="pre">The</span> <span class="pre">'fwhm'</span> <span class="pre">trait</span> <span class="pre">of</span> <span class="pre">an</span> <span class="pre">IsotropicSmoothInput</span> <span class="pre">instance</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">a</span> <span class="pre">float,</span> <span class="pre">but</span> <span class="pre">a</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">'4'</span> <span class="pre">&lt;type</span> <span class="pre">'str'&gt;</span> <span class="pre">was</span> <span class="pre">specified.</span></code></p>
 <p>To make sure that you are using the right input types, just check the <code class="docutils literal notranslate"><span class="pre">help</span></code> section of a given interface. There you can see <strong><code class="docutils literal notranslate"><span class="pre">fwhm:</span> <span class="pre">(a</span> <span class="pre">float)</span></code></strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IsotropicSmooth</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wraps the executable command ``fslmaths``.
+
+Use fslmaths to spatially smooth an image with a gaussian kernel.
+
+Inputs::
+
+        [Mandatory]
+        fwhm: (a float)
+                fwhm of smoothing kernel [mm]
+                argument: ``-s %.5f``, position: 4
+                mutually_exclusive: sigma
+        sigma: (a float)
+                sigma of smoothing kernel [mm]
+                argument: ``-s %.5f``, position: 4
+                mutually_exclusive: fwhm
+        in_file: (a pathlike object or string representing an existing file)
+                image to operate on
+                argument: ``%s``, position: 2
+
+        [Optional]
+        out_file: (a pathlike object or string representing a file)
+                image to write
+                argument: ``%s``, position: -2
+        internal_datatype: (&#39;float&#39; or &#39;char&#39; or &#39;int&#39; or &#39;short&#39; or &#39;double&#39;
+                  or &#39;input&#39;)
+                datatype to use for calculations (default is float)
+                argument: ``-dt %s``, position: 1
+        output_datatype: (&#39;float&#39; or &#39;char&#39; or &#39;int&#39; or &#39;short&#39; or &#39;double&#39;
+                  or &#39;input&#39;)
+                datatype to use for output (default uses input type)
+                argument: ``-odt %s``, position: -1
+        nan2zeros: (a boolean)
+                change NaNs to zeros before doing anything
+                argument: ``-nan``, position: 3
+        output_type: (&#39;NIFTI&#39; or &#39;NIFTI_PAIR&#39; or &#39;NIFTI_GZ&#39; or
+                  &#39;NIFTI_PAIR_GZ&#39;)
+                FSL output type
+        args: (a string)
+                Additional parameters to the command
+                argument: ``%s``
+        environ: (a dictionary with keys which are a bytes or None or a value
+                  of class &#39;str&#39; and with values which are a bytes or None or a
+                  value of class &#39;str&#39;, nipype default value: {})
+                Environment variables
+
+Outputs::
+
+        out_file: (a pathlike object or string representing an existing file)
+                image written after calculations
+
+References:
+-----------
+BibTeX(&#39;@article{JenkinsonBeckmannBehrensWoolrichSmith2012,author={M. Jenkinson, C.F. Beckmann, T.E. Behrens, M.W. Woolrich, and S.M. Smith},title={FSL},journal={NeuroImage},volume={62},pages={782-790},year={2012},}&#39;, key=&#39;JenkinsonBeckmannBehrensWoolrichSmith2012&#39;)
 </pre></div>
 </div>
 </div>
@@ -879,6 +1178,11 @@ Interface SelectFiles failed to run.
         <span class="k">raise</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TraitError: The &#39;output_type&#39; trait of an IsotropicSmoothInput instance must be &#39;NIFTI&#39; or &#39;NIFTI_PAIR&#39; or &#39;NIFTI_GZ&#39; or &#39;NIFTI_PAIR_GZ&#39;, but a value of &#39;NIFTIiii&#39; &lt;class &#39;str&#39;&gt; was specified.
 </pre></div>
 </div>
 </div>
@@ -906,6 +1210,11 @@ Interface SelectFiles failed to run.
         <span class="k">raise</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TraitError: The &#39;in_file&#39; trait of a GunzipInputSpec instance must be a pathlike object or string representing an existing file, but a value of &quot;[&#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;, &#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;]&quot; &lt;class &#39;str&#39;&gt; was specified.
 </pre></div>
 </div>
 </div>
@@ -938,6 +1247,11 @@ Interface SelectFiles failed to run.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TraitError: Each element of the &#39;in_file&#39; trait of a DynamicTraitedSpec instance must be a pathlike object or string representing an existing file, but a value of &#39;/data/ds000114/sub-01/func/sub-01_task-fingerfootlips_bold.nii.gz&#39; &lt;class &#39;str&#39;&gt; was specified.
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>By the way, not that those crashes don’t create a <code class="docutils literal notranslate"><span class="pre">crashfile</span></code>, because they didn’t happen during runtime, but still during workflow building.</strong></p>
 </div>
@@ -963,6 +1277,11 @@ Interface SelectFiles failed to run.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TraitError: Each element of the &#39;in_files&#39; trait of a SmoothInputSpec instance must be a pathlike object or string representing an existing file, but a value of &#39;/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39; &lt;class &#39;str&#39;&gt; was specified.
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="spm-problem-2-with-nii-gz-files">
@@ -981,6 +1300,11 @@ Interface SelectFiles failed to run.
         <span class="k">raise</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TraitError: Each element of the &#39;in_files&#39; trait of a RealignInputSpec instance must be a pathlike object or string representing an existing file or a list of items which are a pathlike object or string representing an existing file, but a value of &#39;/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39; &lt;class &#39;str&#39;&gt; was specified.
 </pre></div>
 </div>
 </div>
@@ -1033,6 +1357,11 @@ SPM not in matlab path
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ValueError: Realign requires a value for input &#39;in_files&#39;. For a list of required inputs, see Realign.help()
+</pre></div>
+</div>
+</div>
 </div>
 <p>This gives you the error:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ValueError: Realign requires a value for input &#39;in_files&#39;. For a list of required inputs, see Realign.help()
@@ -1042,6 +1371,97 @@ SPM not in matlab path
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">realign</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Use spm_realign for estimating within modality rigid body alignment
+
+http://www.fil.ion.ucl.ac.uk/spm/doc/manual.pdf#page=25
+
+Examples
+--------
+
+&gt;&gt;&gt; import nipype.interfaces.spm as spm
+&gt;&gt;&gt; realign = spm.Realign()
+&gt;&gt;&gt; realign.inputs.in_files = &#39;functional.nii&#39;
+&gt;&gt;&gt; realign.inputs.register_to_mean = True
+&gt;&gt;&gt; realign.run() # doctest: +SKIP
+
+Inputs::
+
+        [Mandatory]
+        in_files: (a list of items which are a pathlike object or string
+                  representing an existing file or a list of items which are a
+                  pathlike object or string representing an existing file)
+                list of filenames to realign
+
+        [Optional]
+        jobtype: (&#39;estwrite&#39; or &#39;estimate&#39; or &#39;write&#39;, nipype default value:
+                  estwrite)
+                one of: estimate, write, estwrite
+        quality: (0.0 &lt;= a floating point number &lt;= 1.0)
+                0.1 = fast, 1.0 = precise
+        fwhm: (a floating point number &gt;= 0.0)
+                gaussian smoothing kernel width
+        separation: (a floating point number &gt;= 0.0)
+                sampling separation in mm
+        register_to_mean: (a boolean)
+                Indicate whether realignment is done to the mean image
+        weight_img: (a pathlike object or string representing an existing
+                  file)
+                filename of weighting image
+        interp: (0 &lt;= an integer &lt;= 7)
+                degree of b-spline used for interpolation
+        wrap: (a list of from 3 to 3 items which are an integer)
+                Check if interpolation should wrap in [x,y,z]
+        write_which: (a list of items which are a value of class &#39;int&#39;,
+                  nipype default value: [2, 1])
+                determines which images to reslice
+        write_interp: (0 &lt;= an integer &lt;= 7)
+                degree of b-spline used for interpolation
+        write_wrap: (a list of from 3 to 3 items which are an integer)
+                Check if interpolation should wrap in [x,y,z]
+        write_mask: (a boolean)
+                True/False mask output image
+        out_prefix: (a string, nipype default value: r)
+                realigned output prefix
+        matlab_cmd: (a string)
+                matlab command to use
+        paths: (a list of items which are a pathlike object or string
+                  representing a directory)
+                Paths to add to matlabpath
+        mfile: (a boolean, nipype default value: True)
+                Run m-code using m-file
+        use_mcr: (a boolean)
+                Run m-code using SPM MCR
+        use_v8struct: (a boolean, nipype default value: True)
+                Generate SPM8 and higher compatible jobs
+
+Outputs::
+
+        mean_image: (a pathlike object or string representing an existing
+                  file)
+                Mean image file from the realignment
+        modified_in_files: (a list of items which are a list of items which
+                  are a pathlike object or string representing an existing file or a
+                  pathlike object or string representing an existing file)
+                Copies of all files passed to in_files. Headers will have been
+                modified to align all images with the first, or optionally to first
+                do that, extract a mean image, and re-align to that mean image.
+        realigned_files: (a list of items which are a list of items which are
+                  a pathlike object or string representing an existing file or a
+                  pathlike object or string representing an existing file)
+                If jobtype is write or estwrite, these will be the resliced files.
+                Otherwise, they will be copies of in_files that have had their
+                headers rewritten.
+        realignment_parameters: (a list of items which are a pathlike object
+                  or string representing an existing file)
+                Estimated translation and rotation parameters
+
+References:
+-----------
+BibTeX(&#39;@book{FrackowiakFristonFrithDolanMazziotta1997,author={R.S.J. Frackowiak, K.J. Friston, C.D. Frith, R.J. Dolan, and J.C. Mazziotta},title={Human Brain Function},publisher={Academic Press USA},year={1997},}&#39;, key=&#39;FrackowiakFristonFrithDolanMazziotta1997&#39;)
 </pre></div>
 </div>
 </div>
@@ -1064,6 +1484,11 @@ SPM not in matlab path
         <span class="k">raise</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TraitError: Cannot set the undefined &#39;output_type&#39; attribute of a &#39;DespikeInputSpec&#39; object.
 </pre></div>
 </div>
 </div>
@@ -1126,6 +1551,12 @@ SPM not in matlab path
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception: Trying to connect preprocWF.mcflirt_NEW:out_file to preprocWF.smooth:in_file but input &#39;in_file&#39; of node &#39;preprocWF.smooth&#39; is already
+connected.
 </pre></div>
 </div>
 </div>

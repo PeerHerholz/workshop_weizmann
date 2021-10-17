@@ -806,11 +806,78 @@ where parts between paired [] are optional.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:06:28,711 nipype.workflow INFO:
+	 Workflow preprocWF settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:06:28,720 nipype.workflow INFO:
+	 Running serially.
+211017-17:06:28,721 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.selectfiles&quot; in &quot;/output/working_dir/preprocWF/selectfiles&quot;.
+211017-17:06:28,726 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:06:28,736 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.selectfiles&quot;.
+211017-17:06:28,738 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.mcflirt&quot; in &quot;/output/working_dir/preprocWF/mcflirt&quot;.
+211017-17:06:28,747 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz -meanvol -out /output/working_dir/preprocWF/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz -plots
+211017-17:07:39,568 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.mcflirt&quot;.
+211017-17:07:39,571 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.smooth&quot; in &quot;/output/working_dir/preprocWF/smooth&quot;.
+211017-17:07:39,583 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /output/working_dir/preprocWF/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz -s 1.69864 /output/working_dir/preprocWF/smooth/sub-01_ses-test_task-fingerfootlips_bold_mcf_smooth.nii.gz
+211017-17:07:51,189 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.smooth&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f6f6efd7b90&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>After the execution of the workflow we have all the data hidden in the working directory <code class="docutils literal notranslate"><span class="pre">'working_dir'</span></code>. Let’s take a closer look at the content of this folder:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> tree /output/working_dir/preprocWF
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/working_dir/preprocWF
+├── d3.js
+├── graph1.json
+├── graph.json
+├── index.html
+├── mcflirt
+│   ├── _0xa5c4a814d227c6af76bc7488d169dc1a.json
+│   ├── command.txt
+│   ├── _inputs.pklz
+│   ├── _node.pklz
+│   ├── _report
+│   │   └── report.rst
+│   ├── result_mcflirt.pklz
+│   └── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz
+├── selectfiles
+│   ├── _0x8be4cb43842af73f06e36ceafabda572.json
+│   ├── _inputs.pklz
+│   ├── _node.pklz
+│   ├── _report
+│   │   └── report.rst
+│   └── result_selectfiles.pklz
+└── smooth
+    ├── _0x2745cf755ee377f13be5b3edde9dc7fc.json
+    ├── command.txt
+    ├── _inputs.pklz
+    ├── _node.pklz
+    ├── _report
+    │   └── report.rst
+    ├── result_smooth.pklz
+    └── sub-01_ses-test_task-fingerfootlips_bold_mcf_smooth.nii.gz
+
+6 directories, 23 files
 </pre></div>
 </div>
 </div>
@@ -840,11 +907,65 @@ where parts between paired [] are optional.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:07:51,984 nipype.workflow INFO:
+	 Workflow preprocWF settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:07:52,8 nipype.workflow INFO:
+	 Running serially.
+211017-17:07:52,9 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.selectfiles&quot; in &quot;/output/working_dir/preprocWF/selectfiles&quot;.
+211017-17:07:52,18 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:07:52,27 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.selectfiles&quot;.
+211017-17:07:52,28 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.mcflirt&quot; in &quot;/output/working_dir/preprocWF/mcflirt&quot;.
+211017-17:07:52,33 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;preprocWF.mcflirt&quot;.
+211017-17:07:52,41 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz -meanvol -out /output/working_dir/preprocWF/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz -plots
+211017-17:09:02,448 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.mcflirt&quot;.
+211017-17:09:02,451 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.smooth&quot; in &quot;/output/working_dir/preprocWF/smooth&quot;.
+211017-17:09:02,455 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;preprocWF.smooth&quot;.
+211017-17:09:02,466 nipype.workflow INFO:
+	 [Node] Running &quot;smooth&quot; (&quot;nipype.interfaces.fsl.maths.IsotropicSmooth&quot;), a CommandLine Interface with command:
+fslmaths /output/working_dir/preprocWF/mcflirt/sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz -s 1.69864 /output/working_dir/preprocWF/smooth/sub-01_ses-test_task-fingerfootlips_bold_mcf_smooth.nii.gz
+211017-17:09:12,962 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.smooth&quot;.
+211017-17:09:12,966 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.sinker&quot; in &quot;/output/working_dir/preprocWF/sinker&quot;.
+211017-17:09:12,978 nipype.workflow INFO:
+	 [Node] Running &quot;sinker&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211017-17:09:12,987 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.sinker&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f6f6efd79d0&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s take a look at the <code class="docutils literal notranslate"><span class="pre">output</span></code> folder:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> tree /output/working_dir/preprocWF_output
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/working_dir/preprocWF_output
+├── in_file
+│   └── sub-01_ses-test_task-fingerfootlips_bold_mcf_smooth.nii.gz
+├── mean_img
+│   └── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz_mean_reg.nii.gz
+└── par_file
+    └── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz.par
+
+3 directories, 3 files
 </pre></div>
 </div>
 </div>
@@ -861,11 +982,65 @@ where parts between paired [] are optional.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:09:13,789 nipype.workflow INFO:
+	 Workflow preprocWF settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:09:13,811 nipype.workflow INFO:
+	 Running serially.
+211017-17:09:13,812 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.selectfiles&quot; in &quot;/output/working_dir/preprocWF/selectfiles&quot;.
+211017-17:09:13,821 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:09:13,849 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.selectfiles&quot;.
+211017-17:09:13,851 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.mcflirt&quot; in &quot;/output/working_dir/preprocWF/mcflirt&quot;.
+211017-17:09:13,857 nipype.workflow INFO:
+	 [Node] Cached &quot;preprocWF.mcflirt&quot; - collecting precomputed outputs
+211017-17:09:13,857 nipype.workflow INFO:
+	 [Node] &quot;preprocWF.mcflirt&quot; found cached.
+211017-17:09:13,859 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.smooth&quot; in &quot;/output/working_dir/preprocWF/smooth&quot;.
+211017-17:09:13,866 nipype.workflow INFO:
+	 [Node] Cached &quot;preprocWF.smooth&quot; - collecting precomputed outputs
+211017-17:09:13,867 nipype.workflow INFO:
+	 [Node] &quot;preprocWF.smooth&quot; found cached.
+211017-17:09:13,869 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.sinker&quot; in &quot;/output/working_dir/preprocWF/sinker&quot;.
+211017-17:09:13,878 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;preprocWF.sinker&quot;.
+211017-17:09:13,883 nipype.workflow INFO:
+	 [Node] Running &quot;sinker&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211017-17:09:13,893 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.sinker&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f6f6acc31d0&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s take a look at the new output folder structure:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> tree /output/working_dir/preprocWF_output
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/working_dir/preprocWF_output
+├── in_file
+│   └── sub-01_ses-test_task-fingerfootlips_bold_mcf_smooth.nii.gz
+├── mean_img
+│   └── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz_mean_reg.nii.gz
+├── par_file
+│   └── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz.par
+└── preproc
+    ├── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz_mean_reg.nii.gz
+    ├── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz.par
+    └── sub-01_ses-test_task-fingerfootlips_bold_mcf_smooth.nii.gz
+
+4 directories, 6 files
 </pre></div>
 </div>
 </div>
@@ -889,11 +1064,83 @@ where parts between paired [] are optional.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:09:14,534 nipype.workflow INFO:
+	 Workflow preprocWF settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:09:14,545 nipype.workflow INFO:
+	 Running serially.
+211017-17:09:14,547 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.selectfiles&quot; in &quot;/output/working_dir/preprocWF/selectfiles&quot;.
+211017-17:09:14,557 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211017-17:09:14,564 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.selectfiles&quot;.
+211017-17:09:14,566 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.mcflirt&quot; in &quot;/output/working_dir/preprocWF/mcflirt&quot;.
+211017-17:09:14,576 nipype.workflow INFO:
+	 [Node] Cached &quot;preprocWF.mcflirt&quot; - collecting precomputed outputs
+211017-17:09:14,577 nipype.workflow INFO:
+	 [Node] &quot;preprocWF.mcflirt&quot; found cached.
+211017-17:09:14,578 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.smooth&quot; in &quot;/output/working_dir/preprocWF/smooth&quot;.
+211017-17:09:14,588 nipype.workflow INFO:
+	 [Node] Cached &quot;preprocWF.smooth&quot; - collecting precomputed outputs
+211017-17:09:14,590 nipype.workflow INFO:
+	 [Node] &quot;preprocWF.smooth&quot; found cached.
+211017-17:09:14,592 nipype.workflow INFO:
+	 [Node] Setting-up &quot;preprocWF.sinker&quot; in &quot;/output/working_dir/preprocWF/sinker&quot;.
+211017-17:09:14,607 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;preprocWF.sinker&quot;.
+211017-17:09:14,613 nipype.workflow INFO:
+	 [Node] Running &quot;sinker&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211017-17:09:14,615 nipype.interface INFO:
+	 sub: /output/working_dir/preprocWF_output/in_file/sub-01_ses-test_task-fingerfootlips_bold_mcf_smooth.nii.gz -&gt; /output/working_dir/preprocWF_output/in_file/sub-01_smooth.nii.gz
+211017-17:09:14,617 nipype.interface INFO:
+	 sub: /output/working_dir/preprocWF_output/preproc/sub-01_ses-test_task-fingerfootlips_bold_mcf_smooth.nii.gz -&gt; /output/working_dir/preprocWF_output/preproc/sub-01_smooth.nii.gz
+211017-17:09:14,620 nipype.interface INFO:
+	 sub: /output/working_dir/preprocWF_output/mean_img/sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz_mean_reg.nii.gz -&gt; /output/working_dir/preprocWF_output/mean_img/sub-01_mean.nii.gz
+211017-17:09:14,623 nipype.interface INFO:
+	 sub: /output/working_dir/preprocWF_output/par_file/sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz.par -&gt; /output/working_dir/preprocWF_output/par_file/sub-01.par
+211017-17:09:14,625 nipype.interface INFO:
+	 sub: /output/working_dir/preprocWF_output/preproc/sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz_mean_reg.nii.gz -&gt; /output/working_dir/preprocWF_output/preproc/sub-01_mean.nii.gz
+211017-17:09:14,628 nipype.interface INFO:
+	 sub: /output/working_dir/preprocWF_output/preproc/sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz.par -&gt; /output/working_dir/preprocWF_output/preproc/sub-01.par
+211017-17:09:14,635 nipype.workflow INFO:
+	 [Node] Finished &quot;preprocWF.sinker&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f6f6acd76d0&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now, let’s take a final look at the output folder:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> tree /output/working_dir/preprocWF_output
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/working_dir/preprocWF_output
+├── in_file
+│   ├── sub-01_ses-test_task-fingerfootlips_bold_mcf_smooth.nii.gz
+│   └── sub-01_smooth.nii.gz
+├── mean_img
+│   ├── sub-01_mean.nii.gz
+│   └── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz_mean_reg.nii.gz
+├── par_file
+│   ├── sub-01.par
+│   └── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz.par
+└── preproc
+    ├── sub-01_mean.nii.gz
+    ├── sub-01.par
+    ├── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz_mean_reg.nii.gz
+    ├── sub-01_ses-test_task-fingerfootlips_bold_mcf.nii.gz.par
+    ├── sub-01_ses-test_task-fingerfootlips_bold_mcf_smooth.nii.gz
+    └── sub-01_smooth.nii.gz
+
+4 directories, 12 files
 </pre></div>
 </div>
 </div>
@@ -944,11 +1191,46 @@ where parts between paired [] are optional.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:09:15,331 nipype.workflow INFO:
+	 Workflow ex1 settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:09:15,342 nipype.workflow INFO:
+	 Running serially.
+211017-17:09:15,343 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ex1.ex1_skullstrip&quot; in &quot;/output/working_dir/ex1/ex1_skullstrip&quot;.
+211017-17:09:15,357 nipype.workflow INFO:
+	 [Node] Running &quot;ex1_skullstrip&quot; (&quot;nipype.interfaces.fsl.preprocess.BET&quot;), a CommandLine Interface with command:
+bet /data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz /output/working_dir/ex1/ex1_skullstrip/sub-01_ses-test_T1w_brain.nii.gz -m
+211017-17:09:19,474 nipype.workflow INFO:
+	 [Node] Finished &quot;ex1.ex1_skullstrip&quot;.
+211017-17:09:19,476 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ex1.ex1_sinker&quot; in &quot;/output/working_dir/ex1/ex1_sinker&quot;.
+211017-17:09:19,484 nipype.workflow INFO:
+	 [Node] Running &quot;ex1_sinker&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211017-17:09:19,490 nipype.workflow INFO:
+	 [Node] Finished &quot;ex1.ex1_sinker&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f6f6ee9c2d0&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># and we can check our sinker directory</span>
 <span class="o">!</span> tree /output/working_dir/ex1_output
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/working_dir/ex1_output
+├── mask_file
+│   └── sub-01_ses-test_T1w_brain_mask.nii.gz
+└── out_file
+    └── sub-01_ses-test_T1w_brain.nii.gz
+
+2 directories, 2 files
 </pre></div>
 </div>
 </div>
@@ -963,11 +1245,50 @@ where parts between paired [] are optional.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:09:20,132 nipype.workflow INFO:
+	 Workflow ex1 settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:09:20,146 nipype.workflow INFO:
+	 Running serially.
+211017-17:09:20,147 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ex1.ex1_skullstrip&quot; in &quot;/output/working_dir/ex1/ex1_skullstrip&quot;.
+211017-17:09:20,153 nipype.workflow INFO:
+	 [Node] Cached &quot;ex1.ex1_skullstrip&quot; - collecting precomputed outputs
+211017-17:09:20,154 nipype.workflow INFO:
+	 [Node] &quot;ex1.ex1_skullstrip&quot; found cached.
+211017-17:09:20,157 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ex1.ex1_sinker&quot; in &quot;/output/working_dir/ex1/ex1_sinker&quot;.
+211017-17:09:20,161 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;ex1.ex1_sinker&quot;.
+211017-17:09:20,167 nipype.workflow INFO:
+	 [Node] Running &quot;ex1_sinker&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211017-17:09:20,174 nipype.workflow INFO:
+	 [Node] Finished &quot;ex1.ex1_sinker&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f6f6b34d610&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># and check the content of the output directory (you should see a new `bet` subdirectory with both files)</span>
 <span class="o">!</span> tree /output/working_dir/ex1_output
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/working_dir/ex1_output
+├── bet
+│   ├── sub-01_ses-test_T1w_brain_mask.nii.gz
+│   └── sub-01_ses-test_T1w_brain.nii.gz
+├── mask_file
+│   └── sub-01_ses-test_T1w_brain_mask.nii.gz
+└── out_file
+    └── sub-01_ses-test_T1w_brain.nii.gz
+
+3 directories, 4 files
 </pre></div>
 </div>
 </div>

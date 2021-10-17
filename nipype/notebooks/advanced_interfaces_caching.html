@@ -729,6 +729,17 @@ Class Docstring:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-16:39:18,275 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fcffb13c307a1ba8f12b17d543be7b0d&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/nipype_mem/nipype-interfaces-fsl-utils-Merge/fcffb13c307a1ba8f12b17d543be7b0d&quot;.
+211017-16:39:18,306 nipype.workflow INFO:
+	 [Node] Running &quot;fcffb13c307a1ba8f12b17d543be7b0d&quot; (&quot;nipype.interfaces.fsl.utils.Merge&quot;), a CommandLine Interface with command:
+fslmerge -t sub-01_ses-test_task-fingerfootlips_bold_merged.nii.gz /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz
+211017-16:39:28,363 nipype.workflow INFO:
+	 [Node] Finished &quot;fcffb13c307a1ba8f12b17d543be7b0d&quot;.
+</pre></div>
+</div>
+</div>
 </div>
 <p>The results are standard nipype nodes results. In particular, they expose an <code class="docutils literal notranslate"><span class="pre">outputs</span></code> attribute that carries all the outputs of the process, as specified by the docs.</p>
 <div class="cell docutils container">
@@ -737,11 +748,26 @@ Class Docstring:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/nipype_mem/nipype-interfaces-fsl-utils-Merge/fcffb13c307a1ba8f12b17d543be7b0d/sub-01_ses-test_task-fingerfootlips_bold_merged.nii.gz&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Finally, and most important, if the node is applied to the same input parameters, it is not computed, and the results are reloaded from the disk:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">fsl_merge</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">in_files</span><span class="o">=</span><span class="p">[</span><span class="n">filepath</span><span class="p">,</span> <span class="n">filepath</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-16:39:28,413 nipype.workflow INFO:
+	 [Node] Setting-up &quot;fcffb13c307a1ba8f12b17d543be7b0d&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/nipype_mem/nipype-interfaces-fsl-utils-Merge/fcffb13c307a1ba8f12b17d543be7b0d&quot;.
+211017-16:39:28,430 nipype.workflow INFO:
+	 [Node] Cached &quot;fcffb13c307a1ba8f12b17d543be7b0d&quot; - collecting precomputed outputs
+211017-16:39:28,432 nipype.workflow INFO:
+	 [Node] &quot;fcffb13c307a1ba8f12b17d543be7b0d&quot; found cached.
 </pre></div>
 </div>
 </div>

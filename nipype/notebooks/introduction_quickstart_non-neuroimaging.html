@@ -682,6 +682,23 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:54,305 nipype.workflow INFO:
+	 Workflow hello settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:07:54,339 nipype.workflow INFO:
+	 Running serially.
+211017-18:07:54,340 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/a_plus_b&quot;.
+211017-18:07:54,377 nipype.workflow INFO:
+	 [Node] Running &quot;a_plus_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:54,434 nipype.workflow INFO:
+	 [Node] Finished &quot;hello.a_plus_b&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sum = 4
+</pre></div>
+</div>
+</div>
 </div>
 <p>Creating a second node and connecting to the <code class="docutils literal notranslate"><span class="pre">hello</span></code> Workflow</p>
 <div class="cell docutils container">
@@ -703,11 +720,39 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:54,468 nipype.workflow INFO:
+	 Workflow hello settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:07:54,516 nipype.workflow INFO:
+	 Running serially.
+211017-18:07:54,518 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/a_plus_b&quot;.
+211017-18:07:54,526 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;hello.a_plus_b&quot;.
+211017-18:07:54,565 nipype.workflow INFO:
+	 [Node] Running &quot;a_plus_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:54,603 nipype.workflow INFO:
+	 [Node] Finished &quot;hello.a_plus_b&quot;.
+211017-18:07:54,605 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/concat_a_b&quot;.
+211017-18:07:54,640 nipype.workflow INFO:
+	 [Node] Running &quot;concat_a_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:54,698 nipype.workflow INFO:
+	 [Node] Finished &quot;hello.concat_a_b&quot;.
+[hello.a_plus_b, hello.concat_a_b]
+</pre></div>
+</div>
+</div>
 </div>
 <p>And we can check results of our Workflow, we should see a list:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">eg</span><span class="o">.</span><span class="n">nodes</span><span class="p">())[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>some_list = [4, 3]
 </pre></div>
 </div>
 </div>
@@ -734,11 +779,78 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:54,731 nipype.workflow INFO:
+	 Workflow hello settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:07:54,868 nipype.workflow INFO:
+	 Running serially.
+211017-18:07:54,869 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/a_plus_b&quot;.
+211017-18:07:54,907 nipype.workflow INFO:
+	 [Node] Cached &quot;hello.a_plus_b&quot; - collecting precomputed outputs
+211017-18:07:54,908 nipype.workflow INFO:
+	 [Node] &quot;hello.a_plus_b&quot; found cached.
+211017-18:07:54,910 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/concat_a_b&quot;.
+211017-18:07:54,922 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;hello.concat_a_b&quot;.
+211017-18:07:54,958 nipype.workflow INFO:
+	 [Node] Running &quot;concat_a_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:55,13 nipype.workflow INFO:
+	 [Node] Finished &quot;hello.concat_a_b&quot;.
+211017-18:07:55,14 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/add_1&quot;.
+211017-18:07:55,50 nipype.workflow INFO:
+	 [Node] Running &quot;add_1&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:55,55 nipype.workflow WARNING:
+	 Storing result file without outputs
+211017-18:07:55,60 nipype.workflow WARNING:
+	 [Node] Error on &quot;hello.add_1&quot; (/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/add_1)
+211017-18:07:55,74 nipype.workflow ERROR:
+	 Node add_1 failed to run on host a54b8d983419.
+211017-18:07:55,78 nipype.workflow ERROR:
+	 Saving crash info to /home/neuro/workshop_weizmann/workshop/nipype/notebooks/crash-20211017-180755-neuro-add_1-7b3ed9c1-2c8c-44b6-9693-65e906a76506.pklz
+Traceback (most recent call last):
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/plugins/linear.py&quot;, line 46, in run
+    node.run(updatehash=updatehash)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 516, in run
+    result = self._run_interface(execute=True)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 635, in _run_interface
+    return self._run_command(execute)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 741, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 419, in run
+    runtime = self._run_interface(runtime)
+  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/utility/wrappers.py&quot;, line 142, in _run_interface
+    out = function_handle(**args)
+  File &quot;&lt;string&gt;&quot;, line 2, in plus_one
+TypeError: can only concatenate list (not &quot;int&quot;) to list
+
+211017-18:07:55,86 nipype.workflow INFO:
+	 ***********************************
+211017-18:07:55,87 nipype.workflow ERROR:
+	 could not run node: hello.add_1
+211017-18:07:55,88 nipype.workflow INFO:
+	 crashfile: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/crash-20211017-180755-neuro-add_1-7b3ed9c1-2c8c-44b6-9693-65e906a76506.pklz
+211017-18:07:55,91 nipype.workflow INFO:
+	 ***********************************
+RuntimeError: Workflow did not execute cleanly. Check log for details
+</pre></div>
+</div>
+</div>
 </div>
 <p>This time the workflow didn’t execute cleanly and we got an error. We can use <code class="docutils literal notranslate"><span class="pre">nipypecli</span></code> to read the crashfile (note, that if you have multiple crashfiles in the directory you’ll have to provide a full name):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nipypecli crash crash*
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usage: nipypecli crash [OPTIONS] CRASHFILE
+Try &#39;nipypecli crash -h&#39; for help.
+
+Error: Got unexpected extra arguments (crash-20211017-171039-neuro-selectfiles-f56abef1-3008-4e84-941c-c2800895302b.txt crash-20211017-180755-neuro-add_1-7b3ed9c1-2c8c-44b6-9693-65e906a76506.pklz)
 </pre></div>
 </div>
 </div>
@@ -776,11 +888,53 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:56,314 nipype.workflow INFO:
+	 Workflow hello_mapnode settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:07:56,382 nipype.workflow INFO:
+	 Running serially.
+211017-18:07:56,383 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/a_plus_b&quot;.
+211017-18:07:56,405 nipype.workflow INFO:
+	 [Node] Running &quot;a_plus_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:56,448 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.a_plus_b&quot;.
+211017-18:07:56,449 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/concat_a_b&quot;.
+211017-18:07:56,476 nipype.workflow INFO:
+	 [Node] Cached &quot;hello.concat_a_b&quot; - collecting precomputed outputs
+211017-18:07:56,477 nipype.workflow INFO:
+	 [Node] &quot;hello.concat_a_b&quot; found cached.
+211017-18:07:56,479 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/add_1&quot;.
+211017-18:07:56,512 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/add_1/mapflow/_add_10&quot;.
+211017-18:07:56,538 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:56,577 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:07:56,585 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/add_1/mapflow/_add_11&quot;.
+211017-18:07:56,606 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:56,643 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:07:56,661 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+[hello_mapnode.a_plus_b, hello.concat_a_b, hello_mapnode.add_1]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now the workflow finished without problems, let’s see the results from <code class="docutils literal notranslate"><span class="pre">hello.add_1</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">eg</span><span class="o">.</span><span class="n">nodes</span><span class="p">())[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bunch(out=[5, 4])
 </pre></div>
 </div>
 </div>
@@ -796,6 +950,71 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:56,695 nipype.workflow INFO:
+	 Workflow hello_mapnode settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:07:56,742 nipype.workflow INFO:
+	 Running serially.
+211017-18:07:56,743 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/a_plus_b&quot;.
+211017-18:07:56,765 nipype.workflow INFO:
+	 [Node] Running &quot;a_plus_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:56,796 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.a_plus_b&quot;.
+211017-18:07:56,797 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/_a_2/concat_a_b&quot;.
+211017-18:07:56,827 nipype.workflow INFO:
+	 [Node] Running &quot;concat_a_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:56,864 nipype.workflow INFO:
+	 [Node] Finished &quot;hello.concat_a_b&quot;.
+211017-18:07:56,866 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/add_1&quot;.
+211017-18:07:56,894 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/add_1/mapflow/_add_10&quot;.
+211017-18:07:56,915 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:56,949 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:07:56,958 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/add_1/mapflow/_add_11&quot;.
+211017-18:07:56,981 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:57,16 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:07:57,34 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+211017-18:07:57,36 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/a_plus_b&quot;.
+211017-18:07:57,53 nipype.workflow INFO:
+	 [Node] Running &quot;a_plus_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:57,91 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.a_plus_b&quot;.
+211017-18:07:57,92 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/_a_1/concat_a_b&quot;.
+211017-18:07:57,117 nipype.workflow INFO:
+	 [Node] Running &quot;concat_a_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:57,148 nipype.workflow INFO:
+	 [Node] Finished &quot;hello.concat_a_b&quot;.
+211017-18:07:57,150 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/add_1&quot;.
+211017-18:07:57,181 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/add_1/mapflow/_add_10&quot;.
+211017-18:07:57,197 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:57,231 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:07:57,238 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/add_1/mapflow/_add_11&quot;.
+211017-18:07:57,256 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:57,296 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:07:57,309 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+[hello_mapnode.a_plus_b.aI.a0, hello.concat_a_b.a0, hello_mapnode.add_1.a0, hello_mapnode.a_plus_b.aI.a1, hello.concat_a_b.a1, hello_mapnode.add_1.a1]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now we have 6 nodes, we can check results for <code class="docutils literal notranslate"> <span class="pre">hello.add_1.a1</span></code></p>
 <div class="cell docutils container">
@@ -804,10 +1023,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bunch(out=[5, 4])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wf</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span><span class="n">graph2use</span><span class="o">=</span><span class="s1">&#39;exec&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:57,609 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/graph.png (graph2use=exec, simple_form=True).
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/graph.png&#39;
 </pre></div>
 </div>
 </div>
@@ -826,6 +1059,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/introduction_quickstart_non-neuroimaging_26_0.png" src="../../_images/introduction_quickstart_non-neuroimaging_26_0.png" />
+</div>
 </div>
 <p>And more detailed structure with all nodes:</p>
 <div class="cell docutils container">
@@ -833,6 +1069,9 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;hello_mapnode/graph_detailed.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/introduction_quickstart_non-neuroimaging_28_0.png" src="../../_images/introduction_quickstart_non-neuroimaging_28_0.png" />
 </div>
 </div>
 <p>We will introduce another iterables, for the concater Node:</p>
@@ -844,10 +1083,127 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:57,705 nipype.workflow INFO:
+	 Workflow hello_mapnode settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:07:57,801 nipype.workflow INFO:
+	 Running serially.
+211017-18:07:57,802 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/a_plus_b&quot;.
+211017-18:07:57,828 nipype.workflow INFO:
+	 [Node] Cached &quot;hello_mapnode.a_plus_b&quot; - collecting precomputed outputs
+211017-18:07:57,829 nipype.workflow INFO:
+	 [Node] &quot;hello_mapnode.a_plus_b&quot; found cached.
+211017-18:07:57,831 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/_a_2/_b_4/concat_a_b&quot;.
+211017-18:07:57,870 nipype.workflow INFO:
+	 [Node] Running &quot;concat_a_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:57,914 nipype.workflow INFO:
+	 [Node] Finished &quot;hello.concat_a_b&quot;.
+211017-18:07:57,915 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_4/add_1&quot;.
+211017-18:07:57,962 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_4/add_1/mapflow/_add_10&quot;.
+211017-18:07:57,989 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:58,39 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:07:58,49 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_4/add_1/mapflow/_add_11&quot;.
+211017-18:07:58,76 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:58,129 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:07:58,154 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+211017-18:07:58,156 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/_a_2/_b_3/concat_a_b&quot;.
+211017-18:07:58,199 nipype.workflow INFO:
+	 [Node] Running &quot;concat_a_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:58,246 nipype.workflow INFO:
+	 [Node] Finished &quot;hello.concat_a_b&quot;.
+211017-18:07:58,247 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_3/add_1&quot;.
+211017-18:07:58,297 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_3/add_1/mapflow/_add_10&quot;.
+211017-18:07:58,333 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:58,373 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:07:58,390 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_3/add_1/mapflow/_add_11&quot;.
+211017-18:07:58,521 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:58,592 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:07:58,617 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+211017-18:07:58,619 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/a_plus_b&quot;.
+211017-18:07:58,642 nipype.workflow INFO:
+	 [Node] Cached &quot;hello_mapnode.a_plus_b&quot; - collecting precomputed outputs
+211017-18:07:58,643 nipype.workflow INFO:
+	 [Node] &quot;hello_mapnode.a_plus_b&quot; found cached.
+211017-18:07:58,644 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/_a_1/_b_4/concat_a_b&quot;.
+211017-18:07:58,687 nipype.workflow INFO:
+	 [Node] Running &quot;concat_a_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:58,739 nipype.workflow INFO:
+	 [Node] Finished &quot;hello.concat_a_b&quot;.
+211017-18:07:58,740 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_4/add_1&quot;.
+211017-18:07:58,789 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_4/add_1/mapflow/_add_10&quot;.
+211017-18:07:58,823 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:58,869 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:07:58,881 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_4/add_1/mapflow/_add_11&quot;.
+211017-18:07:58,925 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:58,988 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:07:59,17 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+211017-18:07:59,18 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/_a_1/_b_3/concat_a_b&quot;.
+211017-18:07:59,58 nipype.workflow INFO:
+	 [Node] Running &quot;concat_a_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:59,109 nipype.workflow INFO:
+	 [Node] Finished &quot;hello.concat_a_b&quot;.
+211017-18:07:59,110 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_3/add_1&quot;.
+211017-18:07:59,160 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_3/add_1/mapflow/_add_10&quot;.
+211017-18:07:59,197 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:59,258 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:07:59,272 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_3/add_1/mapflow/_add_11&quot;.
+211017-18:07:59,305 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:07:59,360 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:07:59,385 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wf</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span><span class="n">graph2use</span><span class="o">=</span><span class="s1">&#39;exec&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:59,688 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/graph.png (graph2use=exec, simple_form=True).
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/graph.png&#39;
 </pre></div>
 </div>
 </div>
@@ -857,6 +1213,9 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;hello_mapnode/graph_detailed.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/introduction_quickstart_non-neuroimaging_32_0.png" src="../../_images/introduction_quickstart_non-neuroimaging_32_0.png" />
 </div>
 </div>
 <p>Now we will introduce JoinNode that allows us to merge results together:</p>
@@ -882,11 +1241,165 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:07:59,729 nipype.workflow INFO:
+	 Workflow hello_mapnode settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:07:59,859 nipype.workflow INFO:
+	 Running serially.
+211017-18:07:59,861 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/a_plus_b&quot;.
+211017-18:07:59,884 nipype.workflow INFO:
+	 [Node] Cached &quot;hello_mapnode.a_plus_b&quot; - collecting precomputed outputs
+211017-18:07:59,886 nipype.workflow INFO:
+	 [Node] &quot;hello_mapnode.a_plus_b&quot; found cached.
+211017-18:07:59,887 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/_a_2/_b_4/concat_a_b&quot;.
+211017-18:07:59,925 nipype.workflow INFO:
+	 [Node] Cached &quot;hello.concat_a_b&quot; - collecting precomputed outputs
+211017-18:07:59,926 nipype.workflow INFO:
+	 [Node] &quot;hello.concat_a_b&quot; found cached.
+211017-18:07:59,929 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_4/add_1&quot;.
+211017-18:07:59,963 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;hello_mapnode.add_1&quot;.
+211017-18:08:00,41 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_4/add_1/mapflow/_add_10&quot;.
+211017-18:08:00,70 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;_add_10&quot;.
+211017-18:08:00,127 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:00,179 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:08:00,191 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_4/add_1/mapflow/_add_11&quot;.
+211017-18:08:00,202 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;_add_11&quot;.
+211017-18:08:00,248 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:00,299 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:08:00,321 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+211017-18:08:00,324 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/_a_2/_b_3/concat_a_b&quot;.
+211017-18:08:00,365 nipype.workflow INFO:
+	 [Node] Cached &quot;hello.concat_a_b&quot; - collecting precomputed outputs
+211017-18:08:00,366 nipype.workflow INFO:
+	 [Node] &quot;hello.concat_a_b&quot; found cached.
+211017-18:08:00,368 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_3/add_1&quot;.
+211017-18:08:00,410 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;hello_mapnode.add_1&quot;.
+211017-18:08:00,464 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_3/add_1/mapflow/_add_10&quot;.
+211017-18:08:00,473 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;_add_10&quot;.
+211017-18:08:00,538 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:00,609 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:08:00,634 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_2/_b_3/add_1/mapflow/_add_11&quot;.
+211017-18:08:00,655 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;_add_11&quot;.
+211017-18:08:00,783 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:00,838 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:08:00,866 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+211017-18:08:00,868 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/a_plus_b&quot;.
+211017-18:08:00,903 nipype.workflow INFO:
+	 [Node] Cached &quot;hello_mapnode.a_plus_b&quot; - collecting precomputed outputs
+211017-18:08:00,904 nipype.workflow INFO:
+	 [Node] &quot;hello_mapnode.a_plus_b&quot; found cached.
+211017-18:08:00,905 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/_a_1/_b_4/concat_a_b&quot;.
+211017-18:08:00,963 nipype.workflow INFO:
+	 [Node] Cached &quot;hello.concat_a_b&quot; - collecting precomputed outputs
+211017-18:08:00,965 nipype.workflow INFO:
+	 [Node] &quot;hello.concat_a_b&quot; found cached.
+211017-18:08:00,966 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_4/add_1&quot;.
+211017-18:08:01,7 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;hello_mapnode.add_1&quot;.
+211017-18:08:01,88 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_4/add_1/mapflow/_add_10&quot;.
+211017-18:08:01,104 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;_add_10&quot;.
+211017-18:08:01,180 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:01,265 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:08:01,280 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_4/add_1/mapflow/_add_11&quot;.
+211017-18:08:01,297 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;_add_11&quot;.
+211017-18:08:01,369 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:01,452 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:08:01,481 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+211017-18:08:01,483 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.join_scale_data&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_b_4/join_scale_data&quot;.
+211017-18:08:01,551 nipype.workflow INFO:
+	 [Node] Running &quot;join_scale_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:01,609 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.join_scale_data&quot;.
+211017-18:08:01,610 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello/_a_1/_b_3/concat_a_b&quot;.
+211017-18:08:01,658 nipype.workflow INFO:
+	 [Node] Cached &quot;hello.concat_a_b&quot; - collecting precomputed outputs
+211017-18:08:01,658 nipype.workflow INFO:
+	 [Node] &quot;hello.concat_a_b&quot; found cached.
+211017-18:08:01,660 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.add_1&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_3/add_1&quot;.
+211017-18:08:01,688 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;hello_mapnode.add_1&quot;.
+211017-18:08:01,750 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_10&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_3/add_1/mapflow/_add_10&quot;.
+211017-18:08:01,759 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;_add_10&quot;.
+211017-18:08:01,833 nipype.workflow INFO:
+	 [Node] Running &quot;_add_10&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:01,900 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_10&quot;.
+211017-18:08:01,912 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_add_11&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_a_1/_b_3/add_1/mapflow/_add_11&quot;.
+211017-18:08:01,919 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;_add_11&quot;.
+211017-18:08:01,976 nipype.workflow INFO:
+	 [Node] Running &quot;_add_11&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:02,33 nipype.workflow INFO:
+	 [Node] Finished &quot;_add_11&quot;.
+211017-18:08:02,59 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.add_1&quot;.
+211017-18:08:02,61 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.join_scale_data&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/_b_3/join_scale_data&quot;.
+211017-18:08:02,160 nipype.workflow INFO:
+	 [Node] Running &quot;join_scale_data&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:08:02,211 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.join_scale_data&quot;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NodeView((hello_mapnode.join_scale_data.a0, hello_mapnode.join_scale_data.a1, hello_mapnode.a_plus_b.bI.b0, hello.concat_a_b.aI.a0.b0, hello_mapnode.add_1.a0.b0, hello.concat_a_b.aI.a1.b0, hello_mapnode.add_1.a1.b0, hello_mapnode.a_plus_b.bI.b1, hello.concat_a_b.aI.a0.b1, hello_mapnode.add_1.a0.b1, hello.concat_a_b.aI.a1.b1, hello_mapnode.add_1.a1.b1))
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s check the output of <code class="docutils literal notranslate"><span class="pre">hello.join_scale_data.a0</span></code> node:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">eg</span><span class="o">.</span><span class="n">nodes</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">outputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data_scaled = [[4000, 4000], [5000, 4000]]
 </pre></div>
 </div>
 </div>
@@ -897,12 +1410,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:08:02,553 nipype.workflow INFO:
+	 Generated workflow graph: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/graph.png (graph2use=exec, simple_form=True).
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/hello_mapnode/graph.png&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;hello_mapnode/graph.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/introduction_quickstart_non-neuroimaging_38_0.png" src="../../_images/introduction_quickstart_non-neuroimaging_38_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -911,10 +1436,81 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/introduction_quickstart_non-neuroimaging_39_0.png" src="../../_images/introduction_quickstart_non-neuroimaging_39_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> eg = wf.run(plugin=&#39;MultiProc&#39;, plugin_args={&#39;n_procs&#39;: 2})
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:08:02,625 nipype.workflow INFO:
+	 Workflow hello_mapnode settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:08:02,754 nipype.workflow INFO:
+	 Running in parallel.
+211017-18:08:02,761 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:02,811 nipype.workflow INFO:
+	 [Job 0] Cached (hello_mapnode.a_plus_b).
+211017-18:08:02,828 nipype.workflow INFO:
+	 [Job 5] Cached (hello_mapnode.a_plus_b).
+211017-18:08:04,763 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 4 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:04,810 nipype.workflow INFO:
+	 [Job 1] Cached (hello.concat_a_b).
+211017-18:08:04,834 nipype.workflow INFO:
+	 [Job 3] Cached (hello.concat_a_b).
+211017-18:08:06,856 nipype.workflow INFO:
+	 [Job 6] Cached (hello.concat_a_b).
+211017-18:08:06,890 nipype.workflow INFO:
+	 [Job 9] Cached (hello.concat_a_b).
+211017-18:08:08,773 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:08,887 nipype.workflow INFO:
+	 [Job 12] Cached (_add_10).
+211017-18:08:08,921 nipype.workflow INFO:
+	 [Job 13] Cached (_add_11).
+211017-18:08:10,774 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 7 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:10,821 nipype.workflow INFO:
+	 [Job 2] Cached (hello_mapnode.add_1).
+211017-18:08:10,868 nipype.workflow INFO:
+	 [Job 14] Cached (_add_10).
+211017-18:08:12,778 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 5 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:12,825 nipype.workflow INFO:
+	 [Job 15] Cached (_add_11).
+211017-18:08:12,839 nipype.workflow INFO:
+	 [Job 16] Cached (_add_10).
+211017-18:08:14,779 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 4 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:14,812 nipype.workflow INFO:
+	 [Job 4] Cached (hello_mapnode.add_1).
+211017-18:08:14,824 nipype.workflow INFO:
+	 [Job 17] Cached (_add_11).
+211017-18:08:16,784 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:16,830 nipype.workflow INFO:
+	 [Job 7] Cached (hello_mapnode.add_1).
+211017-18:08:16,845 nipype.workflow INFO:
+	 [Job 18] Cached (_add_10).
+211017-18:08:18,792 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:18,859 nipype.workflow INFO:
+	 [Job 8] Cached (hello_mapnode.join_scale_data).
+211017-18:08:18,874 nipype.workflow INFO:
+	 [Job 19] Cached (_add_11).
+211017-18:08:20,792 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:20,825 nipype.workflow INFO:
+	 [Job 10] Cached (hello_mapnode.add_1).
+211017-18:08:22,847 nipype.workflow INFO:
+	 [Job 11] Cached (hello_mapnode.join_scale_data).
+CPU times: user 516 ms, sys: 52.4 ms, total: 568 ms
+Wall time: 22.2 s
 </pre></div>
 </div>
 </div>
@@ -929,6 +1525,40 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> eg = wf.run(plugin=&#39;MultiProc&#39;, plugin_args={&#39;n_procs&#39;: 2})
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:08:24,818 nipype.workflow INFO:
+	 Workflow hello_mapnode settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-18:08:24,864 nipype.workflow INFO:
+	 Running in parallel.
+211017-18:08:24,868 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:24,915 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/alt/hello_mapnode/_a_2/a_plus_b&quot;.
+211017-18:08:24,919 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello_mapnode.a_plus_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/alt/hello_mapnode/_a_1/a_plus_b&quot;.
+211017-18:08:24,960 nipype.workflow INFO:
+	 [Node] Running &quot;a_plus_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:24,960 nipype.workflow INFO:
+	 [Node] Running &quot;a_plus_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-18:08:25,18 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.a_plus_b&quot;.
+211017-18:08:25,18 nipype.workflow INFO:
+	 [Node] Finished &quot;hello_mapnode.a_plus_b&quot;.
+211017-18:08:26,871 nipype.workflow INFO:
+	 [Job 0] Completed (hello_mapnode.a_plus_b).
+211017-18:08:26,874 nipype.workflow INFO:
+	 [Job 5] Completed (hello_mapnode.a_plus_b).
+211017-18:08:26,878 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 4 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 2/2.
+211017-18:08:26,951 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/alt/hello/_a_2/_b_4/concat_a_b&quot;.
+211017-18:08:26,951 nipype.workflow INFO:
+	 [Node] Setting-up &quot;hello.concat_a_b&quot; in &quot;/home/neuro/workshop_weizmann/workshop/nipype/notebooks/alt/hello/_a_2/_b_3/concat_a_b&quot;.
+211017-18:08:26,995 nipype.workflow INFO:
+	 [Node] Running &quot;concat_a_b&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
 </pre></div>
 </div>
 </div>

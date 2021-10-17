@@ -714,11 +714,117 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:16:02,914 nipype.workflow INFO:
+	 Generated workflow graph: /output/susan_smooth/graph.png (graph2use=colored, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/basic_import_workflows_9_1.png" src="../../_images/basic_import_workflows_9_1.png" />
+</div>
 </div>
 <p>And we’re ready to go:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smoothwf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:16:02,971 nipype.workflow INFO:
+	 Workflow susan_smooth settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:16:02,982 nipype.workflow INFO:
+	 Running in parallel.
+211017-17:16:02,991 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:16:03,146 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susan_smooth.median&quot; in &quot;/output/susan_smooth/median&quot;.
+211017-17:16:03,141 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susan_smooth.mask&quot; in &quot;/output/susan_smooth/mask&quot;.
+211017-17:16:03,168 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_median0&quot; in &quot;/output/susan_smooth/median/mapflow/_median0&quot;.
+211017-17:16:03,171 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask0&quot; in &quot;/output/susan_smooth/mask/mapflow/_mask0&quot;.
+211017-17:16:03,180 nipype.workflow INFO:
+	 [Node] Running &quot;_median0&quot; (&quot;nipype.interfaces.fsl.utils.ImageStats&quot;), a CommandLine Interface with command:
+fslstats /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz -k /output/sub-01_ses-test_task-fingerfootlips_mask.nii.gz -p 50 
+211017-17:16:03,183 nipype.workflow INFO:
+	 [Node] Running &quot;_mask0&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz -mas /output/sub-01_ses-test_task-fingerfootlips_mask.nii.gz /output/susan_smooth/mask/mapflow/_mask0/sub-01_ses-test_task-fingerfootlips_bold_mask.nii.gz
+211017-17:16:04,279 nipype.workflow INFO:
+	 [Node] Finished &quot;_median0&quot;.
+211017-17:16:04,285 nipype.workflow INFO:
+	 [Node] Finished &quot;susan_smooth.median&quot;.
+211017-17:16:04,990 nipype.workflow INFO:
+	 [Job 2] Completed (susan_smooth.median).
+211017-17:16:04,994 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 3/4.
+                     Currently running:
+                       * susan_smooth.mask
+211017-17:16:05,1 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask0&quot;.
+211017-17:16:05,5 nipype.workflow INFO:
+	 [Node] Finished &quot;susan_smooth.mask&quot;.
+211017-17:16:06,992 nipype.workflow INFO:
+	 [Job 0] Completed (susan_smooth.mask).
+211017-17:16:06,997 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:16:07,107 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susan_smooth.meanfunc2&quot; in &quot;/output/susan_smooth/meanfunc2&quot;.
+211017-17:16:07,126 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_meanfunc20&quot; in &quot;/output/susan_smooth/meanfunc2/mapflow/_meanfunc20&quot;.
+211017-17:16:07,138 nipype.workflow INFO:
+	 [Node] Running &quot;_meanfunc20&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/susan_smooth/mask/mapflow/_mask0/sub-01_ses-test_task-fingerfootlips_bold_mask.nii.gz -Tmean /output/susan_smooth/meanfunc2/mapflow/_meanfunc20/sub-01_ses-test_task-fingerfootlips_bold_mask_mean.nii.gz
+211017-17:16:07,916 nipype.workflow INFO:
+	 [Node] Finished &quot;_meanfunc20&quot;.
+211017-17:16:07,921 nipype.workflow INFO:
+	 [Node] Finished &quot;susan_smooth.meanfunc2&quot;.
+211017-17:16:08,997 nipype.workflow INFO:
+	 [Job 1] Completed (susan_smooth.meanfunc2).
+211017-17:16:09,2 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:16:09,105 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susan_smooth.merge&quot; in &quot;/output/susan_smooth/merge&quot;.
+211017-17:16:09,118 nipype.workflow INFO:
+	 [Node] Running &quot;merge&quot; (&quot;nipype.interfaces.utility.base.Merge&quot;)
+211017-17:16:09,132 nipype.workflow INFO:
+	 [Node] Finished &quot;susan_smooth.merge&quot;.
+211017-17:16:10,999 nipype.workflow INFO:
+	 [Job 3] Completed (susan_smooth.merge).
+211017-17:16:11,3 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:16:11,104 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susan_smooth.multi_inputs&quot; in &quot;/output/susan_smooth/multi_inputs&quot;.
+211017-17:16:11,115 nipype.workflow INFO:
+	 [Node] Running &quot;multi_inputs&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:16:11,129 nipype.workflow INFO:
+	 [Node] Finished &quot;susan_smooth.multi_inputs&quot;.
+211017-17:16:13,3 nipype.workflow INFO:
+	 [Job 4] Completed (susan_smooth.multi_inputs).
+211017-17:16:13,8 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:16:13,112 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susan_smooth.smooth&quot; in &quot;/output/susan_smooth/smooth&quot;.
+211017-17:16:13,122 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_smooth0&quot; in &quot;/output/susan_smooth/smooth/mapflow/_smooth0&quot;.
+211017-17:16:13,133 nipype.workflow INFO:
+	 [Node] Running &quot;_smooth0&quot; (&quot;nipype.interfaces.fsl.preprocess.SUSAN&quot;), a CommandLine Interface with command:
+susan /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz 984.0000000000 1.6986436006 3 1 1 /output/susan_smooth/meanfunc2/mapflow/_meanfunc20/sub-01_ses-test_task-fingerfootlips_bold_mask_mean.nii.gz 984.0000000000 /output/susan_smooth/smooth/mapflow/_smooth0/sub-01_ses-test_task-fingerfootlips_bold_smooth.nii.gz
+211017-17:16:15,6 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 3/4.
+                     Currently running:
+                       * susan_smooth.smooth
+211017-17:16:43,216 nipype.workflow INFO:
+	 [Node] Finished &quot;_smooth0&quot;.
+211017-17:16:43,220 nipype.workflow INFO:
+	 [Node] Finished &quot;susan_smooth.smooth&quot;.
+211017-17:16:45,7 nipype.workflow INFO:
+	 [Job 5] Completed (susan_smooth.smooth).
+211017-17:16:45,9 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7fc973521410&gt;
 </pre></div>
 </div>
 </div>
@@ -752,6 +858,10 @@ fslmaths /output/susan_smooth/smooth/mapflow/_smooth0/sub-01_ses-test_task-finge
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/basic_import_workflows_15_0.png" src="../../_images/basic_import_workflows_15_0.png" />
+<img alt="../../_images/basic_import_workflows_15_1.png" src="../../_images/basic_import_workflows_15_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="inspect-inputs-and-outputs-of-a-loaded-or-created-workflow">
@@ -764,11 +874,115 @@ fslmaths /output/susan_smooth/smooth/mapflow/_smooth0/sub-01_ses-test_task-finge
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inputnode = 
+fwhm = 4
+in_files = /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz
+mask_file = /output/sub-01_ses-test_task-fingerfootlips_mask.nii.gz
+
+mask = 
+args = &lt;undefined&gt;
+environ = {&#39;FSLOUTPUTTYPE&#39;: &#39;NIFTI_GZ&#39;}
+mask_file = &lt;undefined&gt;
+op_string = -mas
+out_data_type = &lt;undefined&gt;
+out_file = &lt;undefined&gt;
+output_type = NIFTI_GZ
+suffix = _mask
+
+meanfunc2 = 
+args = &lt;undefined&gt;
+environ = {&#39;FSLOUTPUTTYPE&#39;: &#39;NIFTI_GZ&#39;}
+in_file2 = &lt;undefined&gt;
+mask_file = &lt;undefined&gt;
+op_string = -Tmean
+out_data_type = &lt;undefined&gt;
+out_file = &lt;undefined&gt;
+output_type = NIFTI_GZ
+suffix = _mean
+
+median = 
+args = &lt;undefined&gt;
+environ = {&#39;FSLOUTPUTTYPE&#39;: &#39;NIFTI_GZ&#39;}
+index_mask_file = &lt;undefined&gt;
+op_string = -k %s -p 50
+output_type = NIFTI_GZ
+split_4d = &lt;undefined&gt;
+
+merge = 
+axis = hstack
+no_flatten = False
+ravel_inputs = False
+
+multi_inputs = 
+function_str = def cartesian_product(fwhms, in_files, usans, btthresh):
+    from nipype.utils.filemanip import ensure_list
+    # ensure all inputs are lists
+    in_files = ensure_list(in_files)
+    fwhms = [fwhms] if isinstance(fwhms, (int, float)) else fwhms
+    # create cartesian product lists (s_&lt;name&gt; = single element of list)
+    cart_in_file = [
+        s_in_file for s_in_file in in_files for s_fwhm in fwhms
+    ]
+    cart_fwhm = [s_fwhm for s_in_file in in_files for s_fwhm in fwhms]
+    cart_usans = [s_usans for s_usans in usans for s_fwhm in fwhms]
+    cart_btthresh = [
+        s_btthresh for s_btthresh in btthresh for s_fwhm in fwhms
+    ]
+
+    return cart_in_file, cart_fwhm, cart_usans, cart_btthresh
+
+
+outputnode = 
+
+
+smooth = 
+args = &lt;undefined&gt;
+dimension = 3
+environ = {&#39;FSLOUTPUTTYPE&#39;: &#39;NIFTI_GZ&#39;}
+out_file = &lt;undefined&gt;
+output_type = NIFTI_GZ
+use_median = 1
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show all possible outputs</span>
 <span class="n">smoothwf</span><span class="o">.</span><span class="n">_get_outputs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inputnode = 
+fwhm = None
+in_files = None
+mask_file = None
+
+mask = 
+out_file = None
+
+meanfunc2 = 
+out_file = None
+
+median = 
+out_stat = None
+
+merge = 
+out = None
+
+multi_inputs = 
+cart_btthresh = None
+cart_fwhm = None
+cart_in_file = None
+cart_usans = None
+
+outputnode = 
+smoothed_files = None
+
+smooth = 
+smoothed_file = None
 </pre></div>
 </div>
 </div>
@@ -780,6 +994,11 @@ fslmaths /output/susan_smooth/smooth/mapflow/_smooth0/sub-01_ses-test_task-finge
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">smoothwf</span><span class="o">.</span><span class="n">list_node_names</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;inputnode&#39;, &#39;mask&#39;, &#39;meanfunc2&#39;, &#39;median&#39;, &#39;merge&#39;, &#39;multi_inputs&#39;, &#39;outputnode&#39;, &#39;smooth&#39;]
 </pre></div>
 </div>
 </div>
@@ -804,6 +1023,97 @@ fslmaths /output/susan_smooth/smooth/mapflow/_smooth0/sub-01_ses-test_task-finge
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smoothwf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-17:16:49,356 nipype.workflow INFO:
+	 Workflow susan_smooth settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211017-17:16:49,364 nipype.workflow INFO:
+	 Running in parallel.
+211017-17:16:49,367 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:16:49,448 nipype.workflow INFO:
+	 [Job 0] Cached (susan_smooth.mask).
+211017-17:16:49,455 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;susan_smooth.median&quot;.
+211017-17:16:49,502 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susan_smooth.median&quot; in &quot;/output/susan_smooth/median&quot;.
+211017-17:16:49,514 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;susan_smooth.median&quot;.
+211017-17:16:49,522 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_median0&quot; in &quot;/output/susan_smooth/median/mapflow/_median0&quot;.
+211017-17:16:49,526 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;_median0&quot;.
+211017-17:16:49,535 nipype.workflow INFO:
+	 [Node] Running &quot;_median0&quot; (&quot;nipype.interfaces.fsl.utils.ImageStats&quot;), a CommandLine Interface with command:
+fslstats /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz -k /output/sub-01_ses-test_task-fingerfootlips_mask.nii.gz -p 99 
+211017-17:16:50,624 nipype.workflow INFO:
+	 [Node] Finished &quot;_median0&quot;.
+211017-17:16:50,630 nipype.workflow INFO:
+	 [Node] Finished &quot;susan_smooth.median&quot;.
+211017-17:16:51,375 nipype.workflow INFO:
+	 [Job 2] Completed (susan_smooth.median).
+211017-17:16:51,380 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:16:51,503 nipype.workflow INFO:
+	 [Job 1] Cached (susan_smooth.meanfunc2).
+211017-17:16:53,457 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;susan_smooth.merge&quot;.
+211017-17:16:53,463 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susan_smooth.merge&quot; in &quot;/output/susan_smooth/merge&quot;.
+211017-17:16:53,470 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;susan_smooth.merge&quot;.
+211017-17:16:53,481 nipype.workflow INFO:
+	 [Node] Running &quot;merge&quot; (&quot;nipype.interfaces.utility.base.Merge&quot;)
+211017-17:16:53,496 nipype.workflow INFO:
+	 [Node] Finished &quot;susan_smooth.merge&quot;.
+211017-17:16:55,378 nipype.workflow INFO:
+	 [Job 3] Completed (susan_smooth.merge).
+211017-17:16:55,383 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:16:55,481 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;susan_smooth.multi_inputs&quot;.
+211017-17:16:55,487 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susan_smooth.multi_inputs&quot; in &quot;/output/susan_smooth/multi_inputs&quot;.
+211017-17:16:55,493 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;susan_smooth.multi_inputs&quot;.
+211017-17:16:55,506 nipype.workflow INFO:
+	 [Node] Running &quot;multi_inputs&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211017-17:16:55,522 nipype.workflow INFO:
+	 [Node] Finished &quot;susan_smooth.multi_inputs&quot;.
+211017-17:16:57,381 nipype.workflow INFO:
+	 [Job 4] Completed (susan_smooth.multi_inputs).
+211017-17:16:57,384 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+211017-17:16:57,490 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;susan_smooth.smooth&quot;.
+211017-17:16:57,496 nipype.workflow INFO:
+	 [Node] Setting-up &quot;susan_smooth.smooth&quot; in &quot;/output/susan_smooth/smooth&quot;.
+211017-17:16:57,503 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;susan_smooth.smooth&quot;.
+211017-17:16:57,516 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_smooth0&quot; in &quot;/output/susan_smooth/smooth/mapflow/_smooth0&quot;.
+211017-17:16:57,525 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;_smooth0&quot;.
+211017-17:16:57,543 nipype.workflow INFO:
+	 [Node] Running &quot;_smooth0&quot; (&quot;nipype.interfaces.fsl.preprocess.SUSAN&quot;), a CommandLine Interface with command:
+susan /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz 1428.0000000000 1.6986436006 3 1 1 /output/susan_smooth/meanfunc2/mapflow/_meanfunc20/sub-01_ses-test_task-fingerfootlips_bold_mask_mean.nii.gz 1428.0000000000 /output/susan_smooth/smooth/mapflow/_smooth0/sub-01_ses-test_task-fingerfootlips_bold_smooth.nii.gz
+211017-17:16:59,382 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 3/4.
+                     Currently running:
+                       * susan_smooth.smooth
+211017-17:17:28,404 nipype.workflow INFO:
+	 [Node] Finished &quot;_smooth0&quot;.
+211017-17:17:28,409 nipype.workflow INFO:
+	 [Node] Finished &quot;susan_smooth.smooth&quot;.
+211017-17:17:29,384 nipype.workflow INFO:
+	 [Job 5] Completed (susan_smooth.smooth).
+211017-17:17:29,388 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7fc97131d690&gt;
 </pre></div>
 </div>
 </div>
@@ -834,6 +1144,13 @@ fslmaths /output/susan_smooth/smooth/mapflow/_smooth0/sub-01_ses-test_task-finge
     <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.ZSlicer at 0x7fc9714dfd50&gt;
+</pre></div>
+</div>
+<img alt="../../_images/basic_import_workflows_30_1.png" src="../../_images/basic_import_workflows_30_1.png" />
+<img alt="../../_images/basic_import_workflows_30_2.png" src="../../_images/basic_import_workflows_30_2.png" />
 </div>
 </div>
 </div>
