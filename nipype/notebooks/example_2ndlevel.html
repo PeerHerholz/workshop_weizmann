@@ -850,6 +850,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:45:20,987 nipype.workflow INFO:
+	 Generated workflow graph: /output/workingdir/spm_l2analysis/graph.png (graph2use=colored, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/example_2ndlevel_12_1.png" src="../../_images/example_2ndlevel_12_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="run-the-workflow-spm12">
@@ -858,6 +865,993 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l2analysis</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:45:23,614 nipype.workflow INFO:
+	 Workflow spm_l2analysis settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211018-12:45:23,685 nipype.workflow INFO:
+	 Running in parallel.
+211018-12:45:23,690 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 15 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:45:23,799 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/selectfiles&quot;.
+211018-12:45:23,799 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/selectfiles&quot;.
+211018-12:45:23,798 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/selectfiles&quot;.
+211018-12:45:23,798 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/selectfiles&quot;.
+211018-12:45:23,808 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:23,808 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:23,814 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:23,810 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:23,823 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:23,823 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:23,826 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:23,830 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:25,700 nipype.workflow INFO:
+	 [Job 0] Completed (spm_l2analysis.selectfiles).
+211018-12:45:25,703 nipype.workflow INFO:
+	 [Job 1] Completed (spm_l2analysis.selectfiles).
+211018-12:45:25,705 nipype.workflow INFO:
+	 [Job 2] Completed (spm_l2analysis.selectfiles).
+211018-12:45:25,707 nipype.workflow INFO:
+	 [Job 3] Completed (spm_l2analysis.selectfiles).
+211018-12:45:25,710 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 11 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:45:25,877 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/selectfiles&quot;.
+211018-12:45:25,880 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/selectfiles&quot;.
+211018-12:45:25,881 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/selectfiles&quot;.
+211018-12:45:25,881 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/selectfiles&quot;.
+211018-12:45:25,891 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:25,891 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:25,900 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:25,900 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:25,928 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:25,928 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:25,929 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:25,932 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:27,699 nipype.workflow INFO:
+	 [Job 4] Completed (spm_l2analysis.selectfiles).
+211018-12:45:27,701 nipype.workflow INFO:
+	 [Job 5] Completed (spm_l2analysis.selectfiles).
+211018-12:45:27,703 nipype.workflow INFO:
+	 [Job 6] Completed (spm_l2analysis.selectfiles).
+211018-12:45:27,706 nipype.workflow INFO:
+	 [Job 7] Completed (spm_l2analysis.selectfiles).
+211018-12:45:27,710 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 7 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:45:27,784 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/selectfiles&quot;.
+211018-12:45:27,782 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/selectfiles&quot;.
+211018-12:45:27,784 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/selectfiles&quot;.
+211018-12:45:27,784 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/selectfiles&quot;.
+211018-12:45:27,791 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:27,792 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:27,791 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:27,798 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:27,808 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:27,808 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:27,808 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:27,818 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:29,700 nipype.workflow INFO:
+	 [Job 8] Completed (spm_l2analysis.selectfiles).
+211018-12:45:29,702 nipype.workflow INFO:
+	 [Job 9] Completed (spm_l2analysis.selectfiles).
+211018-12:45:29,704 nipype.workflow INFO:
+	 [Job 10] Completed (spm_l2analysis.selectfiles).
+211018-12:45:29,706 nipype.workflow INFO:
+	 [Job 11] Completed (spm_l2analysis.selectfiles).
+211018-12:45:29,711 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:45:29,789 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/selectfiles&quot;.
+211018-12:45:29,790 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.selectfiles&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/selectfiles&quot;.
+211018-12:45:29,791 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.gunzip&quot; in &quot;/output/workingdir/spm_l2analysis/gunzip&quot;.
+211018-12:45:29,796 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:29,796 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:45:29,800 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-12:45:29,808 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:29,808 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.selectfiles&quot;.
+211018-12:45:29,896 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.gunzip&quot;.
+211018-12:45:31,702 nipype.workflow INFO:
+	 [Job 12] Completed (spm_l2analysis.selectfiles).
+211018-12:45:31,703 nipype.workflow INFO:
+	 [Job 13] Completed (spm_l2analysis.selectfiles).
+211018-12:45:31,705 nipype.workflow INFO:
+	 [Job 14] Completed (spm_l2analysis.gunzip).
+211018-12:45:31,709 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:45:31,787 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/onesampttestdes&quot;.
+211018-12:45:31,787 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/onesampttestdes&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:45:31,787 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/onesampttestdes&quot;.
+211018-12:45:31,787 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/onesampttestdes&quot;.
+211018-12:45:31,802 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:45:31,802 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:45:31,802 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:45:31,814 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:45:33,704 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 10 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+211018-12:45:40,733 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:45:40,733 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:45:40,734 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:45:40,750 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:45:41,716 nipype.workflow INFO:
+	 [Job 15] Completed (spm_l2analysis.onesampttestdes).
+211018-12:45:41,719 nipype.workflow INFO:
+	 [Job 20] Completed (spm_l2analysis.onesampttestdes).
+211018-12:45:41,722 nipype.workflow INFO:
+	 [Job 25] Completed (spm_l2analysis.onesampttestdes).
+211018-12:45:41,725 nipype.workflow INFO:
+	 [Job 30] Completed (spm_l2analysis.onesampttestdes).
+211018-12:45:41,729 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:45:41,796 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/level2estimate&quot;.
+211018-12:45:41,798 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/level2estimate&quot;.
+211018-12:45:41,797 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/level2estimate&quot;.
+211018-12:45:41,801 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/level2estimate&quot;.
+211018-12:45:41,813 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:45:41,812 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:45:41,813 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:45:41,814 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:45:43,717 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 10 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+211018-12:47:13,709 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:47:13,709 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:47:13,710 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:47:14,676 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:47:14,699 nipype.workflow INFO:
+	 [Job 16] Completed (spm_l2analysis.level2estimate).
+211018-12:47:14,721 nipype.workflow INFO:
+	 [Job 21] Completed (spm_l2analysis.level2estimate).
+211018-12:47:14,725 nipype.workflow INFO:
+	 [Job 26] Completed (spm_l2analysis.level2estimate).
+211018-12:47:14,732 nipype.workflow INFO:
+	 [Job 31] Completed (spm_l2analysis.level2estimate).
+211018-12:47:14,738 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:47:15,321 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/level2conestimate&quot;.
+211018-12:47:15,323 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/level2conestimate&quot;.
+211018-12:47:15,330 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/level2conestimate&quot;.
+211018-12:47:15,325 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/level2conestimate&quot;.
+211018-12:47:15,372 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:47:15,386 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:47:15,419 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:47:15,432 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:47:16,702 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 10 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+211018-12:47:32,35 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:47:32,242 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:47:32,248 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:47:32,256 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:47:32,715 nipype.workflow INFO:
+	 [Job 17] Completed (spm_l2analysis.level2conestimate).
+211018-12:47:32,719 nipype.workflow INFO:
+	 [Job 22] Completed (spm_l2analysis.level2conestimate).
+211018-12:47:32,721 nipype.workflow INFO:
+	 [Job 27] Completed (spm_l2analysis.level2conestimate).
+211018-12:47:32,723 nipype.workflow INFO:
+	 [Job 32] Completed (spm_l2analysis.level2conestimate).
+211018-12:47:32,728 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:47:32,800 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/level2thresh&quot;.
+211018-12:47:32,800 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/level2thresh&quot;.
+211018-12:47:32,802 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/level2thresh&quot;.
+211018-12:47:32,800 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/level2thresh&quot;.
+211018-12:47:32,830 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:47:32,829 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:47:32,848 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:47:32,852 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:47:34,719 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 10 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+211018-12:47:38,562 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:47:38,583 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:47:38,646 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:47:38,658 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:47:38,725 nipype.workflow INFO:
+	 [Job 18] Completed (spm_l2analysis.level2thresh).
+211018-12:47:38,730 nipype.workflow INFO:
+	 [Job 23] Completed (spm_l2analysis.level2thresh).
+211018-12:47:38,734 nipype.workflow INFO:
+	 [Job 28] Completed (spm_l2analysis.level2thresh).
+211018-12:47:38,737 nipype.workflow INFO:
+	 [Job 33] Completed (spm_l2analysis.level2thresh).
+211018-12:47:38,742 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:47:38,825 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/datasink&quot;.
+211018-12:47:38,824 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/datasink&quot;.
+211018-12:47:38,825 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/datasink&quot;.
+211018-12:47:38,824 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/datasink&quot;.
+211018-12:47:38,873 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:47:38,873 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:47:38,873 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:47:38,879 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:47:38,878 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0006_fwhm8/SPM.mat
+211018-12:47:38,880 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0007_fwhm4/SPM.mat
+211018-12:47:38,884 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0007_fwhm4/spmT_0001.nii
+211018-12:47:38,884 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0006_fwhm4/SPM.mat
+211018-12:47:38,882 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0007_fwhm8/SPM.mat
+211018-12:47:38,888 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0006_fwhm4/spmT_0001.nii
+211018-12:47:38,888 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0007_fwhm4/con_0001.nii
+211018-12:47:38,891 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0007_fwhm4/spmT_0001_thr.nii
+211018-12:47:38,892 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0006_fwhm4/con_0001.nii
+211018-12:47:38,890 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0007_fwhm8/spmT_0001.nii
+211018-12:47:38,897 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0007_fwhm8/con_0001.nii
+211018-12:47:38,896 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0006_fwhm4/spmT_0001_thr.nii
+211018-12:47:38,900 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0007_fwhm8/spmT_0001_thr.nii
+211018-12:47:38,884 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0006_fwhm8/spmT_0001.nii
+211018-12:47:38,904 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:47:38,905 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:47:38,908 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0006_fwhm8/con_0001.nii
+211018-12:47:38,912 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0006_fwhm8/spmT_0001_thr.nii
+211018-12:47:38,913 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:47:38,920 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:47:40,728 nipype.workflow INFO:
+	 [Job 19] Completed (spm_l2analysis.datasink).
+211018-12:47:40,731 nipype.workflow INFO:
+	 [Job 24] Completed (spm_l2analysis.datasink).
+211018-12:47:40,734 nipype.workflow INFO:
+	 [Job 29] Completed (spm_l2analysis.datasink).
+211018-12:47:40,736 nipype.workflow INFO:
+	 [Job 34] Completed (spm_l2analysis.datasink).
+211018-12:47:40,740 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:47:40,809 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/onesampttestdes&quot;.
+211018-12:47:40,810 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/onesampttestdes&quot;.
+211018-12:47:40,812 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/onesampttestdes&quot;.
+211018-12:47:40,815 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/onesampttestdes&quot;.
+211018-12:47:40,837 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:47:40,844 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:47:40,849 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:47:40,851 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:47:42,730 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 6 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+211018-12:47:48,927 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:47:48,928 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:47:48,998 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:47:49,18 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:47:50,742 nipype.workflow INFO:
+	 [Job 35] Completed (spm_l2analysis.onesampttestdes).
+211018-12:47:50,745 nipype.workflow INFO:
+	 [Job 40] Completed (spm_l2analysis.onesampttestdes).
+211018-12:47:50,748 nipype.workflow INFO:
+	 [Job 45] Completed (spm_l2analysis.onesampttestdes).
+211018-12:47:50,751 nipype.workflow INFO:
+	 [Job 50] Completed (spm_l2analysis.onesampttestdes).
+211018-12:47:50,756 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:47:50,851 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/level2estimate&quot;.
+211018-12:47:50,854 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/level2estimate&quot;.
+211018-12:47:50,853 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/level2estimate&quot;.
+211018-12:47:50,855 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/level2estimate&quot;.
+211018-12:47:50,865 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:47:50,865 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:47:50,872 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:47:50,875 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:47:52,745 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 6 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+211018-12:48:19,816 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:48:20,172 nipype.workflow INFO:
+	 [Job 51] Completed (spm_l2analysis.level2estimate).
+211018-12:48:20,183 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 7 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+211018-12:48:20,288 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/level2conestimate&quot;.
+211018-12:48:20,306 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:48:20,320 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:48:20,378 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:48:20,381 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:48:22,173 nipype.workflow INFO:
+	 [Job 36] Completed (spm_l2analysis.level2estimate).
+211018-12:48:22,175 nipype.workflow INFO:
+	 [Job 41] Completed (spm_l2analysis.level2estimate).
+211018-12:48:22,177 nipype.workflow INFO:
+	 [Job 46] Completed (spm_l2analysis.level2estimate).
+211018-12:48:22,180 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 9 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+211018-12:48:22,243 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/level2conestimate&quot;.
+211018-12:48:22,246 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/level2conestimate&quot;.
+211018-12:48:22,248 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/level2conestimate&quot;.
+211018-12:48:22,266 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:48:22,267 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:48:22,270 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:48:24,177 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 6 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+211018-12:48:33,767 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:48:34,191 nipype.workflow INFO:
+	 [Job 52] Completed (spm_l2analysis.level2conestimate).
+211018-12:48:34,197 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 7 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+211018-12:48:34,343 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/level2thresh&quot;.
+211018-12:48:34,374 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:48:35,733 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:48:36,88 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:48:36,102 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:48:36,191 nipype.workflow INFO:
+	 [Job 37] Completed (spm_l2analysis.level2conestimate).
+211018-12:48:36,194 nipype.workflow INFO:
+	 [Job 42] Completed (spm_l2analysis.level2conestimate).
+211018-12:48:36,197 nipype.workflow INFO:
+	 [Job 47] Completed (spm_l2analysis.level2conestimate).
+211018-12:48:36,202 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 9 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+211018-12:48:36,293 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/level2thresh&quot;.
+211018-12:48:36,299 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/level2thresh&quot;.
+211018-12:48:36,299 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/level2thresh&quot;.
+211018-12:48:36,320 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:48:36,344 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:48:36,329 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:48:38,196 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 6 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:48:40,616 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:48:41,660 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:48:41,920 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:48:41,999 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:48:42,200 nipype.workflow INFO:
+	 [Job 53] Completed (spm_l2analysis.level2thresh).
+211018-12:48:42,204 nipype.workflow INFO:
+	 [Job 38] Completed (spm_l2analysis.level2thresh).
+211018-12:48:42,206 nipype.workflow INFO:
+	 [Job 43] Completed (spm_l2analysis.level2thresh).
+211018-12:48:42,209 nipype.workflow INFO:
+	 [Job 48] Completed (spm_l2analysis.level2thresh).
+211018-12:48:42,214 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:48:42,282 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/datasink&quot;.
+211018-12:48:42,289 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/datasink&quot;.
+211018-12:48:42,293 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/datasink&quot;.
+211018-12:48:42,299 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/datasink&quot;.
+211018-12:48:42,326 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:48:42,327 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:48:42,332 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0004_fwhm4/SPM.mat
+211018-12:48:42,332 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0004_fwhm8/SPM.mat
+211018-12:48:42,333 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:48:42,334 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:48:42,336 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0004_fwhm8/spmT_0001.nii
+211018-12:48:42,336 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0004_fwhm4/spmT_0001.nii
+211018-12:48:42,340 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0005_fwhm8/SPM.mat
+211018-12:48:42,340 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0004_fwhm8/con_0001.nii
+211018-12:48:42,343 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0004_fwhm4/con_0001.nii
+211018-12:48:42,343 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0005_fwhm4/SPM.mat
+211018-12:48:42,345 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0005_fwhm8/spmT_0001.nii
+211018-12:48:42,345 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0004_fwhm4/spmT_0001_thr.nii
+211018-12:48:42,347 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0004_fwhm8/spmT_0001_thr.nii
+211018-12:48:42,348 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0005_fwhm8/con_0001.nii
+211018-12:48:42,353 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:48:42,350 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0005_fwhm4/spmT_0001.nii
+211018-12:48:42,359 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:48:42,358 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0005_fwhm4/con_0001.nii
+211018-12:48:42,361 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0005_fwhm8/spmT_0001_thr.nii
+211018-12:48:42,364 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0005_fwhm4/spmT_0001_thr.nii
+211018-12:48:42,375 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:48:42,379 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:48:44,203 nipype.workflow INFO:
+	 [Job 39] Completed (spm_l2analysis.datasink).
+211018-12:48:44,204 nipype.workflow INFO:
+	 [Job 44] Completed (spm_l2analysis.datasink).
+211018-12:48:44,206 nipype.workflow INFO:
+	 [Job 49] Completed (spm_l2analysis.datasink).
+211018-12:48:44,209 nipype.workflow INFO:
+	 [Job 54] Completed (spm_l2analysis.datasink).
+211018-12:48:44,212 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:48:44,294 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/onesampttestdes&quot;.
+211018-12:48:44,297 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/onesampttestdes&quot;.
+211018-12:48:44,300 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/onesampttestdes&quot;.
+211018-12:48:44,302 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/onesampttestdes&quot;.
+211018-12:48:44,321 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:48:44,322 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:48:44,327 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:48:44,331 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:48:46,205 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+211018-12:48:51,777 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:48:51,842 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:48:51,851 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:48:51,932 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:48:52,219 nipype.workflow INFO:
+	 [Job 55] Completed (spm_l2analysis.onesampttestdes).
+211018-12:48:52,222 nipype.workflow INFO:
+	 [Job 60] Completed (spm_l2analysis.onesampttestdes).
+211018-12:48:52,224 nipype.workflow INFO:
+	 [Job 65] Completed (spm_l2analysis.onesampttestdes).
+211018-12:48:52,228 nipype.workflow INFO:
+	 [Job 70] Completed (spm_l2analysis.onesampttestdes).
+211018-12:48:52,231 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:48:52,300 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/level2estimate&quot;.
+211018-12:48:52,300 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/level2estimate&quot;.
+211018-12:48:52,301 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/level2estimate&quot;.
+211018-12:48:52,301 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/level2estimate&quot;.
+211018-12:48:52,312 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:48:52,313 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:48:52,313 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:48:52,320 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:48:54,222 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+211018-12:49:19,424 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:49:19,418 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:49:19,418 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:49:19,432 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:49:20,247 nipype.workflow INFO:
+	 [Job 56] Completed (spm_l2analysis.level2estimate).
+211018-12:49:20,253 nipype.workflow INFO:
+	 [Job 61] Completed (spm_l2analysis.level2estimate).
+211018-12:49:20,256 nipype.workflow INFO:
+	 [Job 66] Completed (spm_l2analysis.level2estimate).
+211018-12:49:20,259 nipype.workflow INFO:
+	 [Job 71] Completed (spm_l2analysis.level2estimate).
+211018-12:49:20,264 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:49:20,339 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/level2conestimate&quot;.
+211018-12:49:20,345 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/level2conestimate&quot;.
+211018-12:49:20,347 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/level2conestimate&quot;.
+211018-12:49:20,348 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/level2conestimate&quot;.
+211018-12:49:20,451 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:49:20,453 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:49:20,451 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:49:20,463 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:49:22,249 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+211018-12:49:33,880 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:49:33,881 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:49:33,895 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:49:34,76 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:49:34,261 nipype.workflow INFO:
+	 [Job 57] Completed (spm_l2analysis.level2conestimate).
+211018-12:49:34,267 nipype.workflow INFO:
+	 [Job 62] Completed (spm_l2analysis.level2conestimate).
+211018-12:49:34,270 nipype.workflow INFO:
+	 [Job 67] Completed (spm_l2analysis.level2conestimate).
+211018-12:49:34,276 nipype.workflow INFO:
+	 [Job 72] Completed (spm_l2analysis.level2conestimate).
+211018-12:49:34,281 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:49:34,382 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/level2thresh&quot;.
+211018-12:49:34,386 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/level2thresh&quot;.
+211018-12:49:34,388 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/level2thresh&quot;.
+211018-12:49:34,402 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/level2thresh&quot;.
+211018-12:49:34,412 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:49:34,414 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:49:34,418 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:49:34,457 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:49:36,264 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+211018-12:49:40,536 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:49:40,536 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:49:40,565 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:49:40,603 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:49:42,274 nipype.workflow INFO:
+	 [Job 58] Completed (spm_l2analysis.level2thresh).
+211018-12:49:42,277 nipype.workflow INFO:
+	 [Job 63] Completed (spm_l2analysis.level2thresh).
+211018-12:49:42,279 nipype.workflow INFO:
+	 [Job 68] Completed (spm_l2analysis.level2thresh).
+211018-12:49:42,282 nipype.workflow INFO:
+	 [Job 73] Completed (spm_l2analysis.level2thresh).
+211018-12:49:42,286 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:49:42,395 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/datasink&quot;.
+211018-12:49:42,396 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/datasink&quot;.
+211018-12:49:42,397 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/datasink&quot;.
+211018-12:49:42,396 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/datasink&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:49:42,438 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:49:42,439 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:49:42,438 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:49:42,438 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:49:42,443 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0003_fwhm8/SPM.mat
+211018-12:49:42,443 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0002_fwhm4/SPM.mat
+211018-12:49:42,442 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0003_fwhm4/SPM.mat
+211018-12:49:42,448 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0003_fwhm8/spmT_0001.nii
+211018-12:49:42,448 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0003_fwhm4/spmT_0001.nii
+211018-12:49:42,450 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0003_fwhm4/con_0001.nii
+211018-12:49:42,450 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0003_fwhm8/con_0001.nii
+211018-12:49:42,452 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0003_fwhm4/spmT_0001_thr.nii
+211018-12:49:42,452 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0003_fwhm8/spmT_0001_thr.nii
+211018-12:49:42,448 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0002_fwhm4/spmT_0001.nii
+211018-12:49:42,455 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0002_fwhm8/SPM.mat
+211018-12:49:42,458 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0002_fwhm4/con_0001.nii
+211018-12:49:42,461 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:49:42,462 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:49:42,464 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0002_fwhm8/spmT_0001.nii
+211018-12:49:42,464 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0002_fwhm4/spmT_0001_thr.nii
+211018-12:49:42,466 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0002_fwhm8/con_0001.nii
+211018-12:49:42,473 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:49:42,475 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0002_fwhm8/spmT_0001_thr.nii
+211018-12:49:42,483 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:49:44,279 nipype.workflow INFO:
+	 [Job 59] Completed (spm_l2analysis.datasink).
+211018-12:49:44,282 nipype.workflow INFO:
+	 [Job 64] Completed (spm_l2analysis.datasink).
+211018-12:49:44,285 nipype.workflow INFO:
+	 [Job 69] Completed (spm_l2analysis.datasink).
+211018-12:49:44,287 nipype.workflow INFO:
+	 [Job 74] Completed (spm_l2analysis.datasink).
+211018-12:49:44,290 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:49:44,355 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/onesampttestdes&quot;.
+211018-12:49:44,356 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/onesampttestdes&quot;.
+211018-12:49:44,382 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:49:44,382 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:49:46,281 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+211018-12:49:50,542 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:49:50,542 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:49:52,288 nipype.workflow INFO:
+	 [Job 75] Completed (spm_l2analysis.onesampttestdes).
+211018-12:49:52,291 nipype.workflow INFO:
+	 [Job 80] Completed (spm_l2analysis.onesampttestdes).
+211018-12:49:52,296 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:49:52,365 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/level2estimate&quot;.
+211018-12:49:52,365 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/level2estimate&quot;.
+211018-12:49:52,376 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:49:52,378 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:49:54,288 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+211018-12:50:08,618 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:50:08,621 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:50:10,305 nipype.workflow INFO:
+	 [Job 76] Completed (spm_l2analysis.level2estimate).
+211018-12:50:10,309 nipype.workflow INFO:
+	 [Job 81] Completed (spm_l2analysis.level2estimate).
+211018-12:50:10,313 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:50:10,386 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/level2conestimate&quot;.
+211018-12:50:10,385 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/level2conestimate&quot;.
+211018-12:50:10,406 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:50:10,406 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:50:12,307 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+211018-12:50:19,39 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:50:19,39 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:50:20,317 nipype.workflow INFO:
+	 [Job 77] Completed (spm_l2analysis.level2conestimate).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:50:20,321 nipype.workflow INFO:
+	 [Job 82] Completed (spm_l2analysis.level2conestimate).
+211018-12:50:20,326 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:50:20,397 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/level2thresh&quot;.
+211018-12:50:20,397 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/level2thresh&quot;.
+211018-12:50:20,422 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:50:20,425 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:50:22,319 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+211018-12:50:24,356 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:50:24,358 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:50:26,324 nipype.workflow INFO:
+	 [Job 78] Completed (spm_l2analysis.level2thresh).
+211018-12:50:26,330 nipype.workflow INFO:
+	 [Job 83] Completed (spm_l2analysis.level2thresh).
+211018-12:50:26,336 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:50:26,569 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/datasink&quot;.
+211018-12:50:26,572 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/datasink&quot;.
+211018-12:50:26,715 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:50:26,715 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:50:26,719 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0001_fwhm8/SPM.mat
+211018-12:50:26,722 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0001_fwhm8/spmT_0001.nii
+211018-12:50:26,722 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/spm_con_0001_fwhm4/SPM.mat
+211018-12:50:26,724 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0001_fwhm8/con_0001.nii
+211018-12:50:26,725 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0001_fwhm4/spmT_0001.nii
+211018-12:50:26,727 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0001_fwhm8/spmT_0001_thr.nii
+211018-12:50:26,731 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/spm_con_0001_fwhm4/con_0001.nii
+211018-12:50:26,737 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/spm_con_0001_fwhm4/spmT_0001_thr.nii
+211018-12:50:26,758 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:50:26,778 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:50:28,329 nipype.workflow INFO:
+	 [Job 79] Completed (spm_l2analysis.datasink).
+211018-12:50:28,332 nipype.workflow INFO:
+	 [Job 84] Completed (spm_l2analysis.datasink).
+211018-12:50:28,336 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f004ab4ba90&gt;
 </pre></div>
 </div>
 </div>
@@ -934,6 +1928,1281 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:51:01,558 nipype.workflow INFO:
+	 Workflow ants_l2analysis settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211018-12:51:01,660 nipype.workflow INFO:
+	 Running in parallel.
+211018-12:51:01,668 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 15 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:51:01,792 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0007_fwhm_id_8/selectfiles&quot;.
+211018-12:51:01,809 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:01,815 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0007_fwhm_id_4/selectfiles&quot;.
+211018-12:51:01,816 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0006_fwhm_id_4/selectfiles&quot;.
+211018-12:51:01,815 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0006_fwhm_id_8/selectfiles&quot;.
+211018-12:51:01,827 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:01,830 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:01,834 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:01,855 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:01,861 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:01,864 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:01,864 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:03,680 nipype.workflow INFO:
+	 [Job 0] Completed (ants_l2analysis.selectfiles).
+211018-12:51:03,684 nipype.workflow INFO:
+	 [Job 1] Completed (ants_l2analysis.selectfiles).
+211018-12:51:03,687 nipype.workflow INFO:
+	 [Job 2] Completed (ants_l2analysis.selectfiles).
+211018-12:51:03,689 nipype.workflow INFO:
+	 [Job 3] Completed (ants_l2analysis.selectfiles).
+211018-12:51:03,693 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 11 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:51:03,819 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0005_fwhm_id_4/selectfiles&quot;.
+211018-12:51:03,819 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0005_fwhm_id_8/selectfiles&quot;.
+211018-12:51:03,819 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0004_fwhm_id_8/selectfiles&quot;.
+211018-12:51:03,820 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0004_fwhm_id_4/selectfiles&quot;.
+211018-12:51:03,826 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:03,826 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:03,827 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:03,834 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:03,841 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:03,844 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:03,841 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:03,846 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:05,679 nipype.workflow INFO:
+	 [Job 4] Completed (ants_l2analysis.selectfiles).
+211018-12:51:05,683 nipype.workflow INFO:
+	 [Job 5] Completed (ants_l2analysis.selectfiles).
+211018-12:51:05,685 nipype.workflow INFO:
+	 [Job 6] Completed (ants_l2analysis.selectfiles).
+211018-12:51:05,687 nipype.workflow INFO:
+	 [Job 7] Completed (ants_l2analysis.selectfiles).
+211018-12:51:05,692 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 7 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:51:05,766 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0003_fwhm_id_8/selectfiles&quot;.
+211018-12:51:05,767 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0003_fwhm_id_4/selectfiles&quot;.
+211018-12:51:05,770 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0002_fwhm_id_8/selectfiles&quot;.
+211018-12:51:05,771 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0002_fwhm_id_4/selectfiles&quot;.
+211018-12:51:05,773 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:05,777 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:05,773 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:05,783 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:05,779 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:05,785 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:05,792 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:05,797 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:07,683 nipype.workflow INFO:
+	 [Job 8] Completed (ants_l2analysis.selectfiles).
+211018-12:51:07,685 nipype.workflow INFO:
+	 [Job 9] Completed (ants_l2analysis.selectfiles).
+211018-12:51:07,688 nipype.workflow INFO:
+	 [Job 10] Completed (ants_l2analysis.selectfiles).
+211018-12:51:07,690 nipype.workflow INFO:
+	 [Job 11] Completed (ants_l2analysis.selectfiles).
+211018-12:51:07,694 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:51:07,767 nipype.workflow INFO:
+	 [Job 14] Cached (spm_l2analysis.gunzip).
+211018-12:51:07,767 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0001_fwhm_id_8/selectfiles&quot;.
+211018-12:51:07,767 nipype.workflow INFO:
+	 [Node] Setting-up &quot;ants_l2analysis.selectfiles&quot; in &quot;/output/workingdir/ants_l2analysis/_contrast_id_con_0001_fwhm_id_4/selectfiles&quot;.
+211018-12:51:07,773 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:07,774 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:51:07,782 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:07,783 nipype.workflow INFO:
+	 [Node] Finished &quot;ants_l2analysis.selectfiles&quot;.
+211018-12:51:09,687 nipype.workflow INFO:
+	 [Job 12] Completed (ants_l2analysis.selectfiles).
+211018-12:51:09,690 nipype.workflow INFO:
+	 [Job 13] Completed (ants_l2analysis.selectfiles).
+211018-12:51:09,694 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:51:09,773 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:09,781 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/onesampttestdes&quot;.
+211018-12:51:09,784 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:09,788 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:09,792 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:51:09,796 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/onesampttestdes&quot;.
+211018-12:51:09,800 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:09,804 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:09,809 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:51:09,812 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/onesampttestdes&quot;.
+211018-12:51:09,815 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:09,825 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:51:09,834 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:09,843 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/onesampttestdes&quot;.
+211018-12:51:09,850 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:09,858 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:51:11,687 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 10 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+211018-12:51:18,622 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:18,637 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:18,702 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:18,721 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:51:19,695 nipype.workflow INFO:
+	 [Job 15] Completed (spm_l2analysis.onesampttestdes).
+211018-12:51:19,698 nipype.workflow INFO:
+	 [Job 20] Completed (spm_l2analysis.onesampttestdes).
+211018-12:51:19,703 nipype.workflow INFO:
+	 [Job 25] Completed (spm_l2analysis.onesampttestdes).
+211018-12:51:19,707 nipype.workflow INFO:
+	 [Job 30] Completed (spm_l2analysis.onesampttestdes).
+211018-12:51:19,711 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:51:19,782 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:51:19,788 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:51:19,787 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/level2estimate&quot;.
+211018-12:51:19,789 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:51:19,794 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/level2estimate&quot;.
+211018-12:51:19,799 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:51:19,800 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:51:19,798 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:51:19,808 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:51:19,806 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/level2estimate&quot;.
+211018-12:51:19,810 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:51:19,813 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/level2estimate&quot;.
+211018-12:51:19,816 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:51:19,808 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:51:19,821 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:51:19,833 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:51:21,699 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 10 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+211018-12:52:04,685 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:04,688 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:04,697 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:04,698 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:05,533 nipype.workflow INFO:
+	 [Job 16] Completed (spm_l2analysis.level2estimate).
+211018-12:52:05,543 nipype.workflow INFO:
+	 [Job 21] Completed (spm_l2analysis.level2estimate).
+211018-12:52:05,545 nipype.workflow INFO:
+	 [Job 26] Completed (spm_l2analysis.level2estimate).
+211018-12:52:05,547 nipype.workflow INFO:
+	 [Job 31] Completed (spm_l2analysis.level2estimate).
+211018-12:52:05,551 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:52:05,677 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:05,682 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/level2conestimate&quot;.
+211018-12:52:05,684 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:05,692 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:05,698 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/level2conestimate&quot;.
+211018-12:52:05,701 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:05,710 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:05,711 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:52:05,715 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/level2conestimate&quot;.
+211018-12:52:05,722 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:05,722 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:05,729 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/level2conestimate&quot;.
+211018-12:52:05,735 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:05,740 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:52:05,752 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:52:05,763 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:52:07,535 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 10 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+211018-12:52:19,561 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:19,728 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:19,729 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:19,745 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:52:21,559 nipype.workflow INFO:
+	 [Job 17] Completed (spm_l2analysis.level2conestimate).
+211018-12:52:21,563 nipype.workflow INFO:
+	 [Job 22] Completed (spm_l2analysis.level2conestimate).
+211018-12:52:21,565 nipype.workflow INFO:
+	 [Job 27] Completed (spm_l2analysis.level2conestimate).
+211018-12:52:21,568 nipype.workflow INFO:
+	 [Job 32] Completed (spm_l2analysis.level2conestimate).
+211018-12:52:21,572 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:52:21,663 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:21,669 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/level2thresh&quot;.
+211018-12:52:21,672 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:21,672 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:21,681 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/level2thresh&quot;.
+211018-12:52:21,686 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:21,698 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:21,698 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:52:21,704 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/level2thresh&quot;.
+211018-12:52:21,711 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:21,715 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:52:21,745 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:52:21,751 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:21,760 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/level2thresh&quot;.
+211018-12:52:21,765 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:21,795 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:52:23,562 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 10 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+211018-12:52:29,604 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:29,703 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:29,715 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:29,718 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:52:31,569 nipype.workflow INFO:
+	 [Job 18] Completed (spm_l2analysis.level2thresh).
+211018-12:52:31,571 nipype.workflow INFO:
+	 [Job 23] Completed (spm_l2analysis.level2thresh).
+211018-12:52:31,573 nipype.workflow INFO:
+	 [Job 28] Completed (spm_l2analysis.level2thresh).
+211018-12:52:31,577 nipype.workflow INFO:
+	 [Job 33] Completed (spm_l2analysis.level2thresh).
+211018-12:52:31,582 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:52:32,357 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,361 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_8/datasink&quot;.
+211018-12:52:32,363 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,371 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:52:32,378 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0007_fwhm8/SPM.mat
+211018-12:52:32,382 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0007_fwhm8/spmT_0001.nii
+211018-12:52:32,385 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0007_fwhm8/con_0001.nii
+211018-12:52:32,388 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0007_fwhm8/spmT_0001_thr.nii
+211018-12:52:32,396 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,398 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,406 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0007_fwhm_id_4/datasink&quot;.
+211018-12:52:32,409 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,417 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:52:32,423 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0007_fwhm4/SPM.mat
+211018-12:52:32,426 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0007_fwhm4/spmT_0001.nii
+211018-12:52:32,429 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0007_fwhm4/con_0001.nii
+211018-12:52:32,434 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,433 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0007_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0007_fwhm4/spmT_0001_thr.nii
+211018-12:52:32,441 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_8/datasink&quot;.
+211018-12:52:32,444 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,444 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,454 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:52:32,458 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0006_fwhm8/SPM.mat
+211018-12:52:32,462 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0006_fwhm8/spmT_0001.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:52:32,465 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0006_fwhm8/con_0001.nii
+211018-12:52:32,468 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0006_fwhm8/spmT_0001_thr.nii
+211018-12:52:32,472 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,477 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,478 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0006_fwhm_id_4/datasink&quot;.
+211018-12:52:32,479 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:32,487 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:52:32,489 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0006_fwhm4/SPM.mat
+211018-12:52:32,492 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0006_fwhm4/spmT_0001.nii
+211018-12:52:32,494 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0006_fwhm4/con_0001.nii
+211018-12:52:32,495 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0006_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0006_fwhm4/spmT_0001_thr.nii
+211018-12:52:32,500 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:52:33,573 nipype.workflow INFO:
+	 [Job 19] Completed (spm_l2analysis.datasink).
+211018-12:52:33,575 nipype.workflow INFO:
+	 [Job 24] Completed (spm_l2analysis.datasink).
+211018-12:52:33,577 nipype.workflow INFO:
+	 [Job 29] Completed (spm_l2analysis.datasink).
+211018-12:52:33,580 nipype.workflow INFO:
+	 [Job 34] Completed (spm_l2analysis.datasink).
+211018-12:52:33,584 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:52:33,679 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:33,683 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/onesampttestdes&quot;.
+211018-12:52:33,686 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:33,693 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:52:33,696 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:33,702 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/onesampttestdes&quot;.
+211018-12:52:33,704 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:33,711 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:52:33,719 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:33,726 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/onesampttestdes&quot;.
+211018-12:52:33,729 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:33,740 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:33,740 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:52:33,749 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/onesampttestdes&quot;.
+211018-12:52:33,753 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:33,766 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:52:35,574 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 6 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+211018-12:52:42,24 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:42,24 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:42,48 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:42,53 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:52:43,583 nipype.workflow INFO:
+	 [Job 35] Completed (spm_l2analysis.onesampttestdes).
+211018-12:52:43,585 nipype.workflow INFO:
+	 [Job 40] Completed (spm_l2analysis.onesampttestdes).
+211018-12:52:43,586 nipype.workflow INFO:
+	 [Job 45] Completed (spm_l2analysis.onesampttestdes).
+211018-12:52:43,588 nipype.workflow INFO:
+	 [Job 50] Completed (spm_l2analysis.onesampttestdes).
+211018-12:52:43,593 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:52:43,671 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:43,677 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:43,677 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/level2estimate&quot;.
+211018-12:52:43,679 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:43,689 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:43,686 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/level2estimate&quot;.
+211018-12:52:43,692 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:52:43,707 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:43,691 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:43,700 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:52:43,703 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/level2estimate&quot;.
+211018-12:52:43,706 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:43,716 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:52:43,718 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/level2estimate&quot;.
+211018-12:52:43,727 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:52:43,737 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:52:45,586 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 6 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:53:28,549 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:53:30,123 nipype.workflow INFO:
+	 [Job 41] Completed (spm_l2analysis.level2estimate).
+211018-12:53:30,130 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 7 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+211018-12:53:30,145 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:53:30,347 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:30,356 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/level2conestimate&quot;.
+211018-12:53:30,368 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:30,400 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:53:30,424 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:53:30,466 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:53:32,125 nipype.workflow INFO:
+	 [Job 36] Completed (spm_l2analysis.level2estimate).
+211018-12:53:32,127 nipype.workflow INFO:
+	 [Job 46] Completed (spm_l2analysis.level2estimate).
+211018-12:53:32,129 nipype.workflow INFO:
+	 [Job 51] Completed (spm_l2analysis.level2estimate).
+211018-12:53:32,134 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 9 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+211018-12:53:32,229 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:32,233 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/level2conestimate&quot;.
+211018-12:53:32,235 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:32,241 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:32,247 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/level2conestimate&quot;.
+211018-12:53:32,250 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:32,254 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:32,259 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/level2conestimate&quot;.
+211018-12:53:32,261 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:32,272 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:53:32,278 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:53:32,279 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:53:34,127 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 6 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+211018-12:53:42,434 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:43,531 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:43,972 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:43,986 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:53:44,138 nipype.workflow INFO:
+	 [Job 42] Completed (spm_l2analysis.level2conestimate).
+211018-12:53:44,142 nipype.workflow INFO:
+	 [Job 37] Completed (spm_l2analysis.level2conestimate).
+211018-12:53:44,145 nipype.workflow INFO:
+	 [Job 47] Completed (spm_l2analysis.level2conestimate).
+211018-12:53:44,150 nipype.workflow INFO:
+	 [Job 52] Completed (spm_l2analysis.level2conestimate).
+211018-12:53:44,154 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:53:44,246 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:44,252 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/level2thresh&quot;.
+211018-12:53:44,255 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:44,258 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:44,263 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/level2thresh&quot;.
+211018-12:53:44,270 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:44,276 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:44,282 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/level2thresh&quot;.
+211018-12:53:44,288 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:44,289 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:44,278 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:53:44,294 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/level2thresh&quot;.
+211018-12:53:44,293 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:53:44,303 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:44,316 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:53:44,326 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:53:46,141 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 6 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+211018-12:53:52,210 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:52,331 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:52,388 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:52,486 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:53:54,172 nipype.workflow INFO:
+	 [Job 38] Completed (spm_l2analysis.level2thresh).
+211018-12:53:54,175 nipype.workflow INFO:
+	 [Job 43] Completed (spm_l2analysis.level2thresh).
+211018-12:53:54,176 nipype.workflow INFO:
+	 [Job 48] Completed (spm_l2analysis.level2thresh).
+211018-12:53:54,180 nipype.workflow INFO:
+	 [Job 53] Completed (spm_l2analysis.level2thresh).
+211018-12:53:54,185 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:53:54,300 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:53:54,306 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_8/datasink&quot;.
+211018-12:53:54,309 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:54,324 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:53:54,330 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0005_fwhm8/SPM.mat
+211018-12:53:54,333 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0005_fwhm8/spmT_0001.nii
+211018-12:53:54,335 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0005_fwhm8/con_0001.nii
+211018-12:53:54,338 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0005_fwhm8/spmT_0001_thr.nii
+211018-12:53:54,347 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:54,349 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:54,356 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0005_fwhm_id_4/datasink&quot;.
+211018-12:53:54,359 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:54,367 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:53:54,370 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0005_fwhm4/SPM.mat
+211018-12:53:54,376 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0005_fwhm4/spmT_0001.nii
+211018-12:53:54,379 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0005_fwhm4/con_0001.nii
+211018-12:53:54,385 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0005_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0005_fwhm4/spmT_0001_thr.nii
+211018-12:53:54,394 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:54,403 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:54,409 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_8/datasink&quot;.
+211018-12:53:54,413 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:54,423 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:53:54,426 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0004_fwhm8/SPM.mat
+211018-12:53:54,430 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0004_fwhm8/spmT_0001.nii
+211018-12:53:54,433 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0004_fwhm8/con_0001.nii
+211018-12:53:54,437 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0004_fwhm8/spmT_0001_thr.nii
+211018-12:53:54,445 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:54,449 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:54,455 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0004_fwhm_id_4/datasink&quot;.
+211018-12:53:54,457 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:54,469 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:53:54,473 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0004_fwhm4/SPM.mat
+211018-12:53:54,476 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0004_fwhm4/spmT_0001.nii
+211018-12:53:54,478 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0004_fwhm4/con_0001.nii
+211018-12:53:54,481 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0004_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0004_fwhm4/spmT_0001_thr.nii
+211018-12:53:54,488 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:53:56,176 nipype.workflow INFO:
+	 [Job 39] Completed (spm_l2analysis.datasink).
+211018-12:53:56,178 nipype.workflow INFO:
+	 [Job 44] Completed (spm_l2analysis.datasink).
+211018-12:53:56,180 nipype.workflow INFO:
+	 [Job 49] Completed (spm_l2analysis.datasink).
+211018-12:53:56,182 nipype.workflow INFO:
+	 [Job 54] Completed (spm_l2analysis.datasink).
+211018-12:53:56,185 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:53:56,285 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:53:56,291 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/onesampttestdes&quot;.
+211018-12:53:56,293 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:53:56,301 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:53:56,300 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:53:56,306 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/onesampttestdes&quot;.
+211018-12:53:56,308 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:53:56,315 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:53:56,314 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:53:56,321 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/onesampttestdes&quot;.
+211018-12:53:56,326 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:53:56,326 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:53:56,332 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/onesampttestdes&quot;.
+211018-12:53:56,334 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:53:56,335 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:53:56,346 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:53:58,179 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+211018-12:54:04,459 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:54:04,519 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:54:04,551 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:54:04,571 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:54:06,188 nipype.workflow INFO:
+	 [Job 55] Completed (spm_l2analysis.onesampttestdes).
+211018-12:54:06,191 nipype.workflow INFO:
+	 [Job 60] Completed (spm_l2analysis.onesampttestdes).
+211018-12:54:06,193 nipype.workflow INFO:
+	 [Job 65] Completed (spm_l2analysis.onesampttestdes).
+211018-12:54:06,195 nipype.workflow INFO:
+	 [Job 70] Completed (spm_l2analysis.onesampttestdes).
+211018-12:54:06,199 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:54:06,304 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:06,310 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:06,309 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/level2estimate&quot;.
+211018-12:54:06,312 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:06,316 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/level2estimate&quot;.
+211018-12:54:06,319 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:06,329 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:06,327 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:54:06,330 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:54:06,335 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/level2estimate&quot;.
+211018-12:54:06,340 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:06,345 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:06,352 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/level2estimate&quot;.
+211018-12:54:06,354 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:54:06,359 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:06,368 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:54:08,191 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+211018-12:54:39,861 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:39,873 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:40,201 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:40,223 nipype.workflow INFO:
+	 [Job 56] Completed (spm_l2analysis.level2estimate).
+211018-12:54:40,225 nipype.workflow INFO:
+	 [Job 61] Completed (spm_l2analysis.level2estimate).
+211018-12:54:40,228 nipype.workflow INFO:
+	 [Job 66] Completed (spm_l2analysis.level2estimate).
+211018-12:54:40,234 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 5 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+211018-12:54:40,330 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:40,336 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/level2conestimate&quot;.
+211018-12:54:40,340 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:40,354 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:40,361 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/level2conestimate&quot;.
+211018-12:54:40,364 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:40,371 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:40,374 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:54:40,379 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/level2conestimate&quot;.
+211018-12:54:40,390 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:54:40,387 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:40,413 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:54:40,460 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:54:42,224 nipype.workflow INFO:
+	 [Job 71] Completed (spm_l2analysis.level2estimate).
+211018-12:54:42,231 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+211018-12:54:42,319 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:42,325 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/level2conestimate&quot;.
+211018-12:54:42,329 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:42,482 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:54:44,228 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+211018-12:54:55,310 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:55,331 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:55,484 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:56,285 nipype.workflow INFO:
+	 [Job 57] Completed (spm_l2analysis.level2conestimate).
+211018-12:54:56,288 nipype.workflow INFO:
+	 [Job 62] Completed (spm_l2analysis.level2conestimate).
+211018-12:54:56,292 nipype.workflow INFO:
+	 [Job 67] Completed (spm_l2analysis.level2conestimate).
+211018-12:54:56,296 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 5 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+211018-12:54:56,404 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:54:56,411 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/level2thresh&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:54:56,414 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:54:56,414 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:54:56,422 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/level2thresh&quot;.
+211018-12:54:56,428 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:54:56,434 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:54:56,443 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/level2thresh&quot;.
+211018-12:54:56,448 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:54:56,448 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:54:56,460 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:54:56,473 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:54:56,613 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:54:58,287 nipype.workflow INFO:
+	 [Job 72] Completed (spm_l2analysis.level2conestimate).
+211018-12:54:58,292 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+211018-12:54:58,396 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:54:58,402 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/level2thresh&quot;.
+211018-12:54:58,405 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:54:58,428 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:55:00,290 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+211018-12:55:03,138 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:55:03,207 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:55:03,277 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:55:04,293 nipype.workflow INFO:
+	 [Job 58] Completed (spm_l2analysis.level2thresh).
+211018-12:55:04,295 nipype.workflow INFO:
+	 [Job 63] Completed (spm_l2analysis.level2thresh).
+211018-12:55:04,297 nipype.workflow INFO:
+	 [Job 68] Completed (spm_l2analysis.level2thresh).
+211018-12:55:04,300 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 5 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+211018-12:55:04,591 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:04,597 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_8/datasink&quot;.
+211018-12:55:04,602 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:04,615 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:55:04,625 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:04,625 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0003_fwhm8/SPM.mat
+211018-12:55:04,629 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0003_fwhm8/spmT_0001.nii
+211018-12:55:04,632 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0003_fwhm_id_4/datasink&quot;.
+211018-12:55:04,635 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:04,636 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0003_fwhm8/con_0001.nii
+211018-12:55:04,644 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:55:04,646 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0003_fwhm8/spmT_0001_thr.nii
+211018-12:55:04,651 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0003_fwhm4/SPM.mat
+211018-12:55:04,658 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:04,654 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0003_fwhm4/spmT_0001.nii
+211018-12:55:04,662 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0003_fwhm4/con_0001.nii
+211018-12:55:04,665 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0003_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0003_fwhm4/spmT_0001_thr.nii
+211018-12:55:04,669 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:04,675 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:04,677 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_8/datasink&quot;.
+211018-12:55:04,680 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:04,688 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:55:04,691 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0002_fwhm8/SPM.mat
+211018-12:55:04,693 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0002_fwhm8/spmT_0001.nii
+211018-12:55:04,695 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0002_fwhm8/con_0001.nii
+211018-12:55:04,697 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0002_fwhm8/spmT_0001_thr.nii
+211018-12:55:04,703 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:05,59 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:55:06,298 nipype.workflow INFO:
+	 [Job 73] Completed (spm_l2analysis.level2thresh).
+211018-12:55:06,301 nipype.workflow INFO:
+	 [Job 59] Completed (spm_l2analysis.datasink).
+211018-12:55:06,303 nipype.workflow INFO:
+	 [Job 64] Completed (spm_l2analysis.datasink).
+211018-12:55:06,306 nipype.workflow INFO:
+	 [Job 69] Completed (spm_l2analysis.datasink).
+211018-12:55:06,309 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:55:06,404 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:06,410 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0002_fwhm_id_4/datasink&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:55:06,412 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:06,419 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:55:06,420 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:55:06,426 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/onesampttestdes&quot;.
+211018-12:55:06,424 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0002_fwhm4/SPM.mat
+211018-12:55:06,429 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:55:06,434 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:55:06,435 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:55:06,431 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0002_fwhm4/spmT_0001.nii
+211018-12:55:06,443 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.onesampttestdes&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/onesampttestdes&quot;.
+211018-12:55:06,449 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0002_fwhm4/con_0001.nii
+211018-12:55:06,459 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:55:06,475 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0002_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0002_fwhm4/spmT_0001_thr.nii
+211018-12:55:06,504 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-12:55:06,544 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:55:08,299 nipype.workflow INFO:
+	 [Job 74] Completed (spm_l2analysis.datasink).
+211018-12:55:08,302 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * spm_l2analysis.onesampttestdes
+                       * spm_l2analysis.onesampttestdes
+211018-12:55:12,964 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:55:12,981 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.onesampttestdes&quot;.
+211018-12:55:14,311 nipype.workflow INFO:
+	 [Job 75] Completed (spm_l2analysis.onesampttestdes).
+211018-12:55:14,315 nipype.workflow INFO:
+	 [Job 80] Completed (spm_l2analysis.onesampttestdes).
+211018-12:55:14,320 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:55:14,401 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:55:14,406 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:55:14,406 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/level2estimate&quot;.
+211018-12:55:14,408 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:55:14,414 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2estimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/level2estimate&quot;.
+211018-12:55:14,417 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:55:14,422 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:55:14,428 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-12:55:16,313 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * spm_l2analysis.level2estimate
+                       * spm_l2analysis.level2estimate
+211018-12:55:41,807 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:55:41,806 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2estimate&quot;.
+211018-12:55:42,338 nipype.workflow INFO:
+	 [Job 76] Completed (spm_l2analysis.level2estimate).
+211018-12:55:42,340 nipype.workflow INFO:
+	 [Job 81] Completed (spm_l2analysis.level2estimate).
+211018-12:55:42,345 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:55:42,439 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:55:42,447 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/level2conestimate&quot;.
+211018-12:55:42,451 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:55:42,451 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:55:42,459 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2conestimate&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/level2conestimate&quot;.
+211018-12:55:42,463 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:55:42,472 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:55:42,482 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-12:55:44,341 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * spm_l2analysis.level2conestimate
+                       * spm_l2analysis.level2conestimate
+211018-12:55:57,761 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:55:57,972 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2conestimate&quot;.
+211018-12:55:58,367 nipype.workflow INFO:
+	 [Job 77] Completed (spm_l2analysis.level2conestimate).
+211018-12:55:58,370 nipype.workflow INFO:
+	 [Job 82] Completed (spm_l2analysis.level2conestimate).
+211018-12:55:58,375 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:55:58,467 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:55:58,473 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:55:58,472 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/level2thresh&quot;.
+211018-12:55:58,475 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:55:58,478 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.level2thresh&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/level2thresh&quot;.
+211018-12:55:58,480 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:55:58,493 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:55:58,494 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-12:56:00,369 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * spm_l2analysis.level2thresh
+                       * spm_l2analysis.level2thresh
+211018-12:56:03,861 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+211018-12:56:03,864 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.level2thresh&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:56:04,373 nipype.workflow INFO:
+	 [Job 78] Completed (spm_l2analysis.level2thresh).
+211018-12:56:04,376 nipype.workflow INFO:
+	 [Job 83] Completed (spm_l2analysis.level2thresh).
+211018-12:56:04,381 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:56:04,476 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:56:04,482 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_8/datasink&quot;.
+211018-12:56:04,485 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:56:04,587 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:56:04,590 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_8/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0001_fwhm8/SPM.mat
+211018-12:56:04,592 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_8/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0001_fwhm8/spmT_0001.nii
+211018-12:56:04,594 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_8/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0001_fwhm8/con_0001.nii
+211018-12:56:04,598 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_8/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0001_fwhm8/spmT_0001_thr.nii
+211018-12:56:04,603 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:56:04,606 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:56:04,608 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spm_l2analysis.datasink&quot; in &quot;/output/workingdir/spm_l2analysis/_contrast_id_con_0001_fwhm_id_4/datasink&quot;.
+211018-12:56:04,609 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;spm_l2analysis.datasink&quot;.
+211018-12:56:04,616 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:56:04,618 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_4/SPM.mat -&gt; /output/datasink/2ndLevel/ants_con_0001_fwhm4/SPM.mat
+211018-12:56:04,620 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_4/spmT_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0001_fwhm4/spmT_0001.nii
+211018-12:56:04,622 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_4/con_0001.nii -&gt; /output/datasink/2ndLevel/ants_con_0001_fwhm4/con_0001.nii
+211018-12:56:04,623 nipype.interface INFO:
+	 sub: /output/datasink/2ndLevel/_contrast_id_con_0001_fwhm_id_4/spmT_0001_thr.nii -&gt; /output/datasink/2ndLevel/ants_con_0001_fwhm4/spmT_0001_thr.nii
+211018-12:56:04,628 nipype.workflow INFO:
+	 [Node] Finished &quot;spm_l2analysis.datasink&quot;.
+211018-12:56:06,376 nipype.workflow INFO:
+	 [Job 79] Completed (spm_l2analysis.datasink).
+211018-12:56:06,379 nipype.workflow INFO:
+	 [Job 84] Completed (spm_l2analysis.datasink).
+211018-12:56:06,382 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f0047251150&gt;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="visualize-results">
@@ -958,6 +3227,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_2ndlevel_23_0.png" src="../../_images/example_2ndlevel_23_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -966,6 +3238,9 @@
     <span class="n">bg_img</span><span class="o">=</span><span class="n">anatimg</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_2ndlevel_24_0.png" src="../../_images/example_2ndlevel_24_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -976,6 +3251,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_2ndlevel_25_0.png" src="../../_images/example_2ndlevel_25_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -984,6 +3262,9 @@
     <span class="n">bg_img</span><span class="o">=</span><span class="n">anatimg</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_2ndlevel_26_0.png" src="../../_images/example_2ndlevel_26_0.png" />
 </div>
 </div>
 <p>The results are more or less what you would expect: The peaks are more or less at the same places for the two normalization approaches and a wider smoothing has the effect of bigger clusters, while losing the sensitivity for smaller clusters.</p>
@@ -1004,6 +3285,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_2ndlevel_30_0.png" src="../../_images/example_2ndlevel_30_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1012,6 +3296,9 @@
     <span class="n">bg_img</span><span class="o">=</span><span class="n">anatimg</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">));</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_2ndlevel_31_0.png" src="../../_images/example_2ndlevel_31_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1022,6 +3309,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_2ndlevel_32_0.png" src="../../_images/example_2ndlevel_32_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1030,6 +3320,9 @@
     <span class="n">bg_img</span><span class="o">=</span><span class="n">anatimg</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">));</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_2ndlevel_33_0.png" src="../../_images/example_2ndlevel_33_0.png" />
 </div>
 </div>
 <p>Now, let’s see the results using the glass brain plotting method.</p>
@@ -1050,6 +3343,12 @@
     <span class="n">threshold</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;lyrz&#39;</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;ants_fwhm8&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_2ndlevel_35_0.png" src="../../_images/example_2ndlevel_35_0.png" />
+<img alt="../../_images/example_2ndlevel_35_1.png" src="../../_images/example_2ndlevel_35_1.png" />
+<img alt="../../_images/example_2ndlevel_35_2.png" src="../../_images/example_2ndlevel_35_2.png" />
+<img alt="../../_images/example_2ndlevel_35_3.png" src="../../_images/example_2ndlevel_35_3.png" />
 </div>
 </div>
 </div>

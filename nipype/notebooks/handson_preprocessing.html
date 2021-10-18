@@ -789,51 +789,10 @@
 <p><strong>Note:</strong> This might take a while, as datalad needs to download ~200MB of data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">ds000114</span><span class="o">/</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">dataset_description.json</span>*              <span class=" -Color -Color-Bold -Color-Bold-Green">task-fingerfootlips_bold.json</span>*
-<span class=" -Color -Color-Bold -Color-Bold-Blue">derivatives</span>/                           <span class=" -Color -Color-Bold -Color-Bold-Green">task-fingerfootlips_events.tsv</span>*
-<span class=" -Color -Color-Bold -Color-Bold-Blue">sub-01</span>/                                <span class=" -Color -Color-Bold -Color-Bold-Green">task-linebisection_bold.json</span>*
-<span class=" -Color -Color-Bold -Color-Bold-Blue">sub-02</span>/                                <span class=" -Color -Color-Bold -Color-Bold-Green">task-overtverbgeneration_bold.json</span>*
-<span class=" -Color -Color-Bold -Color-Bold-Blue">sub-03</span>/                                <span class=" -Color -Color-Bold -Color-Bold-Green">task-overtverbgeneration_events.tsv</span>*
-<span class=" -Color -Color-Bold -Color-Bold-Blue">sub-07</span>/                                <span class=" -Color -Color-Bold -Color-Bold-Green">task-overtwordrepetition_bold.json</span>*
-<span class=" -Color -Color-Bold -Color-Bold-Green">task-covertverbgeneration_bold.json</span>*   <span class=" -Color -Color-Bold -Color-Bold-Green">task-overtwordrepetition_events.tsv</span>*
-<span class=" -Color -Color-Bold -Color-Bold-Green">task-covertverbgeneration_events.tsv</span>*
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 datalad get -J 4 -d /home/neuro/workshop/data/ds000114 \
     /home/neuro/workshop/data/ds000114/sub-0[234789]/ses-test/anat/sub-0[234789]_ses-test_T1w.nii.gz \
-    /home/neuro/workshop/data/ds000114/sub-0[234789]/ses-test/func/*fingerfootlips*
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-09/ses-test/anat/sub-09_ses-test_T1w.nii.gz (file) [from web...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-02/ses-test/anat/sub-02_ses-test_T1w.nii.gz (file) [from web...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold.nii.gz (file) [from web...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-03/ses-test/anat/sub-03_ses-test_T1w.nii.gz (file) [from web...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_bold.nii.gz (file) [from web...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-08/ses-test/func/sub-08_ses-test_task-fingerfootlips_bold.nii.gz (file) [from web...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-04/ses-test/anat/sub-04_ses-test_T1w.nii.gz (file) [from origin...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-04/ses-test/func/sub-04_ses-test_task-fingerfootlips_bold.nii.gz (file) [from origin...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-07/ses-test/anat/sub-07_ses-test_T1w.nii.gz (file) [from web...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-08/ses-test/anat/sub-08_ses-test_T1w.nii.gz (file) [from web...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold.nii.gz (file) [from origin...]
-get(ok):../../../workshop_weizmann/workshop/nipype/notebooks/ /home/neuro/workshop/data/ds000114/sub-09/ses-test/func/sub-09_ses-test_task-fingerfootlips_bold.nii.gz (file) [from origin...]
-action summary:
-  get (ok: 12)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
-It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
+    /home/neuro/workshop/data/ds000114/sub-0[234789]/ses-test/func/sub-0[234789]_ses-test_task-fingerfootlips_bold.nii.gz
 </pre></div>
 </div>
 </div>
@@ -912,7 +871,7 @@ It is highly recommended to configure Git before using DataLad. Set both &#39;us
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify example input file</span>
-<span class="n">func_file</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span>
+<span class="n">func_file</span> <span class="o">=</span> <span class="s1">&#39;/home/neuro/workshop/data/ds000114/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_bold.nii.gz&#39;</span>
 
 <span class="c1"># Initiate Gunzip node</span>
 <span class="n">gunzip_func</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">Gunzip</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="n">func_file</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;gunzip_func&#39;</span><span class="p">)</span>
@@ -935,7 +894,7 @@ It is highly recommended to configure Git before using DataLad. Set both &#39;us
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/handson_preprocessing_15_0.png" src="../../_images/handson_preprocessing_15_0.png" />
+<img alt="../../_images/handson_preprocessing_14_0.png" src="../../_images/handson_preprocessing_14_0.png" />
 </div>
 </div>
 <p>In the figure above, we see that at the very beginning there are extreme values, which hint to the fact that steady state wasn’t reached yet. Therefore, we want to exclude the dummy scans from the original data. This can be achieved with FSL’s <code class="docutils literal notranslate"><span class="pre">ExtractROI</span></code>.</p>
@@ -1154,7 +1113,7 @@ It is highly recommended to configure Git before using DataLad. Set both &#39;us
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify example input file</span>
-<span class="n">anat_file</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/sub-07/ses-test/anat/sub-07_ses-test_T1w.nii.gz&#39;</span>
+<span class="n">anat_file</span> <span class="o">=</span> <span class="s1">&#39;/home/neuro/workshop/data/ds000114/sub-07/ses-test/anat/sub-07_ses-test_T1w.nii.gz&#39;</span>
 
 <span class="c1"># Initiate Gunzip node</span>
 <span class="n">gunzip_anat</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">Gunzip</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="n">anat_file</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;gunzip_anat&#39;</span><span class="p">)</span>
@@ -1528,7 +1487,7 @@ It is highly recommended to configure Git before using DataLad. Set both &#39;us
 
 <span class="c1"># Create SelectFiles node</span>
 <span class="n">sf</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">SelectFiles</span><span class="p">(</span><span class="n">templates</span><span class="p">,</span>
-                      <span class="n">base_directory</span><span class="o">=</span><span class="s1">&#39;/data/ds000114&#39;</span><span class="p">,</span>
+                      <span class="n">base_directory</span><span class="o">=</span><span class="s1">&#39;/home/neuro/workshop/data/ds000114&#39;</span><span class="p">,</span>
                       <span class="n">sort_filelist</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
           <span class="n">name</span><span class="o">=</span><span class="s1">&#39;selectfiles&#39;</span><span class="p">)</span>
 <span class="n">sf</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">ses_id</span><span class="o">=</span><span class="s1">&#39;test&#39;</span>
@@ -1577,11 +1536,11 @@ It is highly recommended to configure Git before using DataLad. Set both &#39;us
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:26:17,808 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-09:51:19,868 nipype.workflow INFO:
 	 Generated workflow graph: /output/work_preproc/graph.png (graph2use=colored, simple_form=True).
 </pre></div>
 </div>
-<img alt="../../_images/handson_preprocessing_107_1.png" src="../../_images/handson_preprocessing_107_1.png" />
+<img alt="../../_images/handson_preprocessing_106_1.png" src="../../_images/handson_preprocessing_106_1.png" />
 </div>
 </div>
 </div>
@@ -1596,215 +1555,297 @@ It is highly recommended to configure Git before using DataLad. Set both &#39;us
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:26:17,909 nipype.workflow INFO:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-09:51:19,971 nipype.workflow INFO:
 	 Workflow work_preproc settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
-211017-18:26:17,939 nipype.workflow INFO:
+211018-09:51:20,17 nipype.workflow INFO:
 	 Running in parallel.
-211017-18:26:17,946 nipype.workflow INFO:
-	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
-211017-18:26:18,125 nipype.workflow INFO:
+211018-09:51:20,27 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:51:20,176 nipype.workflow INFO:
 	 [Node] Setting-up &quot;work_preproc.selectfiles&quot; in &quot;/output/work_preproc/_subject_id_07/selectfiles&quot;.
-211017-18:26:18,145 nipype.workflow INFO:
+211018-09:51:20,196 nipype.workflow INFO:
 	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
-211017-18:26:18,155 nipype.workflow INFO:
+211018-09:51:20,209 nipype.workflow INFO:
 	 [Node] Finished &quot;work_preproc.selectfiles&quot;.
-211017-18:26:19,955 nipype.workflow INFO:
+211018-09:51:22,31 nipype.workflow INFO:
 	 [Job 0] Completed (work_preproc.selectfiles).
-211017-18:26:19,962 nipype.workflow INFO:
-	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
-211017-18:26:20,202 nipype.workflow INFO:
-	 [Node] Setting-up &quot;work_preproc.gunzip_func&quot; in &quot;/output/work_preproc/_subject_id_07/gunzip_func&quot;.
-211017-18:26:20,205 nipype.workflow INFO:
+211018-09:51:22,37 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:51:22,191 nipype.workflow INFO:
 	 [Node] Setting-up &quot;work_preproc.gunzip_anat&quot; in &quot;/output/work_preproc/_subject_id_07/gunzip_anat&quot;.
-211017-18:26:20,221 nipype.workflow INFO:
-	 [Node] Running &quot;gunzip_func&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
-211017-18:26:20,223 nipype.workflow INFO:
+211018-09:51:22,191 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_func&quot; in &quot;/output/work_preproc/_subject_id_07/gunzip_func&quot;.
+211018-09:51:22,207 nipype.workflow INFO:
 	 [Node] Running &quot;gunzip_anat&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
-211017-18:26:20,461 nipype.workflow INFO:
+211018-09:51:22,207 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_func&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-09:51:22,491 nipype.workflow INFO:
 	 [Node] Finished &quot;work_preproc.gunzip_anat&quot;.
-211017-18:26:20,651 nipype.workflow INFO:
+211018-09:51:22,685 nipype.workflow INFO:
 	 [Node] Finished &quot;work_preproc.gunzip_func&quot;.
-211017-18:26:21,955 nipype.workflow INFO:
+211018-09:51:24,30 nipype.workflow INFO:
 	 [Job 1] Completed (work_preproc.gunzip_func).
-211017-18:26:21,958 nipype.workflow INFO:
+211018-09:51:24,33 nipype.workflow INFO:
 	 [Job 6] Completed (work_preproc.gunzip_anat).
-211017-18:26:21,963 nipype.workflow INFO:
-	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
-211017-18:26:22,82 nipype.workflow INFO:
+211018-09:51:24,37 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:51:24,135 nipype.workflow INFO:
 	 [Node] Setting-up &quot;work_preproc.extract&quot; in &quot;/output/work_preproc/_subject_id_07/extract&quot;.
-211017-18:26:22,89 nipype.workflow INFO:
+211018-09:51:24,137 nipype.workflow INFO:
 	 [Node] Setting-up &quot;work_preproc.segment&quot; in &quot;/output/work_preproc/_subject_id_07/segment&quot;.
-211017-18:26:22,99 nipype.workflow INFO:
+211018-09:51:24,154 nipype.workflow INFO:
+	 [Node] Running &quot;segment&quot; (&quot;nipype.interfaces.spm.preprocess.NewSegment&quot;)
+211018-09:51:24,156 nipype.workflow INFO:
 	 [Node] Running &quot;extract&quot; (&quot;nipype.interfaces.fsl.utils.ExtractROI&quot;), a CommandLine Interface with command:
 fslroi /output/work_preproc/_subject_id_07/gunzip_func/sub-07_ses-test_task-fingerfootlips_bold.nii /output/work_preproc/_subject_id_07/extract/sub-07_ses-test_task-fingerfootlips_bold_roi.nii 4 -1
-211017-18:26:22,113 nipype.workflow INFO:
-	 [Node] Running &quot;segment&quot; (&quot;nipype.interfaces.spm.preprocess.NewSegment&quot;)
-211017-18:26:22,538 nipype.workflow INFO:
+211018-09:51:24,805 nipype.workflow INFO:
 	 [Node] Finished &quot;work_preproc.extract&quot;.
-211017-18:26:23,955 nipype.workflow INFO:
+211018-09:51:26,32 nipype.workflow INFO:
 	 [Job 2] Completed (work_preproc.extract).
-211017-18:26:23,958 nipype.workflow INFO:
-	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 3/4.
+211018-09:51:26,35 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
                      Currently running:
                        * work_preproc.segment
-211017-18:26:24,64 nipype.workflow INFO:
+211018-09:51:26,104 nipype.workflow INFO:
 	 [Node] Setting-up &quot;work_preproc.slicetime&quot; in &quot;/output/work_preproc/_subject_id_07/slicetime&quot;.
-211017-18:26:24,75 nipype.workflow INFO:
+211018-09:51:26,145 nipype.workflow INFO:
 	 [Node] Running &quot;slicetime&quot; (&quot;nipype.interfaces.spm.preprocess.SliceTiming&quot;)
-211017-18:26:25,959 nipype.workflow INFO:
-	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 1.35/1.75, Free processors: 2/4.
+211018-09:51:28,35 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
                      Currently running:
                        * work_preproc.slicetime
                        * work_preproc.segment
-211017-18:26:40,501 nipype.workflow INFO:
+211018-09:51:43,788 nipype.workflow INFO:
 	 [Node] Finished &quot;work_preproc.slicetime&quot;.
-211017-18:26:41,940 nipype.workflow INFO:
+211018-09:51:44,49 nipype.workflow INFO:
 	 [Job 3] Completed (work_preproc.slicetime).
-211017-18:26:41,946 nipype.workflow INFO:
-	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 3/4.
+211018-09:51:44,51 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
                      Currently running:
                        * work_preproc.segment
-211017-18:26:42,46 nipype.workflow INFO:
+211018-09:51:44,128 nipype.workflow INFO:
 	 [Node] Setting-up &quot;work_preproc.mcflirt&quot; in &quot;/output/work_preproc/_subject_id_07/mcflirt&quot;.
-211017-18:26:42,60 nipype.workflow INFO:
+211018-09:51:44,138 nipype.workflow INFO:
 	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
 mcflirt -in /output/work_preproc/_subject_id_07/slicetime/asub-07_ses-test_task-fingerfootlips_bold_roi.nii -meanvol -out /output/work_preproc/_subject_id_07/mcflirt/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -plots
-211017-18:26:43,944 nipype.workflow INFO:
-	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 1.35/1.75, Free processors: 2/4.
+211018-09:51:46,52 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
                      Currently running:
                        * work_preproc.mcflirt
                        * work_preproc.segment
-211017-18:27:51,700 nipype.workflow INFO:
+211018-09:53:00,251 nipype.workflow INFO:
 	 [Node] Finished &quot;work_preproc.mcflirt&quot;.
-211017-18:27:51,950 nipype.workflow INFO:
+211018-09:53:02,130 nipype.workflow INFO:
 	 [Job 4] Completed (work_preproc.mcflirt).
-211017-18:27:51,957 nipype.workflow INFO:
-	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 3/4.
+211018-09:53:02,133 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
                      Currently running:
                        * work_preproc.segment
-211017-18:27:52,65 nipype.workflow INFO:
+211018-09:53:02,216 nipype.workflow INFO:
 	 [Node] Setting-up &quot;work_preproc.art&quot; in &quot;/output/work_preproc/_subject_id_07/art&quot;.
-211017-18:27:52,82 nipype.workflow INFO:
+211018-09:53:02,230 nipype.workflow INFO:
 	 [Node] Running &quot;art&quot; (&quot;nipype.algorithms.rapidart.ArtifactDetect&quot;)
-211017-18:27:53,954 nipype.workflow INFO:
-	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 1.35/1.75, Free processors: 2/4.
-                     Currently running:
-                       * work_preproc.art
-                       * work_preproc.segment
-211017-18:27:54,46 nipype.workflow INFO:
+211018-09:53:03,263 nipype.workflow INFO:
 	 [Node] Finished &quot;work_preproc.art&quot;.
-211017-18:27:55,955 nipype.workflow INFO:
+211018-09:53:04,131 nipype.workflow INFO:
 	 [Job 5] Completed (work_preproc.art).
-211017-18:27:55,961 nipype.workflow INFO:
-	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 1.55/1.75, Free processors: 3/4.
+211018-09:53:04,134 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
                      Currently running:
                        * work_preproc.segment
-211017-18:30:28,146 nipype.workflow WARNING:
-	 Storing result file without outputs
-211017-18:30:28,156 nipype.workflow WARNING:
-	 [Node] Error on &quot;work_preproc.segment&quot; (/output/work_preproc/_subject_id_07/segment)
-211017-18:30:29,205 nipype.workflow ERROR:
-	 Node segment.a0 failed to run on host a54b8d983419.
-211017-18:30:29,215 nipype.workflow ERROR:
-	 Saving crash info to /home/neuro/workshop_weizmann/workshop/nipype/notebooks/crash-20211017-183029-neuro-segment.a0-87305e58-e3ce-42b0-9f37-691d49c62e5e.pklz
-Traceback (most recent call last):
-  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py&quot;, line 67, in run_node
-    result[&quot;result&quot;] = node.run(updatehash=updatehash)
-  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 516, in run
-    result = self._run_interface(execute=True)
-  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 635, in _run_interface
-    return self._run_command(execute)
-  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py&quot;, line 741, in _run_command
-    result = self._interface.run(cwd=outdir)
-  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 419, in run
-    runtime = self._run_interface(runtime)
-  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/spm/base.py&quot;, line 387, in _run_interface
-    results = self.mlab.run()
-  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 419, in run
-    runtime = self._run_interface(runtime)
-  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/matlab.py&quot;, line 170, in _run_interface
-    runtime = super(MatlabCommand, self)._run_interface(runtime)
-  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 814, in _run_interface
-    self.raise_exception(runtime)
-  File &quot;/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/interfaces/base/core.py&quot;, line 745, in raise_exception
-    ).format(**runtime.dictcopy())
-RuntimeError: Command:
-/opt/spm12-r7219/run_spm12.sh /opt/matlabmcr-2010a/v713 script /output/work_preproc/_subject_id_07/segment/pyscript_newsegment.m
-Standard output:
-Warning: No display specified.  You will not be able to display graphics on the screen.
-SPM12, version 7219 (standalone)
-MATLAB, version 7.10.0.499 (R2010a)
- ___  ____  __  __                                            
-/ __)(  _ \(  \/  )                                           
-\__ \ )___/ )    (   Statistical Parametric Mapping           
-(___/(__)  (_/\/\_)  SPM12 - http://www.fil.ion.ucl.ac.uk/spm/
-
-Executing /output/work_preproc/_subject_id_07/segment/pyscript_newsegment.m at 17-Oct-2021 18:26:23:
--------------------------------------------------------------------------------------
-MATLAB Version 7.10.0.499 (R2010a)
-MATLAB License Number: unknown
-Operating System: Linux 4.19.76-linuxkit #1 SMP Tue May 26 11:42:35 UTC 2020 x86_64
-Java VM Version: Java 1.6.0_12-b04 with Sun Microsystems Inc. Java HotSpot(TM) 64-Bit Server VM mixed mode
--------------------------------------------------------------------------------------
-MATLAB                                                Version 7.10       (R2010a)
-MATLAB Compiler                                       Version 4.13       (R2010a)
-Signal Processing Toolbox                             Version 6.13       (R2010a)
-SPM version: SPM12 Release: 7219
-SPM path: /opt/spm12-r7219/spm12_mcr/spm12/spm.m
-
-
-------------------------------------------------------------------------
-Running job #1
-------------------------------------------------------------------------
-Running &#39;Segment&#39;
-
-SPM12: spm_preproc_run (v6365)                     18:26:28 - 17/10/2021
-========================================================================
-Segment /output/work_preproc/_subject_id_07/segment/sub-07_ses-test_T1w.nii,1
-Standard error:
-Killed
-Return code: 137
+211018-09:54:52,35 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.segment&quot;.
+211018-09:54:52,242 nipype.workflow INFO:
+	 [Job 7] Completed (work_preproc.segment).
+211018-09:54:52,247 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:54:52,324 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.resample&quot; in &quot;/output/work_preproc/_subject_id_07/resample&quot;.
+211018-09:54:52,327 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.threshold_WM&quot; in &quot;/output/work_preproc/_subject_id_07/threshold_WM&quot;.
+211018-09:54:52,340 nipype.workflow INFO:
+	 [Node] Running &quot;threshold_WM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_07/segment/c2sub-07_ses-test_T1w.nii -thr 0.5000000000 -bin /output/work_preproc/_subject_id_07/threshold_WM/c2sub-07_ses-test_T1w_thresh.nii
+211018-09:54:52,341 nipype.workflow INFO:
+	 [Node] Running &quot;resample&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_07/segment/c1sub-07_ses-test_T1w.nii -ref /output/work_preproc/_subject_id_07/segment/c1sub-07_ses-test_T1w.nii -out c1sub-07_ses-test_T1w_flirt.nii -omat c1sub-07_ses-test_T1w_flirt.mat -applyisoxfm 4.000000
+211018-09:54:53,43 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.threshold_WM&quot;.
+211018-09:54:54,244 nipype.workflow INFO:
+	 [Job 10] Completed (work_preproc.threshold_WM).
+211018-09:54:54,247 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.resample
+211018-09:54:54,319 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.coreg&quot; in &quot;/output/work_preproc/_subject_id_07/coreg&quot;.
+211018-09:54:54,334 nipype.workflow INFO:
+	 [Node] Running &quot;coreg&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_07/mcflirt/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg.nii.gz -ref /output/work_preproc/_subject_id_07/gunzip_anat/sub-07_ses-test_T1w.nii -out asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.nii -omat asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -cost bbr -dof 6 -schedule /usr/share/fsl/5.0/etc/flirtsch/bbr.sch -wmseg /output/work_preproc/_subject_id_07/threshold_WM/c2sub-07_ses-test_T1w_thresh.nii
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211017-18:30:29,226 nipype.workflow INFO:
-	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 1.75/1.75, Free processors: 4/4.
-211017-18:30:31,200 nipype.workflow INFO:
-	 ***********************************
-211017-18:30:31,203 nipype.workflow ERROR:
-	 could not run node: work_preproc.segment.a0
-211017-18:30:31,205 nipype.workflow INFO:
-	 crashfile: /home/neuro/workshop_weizmann/workshop/nipype/notebooks/crash-20211017-183029-neuro-segment.a0-87305e58-e3ce-42b0-9f37-691d49c62e5e.pklz
-211017-18:30:31,207 nipype.workflow INFO:
-	 ***********************************
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-09:54:56,123 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.resample&quot;.
+211018-09:54:56,247 nipype.workflow INFO:
+	 [Job 8] Completed (work_preproc.resample).
+211018-09:54:56,250 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-09:54:56,334 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_GM&quot; in &quot;/output/work_preproc/_subject_id_07/mask_GM&quot;.
+211018-09:54:56,349 nipype.workflow INFO:
+	 [Node] Running &quot;mask_GM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_07/resample/c1sub-07_ses-test_T1w_flirt.nii -thr 0.5000000000 -bin -dilF /output/work_preproc/_subject_id_07/mask_GM/c1sub-07_ses-test_T1w_flirt_thresh.nii
+211018-09:54:56,915 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_GM&quot;.
+211018-09:54:58,249 nipype.workflow INFO:
+	 [Job 9] Completed (work_preproc.mask_GM).
+211018-09:54:58,252 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-09:56:44,907 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.coreg&quot;.
+211018-09:56:46,372 nipype.workflow INFO:
+	 [Job 11] Completed (work_preproc.coreg).
+211018-09:56:46,378 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:56:46,495 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.applywarp&quot; in &quot;/output/work_preproc/_subject_id_07/applywarp&quot;.
+211018-09:56:46,560 nipype.workflow INFO:
+	 [Node] Running &quot;applywarp&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_07/mcflirt/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -ref /output/work_preproc/_subject_id_07/gunzip_anat/sub-07_ses-test_T1w.nii -out asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -omat asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.mat -applyisoxfm 4.000000 -init /output/work_preproc/_subject_id_07/coreg/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -interp spline
+211018-09:56:48,378 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.applywarp
+211018-09:56:58,699 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.applywarp&quot;.
+211018-09:57:00,389 nipype.workflow INFO:
+	 [Job 12] Completed (work_preproc.applywarp).
+211018-09:57:00,393 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:57:00,478 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.mask&quot; in &quot;/output/work_preproc/susan/_subject_id_07/mask&quot;.
+211018-09:57:00,481 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.median&quot; in &quot;/output/work_preproc/susan/_subject_id_07/median&quot;.
+211018-09:57:00,493 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask0&quot; in &quot;/output/work_preproc/susan/_subject_id_07/mask/mapflow/_mask0&quot;.
+211018-09:57:00,494 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_median0&quot; in &quot;/output/work_preproc/susan/_subject_id_07/median/mapflow/_median0&quot;.
+211018-09:57:00,502 nipype.workflow INFO:
+	 [Node] Running &quot;_mask0&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_07/applywarp/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -mas /output/work_preproc/_subject_id_07/mask_GM/c1sub-07_ses-test_T1w_flirt_thresh.nii /output/work_preproc/susan/_subject_id_07/mask/mapflow/_mask0/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz
+211018-09:57:00,515 nipype.workflow INFO:
+	 [Node] Running &quot;_median0&quot; (&quot;nipype.interfaces.fsl.utils.ImageStats&quot;), a CommandLine Interface with command:
+fslstats /output/work_preproc/_subject_id_07/applywarp/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -k /output/work_preproc/_subject_id_07/mask_GM/c1sub-07_ses-test_T1w_flirt_thresh.nii -p 50 
+211018-09:57:02,96 nipype.workflow INFO:
+	 [Node] Finished &quot;_median0&quot;.
+211018-09:57:02,99 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.median&quot;.
+211018-09:57:02,391 nipype.workflow INFO:
+	 [Job 15] Completed (work_preproc.susan.median).
+211018-09:57:02,395 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.susan.mask
+211018-09:57:03,799 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask0&quot;.
+211018-09:57:03,803 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.mask&quot;.
+211018-09:57:04,398 nipype.workflow INFO:
+	 [Job 13] Completed (work_preproc.susan.mask).
+211018-09:57:04,401 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:57:04,493 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.meanfunc2&quot; in &quot;/output/work_preproc/susan/_subject_id_07/meanfunc2&quot;.
+211018-09:57:04,504 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_meanfunc20&quot; in &quot;/output/work_preproc/susan/_subject_id_07/meanfunc2/mapflow/_meanfunc20&quot;.
+211018-09:57:04,512 nipype.workflow INFO:
+	 [Node] Running &quot;_meanfunc20&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_07/mask/mapflow/_mask0/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz -Tmean /output/work_preproc/susan/_subject_id_07/meanfunc2/mapflow/_meanfunc20/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz
+211018-09:57:05,792 nipype.workflow INFO:
+	 [Node] Finished &quot;_meanfunc20&quot;.
+211018-09:57:05,797 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.meanfunc2&quot;.
+211018-09:57:06,401 nipype.workflow INFO:
+	 [Job 14] Completed (work_preproc.susan.meanfunc2).
+211018-09:57:06,406 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:57:06,480 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.merge&quot; in &quot;/output/work_preproc/susan/_subject_id_07/merge&quot;.
+211018-09:57:06,493 nipype.workflow INFO:
+	 [Node] Running &quot;merge&quot; (&quot;nipype.interfaces.utility.base.Merge&quot;)
+211018-09:57:06,501 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.merge&quot;.
+211018-09:57:08,410 nipype.workflow INFO:
+	 [Job 16] Completed (work_preproc.susan.merge).
+211018-09:57:08,417 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:57:08,488 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.multi_inputs&quot; in &quot;/output/work_preproc/susan/_subject_id_07/multi_inputs&quot;.
+211018-09:57:08,504 nipype.workflow INFO:
+	 [Node] Running &quot;multi_inputs&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211018-09:57:08,513 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.multi_inputs&quot;.
+211018-09:57:10,413 nipype.workflow INFO:
+	 [Job 17] Completed (work_preproc.susan.multi_inputs).
+211018-09:57:10,418 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:57:10,495 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.smooth&quot; in &quot;/output/work_preproc/susan/_subject_id_07/smooth&quot;.
+211018-09:57:10,505 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_smooth0&quot; in &quot;/output/work_preproc/susan/_subject_id_07/smooth/mapflow/_smooth0&quot;.
+211018-09:57:10,517 nipype.workflow INFO:
+	 [Node] Running &quot;_smooth0&quot; (&quot;nipype.interfaces.fsl.preprocess.SUSAN&quot;), a CommandLine Interface with command:
+susan /output/work_preproc/_subject_id_07/applywarp/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii 1046.2500000000 1.6986436006 3 1 1 /output/work_preproc/susan/_subject_id_07/meanfunc2/mapflow/_meanfunc20/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz 1046.2500000000 /output/work_preproc/susan/_subject_id_07/smooth/mapflow/_smooth0/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">72</span><span class="o">-</span><span class="n">e7bed0b326ff</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">preproc</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
-
-<span class="nn">/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/engine/workflows.py</span> in <span class="ni">run</span><span class="nt">(self, plugin, plugin_args, updatehash)</span>
-<span class="g g-Whitespace">    </span><span class="mi">630</span>         <span class="k">if</span> <span class="n">str2bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;execution&quot;</span><span class="p">][</span><span class="s2">&quot;create_report&quot;</span><span class="p">]):</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_write_report_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">execgraph</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">632</span>         <span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">execgraph</span><span class="p">,</span> <span class="n">updatehash</span><span class="o">=</span><span class="n">updatehash</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">633</span>         <span class="n">datestr</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">T%H%M%S&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">634</span>         <span class="k">if</span> <span class="n">str2bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;execution&quot;</span><span class="p">][</span><span class="s2">&quot;write_provenance&quot;</span><span class="p">]):</span>
-
-<span class="nn">/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/plugins/base.py</span> in <span class="ni">run</span><span class="nt">(self, graph, config, updatehash)</span>
-<span class="g g-Whitespace">    </span><span class="mi">190</span> 
-<span class="g g-Whitespace">    </span><span class="mi">191</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_remove_node_dirs</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">192</span>         <span class="n">report_nodes_not_run</span><span class="p">(</span><span class="n">notrun</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span> 
-<span class="g g-Whitespace">    </span><span class="mi">194</span>         <span class="c1"># close any open resources</span>
-
-<span class="nn">/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/nipype/pipeline/plugins/tools.py</span> in <span class="ni">report_nodes_not_run</span><span class="nt">(notrun)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;***********************************&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-<span class="ne">---&gt; </span><span class="mi">98</span>             <span class="p">(</span><span class="s2">&quot;Workflow did not execute cleanly. &quot;</span> <span class="s2">&quot;Check log for details&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span> 
-
-<span class="ne">RuntimeError</span>: Workflow did not execute cleanly. Check log for details
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-09:57:12,414 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+211018-09:57:47,781 nipype.workflow INFO:
+	 [Node] Finished &quot;_smooth0&quot;.
+211018-09:57:47,785 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.smooth&quot;.
+211018-09:57:48,460 nipype.workflow INFO:
+	 [Job 18] Completed (work_preproc.susan.smooth).
+211018-09:57:48,466 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:57:48,551 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_func&quot; in &quot;/output/work_preproc/_subject_id_07/mask_func&quot;.
+211018-09:57:48,560 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask_func0&quot; in &quot;/output/work_preproc/_subject_id_07/mask_func/mapflow/_mask_func0&quot;.
+211018-09:57:48,581 nipype.workflow INFO:
+	 [Node] Running &quot;_mask_func0&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_07/smooth/mapflow/_smooth0/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz -mas /output/work_preproc/_subject_id_07/mask_GM/c1sub-07_ses-test_T1w_flirt_thresh.nii /output/work_preproc/_subject_id_07/mask_func/mapflow/_mask_func0/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth_masked.nii
+211018-09:57:49,588 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask_func0&quot;.
+211018-09:57:49,594 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_func&quot;.
+211018-09:57:50,465 nipype.workflow INFO:
+	 [Job 19] Completed (work_preproc.mask_func).
+211018-09:57:50,469 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:57:50,544 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.detrend&quot; in &quot;/output/work_preproc/_subject_id_07/detrend&quot;.
+211018-09:57:50,553 nipype.workflow INFO:
+	 [Node] Running &quot;detrend&quot; (&quot;nipype.algorithms.confounds.TSNR&quot;)
+211018-09:57:52,466 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.detrend
+211018-09:57:55,152 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.detrend&quot;.
+211018-09:57:56,474 nipype.workflow INFO:
+	 [Job 20] Completed (work_preproc.detrend).
+211018-09:57:56,479 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f475927a490&gt;
 </pre></div>
 </div>
 </div>
@@ -1816,6 +1857,76 @@ Return code: 137
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree /output/work_preproc/ -I <span class="s1">&#39;*js|*json|*pklz|_report|*dot|*html|*txt|*.m&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/work_preproc/
+├── graph.png
+├── _subject_id_07
+│   ├── applywarp
+│   │   ├── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.mat
+│   │   └── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii
+│   ├── art
+│   │   ├── mask.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz
+│   │   └── plot.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.svg
+│   ├── coreg
+│   │   ├── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat
+│   │   └── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.nii
+│   ├── detrend
+│   │   ├── detrend.nii.gz
+│   │   ├── mean.nii.gz
+│   │   ├── stdev.nii.gz
+│   │   └── tsnr.nii.gz
+│   ├── extract
+│   │   └── sub-07_ses-test_task-fingerfootlips_bold_roi.nii
+│   ├── gunzip_anat
+│   │   └── sub-07_ses-test_T1w.nii
+│   ├── gunzip_func
+│   │   └── sub-07_ses-test_task-fingerfootlips_bold.nii
+│   ├── mask_func
+│   │   └── mapflow
+│   │       └── _mask_func0
+│   │           └── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth_masked.nii
+│   ├── mask_GM
+│   │   └── c1sub-07_ses-test_T1w_flirt_thresh.nii
+│   ├── mcflirt
+│   │   ├── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz
+│   │   ├── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg.nii.gz
+│   │   └── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz.par
+│   ├── resample
+│   │   ├── c1sub-07_ses-test_T1w_flirt.mat
+│   │   └── c1sub-07_ses-test_T1w_flirt.nii
+│   ├── segment
+│   │   ├── c1sub-07_ses-test_T1w.nii
+│   │   ├── c2sub-07_ses-test_T1w.nii
+│   │   └── c3sub-07_ses-test_T1w.nii
+│   ├── selectfiles
+│   ├── slicetime
+│   │   └── asub-07_ses-test_task-fingerfootlips_bold_roi.nii
+│   └── threshold_WM
+│       └── c2sub-07_ses-test_T1w_thresh.nii
+└── susan
+    └── _subject_id_07
+        ├── mask
+        │   └── mapflow
+        │       └── _mask0
+        │           └── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz
+        ├── meanfunc2
+        │   └── mapflow
+        │       └── _meanfunc20
+        │           └── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz
+        ├── median
+        │   └── mapflow
+        │       └── _median0
+        ├── merge
+        ├── multi_inputs
+        └── smooth
+            └── mapflow
+                └── _smooth0
+                    └── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz
+
+34 directories, 29 files
 </pre></div>
 </div>
 </div>
@@ -1847,6 +1958,9 @@ Return code: 137
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_114_0.png" src="../../_images/handson_preprocessing_114_0.png" />
+</div>
 </div>
 <p>The motion parameters seems to look ok. What about the detection of artifacts?</p>
 <div class="cell docutils container">
@@ -1858,6 +1972,8 @@ Return code: 137
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_116_0.svg" src="../../_images/handson_preprocessing_116_0.svg" /></div>
 </div>
 <p>Which volumes are problematic?</p>
 <div class="cell docutils container">
@@ -1865,6 +1981,15 @@ Return code: 137
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outliers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;/output/work_preproc/_subject_id_07/art/&#39;</span>
                       <span class="s1">&#39;art.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_outliers.txt&#39;</span><span class="p">)</span>
 <span class="nb">list</span><span class="p">(</span><span class="n">outliers</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: loadtxt: Empty input file: &quot;/output/work_preproc/_subject_id_07/art/art.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_outliers.txt&quot;
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
 </pre></div>
 </div>
 </div>
@@ -1899,6 +2024,9 @@ Return code: 137
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_123_0.png" src="../../_images/handson_preprocessing_123_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1907,6 +2035,9 @@ Return code: 137
     <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">anat</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_124_0.png" src="../../_images/handson_preprocessing_124_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1917,6 +2048,9 @@ Return code: 137
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_125_0.png" src="../../_images/handson_preprocessing_125_0.png" />
+</div>
 </div>
 <p>And how does the gray matter mask look like that we used on the functional images?</p>
 <div class="cell docutils container">
@@ -1926,6 +2060,9 @@ Return code: 137
     <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">anat</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_127_0.png" src="../../_images/handson_preprocessing_127_0.png" />
 </div>
 </div>
 </div>
@@ -1950,6 +2087,9 @@ Return code: 137
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_130_0.png" src="../../_images/handson_preprocessing_130_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1958,6 +2098,9 @@ Return code: 137
          <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_131_0.png" src="../../_images/handson_preprocessing_131_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1969,6 +2112,9 @@ Return code: 137
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_132_0.png" src="../../_images/handson_preprocessing_132_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1979,6 +2125,9 @@ Return code: 137
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_133_0.png" src="../../_images/handson_preprocessing_133_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1986,6 +2135,9 @@ Return code: 137
          <span class="n">cut_coords</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_134_0.png" src="../../_images/handson_preprocessing_134_0.png" />
 </div>
 </div>
 <p>That’s all nice and beautiful, but what did smoothing and detrending actually do to the data?</p>
@@ -2010,6 +2162,9 @@ Return code: 137
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;motion corrected&#39;</span><span class="p">,</span> <span class="s1">&#39;smoothed&#39;</span><span class="p">,</span> <span class="s1">&#39;detrended&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_preprocessing_136_0.png" src="../../_images/handson_preprocessing_136_0.png" />
 </div>
 </div>
 </div>
@@ -2064,11 +2219,132 @@ Return code: 137
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-09:58:37,891 nipype.workflow INFO:
+	 Workflow work_preproc settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211018-09:58:37,920 nipype.workflow INFO:
+	 Running in parallel.
+211018-09:58:37,923 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:58:38,30 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.selectfiles&quot; in &quot;/output/work_preproc/_subject_id_07/selectfiles&quot;.
+211018-09:58:38,49 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-09:58:38,62 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.selectfiles&quot;.
+211018-09:58:39,929 nipype.workflow INFO:
+	 [Job 0] Completed (work_preproc.selectfiles).
+211018-09:58:39,934 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:58:40,57 nipype.workflow INFO:
+	 [Job 1] Cached (work_preproc.gunzip_func).
+211018-09:58:40,62 nipype.workflow INFO:
+	 [Job 6] Cached (work_preproc.gunzip_anat).
+211018-09:58:42,9 nipype.workflow INFO:
+	 [Job 2] Cached (work_preproc.extract).
+211018-09:58:42,14 nipype.workflow INFO:
+	 [Job 7] Cached (work_preproc.segment).
+211018-09:58:43,935 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:58:44,16 nipype.workflow INFO:
+	 [Job 3] Cached (work_preproc.slicetime).
+211018-09:58:44,23 nipype.workflow INFO:
+	 [Job 8] Cached (work_preproc.resample).
+211018-09:58:44,33 nipype.workflow INFO:
+	 [Job 10] Cached (work_preproc.threshold_WM).
+211018-09:58:45,935 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:58:46,24 nipype.workflow INFO:
+	 [Job 4] Cached (work_preproc.mcflirt).
+211018-09:58:46,31 nipype.workflow INFO:
+	 [Job 9] Cached (work_preproc.mask_GM).
+211018-09:58:48,19 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;work_preproc.art&quot;.
+211018-09:58:48,26 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.art&quot; in &quot;/output/work_preproc/_subject_id_07/art&quot;.
+211018-09:58:48,38 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;work_preproc.art&quot;.
+211018-09:58:48,52 nipype.workflow INFO:
+	 [Job 11] Cached (work_preproc.coreg).
+211018-09:58:48,64 nipype.workflow INFO:
+	 [Node] Running &quot;art&quot; (&quot;nipype.algorithms.rapidart.ArtifactDetect&quot;)
+211018-09:58:49,212 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.art&quot;.
+211018-09:58:49,946 nipype.workflow INFO:
+	 [Job 5] Completed (work_preproc.art).
+211018-09:58:49,948 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:58:50,20 nipype.workflow INFO:
+	 [Job 12] Cached (work_preproc.applywarp).
+211018-09:58:51,980 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:58:52,259 nipype.workflow INFO:
+	 [Job 13] Cached (work_preproc.susan.mask).
+211018-09:58:52,276 nipype.workflow INFO:
+	 [Job 15] Cached (work_preproc.susan.median).
+211018-09:58:53,964 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:58:54,49 nipype.workflow INFO:
+	 [Job 14] Cached (work_preproc.susan.meanfunc2).
+211018-09:58:56,41 nipype.workflow INFO:
+	 [Job 16] Cached (work_preproc.susan.merge).
+211018-09:58:58,93 nipype.workflow INFO:
+	 [Job 17] Cached (work_preproc.susan.multi_inputs).
+211018-09:59:00,227 nipype.workflow INFO:
+	 [Job 18] Cached (work_preproc.susan.smooth).
+211018-09:59:02,93 nipype.workflow INFO:
+	 [Job 19] Cached (work_preproc.mask_func).
+211018-09:59:04,60 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;work_preproc.detrend&quot;.
+211018-09:59:04,66 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.detrend&quot; in &quot;/output/work_preproc/_subject_id_07/detrend&quot;.
+211018-09:59:04,72 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;work_preproc.detrend&quot;.
+211018-09:59:04,83 nipype.workflow INFO:
+	 [Node] Running &quot;detrend&quot; (&quot;nipype.algorithms.confounds.TSNR&quot;)
+211018-09:59:05,982 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.detrend
+211018-09:59:09,199 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.detrend&quot;.
+211018-09:59:09,987 nipype.workflow INFO:
+	 [Job 20] Completed (work_preproc.detrend).
+211018-09:59:09,991 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:10,80 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.datasink&quot; in &quot;/output/work_preproc/_subject_id_07/datasink&quot;.
+211018-09:59:10,98 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-09:59:10,111 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.datasink&quot;.
+211018-09:59:11,993 nipype.workflow INFO:
+	 [Job 21] Completed (work_preproc.datasink).
+211018-09:59:11,998 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f4758030b50&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s look now at the output of this datasink folder.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree /output/datasink_handson -I <span class="s1">&#39;*js|*json|*pklz|_report|*dot|*html|*txt|*.m&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/datasink_handson
+└── preproc
+    └── _subject_id_07
+        ├── asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz.par
+        ├── detrend.nii.gz
+        └── plot.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.svg
+
+2 directories, 3 files
 </pre></div>
 </div>
 </div>
@@ -2107,10 +2383,117 @@ Return code: 137
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-09:59:15,336 nipype.workflow INFO:
+	 Workflow work_preproc settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211018-09:59:15,362 nipype.workflow INFO:
+	 Running in parallel.
+211018-09:59:15,365 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:15,497 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.selectfiles&quot; in &quot;/output/work_preproc/_subject_id_07/selectfiles&quot;.
+211018-09:59:15,511 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-09:59:15,521 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.selectfiles&quot;.
+211018-09:59:17,370 nipype.workflow INFO:
+	 [Job 0] Completed (work_preproc.selectfiles).
+211018-09:59:17,375 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:17,491 nipype.workflow INFO:
+	 [Job 1] Cached (work_preproc.gunzip_func).
+211018-09:59:17,496 nipype.workflow INFO:
+	 [Job 6] Cached (work_preproc.gunzip_anat).
+211018-09:59:19,452 nipype.workflow INFO:
+	 [Job 2] Cached (work_preproc.extract).
+211018-09:59:19,457 nipype.workflow INFO:
+	 [Job 7] Cached (work_preproc.segment).
+211018-09:59:21,376 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:21,466 nipype.workflow INFO:
+	 [Job 3] Cached (work_preproc.slicetime).
+211018-09:59:21,471 nipype.workflow INFO:
+	 [Job 8] Cached (work_preproc.resample).
+211018-09:59:21,479 nipype.workflow INFO:
+	 [Job 10] Cached (work_preproc.threshold_WM).
+211018-09:59:23,382 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:23,534 nipype.workflow INFO:
+	 [Job 4] Cached (work_preproc.mcflirt).
+211018-09:59:23,544 nipype.workflow INFO:
+	 [Job 9] Cached (work_preproc.mask_GM).
+211018-09:59:25,478 nipype.workflow INFO:
+	 [Job 5] Cached (work_preproc.art).
+211018-09:59:25,487 nipype.workflow INFO:
+	 [Job 11] Cached (work_preproc.coreg).
+211018-09:59:27,387 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:27,468 nipype.workflow INFO:
+	 [Job 12] Cached (work_preproc.applywarp).
+211018-09:59:29,394 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:29,480 nipype.workflow INFO:
+	 [Job 13] Cached (work_preproc.susan.mask).
+211018-09:59:29,497 nipype.workflow INFO:
+	 [Job 15] Cached (work_preproc.susan.median).
+211018-09:59:31,401 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:31,479 nipype.workflow INFO:
+	 [Job 14] Cached (work_preproc.susan.meanfunc2).
+211018-09:59:33,491 nipype.workflow INFO:
+	 [Job 16] Cached (work_preproc.susan.merge).
+211018-09:59:35,490 nipype.workflow INFO:
+	 [Job 17] Cached (work_preproc.susan.multi_inputs).
+211018-09:59:37,496 nipype.workflow INFO:
+	 [Job 18] Cached (work_preproc.susan.smooth).
+211018-09:59:39,503 nipype.workflow INFO:
+	 [Job 19] Cached (work_preproc.mask_func).
+211018-09:59:41,498 nipype.workflow INFO:
+	 [Job 20] Cached (work_preproc.detrend).
+211018-09:59:43,510 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;work_preproc.datasink&quot;.
+211018-09:59:43,517 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.datasink&quot; in &quot;/output/work_preproc/_subject_id_07/datasink&quot;.
+211018-09:59:43,522 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;work_preproc.datasink&quot;.
+211018-09:59:43,530 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-09:59:43,534 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_07/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz.par -&gt; /output/datasink_handson/preproc/sub-07.par
+211018-09:59:43,537 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_07/art.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_outliers.txt -&gt; /output/datasink_handson/preproc/art.sub-07_outliers.txt
+211018-09:59:43,539 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_07/plot.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.svg -&gt; /output/datasink_handson/preproc/plot.sub-07.svg
+211018-09:59:43,542 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_07/detrend.nii.gz -&gt; /output/datasink_handson/preproc/sub-07_detrend.nii.gz
+211018-09:59:43,552 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.datasink&quot;.
+211018-09:59:45,435 nipype.workflow INFO:
+	 [Job 21] Completed (work_preproc.datasink).
+211018-09:59:45,440 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f47582b0250&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tree /output/datasink_handson -I <span class="s1">&#39;*js|*json|*pklz|_report|*dot|*html|*.m&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/output/datasink_handson
+└── preproc
+    ├── art.sub-07_outliers.txt
+    ├── plot.sub-07.svg
+    ├── sub-07_detrend.nii.gz
+    └── sub-07.par
+
+1 directory, 4 files
 </pre></div>
 </div>
 </div>
@@ -2151,6 +2534,1851 @@ Return code: 137
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Runs the preprocessing workflow again, this time with substitutions</span>
 <span class="n">preproc</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-09:59:48,139 nipype.workflow INFO:
+	 Workflow work_preproc settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211018-09:59:48,249 nipype.workflow INFO:
+	 Running in parallel.
+211018-09:59:48,255 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:48,376 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.selectfiles&quot; in &quot;/output/work_preproc/_subject_id_08/selectfiles&quot;.
+211018-09:59:48,378 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.selectfiles&quot; in &quot;/output/work_preproc/_subject_id_07/selectfiles&quot;.
+211018-09:59:48,379 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.selectfiles&quot; in &quot;/output/work_preproc/_subject_id_04/selectfiles&quot;.
+211018-09:59:48,376 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.selectfiles&quot; in &quot;/output/work_preproc/_subject_id_09/selectfiles&quot;.
+211018-09:59:48,388 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-09:59:48,391 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-09:59:48,396 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-09:59:48,396 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-09:59:48,400 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.selectfiles&quot;.
+211018-09:59:48,400 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.selectfiles&quot;.
+211018-09:59:48,405 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.selectfiles&quot;.
+211018-09:59:48,408 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.selectfiles&quot;.
+211018-09:59:50,266 nipype.workflow INFO:
+	 [Job 0] Completed (work_preproc.selectfiles).
+211018-09:59:50,270 nipype.workflow INFO:
+	 [Job 22] Completed (work_preproc.selectfiles).
+211018-09:59:50,273 nipype.workflow INFO:
+	 [Job 44] Completed (work_preproc.selectfiles).
+211018-09:59:50,275 nipype.workflow INFO:
+	 [Job 66] Completed (work_preproc.selectfiles).
+211018-09:59:50,279 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:50,396 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_func&quot; in &quot;/output/work_preproc/_subject_id_09/gunzip_func&quot;.
+211018-09:59:50,397 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_func&quot; in &quot;/output/work_preproc/_subject_id_08/gunzip_func&quot;.
+211018-09:59:50,397 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_anat&quot; in &quot;/output/work_preproc/_subject_id_09/gunzip_anat&quot;.
+211018-09:59:50,400 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_anat&quot; in &quot;/output/work_preproc/_subject_id_08/gunzip_anat&quot;.
+211018-09:59:50,417 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_func&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-09:59:50,417 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_func&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-09:59:50,420 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_anat&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-09:59:50,420 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_anat&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-09:59:51,40 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.gunzip_anat&quot;.
+211018-09:59:51,99 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.gunzip_anat&quot;.
+211018-09:59:51,524 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.gunzip_func&quot;.
+211018-09:59:51,595 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.gunzip_func&quot;.
+211018-09:59:52,266 nipype.workflow INFO:
+	 [Job 1] Completed (work_preproc.gunzip_func).
+211018-09:59:52,269 nipype.workflow INFO:
+	 [Job 6] Completed (work_preproc.gunzip_anat).
+211018-09:59:52,272 nipype.workflow INFO:
+	 [Job 23] Completed (work_preproc.gunzip_func).
+211018-09:59:52,274 nipype.workflow INFO:
+	 [Job 28] Completed (work_preproc.gunzip_anat).
+211018-09:59:52,278 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-09:59:52,357 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.extract&quot; in &quot;/output/work_preproc/_subject_id_09/extract&quot;.
+211018-09:59:52,365 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.extract&quot; in &quot;/output/work_preproc/_subject_id_08/extract&quot;.
+211018-09:59:52,367 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.segment&quot; in &quot;/output/work_preproc/_subject_id_08/segment&quot;.
+211018-09:59:52,366 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.segment&quot; in &quot;/output/work_preproc/_subject_id_09/segment&quot;.
+211018-09:59:52,369 nipype.workflow INFO:
+	 [Node] Running &quot;extract&quot; (&quot;nipype.interfaces.fsl.utils.ExtractROI&quot;), a CommandLine Interface with command:
+fslroi /output/work_preproc/_subject_id_09/gunzip_func/sub-09_ses-test_task-fingerfootlips_bold.nii /output/work_preproc/_subject_id_09/extract/sub-09_ses-test_task-fingerfootlips_bold_roi.nii 4 -1
+211018-09:59:52,379 nipype.workflow INFO:
+	 [Node] Running &quot;extract&quot; (&quot;nipype.interfaces.fsl.utils.ExtractROI&quot;), a CommandLine Interface with command:
+fslroi /output/work_preproc/_subject_id_08/gunzip_func/sub-08_ses-test_task-fingerfootlips_bold.nii /output/work_preproc/_subject_id_08/extract/sub-08_ses-test_task-fingerfootlips_bold_roi.nii 4 -1
+211018-09:59:52,389 nipype.workflow INFO:
+	 [Node] Running &quot;segment&quot; (&quot;nipype.interfaces.spm.preprocess.NewSegment&quot;)
+211018-09:59:52,389 nipype.workflow INFO:
+	 [Node] Running &quot;segment&quot; (&quot;nipype.interfaces.spm.preprocess.NewSegment&quot;)
+211018-09:59:52,916 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.extract&quot;.
+211018-09:59:52,917 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.extract&quot;.
+211018-09:59:54,266 nipype.workflow INFO:
+	 [Job 2] Completed (work_preproc.extract).
+211018-09:59:54,269 nipype.workflow INFO:
+	 [Job 24] Completed (work_preproc.extract).
+211018-09:59:54,273 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 8 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-09:59:54,342 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.slicetime&quot; in &quot;/output/work_preproc/_subject_id_08/slicetime&quot;.
+211018-09:59:54,341 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.slicetime&quot; in &quot;/output/work_preproc/_subject_id_09/slicetime&quot;.
+211018-09:59:54,350 nipype.workflow INFO:
+	 [Node] Running &quot;slicetime&quot; (&quot;nipype.interfaces.spm.preprocess.SliceTiming&quot;)
+211018-09:59:54,353 nipype.workflow INFO:
+	 [Node] Running &quot;slicetime&quot; (&quot;nipype.interfaces.spm.preprocess.SliceTiming&quot;)
+211018-09:59:56,269 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 6 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.slicetime
+                       * work_preproc.slicetime
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:00:22,441 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.slicetime&quot;.
+211018-10:00:22,510 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.slicetime&quot;.
+211018-10:00:24,312 nipype.workflow INFO:
+	 [Job 3] Completed (work_preproc.slicetime).
+211018-10:00:24,314 nipype.workflow INFO:
+	 [Job 25] Completed (work_preproc.slicetime).
+211018-10:00:24,319 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 8 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:00:24,399 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mcflirt&quot; in &quot;/output/work_preproc/_subject_id_08/mcflirt&quot;.
+211018-10:00:24,399 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mcflirt&quot; in &quot;/output/work_preproc/_subject_id_09/mcflirt&quot;.
+211018-10:00:24,411 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /output/work_preproc/_subject_id_09/slicetime/asub-09_ses-test_task-fingerfootlips_bold_roi.nii -meanvol -out /output/work_preproc/_subject_id_09/mcflirt/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -plots
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:00:24,412 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /output/work_preproc/_subject_id_08/slicetime/asub-08_ses-test_task-fingerfootlips_bold_roi.nii -meanvol -out /output/work_preproc/_subject_id_08/mcflirt/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -plots
+211018-10:00:26,315 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 6 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.mcflirt
+                       * work_preproc.mcflirt
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:00,567 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mcflirt&quot;.
+211018-10:02:00,597 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mcflirt&quot;.
+211018-10:02:02,404 nipype.workflow INFO:
+	 [Job 4] Completed (work_preproc.mcflirt).
+211018-10:02:02,410 nipype.workflow INFO:
+	 [Job 26] Completed (work_preproc.mcflirt).
+211018-10:02:02,420 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 8 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:02,525 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.art&quot; in &quot;/output/work_preproc/_subject_id_08/art&quot;.
+211018-10:02:02,524 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.art&quot; in &quot;/output/work_preproc/_subject_id_09/art&quot;.
+211018-10:02:02,543 nipype.workflow INFO:
+	 [Node] Running &quot;art&quot; (&quot;nipype.algorithms.rapidart.ArtifactDetect&quot;)
+211018-10:02:02,544 nipype.workflow INFO:
+	 [Node] Running &quot;art&quot; (&quot;nipype.algorithms.rapidart.ArtifactDetect&quot;)
+211018-10:02:03,725 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.art&quot;.
+211018-10:02:03,726 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.art&quot;.
+211018-10:02:04,406 nipype.workflow INFO:
+	 [Job 5] Completed (work_preproc.art).
+211018-10:02:04,408 nipype.workflow INFO:
+	 [Job 27] Completed (work_preproc.art).
+211018-10:02:04,411 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 6 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:04,480 nipype.workflow INFO:
+	 [Job 45] Cached (work_preproc.gunzip_func).
+211018-10:02:04,484 nipype.workflow INFO:
+	 [Job 50] Cached (work_preproc.gunzip_anat).
+211018-10:02:06,476 nipype.workflow INFO:
+	 [Job 46] Cached (work_preproc.extract).
+211018-10:02:06,480 nipype.workflow INFO:
+	 [Job 51] Cached (work_preproc.segment).
+211018-10:02:08,411 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 7 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:08,476 nipype.workflow INFO:
+	 [Job 47] Cached (work_preproc.slicetime).
+211018-10:02:08,481 nipype.workflow INFO:
+	 [Job 52] Cached (work_preproc.resample).
+211018-10:02:10,481 nipype.workflow INFO:
+	 [Job 48] Cached (work_preproc.mcflirt).
+211018-10:02:10,486 nipype.workflow INFO:
+	 [Job 53] Cached (work_preproc.mask_GM).
+211018-10:02:12,417 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 6 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:12,528 nipype.workflow INFO:
+	 [Job 49] Cached (work_preproc.art).
+211018-10:02:12,535 nipype.workflow INFO:
+	 [Job 54] Cached (work_preproc.threshold_WM).
+211018-10:02:14,419 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 5 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:14,506 nipype.workflow INFO:
+	 [Job 55] Cached (work_preproc.coreg).
+211018-10:02:14,509 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_func&quot; in &quot;/output/work_preproc/_subject_id_04/gunzip_func&quot;.
+211018-10:02:14,518 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_func&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-10:02:15,610 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.gunzip_func&quot;.
+211018-10:02:16,422 nipype.workflow INFO:
+	 [Job 67] Completed (work_preproc.gunzip_func).
+211018-10:02:16,430 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 5 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:16,631 nipype.workflow INFO:
+	 [Job 56] Cached (work_preproc.applywarp).
+211018-10:02:16,641 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.extract&quot; in &quot;/output/work_preproc/_subject_id_04/extract&quot;.
+211018-10:02:16,662 nipype.workflow INFO:
+	 [Node] Running &quot;extract&quot; (&quot;nipype.interfaces.fsl.utils.ExtractROI&quot;), a CommandLine Interface with command:
+fslroi /output/work_preproc/_subject_id_04/gunzip_func/sub-04_ses-test_task-fingerfootlips_bold.nii /output/work_preproc/_subject_id_04/extract/sub-04_ses-test_task-fingerfootlips_bold_roi.nii 4 -1
+211018-10:02:17,228 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.extract&quot;.
+211018-10:02:18,422 nipype.workflow INFO:
+	 [Job 68] Completed (work_preproc.extract).
+211018-10:02:18,428 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 6 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:18,552 nipype.workflow INFO:
+	 [Job 57] Cached (work_preproc.susan.mask).
+211018-10:02:18,564 nipype.workflow INFO:
+	 [Job 59] Cached (work_preproc.susan.median).
+211018-10:02:20,425 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 5 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:20,500 nipype.workflow INFO:
+	 [Job 58] Cached (work_preproc.susan.meanfunc2).
+211018-10:02:20,505 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.slicetime&quot; in &quot;/output/work_preproc/_subject_id_04/slicetime&quot;.
+211018-10:02:20,519 nipype.workflow INFO:
+	 [Node] Running &quot;slicetime&quot; (&quot;nipype.interfaces.spm.preprocess.SliceTiming&quot;)
+211018-10:02:22,427 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 4 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.slicetime
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:22,521 nipype.workflow INFO:
+	 [Job 60] Cached (work_preproc.susan.merge).
+211018-10:02:24,515 nipype.workflow INFO:
+	 [Job 61] Cached (work_preproc.susan.multi_inputs).
+211018-10:02:26,502 nipype.workflow INFO:
+	 [Job 62] Cached (work_preproc.susan.smooth).
+211018-10:02:28,520 nipype.workflow INFO:
+	 [Job 63] Cached (work_preproc.mask_func).
+211018-10:02:30,519 nipype.workflow INFO:
+	 [Job 64] Cached (work_preproc.detrend).
+211018-10:02:32,520 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;work_preproc.datasink&quot;.
+211018-10:02:32,526 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.datasink&quot; in &quot;/output/work_preproc/_subject_id_07/datasink&quot;.
+211018-10:02:32,529 nipype.workflow INFO:
+	 [Node] Outdated cache found for &quot;work_preproc.datasink&quot;.
+211018-10:02:32,536 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:02:32,540 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_07/asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz.par -&gt; /output/datasink_handson/preproc/sub-07.par
+211018-10:02:32,545 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_07/art.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf_outliers.txt -&gt; /output/datasink_handson/preproc/art.sub-07_outliers.txt
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:02:32,547 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_07/plot.asub-07_ses-test_task-fingerfootlips_bold_roi_mcf.svg -&gt; /output/datasink_handson/preproc/plot.sub-07.svg
+211018-10:02:32,549 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_07/detrend.nii.gz -&gt; /output/datasink_handson/preproc/sub-07_detrend.nii.gz
+211018-10:02:32,557 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.datasink&quot;.
+211018-10:02:34,436 nipype.workflow INFO:
+	 [Job 65] Completed (work_preproc.datasink).
+211018-10:02:34,441 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.slicetime
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:34,531 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_anat&quot; in &quot;/output/work_preproc/_subject_id_04/gunzip_anat&quot;.
+211018-10:02:34,540 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_anat&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-10:02:34,947 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.gunzip_anat&quot;.
+211018-10:02:36,438 nipype.workflow INFO:
+	 [Job 72] Completed (work_preproc.gunzip_anat).
+211018-10:02:36,442 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.slicetime
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:36,519 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.segment&quot; in &quot;/output/work_preproc/_subject_id_04/segment&quot;.
+211018-10:02:36,532 nipype.workflow INFO:
+	 [Node] Running &quot;segment&quot; (&quot;nipype.interfaces.spm.preprocess.NewSegment&quot;)
+211018-10:02:38,442 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.slicetime
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:39,502 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.slicetime&quot;.
+211018-10:02:40,443 nipype.workflow INFO:
+	 [Job 69] Completed (work_preproc.slicetime).
+211018-10:02:40,449 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:02:40,545 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mcflirt&quot; in &quot;/output/work_preproc/_subject_id_04/mcflirt&quot;.
+211018-10:02:40,558 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /output/work_preproc/_subject_id_04/slicetime/asub-04_ses-test_task-fingerfootlips_bold_roi.nii -meanvol -out /output/work_preproc/_subject_id_04/mcflirt/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -plots
+211018-10:02:42,450 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.mcflirt
+                       * work_preproc.segment
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:04:04,968 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.segment&quot;.
+211018-10:04:06,551 nipype.workflow INFO:
+	 [Job 7] Completed (work_preproc.segment).
+211018-10:04:06,566 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 4 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.mcflirt
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:04:06,753 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.resample&quot; in &quot;/output/work_preproc/_subject_id_09/resample&quot;.
+211018-10:04:06,770 nipype.workflow INFO:
+	 [Node] Running &quot;resample&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_09/segment/c1sub-09_ses-test_T1w.nii -ref /output/work_preproc/_subject_id_09/segment/c1sub-09_ses-test_T1w.nii -out c1sub-09_ses-test_T1w_flirt.nii -omat c1sub-09_ses-test_T1w_flirt.mat -applyisoxfm 4.000000
+211018-10:04:08,554 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 3 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.resample
+                       * work_preproc.mcflirt
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:04:12,62 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.resample&quot;.
+211018-10:04:12,557 nipype.workflow INFO:
+	 [Job 8] Completed (work_preproc.resample).
+211018-10:04:12,564 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 4 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.mcflirt
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:04:12,673 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_GM&quot; in &quot;/output/work_preproc/_subject_id_09/mask_GM&quot;.
+211018-10:04:12,692 nipype.workflow INFO:
+	 [Node] Running &quot;mask_GM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_09/resample/c1sub-09_ses-test_T1w_flirt.nii -thr 0.5000000000 -bin -dilF /output/work_preproc/_subject_id_09/mask_GM/c1sub-09_ses-test_T1w_flirt_thresh.nii
+211018-10:04:13,298 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_GM&quot;.
+211018-10:04:13,512 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mcflirt&quot;.
+211018-10:04:14,558 nipype.workflow INFO:
+	 [Job 70] Completed (work_preproc.mcflirt).
+211018-10:04:14,560 nipype.workflow INFO:
+	 [Job 9] Completed (work_preproc.mask_GM).
+211018-10:04:14,565 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 4 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:04:14,645 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.art&quot; in &quot;/output/work_preproc/_subject_id_04/art&quot;.
+211018-10:04:14,645 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.threshold_WM&quot; in &quot;/output/work_preproc/_subject_id_09/threshold_WM&quot;.
+211018-10:04:14,659 nipype.workflow INFO:
+	 [Node] Running &quot;art&quot; (&quot;nipype.algorithms.rapidart.ArtifactDetect&quot;)
+211018-10:04:14,660 nipype.workflow INFO:
+	 [Node] Running &quot;threshold_WM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_09/segment/c2sub-09_ses-test_T1w.nii -thr 0.5000000000 -bin /output/work_preproc/_subject_id_09/threshold_WM/c2sub-09_ses-test_T1w_thresh.nii
+211018-10:04:15,353 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.threshold_WM&quot;.
+211018-10:04:15,685 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.art&quot;.
+211018-10:04:16,16 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.segment&quot;.
+211018-10:04:16,560 nipype.workflow INFO:
+	 [Job 29] Completed (work_preproc.segment).
+211018-10:04:16,562 nipype.workflow INFO:
+	 [Job 10] Completed (work_preproc.threshold_WM).
+211018-10:04:16,564 nipype.workflow INFO:
+	 [Job 71] Completed (work_preproc.art).
+211018-10:04:16,569 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 5 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.segment
+211018-10:04:16,640 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.coreg&quot; in &quot;/output/work_preproc/_subject_id_09/coreg&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:04:16,641 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.resample&quot; in &quot;/output/work_preproc/_subject_id_08/resample&quot;.
+211018-10:04:16,642 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.threshold_WM&quot; in &quot;/output/work_preproc/_subject_id_08/threshold_WM&quot;.
+211018-10:04:16,656 nipype.workflow INFO:
+	 [Node] Running &quot;resample&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_08/segment/c1sub-08_ses-test_T1w.nii -ref /output/work_preproc/_subject_id_08/segment/c1sub-08_ses-test_T1w.nii -out c1sub-08_ses-test_T1w_flirt.nii -omat c1sub-08_ses-test_T1w_flirt.mat -applyisoxfm 4.000000
+211018-10:04:16,655 nipype.workflow INFO:
+	 [Node] Running &quot;threshold_WM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_08/segment/c2sub-08_ses-test_T1w.nii -thr 0.5000000000 -bin /output/work_preproc/_subject_id_08/threshold_WM/c2sub-08_ses-test_T1w_thresh.nii
+211018-10:04:16,659 nipype.workflow INFO:
+	 [Node] Running &quot;coreg&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_09/mcflirt/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg.nii.gz -ref /output/work_preproc/_subject_id_09/gunzip_anat/sub-09_ses-test_T1w.nii -out asub-09_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.nii -omat asub-09_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -cost bbr -dof 6 -schedule /usr/share/fsl/5.0/etc/flirtsch/bbr.sch -wmseg /output/work_preproc/_subject_id_09/threshold_WM/c2sub-09_ses-test_T1w_thresh.nii
+211018-10:04:17,310 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.threshold_WM&quot;.
+211018-10:04:18,564 nipype.workflow INFO:
+	 [Job 32] Completed (work_preproc.threshold_WM).
+211018-10:04:18,570 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.resample
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:04:18,703 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.coreg&quot; in &quot;/output/work_preproc/_subject_id_08/coreg&quot;.
+211018-10:04:18,739 nipype.workflow INFO:
+	 [Node] Running &quot;coreg&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_08/mcflirt/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg.nii.gz -ref /output/work_preproc/_subject_id_08/gunzip_anat/sub-08_ses-test_T1w.nii -out asub-08_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.nii -omat asub-08_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -cost bbr -dof 6 -schedule /usr/share/fsl/5.0/etc/flirtsch/bbr.sch -wmseg /output/work_preproc/_subject_id_08/threshold_WM/c2sub-08_ses-test_T1w_thresh.nii
+211018-10:04:20,566 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.resample
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:04:21,1 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.resample&quot;.
+211018-10:04:22,567 nipype.workflow INFO:
+	 [Job 30] Completed (work_preproc.resample).
+211018-10:04:22,572 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:04:22,643 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_GM&quot; in &quot;/output/work_preproc/_subject_id_08/mask_GM&quot;.
+211018-10:04:22,654 nipype.workflow INFO:
+	 [Node] Running &quot;mask_GM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_08/resample/c1sub-08_ses-test_T1w_flirt.nii -thr 0.5000000000 -bin -dilF /output/work_preproc/_subject_id_08/mask_GM/c1sub-08_ses-test_T1w_flirt_thresh.nii
+211018-10:04:23,212 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_GM&quot;.
+211018-10:04:24,569 nipype.workflow INFO:
+	 [Job 31] Completed (work_preproc.mask_GM).
+211018-10:04:24,573 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:04:24,642 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.selectfiles&quot; in &quot;/output/work_preproc/_subject_id_03/selectfiles&quot;.
+211018-10:04:24,650 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:04:24,659 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.selectfiles&quot;.
+211018-10:04:26,571 nipype.workflow INFO:
+	 [Job 88] Completed (work_preproc.selectfiles).
+211018-10:04:26,575 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:04:26,645 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_func&quot; in &quot;/output/work_preproc/_subject_id_03/gunzip_func&quot;.
+211018-10:04:26,656 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_func&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-10:04:27,187 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.gunzip_func&quot;.
+211018-10:04:28,573 nipype.workflow INFO:
+	 [Job 89] Completed (work_preproc.gunzip_func).
+211018-10:04:28,577 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:04:28,664 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.extract&quot; in &quot;/output/work_preproc/_subject_id_03/extract&quot;.
+211018-10:04:28,674 nipype.workflow INFO:
+	 [Node] Running &quot;extract&quot; (&quot;nipype.interfaces.fsl.utils.ExtractROI&quot;), a CommandLine Interface with command:
+fslroi /output/work_preproc/_subject_id_03/gunzip_func/sub-03_ses-test_task-fingerfootlips_bold.nii /output/work_preproc/_subject_id_03/extract/sub-03_ses-test_task-fingerfootlips_bold_roi.nii 4 -1
+211018-10:04:29,118 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.extract&quot;.
+211018-10:04:30,576 nipype.workflow INFO:
+	 [Job 90] Completed (work_preproc.extract).
+211018-10:04:30,581 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:04:30,669 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.slicetime&quot; in &quot;/output/work_preproc/_subject_id_03/slicetime&quot;.
+211018-10:04:30,686 nipype.workflow INFO:
+	 [Node] Running &quot;slicetime&quot; (&quot;nipype.interfaces.spm.preprocess.SliceTiming&quot;)
+211018-10:04:32,579 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.slicetime
+                       * work_preproc.coreg
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:04:50,299 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.slicetime&quot;.
+211018-10:04:50,598 nipype.workflow INFO:
+	 [Job 91] Completed (work_preproc.slicetime).
+211018-10:04:50,603 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.coreg
+                       * work_preproc.segment
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:04:50,685 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mcflirt&quot; in &quot;/output/work_preproc/_subject_id_03/mcflirt&quot;.
+211018-10:04:50,696 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /output/work_preproc/_subject_id_03/slicetime/asub-03_ses-test_task-fingerfootlips_bold_roi.nii -meanvol -out /output/work_preproc/_subject_id_03/mcflirt/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -plots
+211018-10:04:52,601 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.mcflirt
+                       * work_preproc.coreg
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:06:23,896 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.coreg&quot;.
+211018-10:06:24,718 nipype.workflow INFO:
+	 [Job 11] Completed (work_preproc.coreg).
+211018-10:06:24,723 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.mcflirt
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:06:24,835 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.applywarp&quot; in &quot;/output/work_preproc/_subject_id_09/applywarp&quot;.
+211018-10:06:24,858 nipype.workflow INFO:
+	 [Node] Running &quot;applywarp&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_09/mcflirt/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -ref /output/work_preproc/_subject_id_09/gunzip_anat/sub-09_ses-test_T1w.nii -out asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -omat asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.mat -applyisoxfm 4.000000 -init /output/work_preproc/_subject_id_09/coreg/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -interp spline
+211018-10:06:26,721 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.applywarp
+                       * work_preproc.mcflirt
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:06:27,279 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.coreg&quot;.
+211018-10:06:27,965 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mcflirt&quot;.
+211018-10:06:28,722 nipype.workflow INFO:
+	 [Job 33] Completed (work_preproc.coreg).
+211018-10:06:28,725 nipype.workflow INFO:
+	 [Job 92] Completed (work_preproc.mcflirt).
+211018-10:06:28,732 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 4 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.applywarp
+                       * work_preproc.segment
+211018-10:06:28,832 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.applywarp&quot; in &quot;/output/work_preproc/_subject_id_08/applywarp&quot;.
+211018-10:06:28,836 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.art&quot; in &quot;/output/work_preproc/_subject_id_03/art&quot;.
+211018-10:06:28,854 nipype.workflow INFO:
+	 [Node] Running &quot;art&quot; (&quot;nipype.algorithms.rapidart.ArtifactDetect&quot;)
+211018-10:06:28,859 nipype.workflow INFO:
+	 [Node] Running &quot;applywarp&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_08/mcflirt/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -ref /output/work_preproc/_subject_id_08/gunzip_anat/sub-08_ses-test_T1w.nii -out asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -omat asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.mat -applyisoxfm 4.000000 -init /output/work_preproc/_subject_id_08/coreg/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -interp spline
+211018-10:06:29,864 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.art&quot;.
+211018-10:06:30,724 nipype.workflow INFO:
+	 [Job 93] Completed (work_preproc.art).
+211018-10:06:30,729 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.applywarp
+                       * work_preproc.applywarp
+                       * work_preproc.segment
+211018-10:06:30,809 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_anat&quot; in &quot;/output/work_preproc/_subject_id_03/gunzip_anat&quot;.
+211018-10:06:30,822 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_anat&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-10:06:31,302 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.gunzip_anat&quot;.
+211018-10:06:32,724 nipype.workflow INFO:
+	 [Job 94] Completed (work_preproc.gunzip_anat).
+211018-10:06:32,729 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.applywarp
+                       * work_preproc.applywarp
+                       * work_preproc.segment
+211018-10:06:32,812 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.segment&quot; in &quot;/output/work_preproc/_subject_id_03/segment&quot;.
+211018-10:06:32,838 nipype.workflow INFO:
+	 [Node] Running &quot;segment&quot; (&quot;nipype.interfaces.spm.preprocess.NewSegment&quot;)
+211018-10:06:34,727 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 1 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.applywarp
+                       * work_preproc.applywarp
+                       * work_preproc.segment
+211018-10:06:37,993 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.applywarp&quot;.
+211018-10:06:38,731 nipype.workflow INFO:
+	 [Job 12] Completed (work_preproc.applywarp).
+211018-10:06:38,735 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.applywarp
+                       * work_preproc.segment
+211018-10:06:38,810 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.mask&quot; in &quot;/output/work_preproc/susan/_subject_id_09/mask&quot;.
+211018-10:06:38,821 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask0&quot; in &quot;/output/work_preproc/susan/_subject_id_09/mask/mapflow/_mask0&quot;.
+211018-10:06:38,832 nipype.workflow INFO:
+	 [Node] Running &quot;_mask0&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_09/applywarp/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -mas /output/work_preproc/_subject_id_09/mask_GM/c1sub-09_ses-test_T1w_flirt_thresh.nii /output/work_preproc/susan/_subject_id_09/mask/mapflow/_mask0/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz
+211018-10:06:40,737 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.susan.mask
+                       * work_preproc.segment
+                       * work_preproc.applywarp
+                       * work_preproc.segment
+211018-10:06:41,684 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.applywarp&quot;.
+211018-10:06:42,736 nipype.workflow INFO:
+	 [Job 34] Completed (work_preproc.applywarp).
+211018-10:06:42,741 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 4 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.mask
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:06:42,833 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.median&quot; in &quot;/output/work_preproc/susan/_subject_id_09/median&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:06:42,842 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_median0&quot; in &quot;/output/work_preproc/susan/_subject_id_09/median/mapflow/_median0&quot;.
+211018-10:06:42,849 nipype.workflow INFO:
+	 [Node] Running &quot;_median0&quot; (&quot;nipype.interfaces.fsl.utils.ImageStats&quot;), a CommandLine Interface with command:
+fslstats /output/work_preproc/_subject_id_09/applywarp/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -k /output/work_preproc/_subject_id_09/mask_GM/c1sub-09_ses-test_T1w_flirt_thresh.nii -p 50 
+211018-10:06:43,66 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask0&quot;.
+211018-10:06:43,71 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.mask&quot;.
+211018-10:06:44,739 nipype.workflow INFO:
+	 [Job 13] Completed (work_preproc.susan.mask).
+211018-10:06:44,747 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 4 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.median
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:06:44,859 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.meanfunc2&quot; in &quot;/output/work_preproc/susan/_subject_id_09/meanfunc2&quot;.
+211018-10:06:44,887 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_meanfunc20&quot; in &quot;/output/work_preproc/susan/_subject_id_09/meanfunc2/mapflow/_meanfunc20&quot;.
+211018-10:06:44,912 nipype.workflow INFO:
+	 [Node] Running &quot;_meanfunc20&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_09/mask/mapflow/_mask0/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz -Tmean /output/work_preproc/susan/_subject_id_09/meanfunc2/mapflow/_meanfunc20/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz
+211018-10:06:45,504 nipype.workflow INFO:
+	 [Node] Finished &quot;_median0&quot;.
+211018-10:06:45,514 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.median&quot;.
+211018-10:06:46,728 nipype.workflow INFO:
+	 [Node] Finished &quot;_meanfunc20&quot;.
+211018-10:06:46,732 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.meanfunc2&quot;.
+211018-10:06:46,741 nipype.workflow INFO:
+	 [Job 15] Completed (work_preproc.susan.median).
+211018-10:06:46,744 nipype.workflow INFO:
+	 [Job 14] Completed (work_preproc.susan.meanfunc2).
+211018-10:06:46,748 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 4 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:06:46,838 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.mask&quot; in &quot;/output/work_preproc/susan/_subject_id_08/mask&quot;.
+211018-10:06:46,837 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.merge&quot; in &quot;/output/work_preproc/susan/_subject_id_09/merge&quot;.
+211018-10:06:46,848 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask0&quot; in &quot;/output/work_preproc/susan/_subject_id_08/mask/mapflow/_mask0&quot;.
+211018-10:06:46,851 nipype.workflow INFO:
+	 [Node] Running &quot;merge&quot; (&quot;nipype.interfaces.utility.base.Merge&quot;)
+211018-10:06:46,863 nipype.workflow INFO:
+	 [Node] Running &quot;_mask0&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_08/applywarp/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -mas /output/work_preproc/_subject_id_08/mask_GM/c1sub-08_ses-test_T1w_flirt_thresh.nii /output/work_preproc/susan/_subject_id_08/mask/mapflow/_mask0/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz
+211018-10:06:46,863 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.merge&quot;.
+211018-10:06:48,743 nipype.workflow INFO:
+	 [Job 16] Completed (work_preproc.susan.merge).
+211018-10:06:48,746 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.mask
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:06:48,818 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.multi_inputs&quot; in &quot;/output/work_preproc/susan/_subject_id_09/multi_inputs&quot;.
+211018-10:06:48,833 nipype.workflow INFO:
+	 [Node] Running &quot;multi_inputs&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211018-10:06:48,846 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.multi_inputs&quot;.
+211018-10:06:50,541 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask0&quot;.
+211018-10:06:50,546 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.mask&quot;.
+211018-10:06:50,745 nipype.workflow INFO:
+	 [Job 35] Completed (work_preproc.susan.mask).
+211018-10:06:50,748 nipype.workflow INFO:
+	 [Job 17] Completed (work_preproc.susan.multi_inputs).
+211018-10:06:50,754 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 4 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:06:50,846 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.smooth&quot; in &quot;/output/work_preproc/susan/_subject_id_09/smooth&quot;.
+211018-10:06:50,849 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.meanfunc2&quot; in &quot;/output/work_preproc/susan/_subject_id_08/meanfunc2&quot;.
+211018-10:06:50,861 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_meanfunc20&quot; in &quot;/output/work_preproc/susan/_subject_id_08/meanfunc2/mapflow/_meanfunc20&quot;.
+211018-10:06:50,859 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_smooth0&quot; in &quot;/output/work_preproc/susan/_subject_id_09/smooth/mapflow/_smooth0&quot;.
+211018-10:06:50,868 nipype.workflow INFO:
+	 [Node] Running &quot;_meanfunc20&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_08/mask/mapflow/_mask0/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz -Tmean /output/work_preproc/susan/_subject_id_08/meanfunc2/mapflow/_meanfunc20/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz
+211018-10:06:50,878 nipype.workflow INFO:
+	 [Node] Running &quot;_smooth0&quot; (&quot;nipype.interfaces.fsl.preprocess.SUSAN&quot;), a CommandLine Interface with command:
+susan /output/work_preproc/_subject_id_09/applywarp/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii 1116.0000000000 1.6986436006 3 1 1 /output/work_preproc/susan/_subject_id_09/meanfunc2/mapflow/_meanfunc20/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz 1116.0000000000 /output/work_preproc/susan/_subject_id_09/smooth/mapflow/_smooth0/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz
+211018-10:06:52,406 nipype.workflow INFO:
+	 [Node] Finished &quot;_meanfunc20&quot;.
+211018-10:06:52,412 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.meanfunc2&quot;.
+211018-10:06:52,747 nipype.workflow INFO:
+	 [Job 36] Completed (work_preproc.susan.meanfunc2).
+211018-10:06:52,751 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:06:52,820 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.median&quot; in &quot;/output/work_preproc/susan/_subject_id_08/median&quot;.
+211018-10:06:52,829 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_median0&quot; in &quot;/output/work_preproc/susan/_subject_id_08/median/mapflow/_median0&quot;.
+211018-10:06:52,837 nipype.workflow INFO:
+	 [Node] Running &quot;_median0&quot; (&quot;nipype.interfaces.fsl.utils.ImageStats&quot;), a CommandLine Interface with command:
+fslstats /output/work_preproc/_subject_id_08/applywarp/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -k /output/work_preproc/_subject_id_08/mask_GM/c1sub-08_ses-test_T1w_flirt_thresh.nii -p 50 
+211018-10:06:54,414 nipype.workflow INFO:
+	 [Node] Finished &quot;_median0&quot;.
+211018-10:06:54,419 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.median&quot;.
+211018-10:06:54,750 nipype.workflow INFO:
+	 [Job 37] Completed (work_preproc.susan.median).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:06:54,755 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:06:54,836 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.merge&quot; in &quot;/output/work_preproc/susan/_subject_id_08/merge&quot;.
+211018-10:06:54,845 nipype.workflow INFO:
+	 [Node] Running &quot;merge&quot; (&quot;nipype.interfaces.utility.base.Merge&quot;)
+211018-10:06:54,852 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.merge&quot;.
+211018-10:06:56,753 nipype.workflow INFO:
+	 [Job 38] Completed (work_preproc.susan.merge).
+211018-10:06:56,761 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:06:56,985 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.multi_inputs&quot; in &quot;/output/work_preproc/susan/_subject_id_08/multi_inputs&quot;.
+211018-10:06:57,44 nipype.workflow INFO:
+	 [Node] Running &quot;multi_inputs&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211018-10:06:57,58 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.multi_inputs&quot;.
+211018-10:06:58,756 nipype.workflow INFO:
+	 [Job 39] Completed (work_preproc.susan.multi_inputs).
+211018-10:06:58,766 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:06:58,900 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.smooth&quot; in &quot;/output/work_preproc/susan/_subject_id_08/smooth&quot;.
+211018-10:06:58,917 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_smooth0&quot; in &quot;/output/work_preproc/susan/_subject_id_08/smooth/mapflow/_smooth0&quot;.
+211018-10:06:58,932 nipype.workflow INFO:
+	 [Node] Running &quot;_smooth0&quot; (&quot;nipype.interfaces.fsl.preprocess.SUSAN&quot;), a CommandLine Interface with command:
+susan /output/work_preproc/_subject_id_08/applywarp/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii 1039.5000000000 1.6986436006 3 1 1 /output/work_preproc/susan/_subject_id_08/meanfunc2/mapflow/_meanfunc20/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz 1039.5000000000 /output/work_preproc/susan/_subject_id_08/smooth/mapflow/_smooth0/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz
+211018-10:07:00,758 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 1 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:07:20,33 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.segment&quot;.
+211018-10:07:20,741 nipype.workflow INFO:
+	 [Job 73] Completed (work_preproc.segment).
+211018-10:07:20,745 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:07:20,828 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.resample&quot; in &quot;/output/work_preproc/_subject_id_04/resample&quot;.
+211018-10:07:20,841 nipype.workflow INFO:
+	 [Node] Running &quot;resample&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_04/segment/c1sub-04_ses-test_T1w.nii -ref /output/work_preproc/_subject_id_04/segment/c1sub-04_ses-test_T1w.nii -out c1sub-04_ses-test_T1w_flirt.nii -omat c1sub-04_ses-test_T1w_flirt.mat -applyisoxfm 4.000000
+211018-10:07:22,745 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.resample
+                       * work_preproc.susan.smooth
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:07:25,77 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.resample&quot;.
+211018-10:07:26,767 nipype.workflow INFO:
+	 [Job 74] Completed (work_preproc.resample).
+211018-10:07:26,789 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 3 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:07:26,962 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_GM&quot; in &quot;/output/work_preproc/_subject_id_04/mask_GM&quot;.
+211018-10:07:27,99 nipype.workflow INFO:
+	 [Node] Running &quot;mask_GM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_04/resample/c1sub-04_ses-test_T1w_flirt.nii -thr 0.5000000000 -bin -dilF /output/work_preproc/_subject_id_04/mask_GM/c1sub-04_ses-test_T1w_flirt_thresh.nii
+211018-10:07:28,815 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 2 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.mask_GM
+                       * work_preproc.susan.smooth
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:07:29,118 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_GM&quot;.
+211018-10:07:30,824 nipype.workflow INFO:
+	 [Job 75] Completed (work_preproc.mask_GM).
+211018-10:07:30,836 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:07:31,223 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.threshold_WM&quot; in &quot;/output/work_preproc/_subject_id_04/threshold_WM&quot;.
+211018-10:07:31,273 nipype.workflow INFO:
+	 [Node] Running &quot;threshold_WM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_04/segment/c2sub-04_ses-test_T1w.nii -thr 0.5000000000 -bin /output/work_preproc/_subject_id_04/threshold_WM/c2sub-04_ses-test_T1w_thresh.nii
+211018-10:07:32,821 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 1 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.threshold_WM
+                       * work_preproc.susan.smooth
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:07:34,9 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.threshold_WM&quot;.
+211018-10:07:34,818 nipype.workflow INFO:
+	 [Job 76] Completed (work_preproc.threshold_WM).
+211018-10:07:34,824 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:07:34,963 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.coreg&quot; in &quot;/output/work_preproc/_subject_id_04/coreg&quot;.
+211018-10:07:34,985 nipype.workflow INFO:
+	 [Node] Running &quot;coreg&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_04/mcflirt/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg.nii.gz -ref /output/work_preproc/_subject_id_04/gunzip_anat/sub-04_ses-test_T1w.nii -out asub-04_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.nii -omat asub-04_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -cost bbr -dof 6 -schedule /usr/share/fsl/5.0/etc/flirtsch/bbr.sch -wmseg /output/work_preproc/_subject_id_04/threshold_WM/c2sub-04_ses-test_T1w_thresh.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:07:36,821 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 1 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.susan.smooth
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:08:10,636 nipype.workflow INFO:
+	 [Node] Finished &quot;_smooth0&quot;.
+211018-10:08:10,642 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.smooth&quot;.
+211018-10:08:10,908 nipype.workflow INFO:
+	 [Job 18] Completed (work_preproc.susan.smooth).
+211018-10:08:10,914 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:08:11,53 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_func&quot; in &quot;/output/work_preproc/_subject_id_09/mask_func&quot;.
+211018-10:08:11,62 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask_func0&quot; in &quot;/output/work_preproc/_subject_id_09/mask_func/mapflow/_mask_func0&quot;.
+211018-10:08:11,76 nipype.workflow INFO:
+	 [Node] Running &quot;_mask_func0&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_09/smooth/mapflow/_smooth0/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz -mas /output/work_preproc/_subject_id_09/mask_GM/c1sub-09_ses-test_T1w_flirt_thresh.nii /output/work_preproc/_subject_id_09/mask_func/mapflow/_mask_func0/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth_masked.nii
+211018-10:08:12,509 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask_func0&quot;.
+211018-10:08:12,516 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_func&quot;.
+211018-10:08:12,911 nipype.workflow INFO:
+	 [Job 19] Completed (work_preproc.mask_func).
+211018-10:08:12,915 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:08:13,12 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.detrend&quot; in &quot;/output/work_preproc/_subject_id_09/detrend&quot;.
+211018-10:08:13,27 nipype.workflow INFO:
+	 [Node] Running &quot;detrend&quot; (&quot;nipype.algorithms.confounds.TSNR&quot;)
+211018-10:08:14,914 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 1 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.detrend
+                       * work_preproc.coreg
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:08:19,32 nipype.workflow INFO:
+	 [Node] Finished &quot;_smooth0&quot;.
+211018-10:08:19,37 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.smooth&quot;.
+211018-10:08:20,920 nipype.workflow INFO:
+	 [Job 40] Completed (work_preproc.susan.smooth).
+211018-10:08:20,929 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.detrend
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:08:21,109 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_func&quot; in &quot;/output/work_preproc/_subject_id_08/mask_func&quot;.
+211018-10:08:21,130 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask_func0&quot; in &quot;/output/work_preproc/_subject_id_08/mask_func/mapflow/_mask_func0&quot;.
+211018-10:08:21,143 nipype.workflow INFO:
+	 [Node] Running &quot;_mask_func0&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_08/smooth/mapflow/_smooth0/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz -mas /output/work_preproc/_subject_id_08/mask_GM/c1sub-08_ses-test_T1w_flirt_thresh.nii /output/work_preproc/_subject_id_08/mask_func/mapflow/_mask_func0/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth_masked.nii
+211018-10:08:22,650 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask_func0&quot;.
+211018-10:08:22,656 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_func&quot;.
+211018-10:08:22,926 nipype.workflow INFO:
+	 [Job 41] Completed (work_preproc.mask_func).
+211018-10:08:22,936 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.detrend
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:08:23,197 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.detrend&quot; in &quot;/output/work_preproc/_subject_id_08/detrend&quot;.
+211018-10:08:23,235 nipype.workflow INFO:
+	 [Node] Running &quot;detrend&quot; (&quot;nipype.algorithms.confounds.TSNR&quot;)
+211018-10:08:24,928 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 1 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.detrend
+                       * work_preproc.detrend
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:09:08,353 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.detrend&quot;.
+211018-10:09:09,621 nipype.workflow INFO:
+	 [Job 20] Completed (work_preproc.detrend).
+211018-10:09:09,640 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 2 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.detrend
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:09:10,326 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.datasink&quot; in &quot;/output/work_preproc/_subject_id_09/datasink&quot;.
+211018-10:09:10,374 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:09:10,385 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_09/asub-09_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz.par -&gt; /output/datasink_handson/preproc/sub-09.par
+211018-10:09:10,389 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_09/art.asub-09_ses-test_task-fingerfootlips_bold_roi_mcf_outliers.txt -&gt; /output/datasink_handson/preproc/art.sub-09_outliers.txt
+211018-10:09:10,392 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_09/plot.asub-09_ses-test_task-fingerfootlips_bold_roi_mcf.svg -&gt; /output/datasink_handson/preproc/plot.sub-09.svg
+211018-10:09:10,399 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_09/detrend.nii.gz -&gt; /output/datasink_handson/preproc/sub-09_detrend.nii.gz
+211018-10:09:10,408 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.datasink&quot;.
+211018-10:09:11,621 nipype.workflow INFO:
+	 [Job 21] Completed (work_preproc.datasink).
+211018-10:09:11,627 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 1 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.detrend
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:09:11,745 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.selectfiles&quot; in &quot;/output/work_preproc/_subject_id_02/selectfiles&quot;.
+211018-10:09:11,757 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:09:11,774 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.selectfiles&quot;.
+211018-10:09:11,885 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.detrend&quot;.
+211018-10:09:13,618 nipype.workflow INFO:
+	 [Job 42] Completed (work_preproc.detrend).
+211018-10:09:13,621 nipype.workflow INFO:
+	 [Job 110] Completed (work_preproc.selectfiles).
+211018-10:09:13,627 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 3 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.segment
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:09:13,721 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.datasink&quot; in &quot;/output/work_preproc/_subject_id_08/datasink&quot;.
+211018-10:09:13,729 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_func&quot; in &quot;/output/work_preproc/_subject_id_02/gunzip_func&quot;.
+211018-10:09:13,756 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_func&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-10:09:13,770 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:09:13,776 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_08/asub-08_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz.par -&gt; /output/datasink_handson/preproc/sub-08.par
+211018-10:09:13,783 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_08/art.asub-08_ses-test_task-fingerfootlips_bold_roi_mcf_outliers.txt -&gt; /output/datasink_handson/preproc/art.sub-08_outliers.txt
+211018-10:09:13,786 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_08/plot.asub-08_ses-test_task-fingerfootlips_bold_roi_mcf.svg -&gt; /output/datasink_handson/preproc/plot.sub-08.svg
+211018-10:09:13,791 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_08/detrend.nii.gz -&gt; /output/datasink_handson/preproc/sub-08_detrend.nii.gz
+211018-10:09:13,805 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.datasink&quot;.
+211018-10:09:14,434 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.gunzip_func&quot;.
+211018-10:09:15,619 nipype.workflow INFO:
+	 [Job 43] Completed (work_preproc.datasink).
+211018-10:09:15,624 nipype.workflow INFO:
+	 [Job 111] Completed (work_preproc.gunzip_func).
+211018-10:09:15,629 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 2 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:09:15,709 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.gunzip_anat&quot; in &quot;/output/work_preproc/_subject_id_02/gunzip_anat&quot;.
+211018-10:09:15,716 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.extract&quot; in &quot;/output/work_preproc/_subject_id_02/extract&quot;.
+211018-10:09:15,723 nipype.workflow INFO:
+	 [Node] Running &quot;gunzip_anat&quot; (&quot;nipype.algorithms.misc.Gunzip&quot;)
+211018-10:09:15,745 nipype.workflow INFO:
+	 [Node] Running &quot;extract&quot; (&quot;nipype.interfaces.fsl.utils.ExtractROI&quot;), a CommandLine Interface with command:
+fslroi /output/work_preproc/_subject_id_02/gunzip_func/sub-02_ses-test_task-fingerfootlips_bold.nii /output/work_preproc/_subject_id_02/extract/sub-02_ses-test_task-fingerfootlips_bold_roi.nii 4 -1
+211018-10:09:16,73 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.gunzip_anat&quot;.
+211018-10:09:17,9 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.extract&quot;.
+211018-10:09:17,621 nipype.workflow INFO:
+	 [Job 112] Completed (work_preproc.extract).
+211018-10:09:17,624 nipype.workflow INFO:
+	 [Job 116] Completed (work_preproc.gunzip_anat).
+211018-10:09:17,630 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 2 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:09:17,729 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.segment&quot; in &quot;/output/work_preproc/_subject_id_02/segment&quot;.
+211018-10:09:17,732 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.slicetime&quot; in &quot;/output/work_preproc/_subject_id_02/slicetime&quot;.
+211018-10:09:17,745 nipype.workflow INFO:
+	 [Node] Running &quot;segment&quot; (&quot;nipype.interfaces.spm.preprocess.NewSegment&quot;)
+211018-10:09:17,752 nipype.workflow INFO:
+	 [Node] Running &quot;slicetime&quot; (&quot;nipype.interfaces.spm.preprocess.SliceTiming&quot;)
+211018-10:09:19,626 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 0 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.slicetime
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:09:38,932 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.slicetime&quot;.
+211018-10:09:39,643 nipype.workflow INFO:
+	 [Job 113] Completed (work_preproc.slicetime).
+211018-10:09:39,647 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 1 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:09:39,725 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mcflirt&quot; in &quot;/output/work_preproc/_subject_id_02/mcflirt&quot;.
+211018-10:09:39,738 nipype.workflow INFO:
+	 [Node] Running &quot;mcflirt&quot; (&quot;nipype.interfaces.fsl.preprocess.MCFLIRT&quot;), a CommandLine Interface with command:
+mcflirt -in /output/work_preproc/_subject_id_02/slicetime/asub-02_ses-test_task-fingerfootlips_bold_roi.nii -meanvol -out /output/work_preproc/_subject_id_02/mcflirt/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -plots
+211018-10:09:41,648 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 0 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.mcflirt
+                       * work_preproc.segment
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:10:41,354 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.coreg&quot;.
+211018-10:10:41,724 nipype.workflow INFO:
+	 [Job 77] Completed (work_preproc.coreg).
+211018-10:10:41,729 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 1 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.mcflirt
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:10:41,828 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.applywarp&quot; in &quot;/output/work_preproc/_subject_id_04/applywarp&quot;.
+211018-10:10:41,853 nipype.workflow INFO:
+	 [Node] Running &quot;applywarp&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_04/mcflirt/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -ref /output/work_preproc/_subject_id_04/gunzip_anat/sub-04_ses-test_T1w.nii -out asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -omat asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.mat -applyisoxfm 4.000000 -init /output/work_preproc/_subject_id_04/coreg/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -interp spline
+211018-10:10:43,728 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 0 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_preproc.applywarp
+                       * work_preproc.mcflirt
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:10:53,670 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mcflirt&quot;.
+211018-10:10:53,736 nipype.workflow INFO:
+	 [Job 114] Completed (work_preproc.mcflirt).
+211018-10:10:53,740 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 1 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.applywarp
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:10:53,877 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.art&quot; in &quot;/output/work_preproc/_subject_id_02/art&quot;.
+211018-10:10:53,900 nipype.workflow INFO:
+	 [Node] Running &quot;art&quot; (&quot;nipype.algorithms.rapidart.ArtifactDetect&quot;)
+211018-10:10:53,919 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.applywarp&quot;.
+211018-10:10:54,986 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.art&quot;.
+211018-10:10:55,737 nipype.workflow INFO:
+	 [Job 78] Completed (work_preproc.applywarp).
+211018-10:10:55,739 nipype.workflow INFO:
+	 [Job 115] Completed (work_preproc.art).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:10:55,745 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 2 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:10:55,830 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.mask&quot; in &quot;/output/work_preproc/susan/_subject_id_04/mask&quot;.
+211018-10:10:55,833 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.median&quot; in &quot;/output/work_preproc/susan/_subject_id_04/median&quot;.
+211018-10:10:55,844 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask0&quot; in &quot;/output/work_preproc/susan/_subject_id_04/mask/mapflow/_mask0&quot;.
+211018-10:10:55,845 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_median0&quot; in &quot;/output/work_preproc/susan/_subject_id_04/median/mapflow/_median0&quot;.
+211018-10:10:55,854 nipype.workflow INFO:
+	 [Node] Running &quot;_median0&quot; (&quot;nipype.interfaces.fsl.utils.ImageStats&quot;), a CommandLine Interface with command:
+fslstats /output/work_preproc/_subject_id_04/applywarp/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -k /output/work_preproc/_subject_id_04/mask_GM/c1sub-04_ses-test_T1w_flirt_thresh.nii -p 50 
+211018-10:10:55,854 nipype.workflow INFO:
+	 [Node] Running &quot;_mask0&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_04/applywarp/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -mas /output/work_preproc/_subject_id_04/mask_GM/c1sub-04_ses-test_T1w_flirt_thresh.nii /output/work_preproc/susan/_subject_id_04/mask/mapflow/_mask0/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz
+211018-10:10:57,248 nipype.workflow INFO:
+	 [Node] Finished &quot;_median0&quot;.
+211018-10:10:57,253 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.median&quot;.
+211018-10:10:57,740 nipype.workflow INFO:
+	 [Job 81] Completed (work_preproc.susan.median).
+211018-10:10:57,743 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 0 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.mask
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:10:59,48 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask0&quot;.
+211018-10:10:59,54 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.mask&quot;.
+211018-10:10:59,741 nipype.workflow INFO:
+	 [Job 79] Completed (work_preproc.susan.mask).
+211018-10:10:59,745 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:10:59,823 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.meanfunc2&quot; in &quot;/output/work_preproc/susan/_subject_id_04/meanfunc2&quot;.
+211018-10:10:59,831 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_meanfunc20&quot; in &quot;/output/work_preproc/susan/_subject_id_04/meanfunc2/mapflow/_meanfunc20&quot;.
+211018-10:10:59,841 nipype.workflow INFO:
+	 [Node] Running &quot;_meanfunc20&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_04/mask/mapflow/_mask0/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz -Tmean /output/work_preproc/susan/_subject_id_04/meanfunc2/mapflow/_meanfunc20/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz
+211018-10:11:01,49 nipype.workflow INFO:
+	 [Node] Finished &quot;_meanfunc20&quot;.
+211018-10:11:01,52 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.meanfunc2&quot;.
+211018-10:11:01,743 nipype.workflow INFO:
+	 [Job 80] Completed (work_preproc.susan.meanfunc2).
+211018-10:11:01,746 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:11:01,815 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.merge&quot; in &quot;/output/work_preproc/susan/_subject_id_04/merge&quot;.
+211018-10:11:01,826 nipype.workflow INFO:
+	 [Node] Running &quot;merge&quot; (&quot;nipype.interfaces.utility.base.Merge&quot;)
+211018-10:11:01,830 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.merge&quot;.
+211018-10:11:03,745 nipype.workflow INFO:
+	 [Job 82] Completed (work_preproc.susan.merge).
+211018-10:11:03,748 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:11:03,819 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.multi_inputs&quot; in &quot;/output/work_preproc/susan/_subject_id_04/multi_inputs&quot;.
+211018-10:11:03,832 nipype.workflow INFO:
+	 [Node] Running &quot;multi_inputs&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211018-10:11:03,839 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.multi_inputs&quot;.
+211018-10:11:05,748 nipype.workflow INFO:
+	 [Job 83] Completed (work_preproc.susan.multi_inputs).
+211018-10:11:05,752 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:11:05,843 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.smooth&quot; in &quot;/output/work_preproc/susan/_subject_id_04/smooth&quot;.
+211018-10:11:05,851 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_smooth0&quot; in &quot;/output/work_preproc/susan/_subject_id_04/smooth/mapflow/_smooth0&quot;.
+211018-10:11:05,858 nipype.workflow INFO:
+	 [Node] Running &quot;_smooth0&quot; (&quot;nipype.interfaces.fsl.preprocess.SUSAN&quot;), a CommandLine Interface with command:
+susan /output/work_preproc/_subject_id_04/applywarp/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii 1022.2500000000 1.6986436006 3 1 1 /output/work_preproc/susan/_subject_id_04/meanfunc2/mapflow/_meanfunc20/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz 1022.2500000000 /output/work_preproc/susan/_subject_id_04/smooth/mapflow/_smooth0/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz
+211018-10:11:07,751 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 0 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+                       * work_preproc.segment
+211018-10:11:30,935 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.segment&quot;.
+211018-10:11:31,773 nipype.workflow INFO:
+	 [Job 95] Completed (work_preproc.segment).
+211018-10:11:31,776 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 2 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:11:31,856 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.threshold_WM&quot; in &quot;/output/work_preproc/_subject_id_03/threshold_WM&quot;.
+211018-10:11:31,855 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.resample&quot; in &quot;/output/work_preproc/_subject_id_03/resample&quot;.
+211018-10:11:31,868 nipype.workflow INFO:
+	 [Node] Running &quot;resample&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_03/segment/c1sub-03_ses-test_T1w.nii -ref /output/work_preproc/_subject_id_03/segment/c1sub-03_ses-test_T1w.nii -out c1sub-03_ses-test_T1w_flirt.nii -omat c1sub-03_ses-test_T1w_flirt.mat -applyisoxfm 4.000000
+211018-10:11:31,870 nipype.workflow INFO:
+	 [Node] Running &quot;threshold_WM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_03/segment/c2sub-03_ses-test_T1w.nii -thr 0.5000000000 -bin /output/work_preproc/_subject_id_03/threshold_WM/c2sub-03_ses-test_T1w_thresh.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:11:32,483 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.threshold_WM&quot;.
+211018-10:11:33,776 nipype.workflow INFO:
+	 [Job 98] Completed (work_preproc.threshold_WM).
+211018-10:11:33,780 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 1 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.resample
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:11:33,875 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.coreg&quot; in &quot;/output/work_preproc/_subject_id_03/coreg&quot;.
+211018-10:11:33,889 nipype.workflow INFO:
+	 [Node] Running &quot;coreg&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_03/mcflirt/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg.nii.gz -ref /output/work_preproc/_subject_id_03/gunzip_anat/sub-03_ses-test_T1w.nii -out asub-03_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.nii -omat asub-03_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -cost bbr -dof 6 -schedule /usr/share/fsl/5.0/etc/flirtsch/bbr.sch -wmseg /output/work_preproc/_subject_id_03/threshold_WM/c2sub-03_ses-test_T1w_thresh.nii
+211018-10:11:35,706 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.resample&quot;.
+211018-10:11:35,781 nipype.workflow INFO:
+	 [Job 96] Completed (work_preproc.resample).
+211018-10:11:35,785 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 1 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:11:35,874 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_GM&quot; in &quot;/output/work_preproc/_subject_id_03/mask_GM&quot;.
+211018-10:11:35,888 nipype.workflow INFO:
+	 [Node] Running &quot;mask_GM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_03/resample/c1sub-03_ses-test_T1w_flirt.nii -thr 0.5000000000 -bin -dilF /output/work_preproc/_subject_id_03/mask_GM/c1sub-03_ses-test_T1w_flirt_thresh.nii
+211018-10:11:36,413 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_GM&quot;.
+211018-10:11:37,782 nipype.workflow INFO:
+	 [Job 97] Completed (work_preproc.mask_GM).
+211018-10:11:37,786 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 0 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.susan.smooth
+                       * work_preproc.segment
+211018-10:11:48,566 nipype.workflow INFO:
+	 [Node] Finished &quot;_smooth0&quot;.
+211018-10:11:48,569 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.smooth&quot;.
+211018-10:11:49,797 nipype.workflow INFO:
+	 [Job 84] Completed (work_preproc.susan.smooth).
+211018-10:11:49,800 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:11:49,874 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_func&quot; in &quot;/output/work_preproc/_subject_id_04/mask_func&quot;.
+211018-10:11:49,882 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask_func0&quot; in &quot;/output/work_preproc/_subject_id_04/mask_func/mapflow/_mask_func0&quot;.
+211018-10:11:49,889 nipype.workflow INFO:
+	 [Node] Running &quot;_mask_func0&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_04/smooth/mapflow/_smooth0/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz -mas /output/work_preproc/_subject_id_04/mask_GM/c1sub-04_ses-test_T1w_flirt_thresh.nii /output/work_preproc/_subject_id_04/mask_func/mapflow/_mask_func0/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth_masked.nii
+211018-10:11:50,921 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask_func0&quot;.
+211018-10:11:50,925 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_func&quot;.
+211018-10:11:51,799 nipype.workflow INFO:
+	 [Job 85] Completed (work_preproc.mask_func).
+211018-10:11:51,802 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:11:51,862 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.detrend&quot; in &quot;/output/work_preproc/_subject_id_04/detrend&quot;.
+211018-10:11:51,870 nipype.workflow INFO:
+	 [Node] Running &quot;detrend&quot; (&quot;nipype.algorithms.confounds.TSNR&quot;)
+211018-10:11:53,802 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 0 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_preproc.detrend
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:12:02,466 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.detrend&quot;.
+211018-10:12:03,811 nipype.workflow INFO:
+	 [Job 86] Completed (work_preproc.detrend).
+211018-10:12:03,815 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:12:03,901 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.datasink&quot; in &quot;/output/work_preproc/_subject_id_04/datasink&quot;.
+211018-10:12:03,925 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:12:03,928 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_04/asub-04_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz.par -&gt; /output/datasink_handson/preproc/sub-04.par
+211018-10:12:03,932 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_04/art.asub-04_ses-test_task-fingerfootlips_bold_roi_mcf_outliers.txt -&gt; /output/datasink_handson/preproc/art.sub-04_outliers.txt
+211018-10:12:03,934 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_04/plot.asub-04_ses-test_task-fingerfootlips_bold_roi_mcf.svg -&gt; /output/datasink_handson/preproc/plot.sub-04.svg
+211018-10:12:03,937 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_04/detrend.nii.gz -&gt; /output/datasink_handson/preproc/sub-04_detrend.nii.gz
+211018-10:12:03,946 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.datasink&quot;.
+211018-10:12:05,813 nipype.workflow INFO:
+	 [Job 87] Completed (work_preproc.datasink).
+211018-10:12:05,816 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.segment
+211018-10:12:36,361 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.segment&quot;.
+211018-10:12:37,847 nipype.workflow INFO:
+	 [Job 117] Completed (work_preproc.segment).
+211018-10:12:37,850 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 2 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-10:12:37,919 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.resample&quot; in &quot;/output/work_preproc/_subject_id_02/resample&quot;.
+211018-10:12:37,921 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.threshold_WM&quot; in &quot;/output/work_preproc/_subject_id_02/threshold_WM&quot;.
+211018-10:12:37,933 nipype.workflow INFO:
+	 [Node] Running &quot;threshold_WM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_02/segment/c2sub-02_ses-test_T1w.nii -thr 0.5000000000 -bin /output/work_preproc/_subject_id_02/threshold_WM/c2sub-02_ses-test_T1w_thresh.nii
+211018-10:12:37,933 nipype.workflow INFO:
+	 [Node] Running &quot;resample&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_02/segment/c1sub-02_ses-test_T1w.nii -ref /output/work_preproc/_subject_id_02/segment/c1sub-02_ses-test_T1w.nii -out c1sub-02_ses-test_T1w_flirt.nii -omat c1sub-02_ses-test_T1w_flirt.mat -applyisoxfm 4.000000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:12:38,478 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.threshold_WM&quot;.
+211018-10:12:39,848 nipype.workflow INFO:
+	 [Job 120] Completed (work_preproc.threshold_WM).
+211018-10:12:39,851 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.resample
+                       * work_preproc.coreg
+211018-10:12:39,923 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.coreg&quot; in &quot;/output/work_preproc/_subject_id_02/coreg&quot;.
+211018-10:12:39,960 nipype.workflow INFO:
+	 [Node] Running &quot;coreg&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_02/mcflirt/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg.nii.gz -ref /output/work_preproc/_subject_id_02/gunzip_anat/sub-02_ses-test_T1w.nii -out asub-02_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.nii -omat asub-02_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -cost bbr -dof 6 -schedule /usr/share/fsl/5.0/etc/flirtsch/bbr.sch -wmseg /output/work_preproc/_subject_id_02/threshold_WM/c2sub-02_ses-test_T1w_thresh.nii
+211018-10:12:41,287 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.resample&quot;.
+211018-10:12:41,851 nipype.workflow INFO:
+	 [Job 118] Completed (work_preproc.resample).
+211018-10:12:41,854 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 1 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.coreg
+211018-10:12:41,927 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_GM&quot; in &quot;/output/work_preproc/_subject_id_02/mask_GM&quot;.
+211018-10:12:41,937 nipype.workflow INFO:
+	 [Node] Running &quot;mask_GM&quot; (&quot;nipype.interfaces.fsl.maths.Threshold&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_02/resample/c1sub-02_ses-test_T1w_flirt.nii -thr 0.5000000000 -bin -dilF /output/work_preproc/_subject_id_02/mask_GM/c1sub-02_ses-test_T1w_flirt_thresh.nii
+211018-10:12:42,399 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_GM&quot;.
+211018-10:12:43,854 nipype.workflow INFO:
+	 [Job 119] Completed (work_preproc.mask_GM).
+211018-10:12:43,858 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.coreg
+                       * work_preproc.coreg
+211018-10:13:11,934 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.coreg&quot;.
+211018-10:13:13,887 nipype.workflow INFO:
+	 [Job 99] Completed (work_preproc.coreg).
+211018-10:13:13,890 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-10:13:13,957 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.applywarp&quot; in &quot;/output/work_preproc/_subject_id_03/applywarp&quot;.
+211018-10:13:13,966 nipype.workflow INFO:
+	 [Node] Running &quot;applywarp&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_03/mcflirt/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -ref /output/work_preproc/_subject_id_03/gunzip_anat/sub-03_ses-test_T1w.nii -out asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -omat asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.mat -applyisoxfm 4.000000 -init /output/work_preproc/_subject_id_03/coreg/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -interp spline
+211018-10:13:15,890 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.applywarp
+                       * work_preproc.coreg
+211018-10:13:22,786 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.applywarp&quot;.
+211018-10:13:23,898 nipype.workflow INFO:
+	 [Job 100] Completed (work_preproc.applywarp).
+211018-10:13:23,901 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 2 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-10:13:23,975 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.mask&quot; in &quot;/output/work_preproc/susan/_subject_id_03/mask&quot;.
+211018-10:13:23,980 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.median&quot; in &quot;/output/work_preproc/susan/_subject_id_03/median&quot;.
+211018-10:13:23,982 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask0&quot; in &quot;/output/work_preproc/susan/_subject_id_03/mask/mapflow/_mask0&quot;.
+211018-10:13:23,987 nipype.workflow INFO:
+	 [Node] Running &quot;_mask0&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_03/applywarp/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -mas /output/work_preproc/_subject_id_03/mask_GM/c1sub-03_ses-test_T1w_flirt_thresh.nii /output/work_preproc/susan/_subject_id_03/mask/mapflow/_mask0/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz
+211018-10:13:23,992 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_median0&quot; in &quot;/output/work_preproc/susan/_subject_id_03/median/mapflow/_median0&quot;.
+211018-10:13:23,997 nipype.workflow INFO:
+	 [Node] Running &quot;_median0&quot; (&quot;nipype.interfaces.fsl.utils.ImageStats&quot;), a CommandLine Interface with command:
+fslstats /output/work_preproc/_subject_id_03/applywarp/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -k /output/work_preproc/_subject_id_03/mask_GM/c1sub-03_ses-test_T1w_flirt_thresh.nii -p 50 
+211018-10:13:25,261 nipype.workflow INFO:
+	 [Node] Finished &quot;_median0&quot;.
+211018-10:13:25,266 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.median&quot;.
+211018-10:13:25,900 nipype.workflow INFO:
+	 [Job 103] Completed (work_preproc.susan.median).
+211018-10:13:25,905 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.susan.mask
+                       * work_preproc.coreg
+211018-10:13:26,820 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask0&quot;.
+211018-10:13:26,823 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.mask&quot;.
+211018-10:13:27,904 nipype.workflow INFO:
+	 [Job 101] Completed (work_preproc.susan.mask).
+211018-10:13:27,909 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-10:13:28,12 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.meanfunc2&quot; in &quot;/output/work_preproc/susan/_subject_id_03/meanfunc2&quot;.
+211018-10:13:28,21 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_meanfunc20&quot; in &quot;/output/work_preproc/susan/_subject_id_03/meanfunc2/mapflow/_meanfunc20&quot;.
+211018-10:13:28,28 nipype.workflow INFO:
+	 [Node] Running &quot;_meanfunc20&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_03/mask/mapflow/_mask0/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz -Tmean /output/work_preproc/susan/_subject_id_03/meanfunc2/mapflow/_meanfunc20/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz
+211018-10:13:29,790 nipype.workflow INFO:
+	 [Node] Finished &quot;_meanfunc20&quot;.
+211018-10:13:29,795 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.meanfunc2&quot;.
+211018-10:13:29,906 nipype.workflow INFO:
+	 [Job 102] Completed (work_preproc.susan.meanfunc2).
+211018-10:13:29,911 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-10:13:30,23 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.merge&quot; in &quot;/output/work_preproc/susan/_subject_id_03/merge&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:13:30,31 nipype.workflow INFO:
+	 [Node] Running &quot;merge&quot; (&quot;nipype.interfaces.utility.base.Merge&quot;)
+211018-10:13:30,38 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.merge&quot;.
+211018-10:13:31,907 nipype.workflow INFO:
+	 [Job 104] Completed (work_preproc.susan.merge).
+211018-10:13:31,910 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-10:13:31,977 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.multi_inputs&quot; in &quot;/output/work_preproc/susan/_subject_id_03/multi_inputs&quot;.
+211018-10:13:31,988 nipype.workflow INFO:
+	 [Node] Running &quot;multi_inputs&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211018-10:13:31,992 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.multi_inputs&quot;.
+211018-10:13:33,910 nipype.workflow INFO:
+	 [Job 105] Completed (work_preproc.susan.multi_inputs).
+211018-10:13:33,912 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-10:13:33,983 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.smooth&quot; in &quot;/output/work_preproc/susan/_subject_id_03/smooth&quot;.
+211018-10:13:33,990 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_smooth0&quot; in &quot;/output/work_preproc/susan/_subject_id_03/smooth/mapflow/_smooth0&quot;.
+211018-10:13:33,995 nipype.workflow INFO:
+	 [Node] Running &quot;_smooth0&quot; (&quot;nipype.interfaces.fsl.preprocess.SUSAN&quot;), a CommandLine Interface with command:
+susan /output/work_preproc/_subject_id_03/applywarp/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii 981.7500000000 1.6986436006 3 1 1 /output/work_preproc/susan/_subject_id_03/meanfunc2/mapflow/_meanfunc20/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz 981.7500000000 /output/work_preproc/susan/_subject_id_03/smooth/mapflow/_smooth0/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz
+211018-10:13:35,912 nipype.workflow INFO:
+	 [MultiProc] Running 2 tasks, and 0 jobs ready. Free memory (GB): 4.83/5.23, Free processors: 2/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+                       * work_preproc.coreg
+211018-10:14:10,961 nipype.workflow INFO:
+	 [Node] Finished &quot;_smooth0&quot;.
+211018-10:14:10,964 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.smooth&quot;.
+211018-10:14:11,953 nipype.workflow INFO:
+	 [Job 106] Completed (work_preproc.susan.smooth).
+211018-10:14:11,956 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-10:14:12,29 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_func&quot; in &quot;/output/work_preproc/_subject_id_03/mask_func&quot;.
+211018-10:14:12,35 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask_func0&quot; in &quot;/output/work_preproc/_subject_id_03/mask_func/mapflow/_mask_func0&quot;.
+211018-10:14:12,40 nipype.workflow INFO:
+	 [Node] Running &quot;_mask_func0&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_03/smooth/mapflow/_smooth0/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz -mas /output/work_preproc/_subject_id_03/mask_GM/c1sub-03_ses-test_T1w_flirt_thresh.nii /output/work_preproc/_subject_id_03/mask_func/mapflow/_mask_func0/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth_masked.nii
+211018-10:14:13,28 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask_func0&quot;.
+211018-10:14:13,31 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_func&quot;.
+211018-10:14:13,956 nipype.workflow INFO:
+	 [Job 107] Completed (work_preproc.mask_func).
+211018-10:14:13,959 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.coreg
+211018-10:14:14,19 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.detrend&quot; in &quot;/output/work_preproc/_subject_id_03/detrend&quot;.
+211018-10:14:14,24 nipype.workflow INFO:
+	 [Node] Running &quot;detrend&quot; (&quot;nipype.algorithms.confounds.TSNR&quot;)
+211018-10:14:14,901 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.coreg&quot;.
+211018-10:14:15,958 nipype.workflow INFO:
+	 [Job 121] Completed (work_preproc.coreg).
+211018-10:14:15,962 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.detrend
+211018-10:14:16,48 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.applywarp&quot; in &quot;/output/work_preproc/_subject_id_02/applywarp&quot;.
+211018-10:14:16,62 nipype.workflow INFO:
+	 [Node] Running &quot;applywarp&quot; (&quot;nipype.interfaces.fsl.preprocess.FLIRT&quot;), a CommandLine Interface with command:
+flirt -in /output/work_preproc/_subject_id_02/mcflirt/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz -ref /output/work_preproc/_subject_id_02/gunzip_anat/sub-02_ses-test_T1w.nii -out asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -omat asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.mat -applyisoxfm 4.000000 -init /output/work_preproc/_subject_id_02/coreg/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz_mean_reg_flirt.mat -interp spline
+211018-10:14:17,214 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.detrend&quot;.
+211018-10:14:17,960 nipype.workflow INFO:
+	 [Job 108] Completed (work_preproc.detrend).
+211018-10:14:17,963 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 1 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.applywarp
+211018-10:14:18,28 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.datasink&quot; in &quot;/output/work_preproc/_subject_id_03/datasink&quot;.
+211018-10:14:18,45 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:14:18,47 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_03/asub-03_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz.par -&gt; /output/datasink_handson/preproc/sub-03.par
+211018-10:14:18,49 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_03/art.asub-03_ses-test_task-fingerfootlips_bold_roi_mcf_outliers.txt -&gt; /output/datasink_handson/preproc/art.sub-03_outliers.txt
+211018-10:14:18,51 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_03/plot.asub-03_ses-test_task-fingerfootlips_bold_roi_mcf.svg -&gt; /output/datasink_handson/preproc/plot.sub-03.svg
+211018-10:14:18,54 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_03/detrend.nii.gz -&gt; /output/datasink_handson/preproc/sub-03_detrend.nii.gz
+211018-10:14:18,59 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.datasink&quot;.
+211018-10:14:19,962 nipype.workflow INFO:
+	 [Job 109] Completed (work_preproc.datasink).
+211018-10:14:19,966 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.applywarp
+211018-10:14:24,869 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.applywarp&quot;.
+211018-10:14:25,978 nipype.workflow INFO:
+	 [Job 122] Completed (work_preproc.applywarp).
+211018-10:14:25,984 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:14:26,76 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.mask&quot; in &quot;/output/work_preproc/susan/_subject_id_02/mask&quot;.
+211018-10:14:26,78 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.median&quot; in &quot;/output/work_preproc/susan/_subject_id_02/median&quot;.
+211018-10:14:26,87 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask0&quot; in &quot;/output/work_preproc/susan/_subject_id_02/mask/mapflow/_mask0&quot;.
+211018-10:14:26,87 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_median0&quot; in &quot;/output/work_preproc/susan/_subject_id_02/median/mapflow/_median0&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:14:26,94 nipype.workflow INFO:
+	 [Node] Running &quot;_median0&quot; (&quot;nipype.interfaces.fsl.utils.ImageStats&quot;), a CommandLine Interface with command:
+fslstats /output/work_preproc/_subject_id_02/applywarp/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -k /output/work_preproc/_subject_id_02/mask_GM/c1sub-02_ses-test_T1w_flirt_thresh.nii -p 50 
+211018-10:14:26,95 nipype.workflow INFO:
+	 [Node] Running &quot;_mask0&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/_subject_id_02/applywarp/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii -mas /output/work_preproc/_subject_id_02/mask_GM/c1sub-02_ses-test_T1w_flirt_thresh.nii /output/work_preproc/susan/_subject_id_02/mask/mapflow/_mask0/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz
+211018-10:14:27,397 nipype.workflow INFO:
+	 [Node] Finished &quot;_median0&quot;.
+211018-10:14:27,400 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.median&quot;.
+211018-10:14:27,978 nipype.workflow INFO:
+	 [Job 125] Completed (work_preproc.susan.median).
+211018-10:14:27,982 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.susan.mask
+211018-10:14:28,773 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask0&quot;.
+211018-10:14:28,777 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.mask&quot;.
+211018-10:14:29,983 nipype.workflow INFO:
+	 [Job 123] Completed (work_preproc.susan.mask).
+211018-10:14:29,986 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:14:30,68 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.meanfunc2&quot; in &quot;/output/work_preproc/susan/_subject_id_02/meanfunc2&quot;.
+211018-10:14:30,76 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_meanfunc20&quot; in &quot;/output/work_preproc/susan/_subject_id_02/meanfunc2/mapflow/_meanfunc20&quot;.
+211018-10:14:30,83 nipype.workflow INFO:
+	 [Node] Running &quot;_meanfunc20&quot; (&quot;nipype.interfaces.fsl.utils.ImageMaths&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_02/mask/mapflow/_mask0/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask.nii.gz -Tmean /output/work_preproc/susan/_subject_id_02/meanfunc2/mapflow/_meanfunc20/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz
+211018-10:14:31,204 nipype.workflow INFO:
+	 [Node] Finished &quot;_meanfunc20&quot;.
+211018-10:14:31,208 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.meanfunc2&quot;.
+211018-10:14:31,991 nipype.workflow INFO:
+	 [Job 124] Completed (work_preproc.susan.meanfunc2).
+211018-10:14:31,997 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:14:32,76 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.merge&quot; in &quot;/output/work_preproc/susan/_subject_id_02/merge&quot;.
+211018-10:14:32,85 nipype.workflow INFO:
+	 [Node] Running &quot;merge&quot; (&quot;nipype.interfaces.utility.base.Merge&quot;)
+211018-10:14:32,91 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.merge&quot;.
+211018-10:14:34,0 nipype.workflow INFO:
+	 [Job 126] Completed (work_preproc.susan.merge).
+211018-10:14:34,5 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:14:34,84 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.multi_inputs&quot; in &quot;/output/work_preproc/susan/_subject_id_02/multi_inputs&quot;.
+211018-10:14:34,95 nipype.workflow INFO:
+	 [Node] Running &quot;multi_inputs&quot; (&quot;nipype.interfaces.utility.wrappers.Function&quot;)
+211018-10:14:34,103 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.multi_inputs&quot;.
+211018-10:14:36,5 nipype.workflow INFO:
+	 [Job 127] Completed (work_preproc.susan.multi_inputs).
+211018-10:14:36,10 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:14:36,94 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.susan.smooth&quot; in &quot;/output/work_preproc/susan/_subject_id_02/smooth&quot;.
+211018-10:14:36,104 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_smooth0&quot; in &quot;/output/work_preproc/susan/_subject_id_02/smooth/mapflow/_smooth0&quot;.
+211018-10:14:36,111 nipype.workflow INFO:
+	 [Node] Running &quot;_smooth0&quot; (&quot;nipype.interfaces.fsl.preprocess.SUSAN&quot;), a CommandLine Interface with command:
+susan /output/work_preproc/_subject_id_02/applywarp/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt.nii 1018.5000000000 1.6986436006 3 1 1 /output/work_preproc/susan/_subject_id_02/meanfunc2/mapflow/_meanfunc20/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_mask_mean.nii.gz 1018.5000000000 /output/work_preproc/susan/_subject_id_02/smooth/mapflow/_smooth0/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz
+211018-10:14:38,5 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.susan.smooth
+211018-10:15:12,487 nipype.workflow INFO:
+	 [Node] Finished &quot;_smooth0&quot;.
+211018-10:15:12,492 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.susan.smooth&quot;.
+211018-10:15:14,46 nipype.workflow INFO:
+	 [Job 128] Completed (work_preproc.susan.smooth).
+211018-10:15:14,52 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:15:14,140 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.mask_func&quot; in &quot;/output/work_preproc/_subject_id_02/mask_func&quot;.
+211018-10:15:14,147 nipype.workflow INFO:
+	 [Node] Setting-up &quot;_mask_func0&quot; in &quot;/output/work_preproc/_subject_id_02/mask_func/mapflow/_mask_func0&quot;.
+211018-10:15:14,154 nipype.workflow INFO:
+	 [Node] Running &quot;_mask_func0&quot; (&quot;nipype.interfaces.fsl.maths.ApplyMask&quot;), a CommandLine Interface with command:
+fslmaths /output/work_preproc/susan/_subject_id_02/smooth/mapflow/_smooth0/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth.nii.gz -mas /output/work_preproc/_subject_id_02/mask_GM/c1sub-02_ses-test_T1w_flirt_thresh.nii /output/work_preproc/_subject_id_02/mask_func/mapflow/_mask_func0/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_flirt_smooth_masked.nii
+211018-10:15:15,159 nipype.workflow INFO:
+	 [Node] Finished &quot;_mask_func0&quot;.
+211018-10:15:15,163 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.mask_func&quot;.
+211018-10:15:16,54 nipype.workflow INFO:
+	 [Job 129] Completed (work_preproc.mask_func).
+211018-10:15:16,59 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:15:16,136 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.detrend&quot; in &quot;/output/work_preproc/_subject_id_02/detrend&quot;.
+211018-10:15:16,144 nipype.workflow INFO:
+	 [Node] Running &quot;detrend&quot; (&quot;nipype.algorithms.confounds.TSNR&quot;)
+211018-10:15:18,55 nipype.workflow INFO:
+	 [MultiProc] Running 1 tasks, and 0 jobs ready. Free memory (GB): 5.03/5.23, Free processors: 3/4.
+                     Currently running:
+                       * work_preproc.detrend
+211018-10:15:20,243 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.detrend&quot;.
+211018-10:15:22,63 nipype.workflow INFO:
+	 [Job 130] Completed (work_preproc.detrend).
+211018-10:15:22,68 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:15:22,148 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_preproc.datasink&quot; in &quot;/output/work_preproc/_subject_id_02/datasink&quot;.
+211018-10:15:22,167 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:15:22,170 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_02/asub-02_ses-test_task-fingerfootlips_bold_roi_mcf.nii.gz.par -&gt; /output/datasink_handson/preproc/sub-02.par
+211018-10:15:22,173 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_02/art.asub-02_ses-test_task-fingerfootlips_bold_roi_mcf_outliers.txt -&gt; /output/datasink_handson/preproc/art.sub-02_outliers.txt
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:15:22,175 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_02/plot.asub-02_ses-test_task-fingerfootlips_bold_roi_mcf.svg -&gt; /output/datasink_handson/preproc/plot.sub-02.svg
+211018-10:15:22,177 nipype.interface INFO:
+	 sub: /output/datasink_handson/preproc/_subject_id_02/detrend.nii.gz -&gt; /output/datasink_handson/preproc/sub-02_detrend.nii.gz
+211018-10:15:22,185 nipype.workflow INFO:
+	 [Node] Finished &quot;work_preproc.datasink&quot;.
+211018-10:15:24,71 nipype.workflow INFO:
+	 [Job 131] Completed (work_preproc.datasink).
+211018-10:15:24,76 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f47591f5710&gt;
 </pre></div>
 </div>
 </div>

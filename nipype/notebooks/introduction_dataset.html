@@ -642,6 +642,84 @@ datalad install -r ///workshops/nih-2017/ds000114
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>install(ok): /home/neuro/workshop/data/ds000114 (dataset)
+install(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep (dataset)
+install(ok): /home/neuro/workshop/data/ds000114/derivatives/freesurfer (dataset)
+action summary:
+  install (ok: 3)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
+It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
+[INFO] Cloning dataset to Dataset(/home/neuro/workshop/data/ds000114) 
+[INFO] Attempting to clone from http://datasets.datalad.org/workshops/nih-2017/ds000114 to /home/neuro/workshop/data/ds000114 
+[INFO] Attempting to clone from http://datasets.datalad.org/workshops/nih-2017/ds000114/.git to /home/neuro/workshop/data/ds000114 
+[INFO] Start enumerating objects 
+[INFO] Start counting objects 
+[INFO] Start compressing objects 
+[INFO] Start receiving objects 
+[INFO] Start resolving deltas 
+[INFO] Completed clone attempts for Dataset(/home/neuro/workshop/data/ds000114) 
+[INFO] *** Please tell me who you are.
+| 
+| Run
+| 
+|   git config --global user.email &quot;you@example.com&quot;
+|   git config --global user.name &quot;Your Name&quot;
+| 
+| to set your account&#39;s default identity.
+| Omit --global to set the identity only in this repository.
+| 
+| fatal: unable to auto-detect email address (got &#39;neuro@f6f4875f8a40.(none)&#39;) 
+[INFO] It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
+| It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables. 
+[INFO] It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
+| It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables. 
+[INFO] access to 1 dataset sibling datalad not auto-enabled, enable with:
+| 		datalad siblings -d &quot;/home/neuro/workshop/data/ds000114&quot; enable -s datalad 
+[INFO] Installing Dataset(/home/neuro/workshop/data/ds000114) to get /home/neuro/workshop/data/ds000114 recursively 
+[INFO] Cloning dataset to Dataset(/home/neuro/workshop/data/ds000114/derivatives/fmriprep) 
+[INFO] Attempting to clone from http://datasets.datalad.org/workshops/nih-2017/ds000114/derivatives/fmriprep/.git to /home/neuro/workshop/data/ds000114/derivatives/fmriprep 
+[INFO] Start enumerating objects 
+[INFO] Start counting objects 
+[INFO] Start compressing objects 
+[INFO] Start receiving objects 
+[INFO] Start resolving deltas 
+[INFO] Completed clone attempts for Dataset(/home/neuro/workshop/data/ds000114/derivatives/fmriprep) 
+[INFO] *** Please tell me who you are.
+| 
+| Run
+| 
+|   git config --global user.email &quot;you@example.com&quot;
+|   git config --global user.name &quot;Your Name&quot;
+| 
+| to set your account&#39;s default identity.
+| Omit --global to set the identity only in this repository.
+| 
+| fatal: unable to auto-detect email address (got &#39;neuro@f6f4875f8a40.(none)&#39;) 
+[INFO] Cloning dataset to Dataset(/home/neuro/workshop/data/ds000114/derivatives/freesurfer) 
+[INFO] Attempting to clone from http://datasets.datalad.org/workshops/nih-2017/ds000114/derivatives/freesurfer/.git to /home/neuro/workshop/data/ds000114/derivatives/freesurfer 
+[INFO] Start enumerating objects 
+[INFO] Start counting objects 
+[INFO] Start compressing objects 
+[INFO] Start receiving objects 
+[INFO] Start resolving deltas 
+[INFO] Completed clone attempts for Dataset(/home/neuro/workshop/data/ds000114/derivatives/freesurfer) 
+[INFO] *** Please tell me who you are.
+| 
+| Run
+| 
+|   git config --global user.email &quot;you@example.com&quot;
+|   git config --global user.name &quot;Your Name&quot;
+| 
+| to set your account&#39;s default identity.
+| Omit --global to set the identity only in this repository.
+| 
+| fatal: unable to auto-detect email address (got &#39;neuro@f6f4875f8a40.(none)&#39;) 
+</pre></div>
+</div>
+</div>
 </div>
 <p>In order to download data, you can use <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">get</span> <span class="pre">foldername</span></code> command, to download all files in the folder <code class="docutils literal notranslate"><span class="pre">foldername</span></code>. For this tutorial we only want to download part of the dataset, i.e. the anatomical and the functional <code class="docutils literal notranslate"><span class="pre">fingerfootlips</span></code> images:</p>
 <div class="cell docutils container">
@@ -649,13 +727,68 @@ datalad install -r ///workshops/nih-2017/ds000114
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 cd /home/neuro/workshop/data/ds000114
 datalad get -J 4 derivatives/fmriprep/sub-*/anat/*preproc.nii.gz \
-                 sub-01/ses-test/anat \
+                 sub-*/ses-test/anat \
                  sub-*/ses-test/func/*fingerfootlips*
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Process is interrupted.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-06/anat/sub-06_t1w_space-mni152nlin2009casym_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-08/anat/sub-08_t1w_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-09/anat/sub-09_t1w_space-mni152nlin2009casym_preproc.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-04/anat/sub-04_t1w_space-mni152nlin2009casym_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-08/anat/sub-08_t1w_space-mni152nlin2009casym_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-03/anat/sub-03_t1w_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-05/anat/sub-05_t1w_space-mni152nlin2009casym_preproc.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-06/anat/sub-06_t1w_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-04/anat/sub-04_t1w_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-03/anat/sub-03_t1w_space-mni152nlin2009casym_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-02/anat/sub-02_t1w_space-mni152nlin2009casym_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-10/anat/sub-10_t1w_preproc.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-07/anat/sub-07_t1w_preproc.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-09/anat/sub-09_t1w_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-10/anat/sub-10_t1w_space-mni152nlin2009casym_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-01/anat/sub-01_t1w_space-mni152nlin2009casym_preproc.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-02/anat/sub-02_t1w_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-07/anat/sub-07_t1w_space-mni152nlin2009casym_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-05/anat/sub-05_t1w_preproc.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-01/anat/sub-01_t1w_preproc.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-04/ses-test/anat/sub-04_ses-test_T1w.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-10/ses-test/func/sub-10_ses-test_task-fingerfootlips_bold.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-10/ses-test/anat/sub-10_ses-test_T1w.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-06/ses-test/anat/sub-06_ses-test_T1w.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-04/ses-test/func/sub-04_ses-test_task-fingerfootlips_bold.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-09/ses-test/func/sub-09_ses-test_task-fingerfootlips_bold.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-06/ses-test/func/sub-06_ses-test_task-fingerfootlips_bold.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-09/ses-test/anat/sub-09_ses-test_T1w.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-02/ses-test/anat/sub-02_ses-test_T1w.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-05/ses-test/anat/sub-05_ses-test_T1w.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-03/ses-test/anat/sub-03_ses-test_T1w.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-08/ses-test/anat/sub-08_ses-test_T1w.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_bold.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-07/ses-test/anat/sub-07_ses-test_T1w.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold.nii.gz (file) [from origin...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-08/ses-test/func/sub-08_ses-test_task-fingerfootlips_bold.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-05/ses-test/func/sub-05_ses-test_task-fingerfootlips_bold.nii.gz (file) [from web...]
+get(ok): /home/neuro/workshop/data/ds000114/sub-04/ses-test/anat (directory)
+get(ok): /home/neuro/workshop/data/ds000114/sub-10/ses-test/anat (directory)
+get(ok): /home/neuro/workshop/data/ds000114/sub-01/ses-test/anat (directory)
+get(ok): /home/neuro/workshop/data/ds000114/sub-06/ses-test/anat (directory)
+get(ok): /home/neuro/workshop/data/ds000114/sub-09/ses-test/anat (directory)
+get(ok): /home/neuro/workshop/data/ds000114/sub-05/ses-test/anat (directory)
+get(ok): /home/neuro/workshop/data/ds000114/sub-02/ses-test/anat (directory)
+get(ok): /home/neuro/workshop/data/ds000114/sub-08/ses-test/anat (directory)
+get(ok): /home/neuro/workshop/data/ds000114/sub-03/ses-test/anat (directory)
+get(ok): /home/neuro/workshop/data/ds000114/sub-07/ses-test/anat (directory)
+action summary:
+  get (notneeded: 1, ok: 50)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
+It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
 </pre></div>
 </div>
 </div>

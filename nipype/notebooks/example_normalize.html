@@ -731,7 +731,17 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-datalad get -J 4 -d /data/ds000114 /data/ds000114/derivatives/fmriprep/sub-0[2345789]/anat/*h5
+datalad get -J 4 -d /home/neuro/workshop/data/ds000114 /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-0[2345789]/anat/*h5
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>action summary:
+  get (notneeded: 8)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
+It is highly recommended to configure Git before using DataLad. Set both &#39;user.name&#39; and &#39;user.email&#39; configuration variables.
 </pre></div>
 </div>
 </div>
@@ -748,7 +758,21 @@ datalad get -J 4 -d /data/ds000114 /data/ds000114/derivatives/fmriprep/sub-0[234
 <p>The data for it can be found under:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls /data/ds000114/derivatives/fmriprep/sub-*/anat/*h5
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls /home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-*/anat/*h5
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-01/anat/sub-01_t1w_space-mni152nlin2009casym_warp.h5
+/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-02/anat/sub-02_t1w_space-mni152nlin2009casym_warp.h5
+/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-03/anat/sub-03_t1w_space-mni152nlin2009casym_warp.h5
+/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-04/anat/sub-04_t1w_space-mni152nlin2009casym_warp.h5
+/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-05/anat/sub-05_t1w_space-mni152nlin2009casym_warp.h5
+/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-06/anat/sub-06_t1w_space-mni152nlin2009casym_warp.h5
+/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-07/anat/sub-07_t1w_space-mni152nlin2009casym_warp.h5
+/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-08/anat/sub-08_t1w_space-mni152nlin2009casym_warp.h5
+/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-09/anat/sub-09_t1w_space-mni152nlin2009casym_warp.h5
+/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-10/anat/sub-10_t1w_space-mni152nlin2009casym_warp.h5
 </pre></div>
 </div>
 </div>
@@ -840,7 +864,7 @@ rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz
 <span class="c1"># SelectFiles - to grab the data (alternativ to DataGrabber)</span>
 <span class="n">templates</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;con&#39;</span><span class="p">:</span> <span class="n">opj</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;1stLevel&#39;</span><span class="p">,</span>
                         <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">/fwhm-</span><span class="si">{fwhm_id}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;???_00??.nii&#39;</span><span class="p">),</span>
-             <span class="s1">&#39;transform&#39;</span><span class="p">:</span> <span class="n">opj</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/derivatives/fmriprep/&#39;</span><span class="p">,</span> <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;anat&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;transform&#39;</span><span class="p">:</span> <span class="n">opj</span><span class="p">(</span><span class="s1">&#39;/home/neuro/workshop/data/ds000114/derivatives/fmriprep/&#39;</span><span class="p">,</span> <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;anat&#39;</span><span class="p">,</span>
                               <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">_t1w_space-mni152nlin2009casym_warp.h5&#39;</span><span class="p">)}</span>
 <span class="n">selectfiles</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">SelectFiles</span><span class="p">(</span><span class="n">templates</span><span class="p">,</span>
                                <span class="n">base_directory</span><span class="o">=</span><span class="n">experiment_dir</span><span class="p">,</span>
@@ -900,6 +924,13 @@ rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:20:59,859 nipype.workflow INFO:
+	 Generated workflow graph: /output/workingdir/antsflow/graph.png (graph2use=colored, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/example_normalize_21_1.png" src="../../_images/example_normalize_21_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="run-the-workflow-ants">
@@ -908,6 +939,873 @@ rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">antsflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:20:59,897 nipype.workflow INFO:
+	 Workflow antsflow settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211018-12:20:59,954 nipype.workflow INFO:
+	 Running in parallel.
+211018-12:20:59,958 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:00,16 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_09/selectfiles&quot;.
+211018-12:21:00,18 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_09/selectfiles&quot;.
+211018-12:21:00,22 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_08/selectfiles&quot;.
+211018-12:21:00,22 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_08/selectfiles&quot;.
+211018-12:21:00,26 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:00,30 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:00,33 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:00,32 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:00,34 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:00,39 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:00,43 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:00,44 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:01,962 nipype.workflow INFO:
+	 [Job 0] Completed (antsflow.selectfiles).
+211018-12:21:01,966 nipype.workflow INFO:
+	 [Job 3] Completed (antsflow.selectfiles).
+211018-12:21:01,967 nipype.workflow INFO:
+	 [Job 6] Completed (antsflow.selectfiles).
+211018-12:21:01,969 nipype.workflow INFO:
+	 [Job 9] Completed (antsflow.selectfiles).
+211018-12:21:01,972 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:02,87 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_07/selectfiles&quot;.
+211018-12:21:02,89 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_07/selectfiles&quot;.
+211018-12:21:02,92 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_05/selectfiles&quot;.
+211018-12:21:02,93 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:02,96 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:02,95 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:02,104 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:02,102 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:02,97 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_05/selectfiles&quot;.
+211018-12:21:02,104 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:02,109 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:02,117 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:03,964 nipype.workflow INFO:
+	 [Job 12] Completed (antsflow.selectfiles).
+211018-12:21:03,966 nipype.workflow INFO:
+	 [Job 15] Completed (antsflow.selectfiles).
+211018-12:21:03,968 nipype.workflow INFO:
+	 [Job 18] Completed (antsflow.selectfiles).
+211018-12:21:03,970 nipype.workflow INFO:
+	 [Job 21] Completed (antsflow.selectfiles).
+211018-12:21:03,973 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 46 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:04,61 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_04/selectfiles&quot;.
+211018-12:21:04,62 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_04/selectfiles&quot;.
+211018-12:21:04,65 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_03/selectfiles&quot;.
+211018-12:21:04,66 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:04,67 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_03/selectfiles&quot;.
+211018-12:21:04,67 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:04,70 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:04,73 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:04,75 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:04,78 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:04,81 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:04,81 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:05,970 nipype.workflow INFO:
+	 [Job 24] Completed (antsflow.selectfiles).
+211018-12:21:05,973 nipype.workflow INFO:
+	 [Job 27] Completed (antsflow.selectfiles).
+211018-12:21:05,976 nipype.workflow INFO:
+	 [Job 30] Completed (antsflow.selectfiles).
+211018-12:21:05,978 nipype.workflow INFO:
+	 [Job 33] Completed (antsflow.selectfiles).
+211018-12:21:05,982 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 78 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:06,76 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_02/selectfiles&quot;.
+211018-12:21:06,77 nipype.workflow INFO:
+	 [Job 42] Cached (_apply2con0).
+211018-12:21:06,76 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.selectfiles&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_02/selectfiles&quot;.
+211018-12:21:06,81 nipype.workflow INFO:
+	 [Job 43] Cached (_apply2con1).
+211018-12:21:06,80 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:06,83 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:21:06,86 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:06,87 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.selectfiles&quot;.
+211018-12:21:07,973 nipype.workflow INFO:
+	 [Job 36] Completed (antsflow.selectfiles).
+211018-12:21:07,975 nipype.workflow INFO:
+	 [Job 39] Completed (antsflow.selectfiles).
+211018-12:21:07,978 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 108 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:08,39 nipype.workflow INFO:
+	 [Job 44] Cached (_apply2con2).
+211018-12:21:08,42 nipype.workflow INFO:
+	 [Job 45] Cached (_apply2con3).
+211018-12:21:08,44 nipype.workflow INFO:
+	 [Job 46] Cached (_apply2con4).
+211018-12:21:08,46 nipype.workflow INFO:
+	 [Job 47] Cached (_apply2con5).
+211018-12:21:09,977 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 120 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:10,14 nipype.workflow INFO:
+	 [Job 48] Cached (_apply2con6).
+211018-12:21:10,18 nipype.workflow INFO:
+	 [Job 49] Cached (_apply2con7).
+211018-12:21:10,21 nipype.workflow INFO:
+	 [Job 50] Cached (_apply2con8).
+211018-12:21:10,26 nipype.workflow INFO:
+	 [Job 51] Cached (_apply2con0).
+211018-12:21:11,979 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 117 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:12,23 nipype.workflow INFO:
+	 [Job 1] Cached (antsflow.apply2con).
+211018-12:21:12,28 nipype.workflow INFO:
+	 [Job 52] Cached (_apply2con1).
+211018-12:21:12,33 nipype.workflow INFO:
+	 [Job 53] Cached (_apply2con2).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:21:12,38 nipype.workflow INFO:
+	 [Job 54] Cached (_apply2con3).
+211018-12:21:13,984 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 114 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:14,49 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_09/datasink&quot;.
+211018-12:21:14,54 nipype.workflow INFO:
+	 [Job 55] Cached (_apply2con4).
+211018-12:21:14,57 nipype.workflow INFO:
+	 [Job 56] Cached (_apply2con5).
+211018-12:21:14,56 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:21:14,60 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_09/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm8/con_0001_trans.nii
+211018-12:21:14,64 nipype.workflow INFO:
+	 [Job 57] Cached (_apply2con6).
+211018-12:21:14,64 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_09/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm8/con_0002_trans.nii
+211018-12:21:14,66 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_09/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm8/con_0003_trans.nii
+211018-12:21:14,69 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_09/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm8/con_0004_trans.nii
+211018-12:21:14,71 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_09/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm8/con_0005_trans.nii
+211018-12:21:14,74 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_09/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm8/con_0006_trans.nii
+211018-12:21:14,75 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_09/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm8/con_0007_trans.nii
+211018-12:21:14,79 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_09/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm8/ess_0008_trans.nii
+211018-12:21:14,81 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_09/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm8/ess_0009_trans.nii
+211018-12:21:14,86 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:21:15,987 nipype.workflow INFO:
+	 [Job 2] Completed (antsflow.datasink).
+211018-12:21:15,990 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 110 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:16,31 nipype.workflow INFO:
+	 [Job 58] Cached (_apply2con7).
+211018-12:21:16,34 nipype.workflow INFO:
+	 [Job 59] Cached (_apply2con8).
+211018-12:21:16,38 nipype.workflow INFO:
+	 [Job 60] Cached (_apply2con0).
+211018-12:21:16,42 nipype.workflow INFO:
+	 [Job 61] Cached (_apply2con1).
+211018-12:21:17,994 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 107 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:18,35 nipype.workflow INFO:
+	 [Job 4] Cached (antsflow.apply2con).
+211018-12:21:18,39 nipype.workflow INFO:
+	 [Job 62] Cached (_apply2con2).
+211018-12:21:18,43 nipype.workflow INFO:
+	 [Job 63] Cached (_apply2con3).
+211018-12:21:18,47 nipype.workflow INFO:
+	 [Job 64] Cached (_apply2con4).
+211018-12:21:19,997 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 104 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:20,56 nipype.workflow INFO:
+	 [Job 65] Cached (_apply2con5).
+211018-12:21:20,56 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_09/datasink&quot;.
+211018-12:21:20,59 nipype.workflow INFO:
+	 [Job 66] Cached (_apply2con6).
+211018-12:21:20,62 nipype.workflow INFO:
+	 [Job 67] Cached (_apply2con7).
+211018-12:21:20,62 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:21:20,64 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_09/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm4/con_0001_trans.nii
+211018-12:21:20,66 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_09/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm4/con_0002_trans.nii
+211018-12:21:20,69 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_09/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm4/con_0003_trans.nii
+211018-12:21:20,70 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_09/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm4/con_0004_trans.nii
+211018-12:21:20,72 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_09/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm4/con_0005_trans.nii
+211018-12:21:20,74 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_09/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm4/con_0006_trans.nii
+211018-12:21:20,75 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_09/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm4/con_0007_trans.nii
+211018-12:21:20,77 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_09/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm4/ess_0008_trans.nii
+211018-12:21:20,79 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_09/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-09_fwhm4/ess_0009_trans.nii
+211018-12:21:20,84 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:21:22,2 nipype.workflow INFO:
+	 [Job 5] Completed (antsflow.datasink).
+211018-12:21:22,6 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 100 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:22,48 nipype.workflow INFO:
+	 [Job 68] Cached (_apply2con8).
+211018-12:21:22,51 nipype.workflow INFO:
+	 [Job 69] Cached (_apply2con0).
+211018-12:21:22,56 nipype.workflow INFO:
+	 [Job 70] Cached (_apply2con1).
+211018-12:21:22,62 nipype.workflow INFO:
+	 [Job 71] Cached (_apply2con2).
+211018-12:21:24,5 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 97 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:24,43 nipype.workflow INFO:
+	 [Job 7] Cached (antsflow.apply2con).
+211018-12:21:24,48 nipype.workflow INFO:
+	 [Job 72] Cached (_apply2con3).
+211018-12:21:24,51 nipype.workflow INFO:
+	 [Job 73] Cached (_apply2con4).
+211018-12:21:24,57 nipype.workflow INFO:
+	 [Job 74] Cached (_apply2con5).
+211018-12:21:26,19 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 94 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:26,142 nipype.workflow INFO:
+	 [Job 75] Cached (_apply2con6).
+211018-12:21:26,142 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_08/datasink&quot;.
+211018-12:21:26,150 nipype.workflow INFO:
+	 [Job 76] Cached (_apply2con7).
+211018-12:21:26,155 nipype.workflow INFO:
+	 [Job 77] Cached (_apply2con8).
+211018-12:21:26,156 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:21:26,160 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_08/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm8/con_0001_trans.nii
+211018-12:21:26,163 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_08/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm8/con_0002_trans.nii
+211018-12:21:26,166 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_08/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm8/con_0003_trans.nii
+211018-12:21:26,169 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_08/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm8/con_0004_trans.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:21:26,172 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_08/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm8/con_0005_trans.nii
+211018-12:21:26,175 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_08/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm8/con_0006_trans.nii
+211018-12:21:26,177 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_08/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm8/con_0007_trans.nii
+211018-12:21:26,179 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_08/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm8/ess_0008_trans.nii
+211018-12:21:26,181 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_08/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm8/ess_0009_trans.nii
+211018-12:21:26,187 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:21:28,24 nipype.workflow INFO:
+	 [Job 8] Completed (antsflow.datasink).
+211018-12:21:28,30 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 91 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:28,71 nipype.workflow INFO:
+	 [Job 10] Cached (antsflow.apply2con).
+211018-12:21:28,76 nipype.workflow INFO:
+	 [Job 78] Cached (_apply2con0).
+211018-12:21:28,79 nipype.workflow INFO:
+	 [Job 79] Cached (_apply2con1).
+211018-12:21:28,83 nipype.workflow INFO:
+	 [Job 80] Cached (_apply2con2).
+211018-12:21:30,27 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 88 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:30,152 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_08/datasink&quot;.
+211018-12:21:30,158 nipype.workflow INFO:
+	 [Job 81] Cached (_apply2con3).
+211018-12:21:30,162 nipype.workflow INFO:
+	 [Job 82] Cached (_apply2con4).
+211018-12:21:30,162 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:21:30,168 nipype.workflow INFO:
+	 [Job 83] Cached (_apply2con5).
+211018-12:21:30,166 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_08/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm4/con_0001_trans.nii
+211018-12:21:30,170 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_08/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm4/con_0002_trans.nii
+211018-12:21:30,174 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_08/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm4/con_0003_trans.nii
+211018-12:21:30,177 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_08/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm4/con_0004_trans.nii
+211018-12:21:30,180 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_08/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm4/con_0005_trans.nii
+211018-12:21:30,185 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_08/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm4/con_0006_trans.nii
+211018-12:21:30,193 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_08/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm4/con_0007_trans.nii
+211018-12:21:30,196 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_08/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm4/ess_0008_trans.nii
+211018-12:21:30,199 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_08/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-08_fwhm4/ess_0009_trans.nii
+211018-12:21:30,206 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:21:32,31 nipype.workflow INFO:
+	 [Job 11] Completed (antsflow.datasink).
+211018-12:21:32,36 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 84 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:32,79 nipype.workflow INFO:
+	 [Job 84] Cached (_apply2con6).
+211018-12:21:32,82 nipype.workflow INFO:
+	 [Job 85] Cached (_apply2con7).
+211018-12:21:32,86 nipype.workflow INFO:
+	 [Job 86] Cached (_apply2con8).
+211018-12:21:32,93 nipype.workflow INFO:
+	 [Job 87] Cached (_apply2con0).
+211018-12:21:34,39 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 81 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:34,80 nipype.workflow INFO:
+	 [Job 13] Cached (antsflow.apply2con).
+211018-12:21:34,86 nipype.workflow INFO:
+	 [Job 88] Cached (_apply2con1).
+211018-12:21:34,91 nipype.workflow INFO:
+	 [Job 89] Cached (_apply2con2).
+211018-12:21:34,94 nipype.workflow INFO:
+	 [Job 90] Cached (_apply2con3).
+211018-12:21:36,41 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 78 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:36,118 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_07/datasink&quot;.
+211018-12:21:36,119 nipype.workflow INFO:
+	 [Job 91] Cached (_apply2con4).
+211018-12:21:36,123 nipype.workflow INFO:
+	 [Job 92] Cached (_apply2con5).
+211018-12:21:36,126 nipype.workflow INFO:
+	 [Job 93] Cached (_apply2con6).
+211018-12:21:36,126 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:21:36,129 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_07/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm8/con_0001_trans.nii
+211018-12:21:36,133 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_07/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm8/con_0002_trans.nii
+211018-12:21:36,135 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_07/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm8/con_0003_trans.nii
+211018-12:21:36,138 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_07/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm8/con_0004_trans.nii
+211018-12:21:36,140 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_07/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm8/con_0005_trans.nii
+211018-12:21:36,142 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_07/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm8/con_0006_trans.nii
+211018-12:21:36,144 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_07/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm8/con_0007_trans.nii
+211018-12:21:36,146 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_07/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm8/ess_0008_trans.nii
+211018-12:21:36,148 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_07/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm8/ess_0009_trans.nii
+211018-12:21:36,154 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:21:38,43 nipype.workflow INFO:
+	 [Job 14] Completed (antsflow.datasink).
+211018-12:21:38,48 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 74 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:38,87 nipype.workflow INFO:
+	 [Job 94] Cached (_apply2con7).
+211018-12:21:38,93 nipype.workflow INFO:
+	 [Job 95] Cached (_apply2con8).
+211018-12:21:38,98 nipype.workflow INFO:
+	 [Job 96] Cached (_apply2con0).
+211018-12:21:38,103 nipype.workflow INFO:
+	 [Job 97] Cached (_apply2con1).
+211018-12:21:40,45 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 71 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:40,89 nipype.workflow INFO:
+	 [Job 16] Cached (antsflow.apply2con).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:21:40,91 nipype.workflow INFO:
+	 [Job 98] Cached (_apply2con2).
+211018-12:21:40,94 nipype.workflow INFO:
+	 [Job 99] Cached (_apply2con3).
+211018-12:21:40,97 nipype.workflow INFO:
+	 [Job 100] Cached (_apply2con4).
+211018-12:21:42,55 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 68 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:42,110 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_07/datasink&quot;.
+211018-12:21:42,112 nipype.workflow INFO:
+	 [Job 101] Cached (_apply2con5).
+211018-12:21:42,115 nipype.workflow INFO:
+	 [Job 102] Cached (_apply2con6).
+211018-12:21:42,117 nipype.workflow INFO:
+	 [Job 103] Cached (_apply2con7).
+211018-12:21:42,117 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:21:42,119 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_07/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm4/con_0001_trans.nii
+211018-12:21:42,120 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_07/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm4/con_0002_trans.nii
+211018-12:21:42,122 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_07/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm4/con_0003_trans.nii
+211018-12:21:42,125 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_07/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm4/con_0004_trans.nii
+211018-12:21:42,127 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_07/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm4/con_0005_trans.nii
+211018-12:21:42,128 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_07/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm4/con_0006_trans.nii
+211018-12:21:42,130 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_07/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm4/con_0007_trans.nii
+211018-12:21:42,132 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_07/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm4/ess_0008_trans.nii
+211018-12:21:42,133 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_07/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-07_fwhm4/ess_0009_trans.nii
+211018-12:21:42,139 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:21:44,56 nipype.workflow INFO:
+	 [Job 17] Completed (antsflow.datasink).
+211018-12:21:44,59 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 64 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:44,94 nipype.workflow INFO:
+	 [Job 104] Cached (_apply2con8).
+211018-12:21:44,97 nipype.workflow INFO:
+	 [Job 105] Cached (_apply2con0).
+211018-12:21:44,100 nipype.workflow INFO:
+	 [Job 106] Cached (_apply2con1).
+211018-12:21:44,103 nipype.workflow INFO:
+	 [Job 107] Cached (_apply2con2).
+211018-12:21:46,63 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 61 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:46,112 nipype.workflow INFO:
+	 [Job 19] Cached (antsflow.apply2con).
+211018-12:21:46,116 nipype.workflow INFO:
+	 [Job 108] Cached (_apply2con3).
+211018-12:21:46,119 nipype.workflow INFO:
+	 [Job 109] Cached (_apply2con4).
+211018-12:21:46,123 nipype.workflow INFO:
+	 [Job 110] Cached (_apply2con5).
+211018-12:21:48,63 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 58 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:48,111 nipype.workflow INFO:
+	 [Job 111] Cached (_apply2con6).
+211018-12:21:48,111 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_05/datasink&quot;.
+211018-12:21:48,115 nipype.workflow INFO:
+	 [Job 112] Cached (_apply2con7).
+211018-12:21:48,116 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:21:48,119 nipype.workflow INFO:
+	 [Job 113] Cached (_apply2con8).
+211018-12:21:48,118 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_05/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm8/con_0001_trans.nii
+211018-12:21:48,120 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_05/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm8/con_0002_trans.nii
+211018-12:21:48,121 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_05/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm8/con_0003_trans.nii
+211018-12:21:48,123 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_05/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm8/con_0004_trans.nii
+211018-12:21:48,126 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_05/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm8/con_0005_trans.nii
+211018-12:21:48,127 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_05/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm8/con_0006_trans.nii
+211018-12:21:48,129 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_05/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm8/con_0007_trans.nii
+211018-12:21:48,131 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_05/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm8/ess_0008_trans.nii
+211018-12:21:48,133 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_05/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm8/ess_0009_trans.nii
+211018-12:21:48,137 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:21:50,64 nipype.workflow INFO:
+	 [Job 20] Completed (antsflow.datasink).
+211018-12:21:50,68 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 55 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:50,107 nipype.workflow INFO:
+	 [Job 22] Cached (antsflow.apply2con).
+211018-12:21:50,111 nipype.workflow INFO:
+	 [Job 114] Cached (_apply2con0).
+211018-12:21:50,113 nipype.workflow INFO:
+	 [Job 115] Cached (_apply2con1).
+211018-12:21:50,116 nipype.workflow INFO:
+	 [Job 116] Cached (_apply2con2).
+211018-12:21:52,72 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 52 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:52,128 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_05/datasink&quot;.
+211018-12:21:52,130 nipype.workflow INFO:
+	 [Job 117] Cached (_apply2con3).
+211018-12:21:52,133 nipype.workflow INFO:
+	 [Job 118] Cached (_apply2con4).
+211018-12:21:52,134 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:21:52,135 nipype.workflow INFO:
+	 [Job 119] Cached (_apply2con5).
+211018-12:21:52,137 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_05/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm4/con_0001_trans.nii
+211018-12:21:52,140 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_05/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm4/con_0002_trans.nii
+211018-12:21:52,142 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_05/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm4/con_0003_trans.nii
+211018-12:21:52,145 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_05/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm4/con_0004_trans.nii
+211018-12:21:52,146 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_05/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm4/con_0005_trans.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:21:52,148 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_05/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm4/con_0006_trans.nii
+211018-12:21:52,150 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_05/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm4/con_0007_trans.nii
+211018-12:21:52,152 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_05/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm4/ess_0008_trans.nii
+211018-12:21:52,153 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_05/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-05_fwhm4/ess_0009_trans.nii
+211018-12:21:52,158 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:21:54,72 nipype.workflow INFO:
+	 [Job 23] Completed (antsflow.datasink).
+211018-12:21:54,76 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 48 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:54,125 nipype.workflow INFO:
+	 [Job 120] Cached (_apply2con6).
+211018-12:21:54,128 nipype.workflow INFO:
+	 [Job 121] Cached (_apply2con7).
+211018-12:21:54,131 nipype.workflow INFO:
+	 [Job 122] Cached (_apply2con8).
+211018-12:21:54,139 nipype.workflow INFO:
+	 [Job 123] Cached (_apply2con0).
+211018-12:21:56,78 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 45 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:56,121 nipype.workflow INFO:
+	 [Job 25] Cached (antsflow.apply2con).
+211018-12:21:56,125 nipype.workflow INFO:
+	 [Job 124] Cached (_apply2con1).
+211018-12:21:56,128 nipype.workflow INFO:
+	 [Job 125] Cached (_apply2con2).
+211018-12:21:56,132 nipype.workflow INFO:
+	 [Job 126] Cached (_apply2con3).
+211018-12:21:58,82 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 42 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:21:58,153 nipype.workflow INFO:
+	 [Job 127] Cached (_apply2con4).
+211018-12:21:58,152 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_04/datasink&quot;.
+211018-12:21:58,157 nipype.workflow INFO:
+	 [Job 128] Cached (_apply2con5).
+211018-12:21:58,161 nipype.workflow INFO:
+	 [Job 129] Cached (_apply2con6).
+211018-12:21:58,160 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:21:58,164 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_04/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm8/con_0001_trans.nii
+211018-12:21:58,165 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_04/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm8/con_0002_trans.nii
+211018-12:21:58,167 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_04/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm8/con_0003_trans.nii
+211018-12:21:58,169 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_04/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm8/con_0004_trans.nii
+211018-12:21:58,171 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_04/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm8/con_0005_trans.nii
+211018-12:21:58,173 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_04/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm8/con_0006_trans.nii
+211018-12:21:58,176 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_04/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm8/con_0007_trans.nii
+211018-12:21:58,177 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_04/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm8/ess_0008_trans.nii
+211018-12:21:58,179 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_04/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm8/ess_0009_trans.nii
+211018-12:21:58,183 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:22:00,80 nipype.workflow INFO:
+	 [Job 26] Completed (antsflow.datasink).
+211018-12:22:00,83 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 38 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:00,121 nipype.workflow INFO:
+	 [Job 130] Cached (_apply2con7).
+211018-12:22:00,124 nipype.workflow INFO:
+	 [Job 131] Cached (_apply2con8).
+211018-12:22:00,128 nipype.workflow INFO:
+	 [Job 132] Cached (_apply2con0).
+211018-12:22:00,131 nipype.workflow INFO:
+	 [Job 133] Cached (_apply2con1).
+211018-12:22:02,84 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 35 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:02,131 nipype.workflow INFO:
+	 [Job 28] Cached (antsflow.apply2con).
+211018-12:22:02,137 nipype.workflow INFO:
+	 [Job 134] Cached (_apply2con2).
+211018-12:22:02,140 nipype.workflow INFO:
+	 [Job 135] Cached (_apply2con3).
+211018-12:22:02,143 nipype.workflow INFO:
+	 [Job 136] Cached (_apply2con4).
+211018-12:22:04,90 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 32 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:04,150 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_04/datasink&quot;.
+211018-12:22:04,153 nipype.workflow INFO:
+	 [Job 137] Cached (_apply2con5).
+211018-12:22:04,156 nipype.workflow INFO:
+	 [Job 138] Cached (_apply2con6).
+211018-12:22:04,156 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:04,160 nipype.workflow INFO:
+	 [Job 139] Cached (_apply2con7).
+211018-12:22:04,159 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_04/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm4/con_0001_trans.nii
+211018-12:22:04,161 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_04/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm4/con_0002_trans.nii
+211018-12:22:04,163 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_04/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm4/con_0003_trans.nii
+211018-12:22:04,164 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_04/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm4/con_0004_trans.nii
+211018-12:22:04,166 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_04/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm4/con_0005_trans.nii
+211018-12:22:04,168 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_04/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm4/con_0006_trans.nii
+211018-12:22:04,170 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_04/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm4/con_0007_trans.nii
+211018-12:22:04,173 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_04/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm4/ess_0008_trans.nii
+211018-12:22:04,174 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_04/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-04_fwhm4/ess_0009_trans.nii
+211018-12:22:04,179 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:22:06,93 nipype.workflow INFO:
+	 [Job 29] Completed (antsflow.datasink).
+211018-12:22:06,98 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 28 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:06,140 nipype.workflow INFO:
+	 [Job 140] Cached (_apply2con8).
+211018-12:22:06,145 nipype.workflow INFO:
+	 [Job 141] Cached (_apply2con0).
+211018-12:22:06,151 nipype.workflow INFO:
+	 [Job 142] Cached (_apply2con1).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:22:06,155 nipype.workflow INFO:
+	 [Job 143] Cached (_apply2con2).
+211018-12:22:08,94 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 25 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:08,139 nipype.workflow INFO:
+	 [Job 31] Cached (antsflow.apply2con).
+211018-12:22:08,144 nipype.workflow INFO:
+	 [Job 144] Cached (_apply2con3).
+211018-12:22:08,149 nipype.workflow INFO:
+	 [Job 145] Cached (_apply2con4).
+211018-12:22:08,157 nipype.workflow INFO:
+	 [Job 146] Cached (_apply2con5).
+211018-12:22:10,97 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 22 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:10,158 nipype.workflow INFO:
+	 [Job 147] Cached (_apply2con6).
+211018-12:22:10,157 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_03/datasink&quot;.
+211018-12:22:10,162 nipype.workflow INFO:
+	 [Job 148] Cached (_apply2con7).
+211018-12:22:10,165 nipype.workflow INFO:
+	 [Job 149] Cached (_apply2con8).
+211018-12:22:10,166 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:10,168 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_03/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm8/con_0001_trans.nii
+211018-12:22:10,171 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_03/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm8/con_0002_trans.nii
+211018-12:22:10,172 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_03/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm8/con_0003_trans.nii
+211018-12:22:10,175 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_03/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm8/con_0004_trans.nii
+211018-12:22:10,178 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_03/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm8/con_0005_trans.nii
+211018-12:22:10,180 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_03/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm8/con_0006_trans.nii
+211018-12:22:10,182 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_03/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm8/con_0007_trans.nii
+211018-12:22:10,184 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_03/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm8/ess_0008_trans.nii
+211018-12:22:10,187 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_03/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm8/ess_0009_trans.nii
+211018-12:22:10,194 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:22:12,101 nipype.workflow INFO:
+	 [Job 32] Completed (antsflow.datasink).
+211018-12:22:12,107 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 19 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:12,152 nipype.workflow INFO:
+	 [Job 34] Cached (antsflow.apply2con).
+211018-12:22:12,156 nipype.workflow INFO:
+	 [Job 150] Cached (_apply2con0).
+211018-12:22:12,159 nipype.workflow INFO:
+	 [Job 151] Cached (_apply2con1).
+211018-12:22:12,164 nipype.workflow INFO:
+	 [Job 152] Cached (_apply2con2).
+211018-12:22:14,105 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 16 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:14,176 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_03/datasink&quot;.
+211018-12:22:14,179 nipype.workflow INFO:
+	 [Job 153] Cached (_apply2con3).
+211018-12:22:14,183 nipype.workflow INFO:
+	 [Job 154] Cached (_apply2con4).
+211018-12:22:14,184 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:14,188 nipype.workflow INFO:
+	 [Job 155] Cached (_apply2con5).
+211018-12:22:14,187 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_03/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm4/con_0001_trans.nii
+211018-12:22:14,191 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_03/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm4/con_0002_trans.nii
+211018-12:22:14,192 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_03/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm4/con_0003_trans.nii
+211018-12:22:14,194 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_03/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm4/con_0004_trans.nii
+211018-12:22:14,195 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_03/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm4/con_0005_trans.nii
+211018-12:22:14,197 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_03/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm4/con_0006_trans.nii
+211018-12:22:14,199 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_03/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm4/con_0007_trans.nii
+211018-12:22:14,200 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_03/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm4/ess_0008_trans.nii
+211018-12:22:14,202 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_03/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-03_fwhm4/ess_0009_trans.nii
+211018-12:22:14,207 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:22:16,110 nipype.workflow INFO:
+	 [Job 35] Completed (antsflow.datasink).
+211018-12:22:16,113 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 12 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:16,151 nipype.workflow INFO:
+	 [Job 156] Cached (_apply2con6).
+211018-12:22:16,154 nipype.workflow INFO:
+	 [Job 157] Cached (_apply2con7).
+211018-12:22:16,159 nipype.workflow INFO:
+	 [Job 158] Cached (_apply2con8).
+211018-12:22:16,164 nipype.workflow INFO:
+	 [Job 159] Cached (_apply2con0).
+211018-12:22:18,114 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 9 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:18,160 nipype.workflow INFO:
+	 [Job 37] Cached (antsflow.apply2con).
+211018-12:22:18,164 nipype.workflow INFO:
+	 [Job 160] Cached (_apply2con1).
+211018-12:22:18,168 nipype.workflow INFO:
+	 [Job 161] Cached (_apply2con2).
+211018-12:22:18,175 nipype.workflow INFO:
+	 [Job 162] Cached (_apply2con3).
+211018-12:22:20,118 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:20,189 nipype.workflow INFO:
+	 [Job 163] Cached (_apply2con4).
+211018-12:22:20,188 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_8_subject_id_02/datasink&quot;.
+211018-12:22:20,192 nipype.workflow INFO:
+	 [Job 164] Cached (_apply2con5).
+211018-12:22:20,195 nipype.workflow INFO:
+	 [Job 165] Cached (_apply2con6).
+211018-12:22:20,194 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:20,196 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_02/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm8/con_0001_trans.nii
+211018-12:22:20,198 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_02/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm8/con_0002_trans.nii
+211018-12:22:20,199 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_02/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm8/con_0003_trans.nii
+211018-12:22:20,201 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_02/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm8/con_0004_trans.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:22:20,203 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_02/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm8/con_0005_trans.nii
+211018-12:22:20,204 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_02/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm8/con_0006_trans.nii
+211018-12:22:20,206 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_02/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm8/con_0007_trans.nii
+211018-12:22:20,207 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_02/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm8/ess_0008_trans.nii
+211018-12:22:20,208 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_8_subject_id_02/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm8/ess_0009_trans.nii
+211018-12:22:20,213 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:22:22,119 nipype.workflow INFO:
+	 [Job 38] Completed (antsflow.datasink).
+211018-12:22:22,124 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:22,162 nipype.workflow INFO:
+	 [Job 166] Cached (_apply2con7).
+211018-12:22:22,166 nipype.workflow INFO:
+	 [Job 167] Cached (_apply2con8).
+211018-12:22:24,124 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 1 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:24,168 nipype.workflow INFO:
+	 [Job 40] Cached (antsflow.apply2con).
+211018-12:22:26,204 nipype.workflow INFO:
+	 [Node] Setting-up &quot;antsflow.datasink&quot; in &quot;/output/workingdir/antsflow/_fwhm_id_4_subject_id_02/datasink&quot;.
+211018-12:22:26,209 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:26,211 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_02/_apply2con0/con_0001_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm4/con_0001_trans.nii
+211018-12:22:26,212 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_02/_apply2con1/con_0002_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm4/con_0002_trans.nii
+211018-12:22:26,213 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_02/_apply2con2/con_0003_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm4/con_0003_trans.nii
+211018-12:22:26,215 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_02/_apply2con3/con_0004_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm4/con_0004_trans.nii
+211018-12:22:26,216 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_02/_apply2con4/con_0005_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm4/con_0005_trans.nii
+211018-12:22:26,218 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_02/_apply2con5/con_0006_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm4/con_0006_trans.nii
+211018-12:22:26,220 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_02/_apply2con6/con_0007_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm4/con_0007_trans.nii
+211018-12:22:26,221 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_02/_apply2con7/ess_0008_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm4/ess_0008_trans.nii
+211018-12:22:26,223 nipype.interface INFO:
+	 sub: /output/datasink/norm_ants/_fwhm_id_4_subject_id_02/_apply2con8/ess_0009_trans.nii -&gt; /output/datasink/norm_ants/sub-02_fwhm4/ess_0009_trans.nii
+211018-12:22:26,227 nipype.workflow INFO:
+	 [Node] Finished &quot;antsflow.datasink&quot;.
+211018-12:22:28,133 nipype.workflow INFO:
+	 [Job 41] Completed (antsflow.datasink).
+211018-12:22:28,138 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f81ed1dcd10&gt;
 </pre></div>
 </div>
 </div>
@@ -989,7 +1887,7 @@ rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz
 <span class="c1"># SelectFiles - to grab the data (alternativ to DataGrabber)</span>
 <span class="n">templates</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;con&#39;</span><span class="p">:</span> <span class="n">opj</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;1stLevel&#39;</span><span class="p">,</span>
                         <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">/fwhm-</span><span class="si">{fwhm_id}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;???_00??.nii&#39;</span><span class="p">),</span>
-             <span class="s1">&#39;anat&#39;</span><span class="p">:</span> <span class="n">opj</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/derivatives&#39;</span><span class="p">,</span> <span class="s1">&#39;fmriprep&#39;</span><span class="p">,</span> <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;anat&#39;</span><span class="p">:</span> <span class="n">opj</span><span class="p">(</span><span class="s1">&#39;/home/neuro/workshop/data/ds000114/derivatives&#39;</span><span class="p">,</span> <span class="s1">&#39;fmriprep&#39;</span><span class="p">,</span> <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">&#39;</span><span class="p">,</span>
                          <span class="s1">&#39;anat&#39;</span><span class="p">,</span> <span class="s1">&#39;sub-</span><span class="si">{subject_id}</span><span class="s1">_t1w_preproc.nii.gz&#39;</span><span class="p">)}</span>
 
 <span class="n">selectfiles</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">SelectFiles</span><span class="p">(</span><span class="n">templates</span><span class="p">,</span>
@@ -1052,6 +1950,13 @@ rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:22:30,470 nipype.workflow INFO:
+	 Generated workflow graph: /output/workingdir/spmflow/graph.png (graph2use=colored, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/example_normalize_36_1.png" src="../../_images/example_normalize_36_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="run-the-workflow-spm12">
@@ -1060,6 +1965,603 @@ rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spmflow</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:22:30,485 nipype.workflow INFO:
+	 Workflow spmflow settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211018-12:22:30,537 nipype.workflow INFO:
+	 Running in parallel.
+211018-12:22:30,541 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:30,606 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_09/selectfiles&quot;.
+211018-12:22:30,608 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_09/selectfiles&quot;.
+211018-12:22:30,612 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_08/selectfiles&quot;.
+211018-12:22:30,612 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_08/selectfiles&quot;.
+211018-12:22:30,617 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:30,622 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:30,622 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:30,623 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:30,631 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:30,631 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:30,636 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:30,636 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:32,545 nipype.workflow INFO:
+	 [Job 0] Completed (spmflow.selectfiles).
+211018-12:22:32,548 nipype.workflow INFO:
+	 [Job 4] Completed (spmflow.selectfiles).
+211018-12:22:32,551 nipype.workflow INFO:
+	 [Job 8] Completed (spmflow.selectfiles).
+211018-12:22:32,553 nipype.workflow INFO:
+	 [Job 12] Completed (spmflow.selectfiles).
+211018-12:22:32,556 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 14 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:32,620 nipype.workflow INFO:
+	 [Job 1] Cached (spmflow.gunzip).
+211018-12:22:32,624 nipype.workflow INFO:
+	 [Job 5] Cached (spmflow.gunzip).
+211018-12:22:32,628 nipype.workflow INFO:
+	 [Job 9] Cached (spmflow.gunzip).
+211018-12:22:32,634 nipype.workflow INFO:
+	 [Job 13] Cached (spmflow.gunzip).
+211018-12:22:34,596 nipype.workflow INFO:
+	 [Job 2] Cached (spmflow.normalize).
+211018-12:22:34,605 nipype.workflow INFO:
+	 [Job 6] Cached (spmflow.normalize).
+211018-12:22:34,613 nipype.workflow INFO:
+	 [Job 10] Cached (spmflow.normalize).
+211018-12:22:34,620 nipype.workflow INFO:
+	 [Job 14] Cached (spmflow.normalize).
+211018-12:22:36,611 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_09/datasink&quot;.
+211018-12:22:36,619 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:36,625 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_09/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm8/wcon_0001.nii
+211018-12:22:36,627 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_09/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm8/wcon_0002.nii
+211018-12:22:36,629 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_09/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm8/wcon_0003.nii
+211018-12:22:36,630 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_09/datasink&quot;.
+211018-12:22:36,632 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_09/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm8/wcon_0004.nii
+211018-12:22:36,641 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:36,644 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_09/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm8/wcon_0005.nii
+211018-12:22:36,645 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_09/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm4/wcon_0001.nii
+211018-12:22:36,647 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_09/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm8/wcon_0006.nii
+211018-12:22:36,648 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_09/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm4/wcon_0002.nii
+211018-12:22:36,650 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_09/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm8/wcon_0007.nii
+211018-12:22:36,652 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_09/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm8/wess_0008.nii
+211018-12:22:36,653 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_09/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm4/wcon_0003.nii
+211018-12:22:36,655 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_09/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm8/wess_0009.nii
+211018-12:22:36,657 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_09/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm4/wcon_0004.nii
+211018-12:22:36,659 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_09/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm4/wcon_0005.nii
+211018-12:22:36,658 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_08/datasink&quot;.
+211018-12:22:36,661 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_09/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm4/wcon_0006.nii
+211018-12:22:36,663 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_09/wsub-09_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm8/wsub-09_t1w_preproc.nii
+211018-12:22:36,671 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_09/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm4/wcon_0007.nii
+211018-12:22:36,675 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:36,675 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:36,677 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_09/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm4/wess_0008.nii
+211018-12:22:36,681 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_09/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm4/wess_0009.nii
+211018-12:22:36,682 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_08/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm8/wcon_0001.nii
+211018-12:22:36,683 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_09/wsub-09_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-09_fwhm4/wsub-09_t1w_preproc.nii
+211018-12:22:36,689 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_08/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm8/wcon_0002.nii
+211018-12:22:36,694 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_08/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm8/wcon_0003.nii
+211018-12:22:36,699 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:36,697 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_08/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm8/wcon_0004.nii
+211018-12:22:36,701 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_08/datasink&quot;.
+211018-12:22:36,703 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_08/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm8/wcon_0005.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:22:36,706 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_08/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm8/wcon_0006.nii
+211018-12:22:36,742 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_08/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm8/wcon_0007.nii
+211018-12:22:36,743 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:36,744 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_08/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm8/wess_0008.nii
+211018-12:22:36,746 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_08/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm8/wess_0009.nii
+211018-12:22:36,746 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_08/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm4/wcon_0001.nii
+211018-12:22:36,748 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_08/wsub-08_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm8/wsub-08_t1w_preproc.nii
+211018-12:22:36,748 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_08/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm4/wcon_0002.nii
+211018-12:22:36,751 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_08/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm4/wcon_0003.nii
+211018-12:22:36,754 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_08/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm4/wcon_0004.nii
+211018-12:22:36,758 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:36,756 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_08/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm4/wcon_0005.nii
+211018-12:22:36,760 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_08/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm4/wcon_0006.nii
+211018-12:22:36,762 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_08/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm4/wcon_0007.nii
+211018-12:22:36,764 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_08/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm4/wess_0008.nii
+211018-12:22:36,767 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_08/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm4/wess_0009.nii
+211018-12:22:36,770 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_08/wsub-08_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-08_fwhm4/wsub-08_t1w_preproc.nii
+211018-12:22:36,777 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:38,556 nipype.workflow INFO:
+	 [Job 3] Completed (spmflow.datasink).
+211018-12:22:38,558 nipype.workflow INFO:
+	 [Job 7] Completed (spmflow.datasink).
+211018-12:22:38,560 nipype.workflow INFO:
+	 [Job 11] Completed (spmflow.datasink).
+211018-12:22:38,562 nipype.workflow INFO:
+	 [Job 15] Completed (spmflow.datasink).
+211018-12:22:38,565 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:38,599 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_07/selectfiles&quot;.
+211018-12:22:38,600 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_07/selectfiles&quot;.
+211018-12:22:38,602 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:38,605 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_05/selectfiles&quot;.
+211018-12:22:38,603 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:38,608 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_05/selectfiles&quot;.
+211018-12:22:38,609 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:38,608 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:38,613 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:38,617 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:38,622 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:38,624 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:40,562 nipype.workflow INFO:
+	 [Job 16] Completed (spmflow.selectfiles).
+211018-12:22:40,565 nipype.workflow INFO:
+	 [Job 20] Completed (spmflow.selectfiles).
+211018-12:22:40,567 nipype.workflow INFO:
+	 [Job 24] Completed (spmflow.selectfiles).
+211018-12:22:40,569 nipype.workflow INFO:
+	 [Job 28] Completed (spmflow.selectfiles).
+211018-12:22:40,573 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:40,615 nipype.workflow INFO:
+	 [Job 17] Cached (spmflow.gunzip).
+211018-12:22:40,619 nipype.workflow INFO:
+	 [Job 21] Cached (spmflow.gunzip).
+211018-12:22:40,624 nipype.workflow INFO:
+	 [Job 25] Cached (spmflow.gunzip).
+211018-12:22:40,629 nipype.workflow INFO:
+	 [Job 29] Cached (spmflow.gunzip).
+211018-12:22:42,610 nipype.workflow INFO:
+	 [Job 18] Cached (spmflow.normalize).
+211018-12:22:42,617 nipype.workflow INFO:
+	 [Job 22] Cached (spmflow.normalize).
+211018-12:22:42,626 nipype.workflow INFO:
+	 [Job 26] Cached (spmflow.normalize).
+211018-12:22:42,632 nipype.workflow INFO:
+	 [Job 30] Cached (spmflow.normalize).
+211018-12:22:44,628 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_07/datasink&quot;.
+211018-12:22:44,635 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:44,638 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_07/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm8/wcon_0001.nii
+211018-12:22:44,640 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_07/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm8/wcon_0002.nii
+211018-12:22:44,642 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_07/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm8/wcon_0003.nii
+211018-12:22:44,644 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_07/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm8/wcon_0004.nii
+211018-12:22:44,646 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_07/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm8/wcon_0005.nii
+211018-12:22:44,647 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_07/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm8/wcon_0006.nii
+211018-12:22:44,649 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_07/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm8/wcon_0007.nii
+211018-12:22:44,649 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_07/datasink&quot;.
+211018-12:22:44,654 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_07/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm8/wess_0008.nii
+211018-12:22:44,655 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:44,657 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_07/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm4/wcon_0001.nii
+211018-12:22:44,659 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_07/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm8/wess_0009.nii
+211018-12:22:44,659 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_07/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm4/wcon_0002.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:22:44,662 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_07/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm4/wcon_0003.nii
+211018-12:22:44,662 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_07/wsub-07_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm8/wsub-07_t1w_preproc.nii
+211018-12:22:44,664 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_07/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm4/wcon_0004.nii
+211018-12:22:44,666 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_07/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm4/wcon_0005.nii
+211018-12:22:44,668 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:44,668 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_07/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm4/wcon_0006.nii
+211018-12:22:44,670 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_07/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm4/wcon_0007.nii
+211018-12:22:44,671 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_05/datasink&quot;.
+211018-12:22:44,672 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_07/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm4/wess_0008.nii
+211018-12:22:44,675 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_07/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm4/wess_0009.nii
+211018-12:22:44,677 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_07/wsub-07_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-07_fwhm4/wsub-07_t1w_preproc.nii
+211018-12:22:44,680 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:44,683 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:44,685 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_05/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm8/wcon_0001.nii
+211018-12:22:44,687 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_05/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm8/wcon_0002.nii
+211018-12:22:44,689 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_05/datasink&quot;.
+211018-12:22:44,690 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_05/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm8/wcon_0003.nii
+211018-12:22:44,694 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:44,696 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_05/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm4/wcon_0001.nii
+211018-12:22:44,697 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_05/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm8/wcon_0004.nii
+211018-12:22:44,698 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_05/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm4/wcon_0002.nii
+211018-12:22:44,699 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_05/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm8/wcon_0005.nii
+211018-12:22:44,699 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_05/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm4/wcon_0003.nii
+211018-12:22:44,700 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_05/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm4/wcon_0004.nii
+211018-12:22:44,701 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_05/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm8/wcon_0006.nii
+211018-12:22:44,702 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_05/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm4/wcon_0005.nii
+211018-12:22:44,704 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_05/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm8/wcon_0007.nii
+211018-12:22:44,704 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_05/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm4/wcon_0006.nii
+211018-12:22:44,706 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_05/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm8/wess_0008.nii
+211018-12:22:44,707 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_05/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm8/wess_0009.nii
+211018-12:22:44,708 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_05/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm4/wcon_0007.nii
+211018-12:22:44,709 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_05/wsub-05_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm8/wsub-05_t1w_preproc.nii
+211018-12:22:44,710 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_05/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm4/wess_0008.nii
+211018-12:22:44,712 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_05/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm4/wess_0009.nii
+211018-12:22:44,714 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:44,714 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_05/wsub-05_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-05_fwhm4/wsub-05_t1w_preproc.nii
+211018-12:22:44,718 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:46,575 nipype.workflow INFO:
+	 [Job 19] Completed (spmflow.datasink).
+211018-12:22:46,578 nipype.workflow INFO:
+	 [Job 23] Completed (spmflow.datasink).
+211018-12:22:46,581 nipype.workflow INFO:
+	 [Job 27] Completed (spmflow.datasink).
+211018-12:22:46,584 nipype.workflow INFO:
+	 [Job 31] Completed (spmflow.datasink).
+211018-12:22:46,587 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:46,628 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_04/selectfiles&quot;.
+211018-12:22:46,631 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_04/selectfiles&quot;.
+211018-12:22:46,633 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:46,635 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_03/selectfiles&quot;.
+211018-12:22:46,635 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_03/selectfiles&quot;.
+211018-12:22:46,635 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:46,640 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:46,642 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:46,643 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:46,649 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:46,648 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:46,653 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:48,578 nipype.workflow INFO:
+	 [Job 32] Completed (spmflow.selectfiles).
+211018-12:22:48,582 nipype.workflow INFO:
+	 [Job 36] Completed (spmflow.selectfiles).
+211018-12:22:48,584 nipype.workflow INFO:
+	 [Job 40] Completed (spmflow.selectfiles).
+211018-12:22:48,586 nipype.workflow INFO:
+	 [Job 44] Completed (spmflow.selectfiles).
+211018-12:22:48,591 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:22:48,631 nipype.workflow INFO:
+	 [Job 33] Cached (spmflow.gunzip).
+211018-12:22:48,636 nipype.workflow INFO:
+	 [Job 37] Cached (spmflow.gunzip).
+211018-12:22:48,640 nipype.workflow INFO:
+	 [Job 41] Cached (spmflow.gunzip).
+211018-12:22:48,645 nipype.workflow INFO:
+	 [Job 45] Cached (spmflow.gunzip).
+211018-12:22:50,626 nipype.workflow INFO:
+	 [Job 34] Cached (spmflow.normalize).
+211018-12:22:50,632 nipype.workflow INFO:
+	 [Job 38] Cached (spmflow.normalize).
+211018-12:22:50,640 nipype.workflow INFO:
+	 [Job 42] Cached (spmflow.normalize).
+211018-12:22:50,646 nipype.workflow INFO:
+	 [Job 46] Cached (spmflow.normalize).
+211018-12:22:52,644 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_04/datasink&quot;.
+211018-12:22:52,650 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:52,652 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_04/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm8/wcon_0001.nii
+211018-12:22:52,654 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_04/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm8/wcon_0002.nii
+211018-12:22:52,656 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_04/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm8/wcon_0003.nii
+211018-12:22:52,657 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_04/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm8/wcon_0004.nii
+211018-12:22:52,660 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_04/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm8/wcon_0005.nii
+211018-12:22:52,661 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_04/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm8/wcon_0006.nii
+211018-12:22:52,663 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_04/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm8/wcon_0007.nii
+211018-12:22:52,666 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_04/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm8/wess_0008.nii
+211018-12:22:52,667 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_04/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm8/wess_0009.nii
+211018-12:22:52,670 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_04/wsub-04_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm8/wsub-04_t1w_preproc.nii
+211018-12:22:52,674 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:52,675 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_04/datasink&quot;.
+211018-12:22:52,681 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:52,684 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_04/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm4/wcon_0001.nii
+211018-12:22:52,686 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_04/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm4/wcon_0002.nii
+211018-12:22:52,687 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_04/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm4/wcon_0003.nii
+211018-12:22:52,689 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_04/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm4/wcon_0004.nii
+211018-12:22:52,691 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_03/datasink&quot;.
+211018-12:22:52,696 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:52,692 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_04/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm4/wcon_0005.nii
+211018-12:22:52,698 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_04/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm4/wcon_0006.nii
+211018-12:22:52,699 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_03/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm8/wcon_0001.nii
+211018-12:22:52,700 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_04/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm4/wcon_0007.nii
+211018-12:22:52,702 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_03/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm8/wcon_0002.nii
+211018-12:22:52,703 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_04/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm4/wess_0008.nii
+211018-12:22:52,704 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_03/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm8/wcon_0003.nii
+211018-12:22:52,706 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_04/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm4/wess_0009.nii
+211018-12:22:52,707 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_03/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm8/wcon_0004.nii
+211018-12:22:52,708 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_04/wsub-04_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-04_fwhm4/wsub-04_t1w_preproc.nii
+211018-12:22:52,710 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_03/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm8/wcon_0005.nii
+211018-12:22:52,712 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_03/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm8/wcon_0006.nii
+211018-12:22:52,715 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_03/datasink&quot;.
+211018-12:22:52,716 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:52,717 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_03/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm8/wcon_0007.nii
+211018-12:22:52,719 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_03/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm8/wess_0008.nii
+211018-12:22:52,722 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_03/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm8/wess_0009.nii
+211018-12:22:52,723 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:22:52,724 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_03/wsub-03_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm8/wsub-03_t1w_preproc.nii
+211018-12:22:52,726 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_03/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm4/wcon_0001.nii
+211018-12:22:52,730 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_03/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm4/wcon_0002.nii
+211018-12:22:52,731 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:52,733 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_03/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm4/wcon_0003.nii
+211018-12:22:52,734 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_03/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm4/wcon_0004.nii
+211018-12:22:52,735 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_03/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm4/wcon_0005.nii
+211018-12:22:52,737 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_03/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm4/wcon_0006.nii
+211018-12:22:52,739 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_03/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm4/wcon_0007.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-12:22:52,740 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_03/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm4/wess_0008.nii
+211018-12:22:52,743 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_03/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm4/wess_0009.nii
+211018-12:22:52,745 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_03/wsub-03_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-03_fwhm4/wsub-03_t1w_preproc.nii
+211018-12:22:52,757 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:22:54,585 nipype.workflow INFO:
+	 [Job 35] Completed (spmflow.datasink).
+211018-12:22:54,586 nipype.workflow INFO:
+	 [Job 39] Completed (spmflow.datasink).
+211018-12:22:54,589 nipype.workflow INFO:
+	 [Job 43] Completed (spmflow.datasink).
+211018-12:22:54,590 nipype.workflow INFO:
+	 [Job 47] Completed (spmflow.datasink).
+211018-12:22:54,593 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:54,634 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_02/selectfiles&quot;.
+211018-12:22:54,636 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.selectfiles&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_02/selectfiles&quot;.
+211018-12:22:54,640 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:54,641 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-12:22:54,647 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:54,647 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.selectfiles&quot;.
+211018-12:22:56,589 nipype.workflow INFO:
+	 [Job 48] Completed (spmflow.selectfiles).
+211018-12:22:56,591 nipype.workflow INFO:
+	 [Job 52] Completed (spmflow.selectfiles).
+211018-12:22:56,594 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-12:22:56,639 nipype.workflow INFO:
+	 [Job 49] Cached (spmflow.gunzip).
+211018-12:22:56,642 nipype.workflow INFO:
+	 [Job 53] Cached (spmflow.gunzip).
+211018-12:22:58,638 nipype.workflow INFO:
+	 [Job 50] Cached (spmflow.normalize).
+211018-12:22:58,644 nipype.workflow INFO:
+	 [Job 54] Cached (spmflow.normalize).
+211018-12:23:00,670 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_8_subject_id_02/datasink&quot;.
+211018-12:23:00,677 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:23:00,679 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_02/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm8/wcon_0001.nii
+211018-12:23:00,681 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_02/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm8/wcon_0002.nii
+211018-12:23:00,683 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_02/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm8/wcon_0003.nii
+211018-12:23:00,685 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_02/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm8/wcon_0004.nii
+211018-12:23:00,688 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_02/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm8/wcon_0005.nii
+211018-12:23:00,689 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_02/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm8/wcon_0006.nii
+211018-12:23:00,693 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_02/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm8/wcon_0007.nii
+211018-12:23:00,694 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_02/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm8/wess_0008.nii
+211018-12:23:00,696 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_02/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm8/wess_0009.nii
+211018-12:23:00,698 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_8_subject_id_02/wsub-02_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm8/wsub-02_t1w_preproc.nii
+211018-12:23:00,704 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:23:00,707 nipype.workflow INFO:
+	 [Node] Setting-up &quot;spmflow.datasink&quot; in &quot;/output/workingdir/spmflow/_fwhm_id_4_subject_id_02/datasink&quot;.
+211018-12:23:00,713 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-12:23:00,715 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_02/wcon_0001.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm4/wcon_0001.nii
+211018-12:23:00,716 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_02/wcon_0002.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm4/wcon_0002.nii
+211018-12:23:00,717 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_02/wcon_0003.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm4/wcon_0003.nii
+211018-12:23:00,719 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_02/wcon_0004.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm4/wcon_0004.nii
+211018-12:23:00,720 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_02/wcon_0005.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm4/wcon_0005.nii
+211018-12:23:00,722 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_02/wcon_0006.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm4/wcon_0006.nii
+211018-12:23:00,724 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_02/wcon_0007.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm4/wcon_0007.nii
+211018-12:23:00,726 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_02/wess_0008.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm4/wess_0008.nii
+211018-12:23:00,727 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_02/wess_0009.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm4/wess_0009.nii
+211018-12:23:00,729 nipype.interface INFO:
+	 sub: /output/datasink/norm_spm/_fwhm_id_4_subject_id_02/wsub-02_t1w_preproc.nii -&gt; /output/datasink/norm_spm/sub-02_fwhm4/wsub-02_t1w_preproc.nii
+211018-12:23:00,733 nipype.workflow INFO:
+	 [Node] Finished &quot;spmflow.datasink&quot;.
+211018-12:23:02,599 nipype.workflow INFO:
+	 [Job 51] Completed (spmflow.datasink).
+211018-12:23:02,602 nipype.workflow INFO:
+	 [Job 55] Completed (spmflow.datasink).
+211018-12:23:02,607 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7f81ece28250&gt;
 </pre></div>
 </div>
 </div>
@@ -1082,7 +2584,7 @@ rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_stat_map</span><span class="p">(</span>
-    <span class="s1">&#39;/data/ds000114/derivatives/fmriprep/sub-02/anat/sub-02_t1w_space-mni152nlin2009casym_preproc.nii.gz&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/home/neuro/workshop/data/ds000114/derivatives/fmriprep/sub-02/anat/sub-02_t1w_space-mni152nlin2009casym_preproc.nii.gz&#39;</span><span class="p">,</span>
     <span class="n">title</span><span class="o">=</span><span class="s1">&#39;anatomy - ANTs (normalized to ICBM152)&#39;</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">anatimg</span><span class="p">,</span>
     <span class="n">threshold</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">));</span>
 <span class="n">plot_stat_map</span><span class="p">(</span>
@@ -1091,6 +2593,10 @@ rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz
     <span class="n">threshold</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">));</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_normalize_42_0.png" src="../../_images/example_normalize_42_0.png" />
+<img alt="../../_images/example_normalize_42_1.png" src="../../_images/example_normalize_42_1.png" />
 </div>
 </div>
 <p>And what about the <strong>contrast</strong> images for <strong>Finger &gt; others</strong>?</p>
@@ -1105,6 +2611,10 @@ rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_normalize_44_0.png" src="../../_images/example_normalize_44_0.png" />
+<img alt="../../_images/example_normalize_44_1.png" src="../../_images/example_normalize_44_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1117,6 +2627,10 @@ rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz
     <span class="n">threshold</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;lyrz&#39;</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;contrast5 - fwhm=8 - SPM&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/example_normalize_45_0.png" src="../../_images/example_normalize_45_0.png" />
+<img alt="../../_images/example_normalize_45_1.png" src="../../_images/example_normalize_45_1.png" />
 </div>
 </div>
 </div>

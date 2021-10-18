@@ -856,11 +856,145 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">trialinfo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/task-fingerfootlips_events.tsv&#39;</span><span class="p">)</span>
+<span class="n">trialinfo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;/home/neuro/workshop/data/ds000114/task-fingerfootlips_events.tsv&#39;</span><span class="p">)</span>
 <span class="n">trialinfo</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>onset</th>
+      <th>duration</th>
+      <th>weight</th>
+      <th>trial_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Finger</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>40</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Foot</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>70</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Lips</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Finger</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>130</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Foot</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>160</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Lips</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>190</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Finger</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>220</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Foot</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>250</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Lips</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>280</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Finger</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>310</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Foot</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>340</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Lips</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>370</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Finger</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>400</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Foot</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>430</td>
+      <td>15.0</td>
+      <td>1</td>
+      <td>Lips</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Using pandas is probably the quickest and easiest ways to aggregate stimuli information per condition.</p>
 <div class="cell docutils container">
@@ -868,6 +1002,30 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">trialinfo</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;trial_type&#39;</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Finger&#39;,     onset  duration  weight trial_type
+0      10      15.0       1     Finger
+3     100      15.0       1     Finger
+6     190      15.0       1     Finger
+9     280      15.0       1     Finger
+12    370      15.0       1     Finger)
+
+(&#39;Foot&#39;,     onset  duration  weight trial_type
+1      40      15.0       1       Foot
+4     130      15.0       1       Foot
+7     220      15.0       1       Foot
+10    310      15.0       1       Foot
+13    400      15.0       1       Foot)
+
+(&#39;Lips&#39;,     onset  duration  weight trial_type
+2      70      15.0       1       Lips
+5     160      15.0       1       Lips
+8     250      15.0       1       Lips
+11    340      15.0       1       Lips
+14    430      15.0       1       Lips)
 </pre></div>
 </div>
 </div>
@@ -890,7 +1048,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">nipype.interfaces.base</span> <span class="kn">import</span> <span class="n">Bunch</span>
 
-<span class="n">trialinfo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;/data/ds000114/task-fingerfootlips_events.tsv&#39;</span><span class="p">)</span>
+<span class="n">trialinfo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;/home/neuro/workshop/data/ds000114/task-fingerfootlips_events.tsv&#39;</span><span class="p">)</span>
 <span class="n">conditions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">onsets</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">durations</span> <span class="o">=</span> <span class="p">[]</span>
@@ -905,6 +1063,17 @@
                       <span class="n">durations</span><span class="o">=</span><span class="n">durations</span><span class="p">,</span>
                       <span class="p">)]</span>
 <span class="n">subject_info</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Bunch(conditions=[&#39;Finger&#39;, &#39;Foot&#39;, &#39;Lips&#39;],
+       durations=[[15.0, 15.0, 15.0, 15.0, 15.0],
+        [15.0, 15.0, 15.0, 15.0, 15.0],
+        [15.0, 15.0, 15.0, 15.0, 15.0]],
+       onsets=[[0, 90, 180, 270, 360],
+        [30, 120, 210, 300, 390],
+        [60, 150, 240, 330, 420]])]
 </pre></div>
 </div>
 </div>
@@ -1160,7 +1329,7 @@
 <span class="kn">from</span> <span class="nn">nipype</span> <span class="kn">import</span> <span class="n">SelectFiles</span>
 
 <span class="c1"># String template with {}-based strings</span>
-<span class="n">templates</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;anat&#39;</span><span class="p">:</span> <span class="s1">&#39;/data/ds000114/sub-</span><span class="si">{subj_id}</span><span class="s1">/ses-test/anat/sub-</span><span class="si">{subj_id}</span><span class="s1">_ses-test_T1w.nii.gz&#39;</span><span class="p">,</span>
+<span class="n">templates</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;anat&#39;</span><span class="p">:</span> <span class="s1">&#39;/home/neuro/workshop/data/ds000114/sub-</span><span class="si">{subj_id}</span><span class="s1">/ses-test/anat/sub-</span><span class="si">{subj_id}</span><span class="s1">_ses-test_T1w.nii.gz&#39;</span><span class="p">,</span>
              <span class="s1">&#39;func&#39;</span><span class="p">:</span> <span class="s1">&#39;/output/datasink_handson/preproc/sub-</span><span class="si">{subj_id}</span><span class="s1">_detrend.nii.gz&#39;</span><span class="p">,</span>
              <span class="s1">&#39;mc_param&#39;</span><span class="p">:</span> <span class="s1">&#39;/output/datasink_handson/preproc/sub-</span><span class="si">{subj_id}</span><span class="s1">.par&#39;</span><span class="p">,</span>
              <span class="s1">&#39;outliers&#39;</span><span class="p">:</span> <span class="s1">&#39;/output/datasink_handson/preproc/art.sub-</span><span class="si">{subj_id}</span><span class="s1">_outliers.txt&#39;</span>
@@ -1173,7 +1342,7 @@
 </div>
 </div>
 </div>
-<p>Now we can specify over which subjects the workflow should iterate. As we preprocessed only subjects 1 to 5, we can only them for this analysis.</p>
+<p>Now we can specify over which subjects the workflow should iterate. As we preprocessed only subjects ‘02’, ‘03’, ‘04’, ‘07’, ‘08’ and ‘09’ , we can only them for this analysis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of subject identifiers</span>
@@ -1310,6 +1479,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:40:01,932 nipype.workflow INFO:
+	 Generated workflow graph: /output/work_1st/graph.png (graph2use=colored, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/handson_analysis_71_1.png" src="../../_images/handson_analysis_71_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="run-the-workflow">
@@ -1318,6 +1494,485 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis1st</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:40:01,977 nipype.workflow INFO:
+	 Workflow work_1st settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211018-10:40:02,42 nipype.workflow INFO:
+	 Running in parallel.
+211018-10:40:02,48 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 6 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:02,191 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.selectfiles&quot; in &quot;/output/work_1st/_subj_id_08/selectfiles&quot;.
+211018-10:40:02,196 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.selectfiles&quot; in &quot;/output/work_1st/_subj_id_04/selectfiles&quot;.
+211018-10:40:02,195 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.selectfiles&quot; in &quot;/output/work_1st/_subj_id_07/selectfiles&quot;.
+211018-10:40:02,189 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.selectfiles&quot; in &quot;/output/work_1st/_subj_id_09/selectfiles&quot;.
+211018-10:40:02,210 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:40:02,220 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:40:02,226 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:40:02,229 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:40:02,237 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.selectfiles&quot;.
+211018-10:40:02,241 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.selectfiles&quot;.
+211018-10:40:02,248 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.selectfiles&quot;.
+211018-10:40:02,249 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.selectfiles&quot;.
+211018-10:40:04,57 nipype.workflow INFO:
+	 [Job 0] Completed (work_1st.selectfiles).
+211018-10:40:04,60 nipype.workflow INFO:
+	 [Job 9] Completed (work_1st.selectfiles).
+211018-10:40:04,63 nipype.workflow INFO:
+	 [Job 18] Completed (work_1st.selectfiles).
+211018-10:40:04,66 nipype.workflow INFO:
+	 [Job 27] Completed (work_1st.selectfiles).
+211018-10:40:04,69 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 10 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:04,232 nipype.workflow INFO:
+	 [Job 1] Cached (work_1st.gunzip_func).
+211018-10:40:04,237 nipype.workflow INFO:
+	 [Job 6] Cached (work_1st.gunzip_anat).
+211018-10:40:04,244 nipype.workflow INFO:
+	 [Job 10] Cached (work_1st.gunzip_func).
+211018-10:40:04,248 nipype.workflow INFO:
+	 [Job 15] Cached (work_1st.gunzip_anat).
+211018-10:40:06,59 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 8 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:06,128 nipype.workflow INFO:
+	 [Job 2] Cached (work_1st.modelspec).
+211018-10:40:06,136 nipype.workflow INFO:
+	 [Job 11] Cached (work_1st.modelspec).
+211018-10:40:06,141 nipype.workflow INFO:
+	 [Job 19] Cached (work_1st.gunzip_func).
+211018-10:40:06,146 nipype.workflow INFO:
+	 [Job 24] Cached (work_1st.gunzip_anat).
+211018-10:40:08,67 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 7 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:08,151 nipype.workflow INFO:
+	 [Job 3] Cached (work_1st.level1design).
+211018-10:40:08,173 nipype.workflow INFO:
+	 [Job 12] Cached (work_1st.level1design).
+211018-10:40:08,182 nipype.workflow INFO:
+	 [Job 20] Cached (work_1st.modelspec).
+211018-10:40:08,185 nipype.workflow INFO:
+	 [Job 28] Cached (work_1st.gunzip_func).
+211018-10:40:10,132 nipype.workflow INFO:
+	 [Job 4] Cached (work_1st.level1estimate).
+211018-10:40:10,137 nipype.workflow INFO:
+	 [Job 13] Cached (work_1st.level1estimate).
+211018-10:40:10,163 nipype.workflow INFO:
+	 [Job 21] Cached (work_1st.level1design).
+211018-10:40:10,172 nipype.workflow INFO:
+	 [Job 29] Cached (work_1st.modelspec).
+211018-10:40:12,146 nipype.workflow INFO:
+	 [Job 5] Cached (work_1st.level1conest).
+211018-10:40:12,161 nipype.workflow INFO:
+	 [Job 14] Cached (work_1st.level1conest).
+211018-10:40:12,167 nipype.workflow INFO:
+	 [Job 22] Cached (work_1st.level1estimate).
+211018-10:40:12,191 nipype.workflow INFO:
+	 [Job 30] Cached (work_1st.level1design).
+211018-10:40:14,146 nipype.workflow INFO:
+	 [Job 7] Cached (work_1st.normalize).
+211018-10:40:14,158 nipype.workflow INFO:
+	 [Job 16] Cached (work_1st.normalize).
+211018-10:40:14,170 nipype.workflow INFO:
+	 [Job 23] Cached (work_1st.level1conest).
+211018-10:40:14,176 nipype.workflow INFO:
+	 [Job 31] Cached (work_1st.level1estimate).
+211018-10:40:16,151 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.datasink&quot; in &quot;/output/work_1st/_subj_id_09/datasink&quot;.
+211018-10:40:16,159 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:40:16,163 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/SPM.mat -&gt; /output/datasink_handson/1stLevel/sub-09/SPM.mat
+211018-10:40:16,166 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmT_0001.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmT_0001.nii
+211018-10:40:16,169 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmT_0002.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmT_0002.nii
+211018-10:40:16,167 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.datasink&quot; in &quot;/output/work_1st/_subj_id_08/datasink&quot;.
+211018-10:40:16,174 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmT_0003.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmT_0003.nii
+211018-10:40:16,176 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmT_0004.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmT_0004.nii
+211018-10:40:16,180 nipype.workflow INFO:
+	 [Job 25] Cached (work_1st.normalize).
+211018-10:40:16,182 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:40:16,185 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmT_0005.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmT_0005.nii
+211018-10:40:16,189 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/SPM.mat -&gt; /output/datasink_handson/1stLevel/sub-08/SPM.mat
+211018-10:40:16,191 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmT_0006.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmT_0006.nii
+211018-10:40:16,194 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmT_0001.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmT_0001.nii
+211018-10:40:16,194 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmT_0007.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmT_0007.nii
+211018-10:40:16,197 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmT_0002.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmT_0002.nii
+211018-10:40:16,200 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmF_0008.nii
+211018-10:40:16,200 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmT_0003.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmT_0003.nii
+211018-10:40:16,203 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmF_0009.nii
+211018-10:40:16,205 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmT_0004.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmT_0004.nii
+211018-10:40:16,210 nipype.workflow INFO:
+	 [Job 32] Cached (work_1st.level1conest).
+211018-10:40:16,208 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmF_0008.nii
+211018-10:40:16,209 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmT_0005.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmT_0005.nii
+211018-10:40:16,211 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmT_0006.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmT_0006.nii
+211018-10:40:16,212 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_09/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-09/spmF_0009.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:40:16,214 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_09/wcon_0001.nii -&gt; /output/datasink_handson/normalized/sub-09/wcon_0001.nii
+211018-10:40:16,213 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmT_0007.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmT_0007.nii
+211018-10:40:16,216 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_09/wcon_0002.nii -&gt; /output/datasink_handson/normalized/sub-09/wcon_0002.nii
+211018-10:40:16,219 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_09/wcon_0003.nii -&gt; /output/datasink_handson/normalized/sub-09/wcon_0003.nii
+211018-10:40:16,218 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmF_0008.nii
+211018-10:40:16,221 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_09/wcon_0004.nii -&gt; /output/datasink_handson/normalized/sub-09/wcon_0004.nii
+211018-10:40:16,221 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmF_0009.nii
+211018-10:40:16,224 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_09/wcon_0005.nii -&gt; /output/datasink_handson/normalized/sub-09/wcon_0005.nii
+211018-10:40:16,224 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmF_0008.nii
+211018-10:40:16,225 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_09/wcon_0006.nii -&gt; /output/datasink_handson/normalized/sub-09/wcon_0006.nii
+211018-10:40:16,225 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_08/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-08/spmF_0009.nii
+211018-10:40:16,227 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_08/wcon_0001.nii -&gt; /output/datasink_handson/normalized/sub-08/wcon_0001.nii
+211018-10:40:16,227 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_09/wcon_0007.nii -&gt; /output/datasink_handson/normalized/sub-09/wcon_0007.nii
+211018-10:40:16,229 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_08/wcon_0002.nii -&gt; /output/datasink_handson/normalized/sub-08/wcon_0002.nii
+211018-10:40:16,229 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_09/wess_0008.nii -&gt; /output/datasink_handson/normalized/sub-09/wess_0008.nii
+211018-10:40:16,231 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_08/wcon_0003.nii -&gt; /output/datasink_handson/normalized/sub-08/wcon_0003.nii
+211018-10:40:16,231 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_09/wess_0009.nii -&gt; /output/datasink_handson/normalized/sub-09/wess_0009.nii
+211018-10:40:16,233 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_08/wcon_0004.nii -&gt; /output/datasink_handson/normalized/sub-08/wcon_0004.nii
+211018-10:40:16,235 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_09/wsub-09_ses-test_T1w.nii -&gt; /output/datasink_handson/normalized/sub-09/wsub-09_ses-test_T1w.nii
+211018-10:40:16,235 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_08/wcon_0005.nii -&gt; /output/datasink_handson/normalized/sub-08/wcon_0005.nii
+211018-10:40:16,237 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_08/wcon_0006.nii -&gt; /output/datasink_handson/normalized/sub-08/wcon_0006.nii
+211018-10:40:16,242 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.datasink&quot;.
+211018-10:40:16,245 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_08/wcon_0007.nii -&gt; /output/datasink_handson/normalized/sub-08/wcon_0007.nii
+211018-10:40:16,246 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_08/wess_0008.nii -&gt; /output/datasink_handson/normalized/sub-08/wess_0008.nii
+211018-10:40:16,248 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_08/wess_0009.nii -&gt; /output/datasink_handson/normalized/sub-08/wess_0009.nii
+211018-10:40:16,250 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_08/wsub-08_ses-test_T1w.nii -&gt; /output/datasink_handson/normalized/sub-08/wsub-08_ses-test_T1w.nii
+211018-10:40:16,256 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.datasink&quot;.
+211018-10:40:18,82 nipype.workflow INFO:
+	 [Job 8] Completed (work_1st.datasink).
+211018-10:40:18,87 nipype.workflow INFO:
+	 [Job 17] Completed (work_1st.datasink).
+211018-10:40:18,97 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 4 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:18,254 nipype.workflow INFO:
+	 [Job 33] Cached (work_1st.gunzip_anat).
+211018-10:40:18,253 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.datasink&quot; in &quot;/output/work_1st/_subj_id_07/datasink&quot;.
+211018-10:40:18,260 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:40:18,262 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/SPM.mat -&gt; /output/datasink_handson/1stLevel/sub-07/SPM.mat
+211018-10:40:18,266 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmT_0001.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmT_0001.nii
+211018-10:40:18,268 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.selectfiles&quot; in &quot;/output/work_1st/_subj_id_03/selectfiles&quot;.
+211018-10:40:18,272 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmT_0002.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmT_0002.nii
+211018-10:40:18,274 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmT_0003.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmT_0003.nii
+211018-10:40:18,278 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.selectfiles&quot; in &quot;/output/work_1st/_subj_id_02/selectfiles&quot;.
+211018-10:40:18,276 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmT_0004.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmT_0004.nii
+211018-10:40:18,275 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:40:18,286 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:40:18,289 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmT_0005.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmT_0005.nii
+211018-10:40:18,293 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmT_0006.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmT_0006.nii
+211018-10:40:18,298 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmT_0007.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmT_0007.nii
+211018-10:40:18,301 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.selectfiles&quot;.
+211018-10:40:18,301 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.selectfiles&quot;.
+211018-10:40:18,304 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmF_0008.nii
+211018-10:40:18,308 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmF_0009.nii
+211018-10:40:18,311 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmF_0008.nii
+211018-10:40:18,313 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_07/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-07/spmF_0009.nii
+211018-10:40:18,317 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_07/wcon_0001.nii -&gt; /output/datasink_handson/normalized/sub-07/wcon_0001.nii
+211018-10:40:18,321 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_07/wcon_0002.nii -&gt; /output/datasink_handson/normalized/sub-07/wcon_0002.nii
+211018-10:40:18,326 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_07/wcon_0003.nii -&gt; /output/datasink_handson/normalized/sub-07/wcon_0003.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:40:18,330 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_07/wcon_0004.nii -&gt; /output/datasink_handson/normalized/sub-07/wcon_0004.nii
+211018-10:40:18,335 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_07/wcon_0005.nii -&gt; /output/datasink_handson/normalized/sub-07/wcon_0005.nii
+211018-10:40:18,339 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_07/wcon_0006.nii -&gt; /output/datasink_handson/normalized/sub-07/wcon_0006.nii
+211018-10:40:18,342 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_07/wcon_0007.nii -&gt; /output/datasink_handson/normalized/sub-07/wcon_0007.nii
+211018-10:40:18,346 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_07/wess_0008.nii -&gt; /output/datasink_handson/normalized/sub-07/wess_0008.nii
+211018-10:40:18,349 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_07/wess_0009.nii -&gt; /output/datasink_handson/normalized/sub-07/wess_0009.nii
+211018-10:40:18,353 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_07/wsub-07_ses-test_T1w.nii -&gt; /output/datasink_handson/normalized/sub-07/wsub-07_ses-test_T1w.nii
+211018-10:40:18,365 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.datasink&quot;.
+211018-10:40:20,84 nipype.workflow INFO:
+	 [Job 26] Completed (work_1st.datasink).
+211018-10:40:20,86 nipype.workflow INFO:
+	 [Job 36] Completed (work_1st.selectfiles).
+211018-10:40:20,88 nipype.workflow INFO:
+	 [Job 45] Completed (work_1st.selectfiles).
+211018-10:40:20,93 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 5 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:20,184 nipype.workflow INFO:
+	 [Job 34] Cached (work_1st.normalize).
+211018-10:40:20,192 nipype.workflow INFO:
+	 [Job 37] Cached (work_1st.gunzip_func).
+211018-10:40:20,196 nipype.workflow INFO:
+	 [Job 42] Cached (work_1st.gunzip_anat).
+211018-10:40:20,201 nipype.workflow INFO:
+	 [Job 46] Cached (work_1st.gunzip_func).
+211018-10:40:22,91 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 4 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:22,173 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.datasink&quot; in &quot;/output/work_1st/_subj_id_04/datasink&quot;.
+211018-10:40:22,183 nipype.workflow INFO:
+	 [Job 38] Cached (work_1st.modelspec).
+211018-10:40:22,183 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:40:22,187 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/SPM.mat -&gt; /output/datasink_handson/1stLevel/sub-04/SPM.mat
+211018-10:40:22,190 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmT_0001.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmT_0001.nii
+211018-10:40:22,194 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmT_0002.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmT_0002.nii
+211018-10:40:22,197 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmT_0003.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmT_0003.nii
+211018-10:40:22,200 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmT_0004.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmT_0004.nii
+211018-10:40:22,201 nipype.workflow INFO:
+	 [Job 47] Cached (work_1st.modelspec).
+211018-10:40:22,203 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmT_0005.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmT_0005.nii
+211018-10:40:22,207 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmT_0006.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmT_0006.nii
+211018-10:40:22,209 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmT_0007.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmT_0007.nii
+211018-10:40:22,213 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmF_0008.nii
+211018-10:40:22,216 nipype.workflow INFO:
+	 [Job 51] Cached (work_1st.gunzip_anat).
+211018-10:40:22,215 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmF_0009.nii
+211018-10:40:22,219 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmF_0008.nii
+211018-10:40:22,221 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_04/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-04/spmF_0009.nii
+211018-10:40:22,224 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_04/wcon_0001.nii -&gt; /output/datasink_handson/normalized/sub-04/wcon_0001.nii
+211018-10:40:22,227 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_04/wcon_0002.nii -&gt; /output/datasink_handson/normalized/sub-04/wcon_0002.nii
+211018-10:40:22,230 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_04/wcon_0003.nii -&gt; /output/datasink_handson/normalized/sub-04/wcon_0003.nii
+211018-10:40:22,234 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_04/wcon_0004.nii -&gt; /output/datasink_handson/normalized/sub-04/wcon_0004.nii
+211018-10:40:22,236 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_04/wcon_0005.nii -&gt; /output/datasink_handson/normalized/sub-04/wcon_0005.nii
+211018-10:40:22,239 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_04/wcon_0006.nii -&gt; /output/datasink_handson/normalized/sub-04/wcon_0006.nii
+211018-10:40:22,241 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_04/wcon_0007.nii -&gt; /output/datasink_handson/normalized/sub-04/wcon_0007.nii
+211018-10:40:22,244 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_04/wess_0008.nii -&gt; /output/datasink_handson/normalized/sub-04/wess_0008.nii
+211018-10:40:22,247 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_04/wess_0009.nii -&gt; /output/datasink_handson/normalized/sub-04/wess_0009.nii
+211018-10:40:22,250 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_04/wsub-04_ses-test_T1w.nii -&gt; /output/datasink_handson/normalized/sub-04/wsub-04_ses-test_T1w.nii
+211018-10:40:22,257 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.datasink&quot;.
+211018-10:40:24,90 nipype.workflow INFO:
+	 [Job 35] Completed (work_1st.datasink).
+211018-10:40:24,93 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 2 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:24,196 nipype.workflow INFO:
+	 [Job 39] Cached (work_1st.level1design).
+211018-10:40:24,221 nipype.workflow INFO:
+	 [Job 48] Cached (work_1st.level1design).
+211018-10:40:26,172 nipype.workflow INFO:
+	 [Job 40] Cached (work_1st.level1estimate).
+211018-10:40:26,182 nipype.workflow INFO:
+	 [Job 49] Cached (work_1st.level1estimate).
+211018-10:40:28,176 nipype.workflow INFO:
+	 [Job 41] Cached (work_1st.level1conest).
+211018-10:40:28,193 nipype.workflow INFO:
+	 [Job 50] Cached (work_1st.level1conest).
+211018-10:40:30,194 nipype.workflow INFO:
+	 [Job 43] Cached (work_1st.normalize).
+211018-10:40:30,211 nipype.workflow INFO:
+	 [Job 52] Cached (work_1st.normalize).
+211018-10:40:32,188 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.datasink&quot; in &quot;/output/work_1st/_subj_id_03/datasink&quot;.
+211018-10:40:32,199 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:40:32,202 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/SPM.mat -&gt; /output/datasink_handson/1stLevel/sub-03/SPM.mat
+211018-10:40:32,206 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_1st.datasink&quot; in &quot;/output/work_1st/_subj_id_02/datasink&quot;.
+211018-10:40:32,207 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmT_0001.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmT_0001.nii
+211018-10:40:32,212 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmT_0002.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmT_0002.nii
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:40:32,216 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmT_0003.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmT_0003.nii
+211018-10:40:32,218 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmT_0004.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmT_0004.nii
+211018-10:40:32,221 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmT_0005.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmT_0005.nii
+211018-10:40:32,220 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:40:32,227 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmT_0006.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmT_0006.nii
+211018-10:40:32,227 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/SPM.mat -&gt; /output/datasink_handson/1stLevel/sub-02/SPM.mat
+211018-10:40:32,230 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmT_0007.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmT_0007.nii
+211018-10:40:32,230 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmT_0001.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmT_0001.nii
+211018-10:40:32,234 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmF_0008.nii
+211018-10:40:32,233 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmT_0002.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmT_0002.nii
+211018-10:40:32,238 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmT_0003.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmT_0003.nii
+211018-10:40:32,241 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmF_0009.nii
+211018-10:40:32,242 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmT_0004.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmT_0004.nii
+211018-10:40:32,244 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmF_0008.nii
+211018-10:40:32,246 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmT_0005.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmT_0005.nii
+211018-10:40:32,248 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_03/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-03/spmF_0009.nii
+211018-10:40:32,248 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmT_0006.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmT_0006.nii
+211018-10:40:32,251 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmT_0007.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmT_0007.nii
+211018-10:40:32,251 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_03/wcon_0001.nii -&gt; /output/datasink_handson/normalized/sub-03/wcon_0001.nii
+211018-10:40:32,254 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmF_0008.nii
+211018-10:40:32,257 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_03/wcon_0002.nii -&gt; /output/datasink_handson/normalized/sub-03/wcon_0002.nii
+211018-10:40:32,257 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmF_0009.nii
+211018-10:40:32,260 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmF_0008.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmF_0008.nii
+211018-10:40:32,263 nipype.interface INFO:
+	 sub: /output/datasink_handson/1stLevel/_subj_id_02/spmF_0009.nii -&gt; /output/datasink_handson/1stLevel/sub-02/spmF_0009.nii
+211018-10:40:32,260 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_03/wcon_0003.nii -&gt; /output/datasink_handson/normalized/sub-03/wcon_0003.nii
+211018-10:40:32,267 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_03/wcon_0004.nii -&gt; /output/datasink_handson/normalized/sub-03/wcon_0004.nii
+211018-10:40:32,266 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_02/wcon_0001.nii -&gt; /output/datasink_handson/normalized/sub-02/wcon_0001.nii
+211018-10:40:32,270 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_03/wcon_0005.nii -&gt; /output/datasink_handson/normalized/sub-03/wcon_0005.nii
+211018-10:40:32,271 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_02/wcon_0002.nii -&gt; /output/datasink_handson/normalized/sub-02/wcon_0002.nii
+211018-10:40:32,273 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_03/wcon_0006.nii -&gt; /output/datasink_handson/normalized/sub-03/wcon_0006.nii
+211018-10:40:32,274 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_02/wcon_0003.nii -&gt; /output/datasink_handson/normalized/sub-02/wcon_0003.nii
+211018-10:40:32,277 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_03/wcon_0007.nii -&gt; /output/datasink_handson/normalized/sub-03/wcon_0007.nii
+211018-10:40:32,278 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_02/wcon_0004.nii -&gt; /output/datasink_handson/normalized/sub-02/wcon_0004.nii
+211018-10:40:32,281 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_02/wcon_0005.nii -&gt; /output/datasink_handson/normalized/sub-02/wcon_0005.nii
+211018-10:40:32,283 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_03/wess_0008.nii -&gt; /output/datasink_handson/normalized/sub-03/wess_0008.nii
+211018-10:40:32,284 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_02/wcon_0006.nii -&gt; /output/datasink_handson/normalized/sub-02/wcon_0006.nii
+211018-10:40:32,286 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_03/wess_0009.nii -&gt; /output/datasink_handson/normalized/sub-03/wess_0009.nii
+211018-10:40:32,289 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_03/wsub-03_ses-test_T1w.nii -&gt; /output/datasink_handson/normalized/sub-03/wsub-03_ses-test_T1w.nii
+211018-10:40:32,289 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_02/wcon_0007.nii -&gt; /output/datasink_handson/normalized/sub-02/wcon_0007.nii
+211018-10:40:32,292 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_02/wess_0008.nii -&gt; /output/datasink_handson/normalized/sub-02/wess_0008.nii
+211018-10:40:32,294 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_02/wess_0009.nii -&gt; /output/datasink_handson/normalized/sub-02/wess_0009.nii
+211018-10:40:32,298 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.datasink&quot;.
+211018-10:40:32,298 nipype.interface INFO:
+	 sub: /output/datasink_handson/normalized/_subj_id_02/wsub-02_ses-test_T1w.nii -&gt; /output/datasink_handson/normalized/sub-02/wsub-02_ses-test_T1w.nii
+211018-10:40:32,304 nipype.workflow INFO:
+	 [Node] Finished &quot;work_1st.datasink&quot;.
+211018-10:40:34,115 nipype.workflow INFO:
+	 [Job 44] Completed (work_1st.datasink).
+211018-10:40:34,117 nipype.workflow INFO:
+	 [Job 53] Completed (work_1st.datasink).
+211018-10:40:34,120 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7fdc41c338d0&gt;
 </pre></div>
 </div>
 </div>
@@ -1374,6 +2029,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_83_0.png" src="../../_images/handson_analysis_83_0.png" />
+</div>
 </div>
 <p>Now that we’re happy with the design matrix, let’s look how well the normalization worked.</p>
 <div class="cell docutils container">
@@ -1400,6 +2058,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_86_0.png" src="../../_images/handson_analysis_86_0.png" />
+</div>
 </div>
 <p>Let’s look at the contrasts of one subject that we’ve just computed. In particular the F-contrast.</p>
 <div class="cell docutils container">
@@ -1413,6 +2074,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_88_0.png" src="../../_images/handson_analysis_88_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1424,6 +2088,9 @@
 <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;/output/datasink_handson/normalized/sub-07/f-contr_differences.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_89_0.png" src="../../_images/handson_analysis_89_0.png" />
 </div>
 </div>
 </div>
@@ -1619,6 +2286,11 @@ rm GM_PM.nii.gz
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: /output/datasink_handson/GM_mask.nii already exists;	not overwritten
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s take a look at this mask:</p>
 <div class="cell docutils container">
@@ -1628,6 +2300,12 @@ rm GM_PM.nii.gz
 <span class="n">plot_anat</span><span class="p">(</span><span class="s1">&#39;/output/datasink_handson/GM_mask.nii&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7fdc32609b10&gt;
+</pre></div>
+</div>
+<img alt="../../_images/handson_analysis_117_1.png" src="../../_images/handson_analysis_117_1.png" />
 </div>
 </div>
 <p>Now we just need to specify this binary mask as an <code class="docutils literal notranslate"><span class="pre">explicit_mask_file</span></code> for the one sample T-test node.</p>
@@ -1663,8 +2341,7 @@ rm GM_PM.nii.gz
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of contrast identifiers</span>
-<span class="n">contrast_id_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0001&#39;</span><span class="p">,</span> <span class="s1">&#39;0002&#39;</span><span class="p">,</span> <span class="s1">&#39;0003&#39;</span><span class="p">,</span> <span class="s1">&#39;0004&#39;</span><span class="p">,</span> <span class="s1">&#39;0005&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;0006&#39;</span><span class="p">,</span> <span class="s1">&#39;0007&#39;</span><span class="p">,</span> <span class="s1">&#39;0008&#39;</span><span class="p">,</span> <span class="s1">&#39;0009&#39;</span><span class="p">]</span>
+<span class="n">contrast_id_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0001&#39;</span><span class="p">,</span> <span class="s1">&#39;0002&#39;</span><span class="p">,</span> <span class="s1">&#39;0003&#39;</span><span class="p">,</span> <span class="s1">&#39;0004&#39;</span><span class="p">,</span> <span class="s1">&#39;0005&#39;</span><span class="p">,</span> <span class="s1">&#39;0006&#39;</span><span class="p">,</span> <span class="s1">&#39;0007&#39;</span><span class="p">]</span>
 <span class="n">sf</span><span class="o">.</span><span class="n">iterables</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;cont_id&#39;</span><span class="p">,</span> <span class="n">contrast_id_list</span><span class="p">)]</span>
 </pre></div>
 </div>
@@ -1758,6 +2435,13 @@ rm GM_PM.nii.gz
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:40:41,575 nipype.workflow INFO:
+	 Generated workflow graph: /output/work_2nd/graph.png (graph2use=colored, simple_form=True).
+</pre></div>
+</div>
+<img alt="../../_images/handson_analysis_135_1.png" src="../../_images/handson_analysis_135_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="id6">
@@ -1766,6 +2450,493 @@ rm GM_PM.nii.gz
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis2nd</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;MultiProc&#39;</span><span class="p">,</span> <span class="n">plugin_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_procs&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:40:41,611 nipype.workflow INFO:
+	 Workflow work_2nd settings: [&#39;check&#39;, &#39;execution&#39;, &#39;logging&#39;, &#39;monitoring&#39;]
+211018-10:40:41,656 nipype.workflow INFO:
+	 Running in parallel.
+211018-10:40:41,660 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 7 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:41,786 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.selectfiles&quot; in &quot;/output/work_2nd/_cont_id_0005/selectfiles&quot;.
+211018-10:40:41,786 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.selectfiles&quot; in &quot;/output/work_2nd/_cont_id_0004/selectfiles&quot;.
+211018-10:40:41,786 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.selectfiles&quot; in &quot;/output/work_2nd/_cont_id_0006/selectfiles&quot;.
+211018-10:40:41,786 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.selectfiles&quot; in &quot;/output/work_2nd/_cont_id_0007/selectfiles&quot;.
+211018-10:40:41,797 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:40:41,797 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:40:41,796 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:40:41,802 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:40:41,810 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.selectfiles&quot;.
+211018-10:40:41,811 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.selectfiles&quot;.
+211018-10:40:41,812 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.selectfiles&quot;.
+211018-10:40:41,813 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.selectfiles&quot;.
+211018-10:40:43,665 nipype.workflow INFO:
+	 [Job 0] Completed (work_2nd.selectfiles).
+211018-10:40:43,669 nipype.workflow INFO:
+	 [Job 6] Completed (work_2nd.selectfiles).
+211018-10:40:43,671 nipype.workflow INFO:
+	 [Job 12] Completed (work_2nd.selectfiles).
+211018-10:40:43,673 nipype.workflow INFO:
+	 [Job 18] Completed (work_2nd.selectfiles).
+211018-10:40:43,676 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 7 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:43,822 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.onesampttestdes&quot; in &quot;/output/work_2nd/_cont_id_0007/onesampttestdes&quot;.
+211018-10:40:43,822 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.onesampttestdes&quot; in &quot;/output/work_2nd/_cont_id_0006/onesampttestdes&quot;.
+211018-10:40:43,824 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.onesampttestdes&quot; in &quot;/output/work_2nd/_cont_id_0004/onesampttestdes&quot;.
+211018-10:40:43,824 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.onesampttestdes&quot; in &quot;/output/work_2nd/_cont_id_0005/onesampttestdes&quot;.
+211018-10:40:43,837 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-10:40:43,838 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-10:40:43,840 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-10:40:43,844 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-10:40:45,666 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 3 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_2nd.onesampttestdes
+                       * work_2nd.onesampttestdes
+                       * work_2nd.onesampttestdes
+                       * work_2nd.onesampttestdes
+211018-10:40:53,808 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.onesampttestdes&quot;.
+211018-10:40:53,816 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.onesampttestdes&quot;.
+211018-10:40:53,827 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.onesampttestdes&quot;.
+211018-10:40:53,827 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.onesampttestdes&quot;.
+211018-10:40:55,683 nipype.workflow INFO:
+	 [Job 1] Completed (work_2nd.onesampttestdes).
+211018-10:40:55,686 nipype.workflow INFO:
+	 [Job 7] Completed (work_2nd.onesampttestdes).
+211018-10:40:55,688 nipype.workflow INFO:
+	 [Job 13] Completed (work_2nd.onesampttestdes).
+211018-10:40:55,690 nipype.workflow INFO:
+	 [Job 19] Completed (work_2nd.onesampttestdes).
+211018-10:40:55,693 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 7 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:40:55,775 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2estimate&quot; in &quot;/output/work_2nd/_cont_id_0007/level2estimate&quot;.
+211018-10:40:55,776 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2estimate&quot; in &quot;/output/work_2nd/_cont_id_0006/level2estimate&quot;.
+211018-10:40:55,778 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2estimate&quot; in &quot;/output/work_2nd/_cont_id_0004/level2estimate&quot;.
+211018-10:40:55,777 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2estimate&quot; in &quot;/output/work_2nd/_cont_id_0005/level2estimate&quot;.
+211018-10:40:55,791 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-10:40:55,790 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-10:40:55,792 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-10:40:55,792 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-10:40:57,686 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 3 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_2nd.level2estimate
+                       * work_2nd.level2estimate
+                       * work_2nd.level2estimate
+                       * work_2nd.level2estimate
+211018-10:41:08,249 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2estimate&quot;.
+211018-10:41:08,450 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2estimate&quot;.
+211018-10:41:08,506 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2estimate&quot;.
+211018-10:41:08,589 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2estimate&quot;.
+211018-10:41:09,701 nipype.workflow INFO:
+	 [Job 2] Completed (work_2nd.level2estimate).
+211018-10:41:09,703 nipype.workflow INFO:
+	 [Job 8] Completed (work_2nd.level2estimate).
+211018-10:41:09,705 nipype.workflow INFO:
+	 [Job 14] Completed (work_2nd.level2estimate).
+211018-10:41:09,707 nipype.workflow INFO:
+	 [Job 20] Completed (work_2nd.level2estimate).
+211018-10:41:09,710 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 7 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:41:09,841 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2conestimate&quot; in &quot;/output/work_2nd/_cont_id_0007/level2conestimate&quot;.
+211018-10:41:09,843 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2conestimate&quot; in &quot;/output/work_2nd/_cont_id_0006/level2conestimate&quot;.
+211018-10:41:09,845 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2conestimate&quot; in &quot;/output/work_2nd/_cont_id_0005/level2conestimate&quot;.
+211018-10:41:09,848 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2conestimate&quot; in &quot;/output/work_2nd/_cont_id_0004/level2conestimate&quot;.
+211018-10:41:09,863 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-10:41:09,864 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-10:41:09,870 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-10:41:09,866 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-10:41:11,705 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 3 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_2nd.level2conestimate
+                       * work_2nd.level2conestimate
+                       * work_2nd.level2conestimate
+                       * work_2nd.level2conestimate
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:41:18,534 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2conestimate&quot;.
+211018-10:41:18,669 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2conestimate&quot;.
+211018-10:41:18,674 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2conestimate&quot;.
+211018-10:41:18,687 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2conestimate&quot;.
+211018-10:41:19,714 nipype.workflow INFO:
+	 [Job 3] Completed (work_2nd.level2conestimate).
+211018-10:41:19,717 nipype.workflow INFO:
+	 [Job 9] Completed (work_2nd.level2conestimate).
+211018-10:41:19,720 nipype.workflow INFO:
+	 [Job 15] Completed (work_2nd.level2conestimate).
+211018-10:41:19,723 nipype.workflow INFO:
+	 [Job 21] Completed (work_2nd.level2conestimate).
+211018-10:41:19,728 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 7 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:41:19,807 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2thresh&quot; in &quot;/output/work_2nd/_cont_id_0007/level2thresh&quot;.
+211018-10:41:19,807 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2thresh&quot; in &quot;/output/work_2nd/_cont_id_0006/level2thresh&quot;.
+211018-10:41:19,809 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2thresh&quot; in &quot;/output/work_2nd/_cont_id_0005/level2thresh&quot;.
+211018-10:41:19,809 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2thresh&quot; in &quot;/output/work_2nd/_cont_id_0004/level2thresh&quot;.
+211018-10:41:19,823 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-10:41:19,823 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-10:41:19,823 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-10:41:19,824 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-10:41:21,715 nipype.workflow INFO:
+	 [MultiProc] Running 4 tasks, and 3 jobs ready. Free memory (GB): 4.43/5.23, Free processors: 0/4.
+                     Currently running:
+                       * work_2nd.level2thresh
+                       * work_2nd.level2thresh
+                       * work_2nd.level2thresh
+                       * work_2nd.level2thresh
+211018-10:41:22,579 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2thresh&quot;.
+211018-10:41:22,579 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2thresh&quot;.
+211018-10:41:22,633 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2thresh&quot;.
+211018-10:41:22,664 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2thresh&quot;.
+211018-10:41:23,718 nipype.workflow INFO:
+	 [Job 4] Completed (work_2nd.level2thresh).
+211018-10:41:23,722 nipype.workflow INFO:
+	 [Job 10] Completed (work_2nd.level2thresh).
+211018-10:41:23,724 nipype.workflow INFO:
+	 [Job 16] Completed (work_2nd.level2thresh).
+211018-10:41:23,728 nipype.workflow INFO:
+	 [Job 22] Completed (work_2nd.level2thresh).
+211018-10:41:23,731 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 7 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:41:23,819 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.datasink&quot; in &quot;/output/work_2nd/_cont_id_0006/datasink&quot;.
+211018-10:41:23,816 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.datasink&quot; in &quot;/output/work_2nd/_cont_id_0007/datasink&quot;.
+211018-10:41:23,819 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.datasink&quot; in &quot;/output/work_2nd/_cont_id_0005/datasink&quot;.
+211018-10:41:23,819 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.datasink&quot; in &quot;/output/work_2nd/_cont_id_0004/datasink&quot;.
+211018-10:41:23,835 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:41:23,835 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:41:23,838 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0004/SPM.mat -&gt; /output/datasink_handson/2ndLevel/con_0004/SPM.mat
+211018-10:41:23,836 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:41:23,841 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0007/SPM.mat -&gt; /output/datasink_handson/2ndLevel/con_0007/SPM.mat
+211018-10:41:23,844 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0006/SPM.mat -&gt; /output/datasink_handson/2ndLevel/con_0006/SPM.mat
+211018-10:41:23,837 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:41:23,848 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0007/spmT_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0007/spmT_0001.nii
+211018-10:41:23,851 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0006/spmT_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0006/spmT_0001.nii
+211018-10:41:23,853 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0007/con_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0007/con_0001.nii
+211018-10:41:23,855 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0004/spmT_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0004/spmT_0001.nii
+211018-10:41:23,854 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0006/con_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0006/con_0001.nii
+211018-10:41:23,855 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0005/SPM.mat -&gt; /output/datasink_handson/2ndLevel/con_0005/SPM.mat
+211018-10:41:23,857 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0007/spmT_0001_thr.nii -&gt; /output/datasink_handson/2ndLevel/con_0007/spmT_0001_thr.nii
+211018-10:41:23,859 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0006/spmT_0001_thr.nii -&gt; /output/datasink_handson/2ndLevel/con_0006/spmT_0001_thr.nii
+211018-10:41:23,862 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0005/spmT_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0005/spmT_0001.nii
+211018-10:41:23,861 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0004/con_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0004/con_0001.nii
+211018-10:41:23,866 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0004/spmT_0001_thr.nii -&gt; /output/datasink_handson/2ndLevel/con_0004/spmT_0001_thr.nii
+211018-10:41:23,870 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.datasink&quot;.
+211018-10:41:23,870 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.datasink&quot;.
+211018-10:41:23,868 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0005/con_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0005/con_0001.nii
+211018-10:41:23,875 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0005/spmT_0001_thr.nii -&gt; /output/datasink_handson/2ndLevel/con_0005/spmT_0001_thr.nii
+211018-10:41:23,878 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.datasink&quot;.
+211018-10:41:23,885 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.datasink&quot;.
+211018-10:41:25,727 nipype.workflow INFO:
+	 [Job 5] Completed (work_2nd.datasink).
+211018-10:41:25,732 nipype.workflow INFO:
+	 [Job 11] Completed (work_2nd.datasink).
+211018-10:41:25,739 nipype.workflow INFO:
+	 [Job 17] Completed (work_2nd.datasink).
+211018-10:41:25,742 nipype.workflow INFO:
+	 [Job 23] Completed (work_2nd.datasink).
+211018-10:41:25,749 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:41:25,864 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.selectfiles&quot; in &quot;/output/work_2nd/_cont_id_0003/selectfiles&quot;.
+211018-10:41:25,864 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.selectfiles&quot; in &quot;/output/work_2nd/_cont_id_0001/selectfiles&quot;.
+211018-10:41:25,864 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.selectfiles&quot; in &quot;/output/work_2nd/_cont_id_0002/selectfiles&quot;.
+211018-10:41:25,868 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:41:25,869 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+211018-10:41:25,871 nipype.workflow INFO:
+	 [Node] Running &quot;selectfiles&quot; (&quot;nipype.interfaces.io.SelectFiles&quot;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:41:25,886 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.selectfiles&quot;.
+211018-10:41:25,885 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.selectfiles&quot;.
+211018-10:41:25,889 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.selectfiles&quot;.
+211018-10:41:27,728 nipype.workflow INFO:
+	 [Job 24] Completed (work_2nd.selectfiles).
+211018-10:41:27,734 nipype.workflow INFO:
+	 [Job 30] Completed (work_2nd.selectfiles).
+211018-10:41:27,736 nipype.workflow INFO:
+	 [Job 36] Completed (work_2nd.selectfiles).
+211018-10:41:27,740 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:41:27,837 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.onesampttestdes&quot; in &quot;/output/work_2nd/_cont_id_0003/onesampttestdes&quot;.
+211018-10:41:27,838 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.onesampttestdes&quot; in &quot;/output/work_2nd/_cont_id_0002/onesampttestdes&quot;.
+211018-10:41:27,838 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.onesampttestdes&quot; in &quot;/output/work_2nd/_cont_id_0001/onesampttestdes&quot;.
+211018-10:41:27,850 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-10:41:27,850 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-10:41:27,851 nipype.workflow INFO:
+	 [Node] Running &quot;onesampttestdes&quot; (&quot;nipype.interfaces.spm.model.OneSampleTTestDesign&quot;)
+211018-10:41:29,729 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 0 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_2nd.onesampttestdes
+                       * work_2nd.onesampttestdes
+                       * work_2nd.onesampttestdes
+211018-10:41:33,887 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.onesampttestdes&quot;.
+211018-10:41:33,887 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.onesampttestdes&quot;.
+211018-10:41:33,929 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.onesampttestdes&quot;.
+211018-10:41:35,734 nipype.workflow INFO:
+	 [Job 25] Completed (work_2nd.onesampttestdes).
+211018-10:41:35,736 nipype.workflow INFO:
+	 [Job 31] Completed (work_2nd.onesampttestdes).
+211018-10:41:35,737 nipype.workflow INFO:
+	 [Job 37] Completed (work_2nd.onesampttestdes).
+211018-10:41:35,741 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:41:35,830 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2estimate&quot; in &quot;/output/work_2nd/_cont_id_0003/level2estimate&quot;.
+211018-10:41:35,831 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2estimate&quot; in &quot;/output/work_2nd/_cont_id_0002/level2estimate&quot;.
+211018-10:41:35,831 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2estimate&quot; in &quot;/output/work_2nd/_cont_id_0001/level2estimate&quot;.
+211018-10:41:35,845 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-10:41:35,845 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-10:41:35,846 nipype.workflow INFO:
+	 [Node] Running &quot;level2estimate&quot; (&quot;nipype.interfaces.spm.model.EstimateModel&quot;)
+211018-10:41:37,738 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 0 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_2nd.level2estimate
+                       * work_2nd.level2estimate
+                       * work_2nd.level2estimate
+211018-10:41:45,141 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2estimate&quot;.
+211018-10:41:45,309 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2estimate&quot;.
+211018-10:41:45,316 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2estimate&quot;.
+211018-10:41:45,747 nipype.workflow INFO:
+	 [Job 26] Completed (work_2nd.level2estimate).
+211018-10:41:45,749 nipype.workflow INFO:
+	 [Job 32] Completed (work_2nd.level2estimate).
+211018-10:41:45,752 nipype.workflow INFO:
+	 [Job 38] Completed (work_2nd.level2estimate).
+211018-10:41:45,756 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:41:45,872 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2conestimate&quot; in &quot;/output/work_2nd/_cont_id_0003/level2conestimate&quot;.
+211018-10:41:45,872 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2conestimate&quot; in &quot;/output/work_2nd/_cont_id_0002/level2conestimate&quot;.
+211018-10:41:45,872 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2conestimate&quot; in &quot;/output/work_2nd/_cont_id_0001/level2conestimate&quot;.
+211018-10:41:45,895 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-10:41:45,895 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-10:41:45,895 nipype.workflow INFO:
+	 [Node] Running &quot;level2conestimate&quot; (&quot;nipype.interfaces.spm.model.EstimateContrast&quot;)
+211018-10:41:47,749 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 0 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_2nd.level2conestimate
+                       * work_2nd.level2conestimate
+                       * work_2nd.level2conestimate
+211018-10:42:03,337 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2conestimate&quot;.
+211018-10:42:03,337 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2conestimate&quot;.
+211018-10:42:03,382 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2conestimate&quot;.
+211018-10:42:03,848 nipype.workflow INFO:
+	 [Job 27] Completed (work_2nd.level2conestimate).
+211018-10:42:03,849 nipype.workflow INFO:
+	 [Job 33] Completed (work_2nd.level2conestimate).
+211018-10:42:03,851 nipype.workflow INFO:
+	 [Job 39] Completed (work_2nd.level2conestimate).
+211018-10:42:03,855 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:42:03,956 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2thresh&quot; in &quot;/output/work_2nd/_cont_id_0001/level2thresh&quot;.
+211018-10:42:03,955 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2thresh&quot; in &quot;/output/work_2nd/_cont_id_0002/level2thresh&quot;.
+211018-10:42:03,956 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.level2thresh&quot; in &quot;/output/work_2nd/_cont_id_0003/level2thresh&quot;.
+211018-10:42:03,969 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-10:42:03,969 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-10:42:03,969 nipype.workflow INFO:
+	 [Node] Running &quot;level2thresh&quot; (&quot;nipype.interfaces.spm.model.Threshold&quot;)
+211018-10:42:05,863 nipype.workflow INFO:
+	 [MultiProc] Running 3 tasks, and 0 jobs ready. Free memory (GB): 4.63/5.23, Free processors: 1/4.
+                     Currently running:
+                       * work_2nd.level2thresh
+                       * work_2nd.level2thresh
+                       * work_2nd.level2thresh
+211018-10:42:07,190 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2thresh&quot;.
+211018-10:42:07,260 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2thresh&quot;.
+211018-10:42:07,294 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.level2thresh&quot;.
+211018-10:42:07,866 nipype.workflow INFO:
+	 [Job 28] Completed (work_2nd.level2thresh).
+211018-10:42:07,868 nipype.workflow INFO:
+	 [Job 34] Completed (work_2nd.level2thresh).
+211018-10:42:07,870 nipype.workflow INFO:
+	 [Job 40] Completed (work_2nd.level2thresh).
+211018-10:42:07,873 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 3 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+211018-10:42:07,964 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.datasink&quot; in &quot;/output/work_2nd/_cont_id_0002/datasink&quot;.
+211018-10:42:07,964 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.datasink&quot; in &quot;/output/work_2nd/_cont_id_0003/datasink&quot;.
+211018-10:42:07,967 nipype.workflow INFO:
+	 [Node] Setting-up &quot;work_2nd.datasink&quot; in &quot;/output/work_2nd/_cont_id_0001/datasink&quot;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>211018-10:42:07,979 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:42:07,980 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:42:07,980 nipype.workflow INFO:
+	 [Node] Running &quot;datasink&quot; (&quot;nipype.interfaces.io.DataSink&quot;)
+211018-10:42:07,983 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0003/SPM.mat -&gt; /output/datasink_handson/2ndLevel/con_0003/SPM.mat
+211018-10:42:07,983 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0001/SPM.mat -&gt; /output/datasink_handson/2ndLevel/con_0001/SPM.mat
+211018-10:42:07,987 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0002/SPM.mat -&gt; /output/datasink_handson/2ndLevel/con_0002/SPM.mat
+211018-10:42:07,993 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0003/spmT_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0003/spmT_0001.nii
+211018-10:42:07,996 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0001/spmT_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0001/spmT_0001.nii
+211018-10:42:07,999 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0003/con_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0003/con_0001.nii
+211018-10:42:07,998 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0002/spmT_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0002/spmT_0001.nii
+211018-10:42:08,7 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0003/spmT_0001_thr.nii -&gt; /output/datasink_handson/2ndLevel/con_0003/spmT_0001_thr.nii
+211018-10:42:08,12 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0001/con_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0001/con_0001.nii
+211018-10:42:08,15 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.datasink&quot;.
+211018-10:42:08,15 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0002/con_0001.nii -&gt; /output/datasink_handson/2ndLevel/con_0002/con_0001.nii
+211018-10:42:08,28 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0002/spmT_0001_thr.nii -&gt; /output/datasink_handson/2ndLevel/con_0002/spmT_0001_thr.nii
+211018-10:42:08,22 nipype.interface INFO:
+	 sub: /output/datasink_handson/2ndLevel/_cont_id_0001/spmT_0001_thr.nii -&gt; /output/datasink_handson/2ndLevel/con_0001/spmT_0001_thr.nii
+211018-10:42:08,35 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.datasink&quot;.
+211018-10:42:08,37 nipype.workflow INFO:
+	 [Node] Finished &quot;work_2nd.datasink&quot;.
+211018-10:42:09,872 nipype.workflow INFO:
+	 [Job 29] Completed (work_2nd.datasink).
+211018-10:42:09,875 nipype.workflow INFO:
+	 [Job 35] Completed (work_2nd.datasink).
+211018-10:42:09,879 nipype.workflow INFO:
+	 [Job 41] Completed (work_2nd.datasink).
+211018-10:42:09,882 nipype.workflow INFO:
+	 [MultiProc] Running 0 tasks, and 0 jobs ready. Free memory (GB): 5.23/5.23, Free processors: 4/4.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;networkx.classes.digraph.DiGraph at 0x7fdc491ad410&gt;
 </pre></div>
 </div>
 </div>
@@ -1791,6 +2962,9 @@ rm GM_PM.nii.gz
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_140_0.png" src="../../_images/handson_analysis_140_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1798,6 +2972,9 @@ rm GM_PM.nii.gz
                  <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Finger (FDR corrected)&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_141_0.png" src="../../_images/handson_analysis_141_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1807,6 +2984,9 @@ rm GM_PM.nii.gz
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_142_0.png" src="../../_images/handson_analysis_142_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1814,6 +2994,9 @@ rm GM_PM.nii.gz
                  <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Lips (FDR corrected)&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_143_0.png" src="../../_images/handson_analysis_143_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1823,6 +3006,9 @@ rm GM_PM.nii.gz
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_144_0.png" src="../../_images/handson_analysis_144_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1831,6 +3017,9 @@ rm GM_PM.nii.gz
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_145_0.png" src="../../_images/handson_analysis_145_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1838,6 +3027,9 @@ rm GM_PM.nii.gz
                  <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Lips &gt; others (FDR corrected)&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/handson_analysis_146_0.png" src="../../_images/handson_analysis_146_0.png" />
 </div>
 </div>
 </div>
