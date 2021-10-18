@@ -11,4 +11,33 @@ workshop/data/*
 
 workshop/prerequisites/.ipynb*
 
+workshop/nipype/notebooks/.ipynb*
+
+workshop/nipype/notebooks/alt/*
+
+workshop/nipype/notebooks/bids_demo/*
+
+workshop/nipype/notebooks/ex*
+
+workshop/nipype/notebooks/graph*
+
+workshop/nipype/notebooks/hello*
+
+workshop/nipype/notebooks/choosing_subjects*
+
+workshop/nipype/notebooks/metaflow*
+
+workshop/nipype/notebooks/nipype_mem*
+
+workshop/nipype/notebooks/preproc01*
+
+workshop/nipype/notebooks/sorting_dob*
+
+workshop/nipype/notebooks/*nii.gz
+
+workshop/nipype/notebooks/testjoin*
+
+workshop/nipype/notebooks/working_dir*
+
 workshop/prerequisites/_pycache_/*
+
