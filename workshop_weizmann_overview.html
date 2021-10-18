@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MRI analysis in Python using Nipype, Nilearn and more &#8212; MRI analysis in Python using Nipype, Nilearn and more</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/nipy_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MRI analysis in Python using Nipype, Nilearn and more</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   Workshop overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="setup.html">
+   Setup for the workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="outline.html">
+   Outline
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="prerequisites.html">
+   Course prerequisites
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="prerequisites/intro_to_shell.html">
+     Introduction to the (unix) command line: bash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="prerequisites/intro_to_git_and_github.html">
+     Introduction to git and github
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="prerequisites/intro_jupyter.html">
+     Introduction to the jupyter ecosystem &amp; notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="prerequisites/intro_python.html">
+     Introduction to Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="prerequisites/python_numpy.html">
+     Introduction to NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="prerequisites/python_scipy.html">
+     Introduction to SciPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="prerequisites/python_visualization.html">
+     Introduction to Visualization in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="prerequisites/intro_statistics.html">
+     Introduction to Statistics in python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="prerequisites/python_scikit.html">
+     Introduction to scikit-learn &amp; scikit-image
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="data/data.html">
+   Basics in data handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data/image_manipulation_nibabel.html">
+     Using Python for neuroimaging data - NiBabel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data/image_manipulation_nilearn.html">
+     Using Python for neuroimaging data - Nilearn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="nipype/nipype_overview.html">
+   Nipype
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="nipype/nipype_intro.html">
+     Introduction to Nipype
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/introduction_showcase.html">
+       Nipype Showcase
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/introduction_quickstart.html">
+       Nipype Quickstart
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/introduction_quickstart_non-neuroimaging.html">
+       Nipype Quickstart - non-imaging
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="nipype/nipype_basics.html">
+     Basic concepts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_interfaces.html">
+       Interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_nodes.html">
+       Nodes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_workflow.html">
+       Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_graph_visualization.html">
+       Graph Visualization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_data_input.html">
+       Data Input
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_data_input_bids.html">
+       Data input for BIDS datasets
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_data_output.html">
+       Data Output
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_plugins.html">
+       Using Nipype Plugins
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_function_interface.html">
+       Function Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_iteration.html">
+       Iterables
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_mapnodes.html">
+       MapNode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_joinnodes.html">
+       JoinNode, synchronize and itersource
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_debug.html">
+       Debugging Nipype Workflows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/basic_execution_configuration.html">
+       Execution Configuration Options
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="nipype/nipype_examples.html">
+     Example workflows
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/example_preprocessing.html">
+       Example 1: Preprocessing Workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/example_1stlevel.html">
+       Example 2: 1st-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/example_normalize.html">
+       Example 3: Normalize data to MNI template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/example_2ndlevel.html">
+       Example 4: 2nd-level Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/handson_preprocessing.html">
+       Hands-on 1: How to create a fMRI preprocessing workflow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/handson_analysis.html">
+       Hands-on 2: How to create a fMRI analysis workflow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="nipype/nipype_advanced.html">
+     Advanced concepts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/advanced_create_interfaces.html">
+       Create interfaces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/advanced_interfaces_caching.html">
+       Interface caching
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/advanced_nipypecli.html">
+       Nipype Command Line Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/advanced_aws.html">
+       Using Nipype with Amazon Web Services (AWS)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/advanced_sphinx_ext.html">
+       Sphinx extensions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/advanced_spmmcr.html">
+       Using SPM with MATLAB Common Runtime (MCR)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/advanced_mipav.html">
+       Using MIPAV, JIST, and CBS Tools
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="nipype/nipype_resources.html">
+     Resources
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/resources_installation.html">
+       Download and install
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="nipype/notebooks/resources_help.html">
+       Where to find help
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="advanced.html">
+   Advanced and specialized analyses
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advanced/pybids.html">
+     Introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pybids
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advanced/statistical_analyses_MRI.html">
+     Nilearn GLM: statistical analyses of MRI in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advanced/functional_connectivity.html">
+     Functional connectivity and resting state
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advanced/machine_learning_preparation.html">
+     Preparation Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advanced/machine_learning_nilearn.html">
+     MVPA and Searchlight with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nilearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advanced/machine_learning_keras.html">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       TensorFlow
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Keras
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advanced/Predicting_age_with_machine_learning.html">
+     Machine learning to predict age from rs-fmri
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="break.html">
+   Yoga and/or dance break
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CoC.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/workshop_weizmann_overview.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fworkshop_weizmann_overview.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/master/lecture/workshop_weizmann_overview.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/master?urlpath=tree/lecture/workshop_weizmann_overview.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#workshop-at-the-weizmann-institute-of-science-october-2021">
+   workshop at the Weizmann Institute of Science, October 2021
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div align="center"><img width="50%" src="https://www.weizmann.ac.il/pages/sites/default/files/wis_logo_wis_logo_eng_v1_black.png"></div>
+<div class="section" id="mri-analysis-in-python-using-nipype-nilearn-and-more">
+<h1>MRI analysis in Python using Nipype, Nilearn and more<a class="headerlink" href="#mri-analysis-in-python-using-nipype-nilearn-and-more" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="workshop-at-the-weizmann-institute-of-science-october-2021">
+<h2>workshop at the Weizmann Institute of Science, October 2021<a class="headerlink" href="#workshop-at-the-weizmann-institute-of-science-october-2021" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Python</span></code> is on its way to become the most used programming language in <code class="docutils literal notranslate"><span class="pre">neuroscience</span></code>. It is easy to understand, can be learned rather quickly and has a very strong and helpful community behind it. There exist many amazing <code class="docutils literal notranslate"><span class="pre">neuroimaging</span></code> software packages, such as <code class="docutils literal notranslate"><span class="pre">Nipype</span></code>, <code class="docutils literal notranslate"><span class="pre">Nilearn</span></code>, <code class="docutils literal notranslate"><span class="pre">fMRIPrep</span></code> and more which facilitate the everyday life of a neuroscientist.</p>
+<p>The goal of this 2-day workshop is to introduce participants to many different <code class="docutils literal notranslate"><span class="pre">neuroimaging</span> <span class="pre">toolboxes</span></code>, the Python framework around it and everything you need to know about <a class="reference external" href="https://nipype.readthedocs.io/en/latest/">Nipype</a> to start creating your own <code class="docutils literal notranslate"><span class="pre">pipelines</span></code> and optimizing your <code class="docutils literal notranslate"><span class="pre">workflows</span></code>.</p>
+<div class="alert alert-success">
+<h3>General information, overview, setup instructions and content</h3>
+All information regarding the workshop, including a general overview, setup instructions, content and access to it can be found on the workshop web page: <a href="https://peerherholz.github.io/workshop_weizmann/index.html">https://peerherholz.github.io/workshop_weizmann/index.html</a>.
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the workshop and nipype_tutorial content into your output folder</span>
+<span class="o">!</span>cp -R /home/neuro/workshop/* /output/
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<h3>Save your notes and changes</h3>
+Alternatively, if you just want to ensure that you have a backup of each notebook (including your changes, notes and outputs), you can also download each notebook individually by clicking on the menu: File > Download as > Notebook (.ipynb) or HTML (.html).
+</div><h1 style="background-color: #F0F0F0;">Schedule - Day 1 - October 24th, 10 AM - 2 PM IST</h1>
+<h3 style="color:#2C60F5;"><code></code> Workshop overview</h3>
+<ul class="simple">
+<li><p>Slides: <a class="reference external" href="https://docs.google.com/presentation/d/1nC1_u3eywwEMXtNaA__iffXtVYwSAg0j2gIOpyoVFYs/present?usp=sharing">Workshop overview</a></p></li>
+</ul>
+<h3 style="color:#2C60F5;"><code>10-11</code> Explore MRI data with Nibabel and Nilearn</h3>
+<p>Having direct access to your neuroimaging data can be quite liberating. <code class="docutils literal notranslate"><span class="pre">Nibabel</span></code> and <code class="docutils literal notranslate"><span class="pre">Nilearn</span></code> allow exactly that. With those two neuroimaging packages, you can consider any brain image, a simple 3D/4D matrix of voxel values, which you can transform and move around like you would do with any other toolbox.</p>
+<ul class="simple">
+<li><p>Notebook 1: <a class="reference internal" href="data/image_manipulation_nibabel.html"><span class="doc std std-doc">Nibabel</span></a></p></li>
+<li><p>Notebook 2: <a class="reference internal" href="data/image_manipulation_nilearn.html"><span class="doc std std-doc">Nilearn</span></a></p></li>
+</ul>
+<p style="color:#009933;">This section involves exercises and individual exploration of notebooks.</p>
+<h3 style="color:#2C60F5;"><code>11-11:30</code> Introduction to Nipype</h3>
+<p>In this short introduction, we will show you what Nipype is and why you should use it. It contains a powerful short example that shows the strength behind Nipype.</p>
+<ul class="simple">
+<li><p>Slides: <a class="reference external" href="https://docs.google.com/presentation/d/1hgXLxHqsQ6h3tj5E7GPtenFdPRI6vu_paJ3XEWfQxrg/present?usp=sharing">Short introduction to Nipype</a></p></li>
+<li><p>Notebook: <a class="reference internal" href="nipype/notebooks/introduction_showcase.html"><span class="doc std std-doc">Nipype Showcase</span></a></p></li>
+</ul>
+<h3 style="color:#2C60F5;"><code>11:30-12:30</code> Exploration of Nipype's building blocks</h3>
+<p>Nipype can be learned very quickly, but it’s nonetheless important that you know about some of the main building blocks.</p>
+<ul class="simple">
+<li><p>Slides: <a class="reference external" href="https://docs.google.com/presentation/d/1EJzWtTJ6he5jF-wS4o1xrn86CfNOrLbRBwKexfq_HNI/present?usp=sharing">Interfaces &amp; Workflows</a></p></li>
+<li><p>Notebook: <a class="reference internal" href="nipype/index.html"><span class="doc std std-doc">Basic Concepts</span></a></p></li>
+</ul>
+<p style="color:#009933;">This section involves exercises and individual exploration of notebooks.</p>
+<h3 style="color:#2C60F5;"><code>12:30-1:30</code> Creating a Nipype Pipeline from A-Z</h3>
+<ul class="simple">
+<li><p>Notebook: <a class="reference internal" href="nipype/notebooks/handson_preprocessing.html"><span class="doc std std-doc">Creating a <code class="docutils literal notranslate"><span class="pre">Nipype</span> <span class="pre">preprocessing</span> <span class="pre">pipeline</span></code></span></a></p></li>
+<li><p>Notebook: <a class="reference internal" href="nipype/notebooks/handson_analysis.html"><span class="doc std std-doc">Creating a <code class="docutils literal notranslate"><span class="pre">Nipype</span> <span class="pre">analysis</span> <span class="pre">pipeline</span></code></span></a></p></li>
+</ul>
+<p style="color:#009933;">This section involves exercises and individual exploration of notebooks.</p>
+<h3 style="color:#2C60F5;"><code>1:30-2</code> Complex processing pipelines based on Nipype</h3>
+<p>There are many new and innovative <code class="docutils literal notranslate"><span class="pre">neuroimaging</span></code> resources &amp; softwares, such as <code class="docutils literal notranslate"><span class="pre">BIDS</span></code>, <code class="docutils literal notranslate"><span class="pre">fMRIPrep</span></code>, <code class="docutils literal notranslate"><span class="pre">MRIQC</span></code>, <code class="docutils literal notranslate"><span class="pre">OpenNeuro</span></code>, etc. And many of them wouldn’t be possible without <code class="docutils literal notranslate"><span class="pre">Nipype</span></code> and the open-source <code class="docutils literal notranslate"><span class="pre">neuroimaging</span></code> community. In this section, we want to introduce you to some toolboxes and software packages that entail complex processing pipelines based on <code class="docutils literal notranslate"><span class="pre">Nipype</span></code>. If you don’t already use them yet yourself, you certainly want to be aware about them!</p>
+<ul class="simple">
+<li><p>Slides: <a class="reference external" href="https://docs.google.com/presentation/d/1yZVl4MFkYY36Ic-1JknMwlhZTygh2Vrjd3KoJu0E_n0/present?usp=sharing">Complex processing pipelines based on <code class="docutils literal notranslate"><span class="pre">Nipype</span></code></a></p></li>
+</ul>
+<h3 style="color:#F52C2C;"><code>2-...</code> Open ended for questions</h3><h1 style="background-color: #F0F0F0;">Schedule - Day 2 - October 31st, 10 AM - 2 PM IST</h1>
+<h3 style="color:#2C60F5;"><code>10-11</code> PyBIDS and statistical analysis of fMRI data</h3>
+<ul class="simple">
+<li><p>Notebook 1: <a class="reference internal" href="advanced/pybids.html"><span class="doc std std-doc">PyBIDS</span></a></p></li>
+<li><p>Notebook 2: <a class="reference internal" href="advanced/statistical_analyses_MRI.html"><span class="doc std std-doc">Statistical analysis of fMRI data</span></a></p></li>
+</ul>
+<p style="color:#009933;">This section involves exercises and individual exploration of notebooks.</p>
+<h3 style="color:#2C60F5;"><code>11-12</code> Functional connectivity</h3>
+<p>In this section we will focus on <code class="docutils literal notranslate"><span class="pre">resting-state</span> <span class="pre">fMRI</span> <span class="pre">analysis</span></code>, in particular <code class="docutils literal notranslate"><span class="pre">functional</span> <span class="pre">connectivity</span> <span class="pre">analysis</span></code>. The goal of this section is to show you some capabilities of <code class="docutils literal notranslate"><span class="pre">Nilearn</span></code>.</p>
+<ul class="simple">
+<li><p>Notebook: <a class="reference internal" href="advanced/functional_connectivity.html"><span class="doc std std-doc">Functional Connectivity with Nilearn</span></a></p></li>
+</ul>
+<p style="color:#009933;">This section involves exercises and individual exploration of notebooks.</p>
+<h3 style="color:#2C60F5;"><code>12-1</code> Machine learning I</h3>
+<p>Within this section we will explore how some <code class="docutils literal notranslate"><span class="pre">machine</span> <span class="pre">learning</span> <span class="pre">approaches</span></code> can be applied to <code class="docutils literal notranslate"><span class="pre">fMRI</span></code> data. More precisely, we will have a look at <code class="docutils literal notranslate"><span class="pre">&quot;classic&quot;</span> <span class="pre">machine</span> <span class="pre">learning</span></code> using <code class="docutils literal notranslate"><span class="pre">Nilearn</span></code> and <code class="docutils literal notranslate"><span class="pre">deep</span> <span class="pre">learning</span></code> using <code class="docutils literal notranslate"><span class="pre">Keras</span></code>. The aim of this section is to provide you with some insights on how <code class="docutils literal notranslate"><span class="pre">python</span></code> can be use to run these analyses on <code class="docutils literal notranslate"><span class="pre">neuroimaging</span></code> data.</p>
+<ul class="simple">
+<li><p>Notebook 1: <a class="reference internal" href="advanced/machine_learning_preparation.html"><span class="doc std std-doc">Preparation</span></a></p></li>
+<li><p>Notebook 2: <a class="reference internal" href="advanced/machine_learning_nilearn.html"><span class="doc std std-doc">Prediction with Nilearn</span></a></p></li>
+<li><p>Notebook 3: <a class="reference internal" href="advanced/machine_learning_keras.html"><span class="doc std std-doc">Deep Learning</span></a></p></li>
+</ul>
+<h3 style="color:#2C60F5;"><code>1-1:30</code> Machine learning II</h3>
+<p>Beside applying <code class="docutils literal notranslate"><span class="pre">machine</span> <span class="pre">learning</span> <span class="pre">approaches</span></code> directly within <code class="docutils literal notranslate"><span class="pre">neuroimaging</span></code> data more and more research also investigates the feasibility of using <code class="docutils literal notranslate"><span class="pre">neuroimaging</span></code> data to <code class="docutils literal notranslate"><span class="pre">predict</span></code> or <code class="docutils literal notranslate"><span class="pre">discover</span></code> certain <code class="docutils literal notranslate"><span class="pre">non-neuroimaging</span> <span class="pre">variables</span></code> such as different demographic information, disease &amp; disorder status/progression, etc. . To give you a rough idea of how this can be done, we will go through an example within which we’ll try to predict the <code class="docutils literal notranslate"><span class="pre">age</span></code> of participants based on <code class="docutils literal notranslate"><span class="pre">resting-state</span> <span class="pre">fMRI</span></code>.</p>
+<ul class="simple">
+<li><p>Notebook 2: <span class="xref myst">Predicting age with machine learning with Nilearn</span></p></li>
+</ul>
+<p style="color:#009933;">This section involves exercises and individual exploration of notebooks.</p>
+<h3 style="color:#2C60F5;"><code>1:30-2</code> The python-neuroimaging ecosystem </h3>
+<p>This presentation more or less continues the presentation from the first session but focuses on the versatile set of <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">packages</span></code> available for <code class="docutils literal notranslate"><span class="pre">neuroimaging</span></code>.</p>
+<ul class="simple">
+<li><p>Slides: <a class="reference external" href="https://docs.google.com/presentation/d/1fzDsz0pOwsza6MvyuPlTxCrtK81RXKtjVUlMsDdJ6Vg/present?usp=sharing">The python-neuroimaging ecosystem</a></p></li>
+</ul>
+<h3 style="color:#F52C2C;"><code>2-...</code> Open ended for questions</h3></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Peer Herholz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
