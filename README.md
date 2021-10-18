@@ -1,7 +1,7 @@
 <img src="https://nipy.org/img/nipy.svg" alt="workshop logo" width="300" style="margin:0 0 0 0"/>
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/peerherholz/mybinder_ML-DL_workshop_SynAGE/HEAD)
-[![GitHub size](https://github-size-badge.herokuapp.com/peerherholz/workshop_weizmann.svg)](https://github.com/peerherholz/workshop_weizmann/archive/master.zip)
+[![GitHub size](https://github-size-badge.herokuapp.com/peerherholz/workshop_weizmann.svg)](https://github.com/peerherholz/workshop_weizmann/archive/main.zip)
 [![Docker Hub](https://img.shields.io/docker/pulls/peerherholz/workshop_weizmann)](https://hub.docker.com/r/peerherholz/workshop_weizmann/)
 [![License](https://img.shields.io/github/license/peerherholz/workshop_weizmann)](https://github.com/PeerHerholz/workshop_weizmann)
 
