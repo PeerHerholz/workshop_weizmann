@@ -42,8 +42,8 @@ launch_buttons:
 
 repository:
   url                       : https://github.com/PeerHerholz/workshop_weizmann  # The URL to your book's repository
-  path_to_book              : "lecture"  # A path to your book's folder, relative to the repository root.
-  branch                    : master  # Which branch of the repository should be used when creating links
+  path_to_book              : "workshop"  # A path to your book's folder, relative to the repository root.
+  branch                    : main  # Which branch of the repository should be used when creating links
 
 #######################################################################################
 # Advanced and power-user settings
