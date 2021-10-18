@@ -468,7 +468,7 @@ Once the container is pulled and on your system, you're all good to go. To acces
         docker run -p 8888:8888 -it --rm peerherholz/workshop_weizmann
 
 2. Open [http://127.0.0.1:8888/?token=workshop_weizmann](http://127.0.0.1:8888/?token=workshop_weizmann) or [http://localhost:8888/?token=workshop_weizmann](http://localhost:8888/?token=workshop_weizmann) in your web browser to access the workshop content.
-3. Once Jupyter Notebook is open, double click on the Markdown file called `overview.md` - et voilà.
+3. Once Jupyter Notebook is open, double click on the `Jupyter Notebook` called `workshop_weizmann_overview.ipynb` - et voilà.
 
 **Note**: Should you by any chance encounter the following "Password or token" needed message, use the token `workshop_weizmann` to login.
 
@@ -498,7 +498,7 @@ It is possible that you might run into some `MemoryError` messages during the wo
 
 **Docker is messy, clean up space afterwards**
 
-Docker is a great tool to quickly provide a out-of-the-box running computer environment. However, if you're not carefull, it can quickly create a lot of unwanted files on your machine. To better understand these footprints and to clean out unwanted files after the workshop, please concider the following commands (run from within a (docker) terminal).
+Docker is a great tool to quickly provide a out-of-the-box running computer environment. However, if you're not carefully, it can quickly create a lot of unwanted files on your machine. To better understand these footprints and to clean out unwanted files after the workshop, please concider the following commands (run from within a (docker) terminal).
 
     # Show all installed Docker images
     docker images
@@ -540,7 +540,7 @@ To get things up and running, please follow these steps:
 
 1. Download the [`environment.yml`](https://raw.githubusercontent.com/peerherholz/workshop_weizmann/master/environment.yml) file (e.g. with right mouse click -> Save As). Make sure that the file ends with `.yml` and not `.txt`.
 2. Open up a conda terminal (or any other terminal), and create a new conda environment with the following command: `conda env create -f /path/to/file/environment.yml` - For example ``conda env create -f ~/Downloads/environment.yml`
-3. Download the notebooks in this repository via [this link](https://github.com/peerherholz/workshop_weizmann/archive/master.zip)) and unzip them to your prefered location, e.g. `Desktop/workshop_weizmann`.
+3. Download the notebooks in this repository via [this link](https://github.com/peerherholz/workshop_weizmann/archive/master.zip)) and unzip them to your preferred location, e.g. `Desktop/workshop_weizmann`.
 4. Next, open up a `conda terminal` (or any other `terminal`), activate the `conda environment` with `conda activate workshop_weizmann` (or on older `conda environment` with `source activate workshop_weizmann` for `mac` and `linux` and `activate workshop_weizmann` for `windows`).
 5. Finally, via the `terminal`, move to the folder where you've put all the unzipped content of this workshop, e.g. with the command `cd ~/Desktop/workshop_weizmann` and run the command `jupyter notebook` from the folder that contains the `workshop_weizmann_overview.ipynb` notebook.
 ```
@@ -551,7 +551,7 @@ To get things up and running, please follow these steps:
 <sub><sup><sub><sup>https://mybinder.org/static/logo.svg?v=fe52c40adc69454ba7536393f76ebd715e5fb75f5feafe16a27c47483eabf3311c14ed9fda905c49915d6dbf369ae68fb855a40dd05489a7b9542a9ee532e92b</sup></sub></sup></sub>
 
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/peerherholz/mybinder_workshop_weizmann/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/HEAD)
 
 [MyBinder.org](https://mybinder.org/) is a great service that allows you to run Jupyter notebooks in a Docker or Python environment, directly online and for free. However, this service comes of course with a restricted computational environment (1-2GB of RAM). This means, many notebooks might be very slow and some might even crash, due to not enough memory.
 
