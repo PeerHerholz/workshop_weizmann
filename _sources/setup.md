@@ -540,7 +540,7 @@ To get things up and running, please follow these steps:
 
 1. Download the [`environment.yml`](https://raw.githubusercontent.com/peerherholz/workshop_weizmann/main/environment.yml) file (e.g. with right mouse click -> Save As). Make sure that the file ends with `.yml` and not `.txt`.
 2. Open up a conda terminal (or any other terminal), and create a new conda environment with the following command: `conda env create -f /path/to/file/environment.yml` - For example ``conda env create -f ~/Downloads/environment.yml`
-3. Download the notebooks in this repository via [this link](https://github.com/peerherholz/workshop_weizmann/archive/main.zip)) and unzip them to your preferred location, e.g. `Desktop/workshop_weizmann`.
+3. Download the notebooks in this repository via [this link](https://github.com/PeerHerholz/workshop_weizmann/archive/refs/heads/main.zip)) and unzip them to your preferred location, e.g. `Desktop/workshop_weizmann`.
 4. Next, open up a `conda terminal` (or any other `terminal`), activate the `conda environment` with `conda activate workshop_weizmann` (or on older `conda environment` with `source activate workshop_weizmann` for `mac` and `linux` and `activate workshop_weizmann` for `windows`).
 5. Finally, via the `terminal`, move to the folder where you've put all the unzipped content of this workshop, e.g. with the command `cd ~/Desktop/workshop_weizmann` and run the command `jupyter notebook` from the folder that contains the `workshop_weizmann_overview.ipynb` notebook.
 ```
