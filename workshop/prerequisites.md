@@ -12,23 +12,23 @@ The reality of workshops like these is that they really don't teach attending fo
 So what can we actually do to provide the entire attending gang with the chance to get up to speed for the workshop and ideally beyond? Unfortunately, we can't hold pre-workshop-workshops and various consultations. Instead we decided to utilize the fantastic [jupyter](https://jupyter.org/)-[python](https://www.python.org/)-open science world and build upon the framework of [jupyter books](https://jupyterbook.org/intro.html) employed to host this workshop and its materials. In other words, we assembled a stack of short tutorials that cover most of the aspects mentioned above. As the rest of the content, they are [jupyter notebooks](https://jupyter-notebook.readthedocs.io/en/stable/) that can be run interactively (via the little rocket on the top right) or locally (via the download button on the top right) and mix theoretical background with actual code so that folks can familiarize themselves with the corresponding topics. 
 **Important**: we know that everyone has a lot of stuff to do and that not everyone will be able to go through the stuff we collected here. Y'all: don't worry about that, it's chilli-milli. We will try our best to bring the core points across, even if you don't have a substantial amount of experience. Please just make sure that you ask **all** the questions that might pop up, the same holds true for any problems you might encounter. Long story short, here are the topics organized from basic to advanced skills and concepts. 
 
-[Introduction to the (unix) command line: bash](https://peerherholz.github.io/workshop_weizmann/intro_to_shell.html)
+[Introduction to the (unix) command line: bash](https://peerherholz.github.io/workshop_weizmann/prerequisites/intro_to_shell.html)
 
-[Introduction to git and github](https://peerherholz.github.io/workshop_weizmann/intro_to_git_and_github.html)
+[Introduction to git and github](https://peerherholz.github.io/workshop_weizmann/prerequisites/intro_to_git_and_github.html)
 
-[Introduction to the jupyter ecosystem & notebooks](https://peerherholz.github.io/workshop_weizmann/intro_jupyter.html)
+[Introduction to the jupyter ecosystem & notebooks](https://peerherholz.github.io/workshop_weizmann/prerequisites/intro_jupyter.html)
 
-[Introduction to Python](https://peerherholz.github.io/workshop_weizmann/intro_python.html)
+[Introduction to Python](https://peerherholz.github.io/workshop_weizmann/prerequisites/intro_python.html)
 
-[Introduction to NumPy](https://peerherholz.github.io/workshop_weizmann/python_numpy.html)
+[Introduction to NumPy](https://peerherholz.github.io/workshop_weizmann/prerequisites/python_numpy.html)
 
-[Introduction to SciPy](https://peerherholz.github.io/workshop_weizmann/python_scipy.html)
+[Introduction to SciPy](https://peerherholz.github.io/workshop_weizmann/prerequisites/python_scipy.html)
 
-[Introduction to Visualization in python](https://peerherholz.github.io/workshop_weizmann/python_visualization.html)
+[Introduction to Visualization in python](https://peerherholz.github.io/workshop_weizmann/prerequisites/python_visualization.html)
 
-[Introduction to Statistics in python](https://peerherholz.github.io/workshop_weizmann/intro_statistics.html)
+[Introduction to Statistics in python](https://peerherholz.github.io/workshop_weizmann/prerequisites/intro_statistics.html)
 
-[Introduction to scikit-learn & scikit-image](https://peerherholz.github.io/workshop_weizmann/python_scikit.html)
+[Introduction to scikit-learn & scikit-image](https://peerherholz.github.io/workshop_weizmann/prerequisites/python_scikit.html)
 
 
 
