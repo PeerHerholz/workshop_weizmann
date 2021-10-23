@@ -27,6 +27,7 @@ chapters:
         - file: nipype/notebooks/introduction_showcase
         - file: nipype/notebooks/introduction_quickstart
         - file: nipype/notebooks/introduction_quickstart_non-neuroimaging
+        - file: nipype/notebooks/introduction_dataset
     - file: nipype/nipype_basics
       sections:
         - file: nipype/notebooks/basic_interfaces
