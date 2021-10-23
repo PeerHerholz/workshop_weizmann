@@ -10,8 +10,8 @@ will entail examples of dedicated `advanced and specialized analyses` within whi
 | 10 AM - 11 AM |  [Explore MRI data with Nibabel and Nilearn]() |
 | 11 AM - 11:30 AM |  [Introduction to Nipype]() |
 | 11:30 AM - 12:30 PM |  [ Exploration of Nipype’s building blocks]() |
-| 12:30 PM - 1 PM |  [Creating a Nipype Pipeline from A-Z]() |
-| 1 PM - 2 PM |  [Complex processing pipelines based on Nipype]() |
+| 12:30 PM - 1:30 PM |  [Creating a Nipype Pipeline from A-Z]() |
+| 1:30 PM - 2 PM |  [Complex processing pipelines based on Nipype]() |
 
 
 ## Session 2 - 31/10/2021
