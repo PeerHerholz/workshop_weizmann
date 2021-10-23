@@ -96,6 +96,11 @@
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../dei.html">
+   Diversity, Equity and Inclusion
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../overview.html">
    Workshop overview
   </a>
@@ -597,6 +602,17 @@
                 
   <div class="section" id="basic-concepts">
 <h1>Basic concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this headline">¶</a></h1>
+<p>After seeing some short examples and showcases of <code class="docutils literal notranslate"><span class="pre">Nipype</span></code>, it’s time to check things out more in-depth.</p>
+<img src="https://nipype.readthedocs.io/en/latest/_images/nipype_architecture_overview2.png" align="right" alt="workshop logo" width="200" style="margin:0 0 0 0"/>
+<p><code class="docutils literal notranslate"><span class="pre">Nipype</span></code> consists of many parts, but the main ones are <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code>, the <code class="docutils literal notranslate"><span class="pre">Workflow</span> <span class="pre">Engine</span></code> with <code class="docutils literal notranslate"><span class="pre">nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">workflows</span></code>, as well as the <code class="docutils literal notranslate"><span class="pre">Execution</span> <span class="pre">Plugins</span></code>.
+Here’s what they are in short:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Interface</span></code>: Wraps a program or function</p>
+<p><code class="docutils literal notranslate"><span class="pre">Node/MapNode</span></code>: Wraps an Interface for use in a Workflow</p>
+<p><code class="docutils literal notranslate"><span class="pre">Workflow</span></code>: A graph or forest of graphs whose edges represent
+data flow</p>
+<p><code class="docutils literal notranslate"><span class="pre">Plugin</span></code>: A component that describes how a Workflow should
+be executed</p>
+<p>These and more <code class="docutils literal notranslate"><span class="pre">building</span> <span class="pre">blocks</span></code> of <code class="docutils literal notranslate"><span class="pre">nipype</span></code> are explained in the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> you can find in <code class="docutils literal notranslate"><span class="pre">ToC</span></code> on the left. All of them also include some exercises to help you get some experience and hopefully gain a better understanding.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
