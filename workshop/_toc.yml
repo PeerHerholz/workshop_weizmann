@@ -1,6 +1,7 @@
 root: index
 format: jb-book
 chapters:
+- file: dei
 - file: overview
 - file: setup
 - file: outline
