@@ -536,6 +536,8 @@ And should you chose to remove the `--rm` string in the `docker run ...` command
 
 By installing `Python` on your system (i.e. specifically `Conda`) and setting up the appropriate environment, you will be able to open all the `Jupyter Notebooks` and go through the whole content of the course locally. 
 
+Please note that you also have to install all the necessary third-party dependencies by following the `nipype` installation instructions [here](https://miykael.github.io/nipype_tutorial/notebooks/resources_installation.html) & [here](http://miykael.github.io/nipype-beginner-s-guide/installation.html#download-and-install-interfaces).
+
 To get things up and running, please follow these steps:
 
 1. Download the [`environment.yml`](https://raw.githubusercontent.com/peerherholz/workshop_weizmann/main/environment.yml) file (e.g. with right mouse click -> Save As). Make sure that the file ends with `.yml` and not `.txt`.
