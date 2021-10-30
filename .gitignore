@@ -41,3 +41,5 @@ workshop/nipype/notebooks/working_dir*
 
 workshop/prerequisites/_pycache_/*
 
+workshop/advanced/nilearn_cache/*
+
