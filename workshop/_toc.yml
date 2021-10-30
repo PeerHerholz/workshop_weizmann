@@ -78,5 +78,6 @@ chapters:
     - file: advanced/machine_learning_nilearn
     - file: advanced/machine_learning_keras
     - file: advanced/Predicting_age_with_machine_learning
+    - file: advanced/diffusion_imaging    
 - file: break
 - file: CoC
