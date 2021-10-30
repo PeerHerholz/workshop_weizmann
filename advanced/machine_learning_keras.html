@@ -496,6 +496,11 @@
      Machine learning to predict age from rs-fmri
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="diffusion_imaging.html">
+     Structural connectivity and diffusion imaging
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -761,6 +766,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/machine_learning_keras_6_0.png" src="../_images/machine_learning_keras_6_0.png" />
+</div>
 </div>
 <p>As a reminder, the shape of our machine learning dataset is as follows:</p>
 </div>
@@ -777,12 +785,31 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;closed&#39;, &#39;closed&#39;, &#39;closed&#39;, &#39;closed&#39;, &#39;open&#39;, &#39;open&#39;, &#39;open&#39;,
+       &#39;open&#39;, &#39;closed&#39;, &#39;closed&#39;, &#39;closed&#39;, &#39;closed&#39;, &#39;open&#39;, &#39;open&#39;,
+       &#39;open&#39;, &#39;open&#39;, &#39;closed&#39;, &#39;closed&#39;, &#39;closed&#39;, &#39;closed&#39;],
+      dtype=&#39;&lt;U6&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <p><em><strong>Second</strong></em>, the <code class="docutils literal notranslate"><span class="pre">chunks</span></code> variable should not switch between subjects. So, as before, we can again specify 6 chunks of 64 volumes (8 subjects), each:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">([[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">64</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)])</span>
 <span class="n">chunks</span><span class="p">[:</span><span class="mi">150</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
 </pre></div>
 </div>
 </div>
@@ -801,6 +828,9 @@
           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Slab of the machine learning mean image&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/machine_learning_keras_13_0.png" src="../_images/machine_learning_keras_13_0.png" />
 </div>
 </div>
 <p>Hmm… That doesn’t seem to work. We want to cover the eyes and the visual cortex. Like this, we’re too far down in the back of the head (at the Cerebellum). One solution to this is to rotate the volume.</p>
@@ -849,6 +879,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/machine_learning_keras_19_0.png" src="../_images/machine_learning_keras_19_0.png" />
+</div>
 </div>
 <p>Perfect! And which slab should we take? Let’s try the slices 12, 13 and 14.</p>
 <div class="cell docutils container">
@@ -861,6 +894,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/machine_learning_keras_21_0.png" src="../_images/machine_learning_keras_21_0.png" />
+</div>
 </div>
 <p>Perfect, the slab seems to contain exactly what we want. Now that the data is ready we can continue with the actual machine learning part.</p>
 <div class="section" id="split-data-into-a-training-and-testing-set">
@@ -871,6 +907,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rollaxis</span><span class="p">(</span><span class="n">img_slab</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">(),</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(384, 40, 56, 3)
 </pre></div>
 </div>
 </div>
@@ -903,6 +944,11 @@
 <span class="n">X_test</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">indices_test</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(307, 40, 56, 3) (77, 40, 56, 3)
 </pre></div>
 </div>
 </div>
@@ -960,10 +1006,55 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f42c4d9c110&gt;]
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_keras_37_1.png" src="../_images/machine_learning_keras_37_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True,  True, False, False,  True, False,  True,
+        True, False, False, False, False,  True,  True,  True, False,
+       False, False,  True, False, False, False, False,  True,  True,
+        True, False,  True,  True, False,  True,  True, False, False,
+        True,  True,  True,  True, False, False, False, False, False,
+        True, False,  True,  True,  True,  True,  True,  True, False,
+        True,  True, False,  True, False, False, False,  True,  True,
+       False, False, False,  True, False, False, False,  True,  True,
+        True,  True, False,  True,  True, False, False, False, False,
+       False,  True,  True,  True,  True, False,  True, False,  True,
+        True, False, False,  True,  True,  True, False, False,  True,
+        True,  True, False,  True,  True,  True,  True,  True, False,
+       False,  True, False,  True,  True, False,  True,  True,  True,
+       False, False,  True,  True, False,  True, False, False, False,
+        True, False,  True,  True,  True, False, False,  True, False,
+       False,  True,  True,  True, False,  True,  True, False,  True,
+        True,  True, False, False, False,  True, False,  True, False,
+        True, False,  True,  True,  True,  True,  True, False,  True,
+        True, False, False,  True,  True, False,  True,  True, False,
+       False, False, False,  True,  True,  True, False, False, False,
+       False,  True,  True,  True, False, False,  True,  True,  True,
+        True,  True, False,  True,  True,  True,  True,  True,  True,
+       False, False,  True, False, False,  True,  True, False, False,
+        True, False, False, False, False,  True,  True,  True,  True,
+        True, False, False,  True,  True,  True, False, False, False,
+       False,  True, False,  True,  True, False, False,  True, False,
+        True,  True,  True, False, False, False, False,  True,  True,
+       False,  True, False, False,  True, False, False,  True, False,
+       False,  True, False,  True,  True, False, False, False, False,
+        True,  True, False, False, False,  True,  True, False,  True,
+        True, False, False,  True, False, False,  True,  True,  True,
+       False,  True,  True,  True, False, False,  True, False, False,
+       False,  True, False, False, False,  True, False,  True, False,
+       False,  True, False,  True,  True, False,  True,  True,  True,
+       False])
 </pre></div>
 </div>
 </div>
@@ -973,6 +1064,12 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f42c295a450&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_keras_39_1.png" src="../_images/machine_learning_keras_39_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -988,11 +1085,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f42c295afd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_keras_41_1.png" src="../_images/machine_learning_keras_41_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">mean</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(40, 56, 3)
 </pre></div>
 </div>
 </div>
@@ -1004,6 +1112,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(40, 56, 3)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1011,6 +1124,12 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7f42c4d9cb90&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_keras_44_1.png" src="../_images/machine_learning_keras_44_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1026,6 +1145,12 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7f42c26ce810&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_keras_46_1.png" src="../_images/machine_learning_keras_46_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1047,6 +1172,21 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_zscore_tr</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_train</span><span class="o">-</span><span class="n">mean</span><span class="p">)</span><span class="o">/</span><span class="n">std</span>
 <span class="n">X_zscore_te</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_test</span><span class="o">-</span><span class="n">mean</span><span class="p">)</span><span class="o">/</span><span class="n">std</span>
 <span class="n">X_zscore_tr</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in true_divide
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in true_divide
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:2: RuntimeWarning: divide by zero encountered in true_divide
+  
+/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:2: RuntimeWarning: invalid value encountered in true_divide
+  
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(307, 40, 56, 3)
 </pre></div>
 </div>
 </div>
@@ -1072,8 +1212,8 @@
 <div class="section" id="creating-a-sequential-model">
 <h2>Creating a Sequential Model<a class="headerlink" href="#creating-a-sequential-model" title="Permalink to this headline">¶</a></h2>
 <p>Now come the fun and tricky part. We need to specify the structure of our convoluted neural network. As a quick reminder, a convoluted neural network consists of some convolution layers, pooling layers, some flattening layers and some full connect layers:</p>
-<img src="data/deep_neural_networks.png"/>
-<p>Taken from: <a class="reference external" href="https://www.mathworks.com/videos/introduction-to-deep-learning-what-are-convolutional-neural-networks--1489512765771.html">https://www.mathworks.com/videos/introduction-to-deep-learning-what-are-convolutional-neural-networks–1489512765771.html</a></p>
+<img src="https://www.pnas.org/content/pnas/116/4/1074/F2.large.jpg"/>
+<p>Taken from: <a class="reference external" href="https://www.pnas.org/content/116/4/1074">Waldrop 2019</a></p>
 <p>So as a first step, let’s import all modules that we need to create the keras model:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1144,6 +1284,60 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d (Conv2D)              (None, 38, 54, 32)        896       
+_________________________________________________________________
+batch_normalization (BatchNo (None, 38, 54, 32)        128       
+_________________________________________________________________
+max_pooling2d (MaxPooling2D) (None, 19, 27, 32)        0         
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 17, 25, 64)        18496     
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 17, 25, 64)        256       
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 8, 12, 64)         0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 6, 10, 128)        73856     
+_________________________________________________________________
+batch_normalization_2 (Batch (None, 6, 10, 128)        512       
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 3, 5, 128)         0         
+_________________________________________________________________
+flatten (Flatten)            (None, 1920)              0         
+_________________________________________________________________
+dropout (Dropout)            (None, 1920)              0         
+_________________________________________________________________
+dense (Dense)                (None, 1024)              1967104   
+_________________________________________________________________
+batch_normalization_3 (Batch (None, 1024)              4096      
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 1024)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 256)               262400    
+_________________________________________________________________
+batch_normalization_4 (Batch (None, 256)               1024      
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 256)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 64)                16448     
+_________________________________________________________________
+batch_normalization_5 (Batch (None, 64)                256       
+_________________________________________________________________
+dropout_3 (Dropout)          (None, 64)                0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 2)                 130       
+=================================================================
+Total params: 2,345,602
+Trainable params: 2,342,466
+Non-trainable params: 3,136
+_________________________________________________________________
+</pre></div>
+</div>
+</div>
 </div>
 <p>That’s what our model looks like! Cool!</p>
 </div>
@@ -1173,6 +1367,266 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/125
+8/8 [==============================] - 2s 209ms/step - loss: 1.3661 - accuracy: 0.4857 - val_loss: 0.7003 - val_accuracy: 0.4355
+Epoch 2/125
+8/8 [==============================] - 1s 69ms/step - loss: 1.0531 - accuracy: 0.5796 - val_loss: 0.6746 - val_accuracy: 0.5968
+Epoch 3/125
+8/8 [==============================] - 1s 81ms/step - loss: 1.0525 - accuracy: 0.5959 - val_loss: 0.6374 - val_accuracy: 0.6935
+Epoch 4/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.7713 - accuracy: 0.6898 - val_loss: 0.5978 - val_accuracy: 0.7419
+Epoch 5/125
+8/8 [==============================] - 1s 66ms/step - loss: 0.6390 - accuracy: 0.6816 - val_loss: 0.5960 - val_accuracy: 0.6935
+Epoch 6/125
+8/8 [==============================] - 1s 84ms/step - loss: 0.5382 - accuracy: 0.7347 - val_loss: 0.6074 - val_accuracy: 0.7097
+Epoch 7/125
+8/8 [==============================] - 1s 74ms/step - loss: 0.5092 - accuracy: 0.7714 - val_loss: 0.6396 - val_accuracy: 0.5968
+Epoch 8/125
+8/8 [==============================] - 1s 77ms/step - loss: 0.4850 - accuracy: 0.8082 - val_loss: 0.7083 - val_accuracy: 0.5323
+Epoch 9/125
+8/8 [==============================] - 1s 82ms/step - loss: 0.4342 - accuracy: 0.8122 - val_loss: 0.8711 - val_accuracy: 0.4839
+Epoch 10/125
+8/8 [==============================] - 1s 70ms/step - loss: 0.3754 - accuracy: 0.8408 - val_loss: 1.0249 - val_accuracy: 0.4677
+Epoch 11/125
+8/8 [==============================] - 1s 70ms/step - loss: 0.3411 - accuracy: 0.8490 - val_loss: 1.1216 - val_accuracy: 0.4677
+Epoch 12/125
+8/8 [==============================] - 1s 63ms/step - loss: 0.3196 - accuracy: 0.8735 - val_loss: 1.2563 - val_accuracy: 0.4677
+Epoch 13/125
+8/8 [==============================] - 1s 67ms/step - loss: 0.2558 - accuracy: 0.8898 - val_loss: 1.3594 - val_accuracy: 0.4677
+Epoch 14/125
+8/8 [==============================] - 1s 75ms/step - loss: 0.2188 - accuracy: 0.9184 - val_loss: 1.3736 - val_accuracy: 0.4677
+Epoch 15/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.2441 - accuracy: 0.8980 - val_loss: 1.3244 - val_accuracy: 0.4677
+Epoch 16/125
+8/8 [==============================] - 1s 63ms/step - loss: 0.1395 - accuracy: 0.9469 - val_loss: 1.2255 - val_accuracy: 0.4677
+Epoch 17/125
+8/8 [==============================] - 1s 70ms/step - loss: 0.1899 - accuracy: 0.9143 - val_loss: 1.2629 - val_accuracy: 0.4677
+Epoch 18/125
+8/8 [==============================] - 0s 62ms/step - loss: 0.1936 - accuracy: 0.9265 - val_loss: 1.3652 - val_accuracy: 0.4677
+Epoch 19/125
+8/8 [==============================] - 1s 66ms/step - loss: 0.1053 - accuracy: 0.9592 - val_loss: 1.4066 - val_accuracy: 0.4677
+Epoch 20/125
+8/8 [==============================] - 1s 68ms/step - loss: 0.1127 - accuracy: 0.9510 - val_loss: 1.3779 - val_accuracy: 0.5161
+Epoch 21/125
+8/8 [==============================] - 1s 68ms/step - loss: 0.1266 - accuracy: 0.9510 - val_loss: 1.4265 - val_accuracy: 0.5323
+Epoch 22/125
+8/8 [==============================] - 1s 73ms/step - loss: 0.1179 - accuracy: 0.9510 - val_loss: 1.4428 - val_accuracy: 0.5323
+Epoch 23/125
+8/8 [==============================] - 1s 66ms/step - loss: 0.0802 - accuracy: 0.9796 - val_loss: 1.4085 - val_accuracy: 0.5323
+Epoch 24/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.0927 - accuracy: 0.9796 - val_loss: 1.3740 - val_accuracy: 0.5323
+Epoch 25/125
+8/8 [==============================] - 1s 78ms/step - loss: 0.1289 - accuracy: 0.9510 - val_loss: 1.2398 - val_accuracy: 0.5484
+Epoch 26/125
+8/8 [==============================] - 1s 129ms/step - loss: 0.1058 - accuracy: 0.9429 - val_loss: 1.1727 - val_accuracy: 0.5484
+Epoch 27/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.0554 - accuracy: 0.9796 - val_loss: 1.0979 - val_accuracy: 0.6129
+Epoch 28/125
+8/8 [==============================] - 0s 60ms/step - loss: 0.1073 - accuracy: 0.9633 - val_loss: 0.9690 - val_accuracy: 0.6774
+Epoch 29/125
+8/8 [==============================] - 1s 63ms/step - loss: 0.0661 - accuracy: 0.9796 - val_loss: 0.8942 - val_accuracy: 0.7097
+Epoch 30/125
+8/8 [==============================] - 0s 61ms/step - loss: 0.0307 - accuracy: 0.9959 - val_loss: 0.8389 - val_accuracy: 0.7581
+Epoch 31/125
+8/8 [==============================] - 0s 62ms/step - loss: 0.0333 - accuracy: 0.9878 - val_loss: 0.7942 - val_accuracy: 0.7419
+Epoch 32/125
+8/8 [==============================] - 1s 87ms/step - loss: 0.0509 - accuracy: 0.9837 - val_loss: 0.7924 - val_accuracy: 0.7742
+Epoch 33/125
+8/8 [==============================] - 1s 92ms/step - loss: 0.0502 - accuracy: 0.9837 - val_loss: 0.8062 - val_accuracy: 0.7903
+Epoch 34/125
+8/8 [==============================] - 1s 131ms/step - loss: 0.0542 - accuracy: 0.9714 - val_loss: 0.7769 - val_accuracy: 0.7903
+Epoch 35/125
+8/8 [==============================] - 1s 97ms/step - loss: 0.0456 - accuracy: 0.9878 - val_loss: 0.7259 - val_accuracy: 0.8226
+Epoch 36/125
+8/8 [==============================] - 1s 101ms/step - loss: 0.0289 - accuracy: 0.9837 - val_loss: 0.6836 - val_accuracy: 0.8387
+Epoch 37/125
+8/8 [==============================] - 1s 122ms/step - loss: 0.0599 - accuracy: 0.9796 - val_loss: 0.6468 - val_accuracy: 0.8387
+Epoch 38/125
+8/8 [==============================] - 1s 75ms/step - loss: 0.0308 - accuracy: 0.9959 - val_loss: 0.6508 - val_accuracy: 0.8387
+Epoch 39/125
+8/8 [==============================] - 1s 72ms/step - loss: 0.0375 - accuracy: 0.9918 - val_loss: 0.6418 - val_accuracy: 0.8387
+Epoch 40/125
+8/8 [==============================] - 1s 77ms/step - loss: 0.0405 - accuracy: 0.9837 - val_loss: 0.6549 - val_accuracy: 0.8387
+Epoch 41/125
+8/8 [==============================] - 1s 71ms/step - loss: 0.1027 - accuracy: 0.9592 - val_loss: 0.7066 - val_accuracy: 0.8226
+Epoch 42/125
+8/8 [==============================] - 1s 72ms/step - loss: 0.0270 - accuracy: 0.9878 - val_loss: 0.7275 - val_accuracy: 0.8065
+Epoch 43/125
+8/8 [==============================] - 1s 64ms/step - loss: 0.0244 - accuracy: 0.9959 - val_loss: 0.7207 - val_accuracy: 0.8065
+Epoch 44/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.0697 - accuracy: 0.9755 - val_loss: 0.7179 - val_accuracy: 0.8226
+Epoch 45/125
+8/8 [==============================] - 1s 72ms/step - loss: 0.0666 - accuracy: 0.9714 - val_loss: 0.6854 - val_accuracy: 0.8387
+Epoch 46/125
+8/8 [==============================] - 1s 64ms/step - loss: 0.0630 - accuracy: 0.9714 - val_loss: 0.6168 - val_accuracy: 0.8387
+Epoch 47/125
+8/8 [==============================] - 0s 62ms/step - loss: 0.0280 - accuracy: 0.9959 - val_loss: 0.5885 - val_accuracy: 0.8387
+Epoch 48/125
+8/8 [==============================] - 1s 76ms/step - loss: 0.0198 - accuracy: 0.9959 - val_loss: 0.5843 - val_accuracy: 0.8387
+Epoch 49/125
+8/8 [==============================] - 1s 68ms/step - loss: 0.0280 - accuracy: 0.9959 - val_loss: 0.5947 - val_accuracy: 0.8548
+Epoch 50/125
+8/8 [==============================] - 1s 64ms/step - loss: 0.0389 - accuracy: 0.9796 - val_loss: 0.6429 - val_accuracy: 0.8387
+Epoch 51/125
+8/8 [==============================] - 0s 62ms/step - loss: 0.0315 - accuracy: 0.9878 - val_loss: 0.6700 - val_accuracy: 0.8226
+Epoch 52/125
+8/8 [==============================] - 0s 60ms/step - loss: 0.0138 - accuracy: 0.9959 - val_loss: 0.6749 - val_accuracy: 0.8226
+Epoch 53/125
+8/8 [==============================] - 1s 71ms/step - loss: 0.0309 - accuracy: 0.9918 - val_loss: 0.6969 - val_accuracy: 0.8226
+Epoch 54/125
+8/8 [==============================] - 0s 62ms/step - loss: 0.0164 - accuracy: 0.9918 - val_loss: 0.6796 - val_accuracy: 0.8387
+Epoch 55/125
+8/8 [==============================] - 1s 87ms/step - loss: 0.0334 - accuracy: 0.9878 - val_loss: 0.6212 - val_accuracy: 0.8548
+Epoch 56/125
+8/8 [==============================] - 1s 65ms/step - loss: 0.0239 - accuracy: 0.9878 - val_loss: 0.5206 - val_accuracy: 0.8548
+Epoch 57/125
+8/8 [==============================] - 0s 61ms/step - loss: 0.0423 - accuracy: 0.9878 - val_loss: 0.4099 - val_accuracy: 0.8871
+Epoch 58/125
+8/8 [==============================] - 1s 78ms/step - loss: 0.0158 - accuracy: 0.9959 - val_loss: 0.3811 - val_accuracy: 0.8710
+Epoch 59/125
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8/8 [==============================] - 1s 69ms/step - loss: 0.0328 - accuracy: 0.9878 - val_loss: 0.3638 - val_accuracy: 0.8710
+Epoch 60/125
+8/8 [==============================] - 0s 58ms/step - loss: 0.0088 - accuracy: 1.0000 - val_loss: 0.3651 - val_accuracy: 0.8548
+Epoch 61/125
+8/8 [==============================] - 0s 61ms/step - loss: 0.0160 - accuracy: 0.9959 - val_loss: 0.4513 - val_accuracy: 0.8548
+Epoch 62/125
+8/8 [==============================] - 1s 63ms/step - loss: 0.0450 - accuracy: 0.9755 - val_loss: 0.4904 - val_accuracy: 0.8548
+Epoch 63/125
+8/8 [==============================] - 1s 65ms/step - loss: 0.0357 - accuracy: 0.9878 - val_loss: 0.5385 - val_accuracy: 0.8548
+Epoch 64/125
+8/8 [==============================] - 0s 60ms/step - loss: 0.0244 - accuracy: 0.9918 - val_loss: 0.5685 - val_accuracy: 0.8548
+Epoch 65/125
+8/8 [==============================] - 1s 72ms/step - loss: 0.0403 - accuracy: 0.9837 - val_loss: 0.4873 - val_accuracy: 0.8710
+Epoch 66/125
+8/8 [==============================] - 0s 61ms/step - loss: 0.0513 - accuracy: 0.9796 - val_loss: 0.4993 - val_accuracy: 0.8226
+Epoch 67/125
+8/8 [==============================] - 1s 72ms/step - loss: 0.0212 - accuracy: 0.9959 - val_loss: 0.5065 - val_accuracy: 0.8387
+Epoch 68/125
+8/8 [==============================] - 1s 66ms/step - loss: 0.0157 - accuracy: 0.9959 - val_loss: 0.4641 - val_accuracy: 0.8548
+Epoch 69/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.0394 - accuracy: 0.9837 - val_loss: 0.4934 - val_accuracy: 0.8226
+Epoch 70/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.0113 - accuracy: 0.9959 - val_loss: 0.5389 - val_accuracy: 0.8387
+Epoch 71/125
+8/8 [==============================] - 1s 65ms/step - loss: 0.0283 - accuracy: 0.9878 - val_loss: 0.5329 - val_accuracy: 0.8226
+Epoch 72/125
+8/8 [==============================] - 1s 65ms/step - loss: 0.0123 - accuracy: 0.9918 - val_loss: 0.5264 - val_accuracy: 0.8387
+Epoch 73/125
+8/8 [==============================] - 0s 61ms/step - loss: 0.0222 - accuracy: 0.9878 - val_loss: 0.5317 - val_accuracy: 0.8387
+Epoch 74/125
+8/8 [==============================] - 0s 58ms/step - loss: 0.0312 - accuracy: 0.9959 - val_loss: 0.5286 - val_accuracy: 0.8548
+Epoch 75/125
+8/8 [==============================] - 0s 60ms/step - loss: 0.0142 - accuracy: 1.0000 - val_loss: 0.5162 - val_accuracy: 0.8387
+Epoch 76/125
+8/8 [==============================] - 0s 59ms/step - loss: 0.0186 - accuracy: 0.9918 - val_loss: 0.5120 - val_accuracy: 0.8548
+Epoch 77/125
+8/8 [==============================] - 1s 63ms/step - loss: 0.0154 - accuracy: 0.9959 - val_loss: 0.5402 - val_accuracy: 0.8226
+Epoch 78/125
+8/8 [==============================] - 1s 64ms/step - loss: 0.0110 - accuracy: 0.9959 - val_loss: 0.5264 - val_accuracy: 0.8387
+Epoch 79/125
+8/8 [==============================] - 1s 66ms/step - loss: 0.0267 - accuracy: 0.9918 - val_loss: 0.5047 - val_accuracy: 0.8548
+Epoch 80/125
+8/8 [==============================] - 1s 74ms/step - loss: 0.0317 - accuracy: 0.9878 - val_loss: 0.4960 - val_accuracy: 0.8710
+Epoch 81/125
+8/8 [==============================] - 1s 64ms/step - loss: 0.0446 - accuracy: 0.9878 - val_loss: 0.4981 - val_accuracy: 0.8710
+Epoch 82/125
+8/8 [==============================] - 0s 58ms/step - loss: 0.0237 - accuracy: 0.9959 - val_loss: 0.4097 - val_accuracy: 0.9194
+Epoch 83/125
+8/8 [==============================] - 1s 67ms/step - loss: 0.0177 - accuracy: 0.9918 - val_loss: 0.4233 - val_accuracy: 0.9194
+Epoch 84/125
+8/8 [==============================] - 1s 67ms/step - loss: 0.0248 - accuracy: 0.9918 - val_loss: 0.4128 - val_accuracy: 0.8871
+Epoch 85/125
+8/8 [==============================] - 1s 65ms/step - loss: 0.0274 - accuracy: 0.9837 - val_loss: 0.3635 - val_accuracy: 0.8871
+Epoch 86/125
+8/8 [==============================] - 0s 62ms/step - loss: 0.0482 - accuracy: 0.9755 - val_loss: 0.3039 - val_accuracy: 0.9032
+Epoch 87/125
+8/8 [==============================] - 1s 71ms/step - loss: 0.0289 - accuracy: 0.9878 - val_loss: 0.2621 - val_accuracy: 0.9194
+Epoch 88/125
+8/8 [==============================] - 1s 65ms/step - loss: 0.0431 - accuracy: 0.9837 - val_loss: 0.2449 - val_accuracy: 0.9194
+Epoch 89/125
+8/8 [==============================] - 1s 66ms/step - loss: 0.0362 - accuracy: 0.9878 - val_loss: 0.2413 - val_accuracy: 0.9355
+Epoch 90/125
+8/8 [==============================] - 1s 86ms/step - loss: 0.0229 - accuracy: 0.9959 - val_loss: 0.2499 - val_accuracy: 0.9516
+Epoch 91/125
+8/8 [==============================] - 1s 80ms/step - loss: 0.0275 - accuracy: 0.9959 - val_loss: 0.2546 - val_accuracy: 0.9355
+Epoch 92/125
+8/8 [==============================] - 1s 92ms/step - loss: 0.0253 - accuracy: 0.9837 - val_loss: 0.2683 - val_accuracy: 0.8871
+Epoch 93/125
+8/8 [==============================] - 1s 84ms/step - loss: 0.0450 - accuracy: 0.9878 - val_loss: 0.3975 - val_accuracy: 0.8548
+Epoch 94/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.0335 - accuracy: 0.9837 - val_loss: 0.4097 - val_accuracy: 0.8871
+Epoch 95/125
+8/8 [==============================] - 1s 71ms/step - loss: 0.0183 - accuracy: 0.9959 - val_loss: 0.3989 - val_accuracy: 0.8710
+Epoch 96/125
+8/8 [==============================] - 1s 64ms/step - loss: 0.0378 - accuracy: 0.9837 - val_loss: 0.4019 - val_accuracy: 0.8710
+Epoch 97/125
+8/8 [==============================] - 1s 79ms/step - loss: 0.0068 - accuracy: 1.0000 - val_loss: 0.4064 - val_accuracy: 0.8548
+Epoch 98/125
+8/8 [==============================] - 1s 72ms/step - loss: 0.0137 - accuracy: 0.9959 - val_loss: 0.4187 - val_accuracy: 0.8548
+Epoch 99/125
+8/8 [==============================] - 1s 67ms/step - loss: 0.0050 - accuracy: 1.0000 - val_loss: 0.4254 - val_accuracy: 0.8387
+Epoch 100/125
+8/8 [==============================] - 1s 66ms/step - loss: 0.0098 - accuracy: 1.0000 - val_loss: 0.4299 - val_accuracy: 0.8387
+Epoch 101/125
+8/8 [==============================] - 1s 65ms/step - loss: 0.0184 - accuracy: 0.9959 - val_loss: 0.4296 - val_accuracy: 0.8226
+Epoch 102/125
+8/8 [==============================] - 1s 73ms/step - loss: 0.0340 - accuracy: 0.9796 - val_loss: 0.3989 - val_accuracy: 0.8387
+Epoch 103/125
+8/8 [==============================] - 1s 67ms/step - loss: 0.0339 - accuracy: 0.9918 - val_loss: 0.3078 - val_accuracy: 0.8387
+Epoch 104/125
+8/8 [==============================] - 1s 64ms/step - loss: 0.0067 - accuracy: 0.9959 - val_loss: 0.2804 - val_accuracy: 0.8871
+Epoch 105/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.0055 - accuracy: 1.0000 - val_loss: 0.2793 - val_accuracy: 0.9032
+Epoch 106/125
+8/8 [==============================] - 1s 75ms/step - loss: 0.0064 - accuracy: 1.0000 - val_loss: 0.2885 - val_accuracy: 0.8871
+Epoch 107/125
+8/8 [==============================] - 1s 71ms/step - loss: 0.0519 - accuracy: 0.9837 - val_loss: 0.3666 - val_accuracy: 0.9032
+Epoch 108/125
+8/8 [==============================] - 1s 72ms/step - loss: 0.0394 - accuracy: 0.9878 - val_loss: 0.4632 - val_accuracy: 0.8548
+Epoch 109/125
+8/8 [==============================] - 1s 67ms/step - loss: 0.0084 - accuracy: 0.9959 - val_loss: 0.5208 - val_accuracy: 0.8387
+Epoch 110/125
+8/8 [==============================] - 1s 88ms/step - loss: 0.0059 - accuracy: 1.0000 - val_loss: 0.5330 - val_accuracy: 0.8387
+Epoch 111/125
+8/8 [==============================] - 1s 77ms/step - loss: 0.0299 - accuracy: 0.9918 - val_loss: 0.4999 - val_accuracy: 0.8548
+Epoch 112/125
+8/8 [==============================] - 1s 75ms/step - loss: 0.0397 - accuracy: 0.9837 - val_loss: 0.4923 - val_accuracy: 0.8387
+Epoch 113/125
+8/8 [==============================] - 1s 72ms/step - loss: 0.0451 - accuracy: 0.9837 - val_loss: 0.5225 - val_accuracy: 0.8387
+Epoch 114/125
+8/8 [==============================] - 1s 78ms/step - loss: 0.0464 - accuracy: 0.9918 - val_loss: 0.4159 - val_accuracy: 0.8548
+Epoch 115/125
+8/8 [==============================] - 1s 70ms/step - loss: 0.0094 - accuracy: 0.9959 - val_loss: 0.3705 - val_accuracy: 0.8871
+Epoch 116/125
+8/8 [==============================] - 1s 67ms/step - loss: 0.0198 - accuracy: 0.9918 - val_loss: 0.3713 - val_accuracy: 0.8871
+Epoch 117/125
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8/8 [==============================] - 1s 96ms/step - loss: 0.0230 - accuracy: 0.9837 - val_loss: 0.4116 - val_accuracy: 0.8710
+Epoch 118/125
+8/8 [==============================] - 1s 76ms/step - loss: 0.0124 - accuracy: 0.9959 - val_loss: 0.4965 - val_accuracy: 0.8387
+Epoch 119/125
+8/8 [==============================] - 1s 72ms/step - loss: 0.0134 - accuracy: 0.9959 - val_loss: 0.5153 - val_accuracy: 0.8387
+Epoch 120/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.0094 - accuracy: 0.9959 - val_loss: 0.5226 - val_accuracy: 0.8387
+Epoch 121/125
+8/8 [==============================] - 1s 74ms/step - loss: 0.0063 - accuracy: 1.0000 - val_loss: 0.5218 - val_accuracy: 0.8548
+Epoch 122/125
+8/8 [==============================] - 1s 69ms/step - loss: 0.0059 - accuracy: 1.0000 - val_loss: 0.5120 - val_accuracy: 0.8548
+Epoch 123/125
+8/8 [==============================] - 1s 65ms/step - loss: 0.0165 - accuracy: 0.9959 - val_loss: 0.5102 - val_accuracy: 0.8548
+Epoch 124/125
+8/8 [==============================] - 1s 82ms/step - loss: 0.0128 - accuracy: 0.9918 - val_loss: 0.6180 - val_accuracy: 0.8226
+Epoch 125/125
+8/8 [==============================] - 1s 73ms/step - loss: 0.0197 - accuracy: 0.9918 - val_loss: 0.6545 - val_accuracy: 0.8548
+CPU times: user 4min 39s, sys: 30.9 s, total: 5min 10s
+Wall time: 1min 24s
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="performance-during-model-fitting">
@@ -1194,6 +1648,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/machine_learning_keras_68_0.png" src="../_images/machine_learning_keras_68_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1211,6 +1668,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/machine_learning_keras_69_0.png" src="../_images/machine_learning_keras_69_0.png" />
+</div>
 </div>
 <p>Great, it seems that accuracy is constantly increasing and the loss is continuing to drop. But how well is our model doing on the test data?</p>
 </div>
@@ -1224,6 +1684,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3/3 [==============================] - 0s 9ms/step - loss: 0.4645 - accuracy: 0.8571
+Loss in Test set:      0.46
+Accuracy in Test set:  85.71
+</pre></div>
+</div>
+</div>
 </div>
 <p># Confusion Matrix</p>
 <div class="cell docutils container">
@@ -1233,11 +1700,27 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1,
+       1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0,
+       0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0,
+       0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_true</span> <span class="o">=</span> <span class="n">y_test</span> <span class="o">*</span> <span class="mi">1</span>
 <span class="n">y_true</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+       1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0,
+       0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0,
+       1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -1258,6 +1741,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/machine_learning_keras_77_0.png" src="../_images/machine_learning_keras_77_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="analyze-prediction-values">
@@ -1267,6 +1753,20 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_zscore_te</span><span class="p">)</span>
 <span class="n">y_pred</span><span class="p">[:</span><span class="mi">10</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.8052218e-04, 9.9981946e-01],
+       [9.2166644e-01, 7.8333572e-02],
+       [9.7517268e-06, 9.9999022e-01],
+       [9.9997163e-01, 2.8365886e-05],
+       [4.1778341e-05, 9.9995828e-01],
+       [9.9945563e-01, 5.4433825e-04],
+       [9.9174607e-01, 8.2539245e-03],
+       [3.5141216e-05, 9.9996483e-01],
+       [1.1560773e-01, 8.8439232e-01],
+       [8.1596839e-01, 1.8403161e-01]], dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1283,6 +1783,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/machine_learning_keras_82_0.png" src="../_images/machine_learning_keras_82_0.png" />
 </div>
 </div>
 <p>The more both distributions are distributed around chance level, the weaker your model is.</p>
@@ -1335,6 +1838,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:19: MatplotlibDeprecationWarning: Passing non-integers as three-element position specification is deprecated since 3.3 and will be removed two minor releases later.
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_keras_89_1.png" src="../_images/machine_learning_keras_89_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1342,12 +1851,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:19: MatplotlibDeprecationWarning: Passing non-integers as three-element position specification is deprecated since 3.3 and will be removed two minor releases later.
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_keras_90_1.png" src="../_images/machine_learning_keras_90_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_activation</span><span class="p">(</span><span class="s1">&#39;conv2d_2&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:19: MatplotlibDeprecationWarning: Passing non-integers as three-element position specification is deprecated since 3.3 and will be removed two minor releases later.
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_keras_91_1.png" src="../_images/machine_learning_keras_91_1.png" />
 </div>
 </div>
 </div>

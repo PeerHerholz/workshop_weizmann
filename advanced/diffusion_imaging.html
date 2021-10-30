@@ -52,6 +52,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Yoga and/or dance break" href="../break.html" />
+    <link rel="prev" title="Machine learning to predict age from rs-fmri" href="Predicting_age_with_machine_learning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -92,7 +94,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../dei.html">
    Diversity, Equity and Inclusion
@@ -429,16 +431,16 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../advanced.html">
    Advanced and specialized analyses
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="pybids.html">
      Introduction to
@@ -494,6 +496,11 @@
      Machine learning to predict age from rs-fmri
     </a>
    </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Structural connectivity and diffusion imaging
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -547,7 +554,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/advanced/hidden_diffusion_imaging.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/advanced/diffusion_imaging.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -567,10 +574,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fadvanced/hidden_diffusion_imaging.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/PeerHerholz/workshop_weizmann/issues/new?title=Issue%20on%20page%20%2Fadvanced/diffusion_imaging.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/main/workshop/advanced/hidden_diffusion_imaging.ipynb"><button
+        <a class="edit-button" href="https://github.com/PeerHerholz/workshop_weizmann/edit/main/workshop/advanced/diffusion_imaging.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -590,7 +597,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/main?urlpath=tree/workshop/advanced/hidden_diffusion_imaging.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PeerHerholz/workshop_weizmann/main?urlpath=tree/workshop/advanced/diffusion_imaging.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -640,11 +647,6 @@
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tensor-reconstruction">
      Tensor reconstruction
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tensor-visualization">
-     Tensor visualization
     </a>
    </li>
   </ul>
@@ -762,14 +764,7 @@
 <li><p>Direct Bundle Registration</p></li>
 </ol>
 <p><strong>General disclaimer</strong>: This notebook was written by somebody who is not an expert in diffusion imaging analysis. Therefore, certain steps might not be useful or not used in an actual analysis. Keep this in mind while going through this notebook.</p>
-<p><strong><span style="color:red">Important:</span></strong> The rendering of the diffusion images is this notebook is not possible if you run the notebook within a docker container. For this reason, all output figures were already precomputed and can be shown nonetheless. If you’re running the noteobook outside of a docker container you can set the variable <code class="docutils literal notranslate"><span class="pre">view_mode</span></code> to <code class="docutils literal notranslate"><span class="pre">'create_plot'</span></code> to create plots or to <code class="docutils literal notranslate"><span class="pre">'interactive'</span></code> to interactively manipulate the 3D rendered images.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">view_mode</span> <span class="o">=</span> <span class="s1">&#39;no_render&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p><strong><span style="color:red">Important:</span></strong> The rendering of the diffusion images is this notebook is a bit tricky and additionally dependent on the computing environment you are using to follow this workshop. Thus, a lot of sections unfortunately don’t have visualization. Sorry for that! Please make sure to check out the <a class="reference external" href="http://nipy.org/dipy/"><code class="docutils literal notranslate"><span class="pre">Dipy</span></code></a> documentation.</p>
 </div>
 <div class="section" id="setup">
 <h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
@@ -798,16 +793,14 @@
 <span class="n">pve_csf</span><span class="p">,</span> <span class="n">pve_gm</span><span class="p">,</span> <span class="n">pve_wm</span> <span class="o">=</span> <span class="n">read_stanford_pve_maps</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>To speed up this process, we’ve already downloaded the data for you and put it into the folder: <code class="docutils literal notranslate"><span class="pre">/data/diffusion/</span></code></p>
-<p>This means we can load all required files with the following commands:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/t1.nii.gz&#39;</span><span class="p">)</span>
-<span class="n">pve_csf</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/pve_csf.nii.gz&#39;</span><span class="p">)</span>
-<span class="n">pve_gm</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/pve_gm.nii.gz&#39;</span><span class="p">)</span>
-<span class="n">pve_wm</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/pve_wm.nii.gz&#39;</span><span class="p">)</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/HARDI150.nii.gz&#39;</span><span class="p">)</span>
-<span class="n">labels_img</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/diffusion/stanford_hardi/HARDI150_labels.nii.gz&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.data</span> <span class="kn">import</span> <span class="p">(</span><span class="n">read_stanford_labels</span><span class="p">,</span> <span class="n">read_stanford_t1</span><span class="p">,</span>
+                       <span class="n">read_stanford_pve_maps</span><span class="p">)</span>
+
+<span class="n">img</span><span class="p">,</span> <span class="n">gtab</span><span class="p">,</span> <span class="n">labels_img</span> <span class="o">=</span> <span class="n">read_stanford_labels</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">read_stanford_t1</span><span class="p">()</span>
+<span class="n">pve_csf</span><span class="p">,</span> <span class="n">pve_gm</span><span class="p">,</span> <span class="n">pve_wm</span> <span class="o">=</span> <span class="n">read_stanford_pve_maps</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -841,6 +834,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Diffusion weights direc. 100&#39;)
+</pre></div>
+</div>
+<img alt="../_images/diffusion_imaging_7_1.png" src="../_images/diffusion_imaging_7_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -863,39 +862,57 @@
 </pre></div>
 </div>
 </div>
-</div>
-<p>In diffusion MRI (dMRI) usually we use three types of files, a Nifti file with the diffusion weighted data (here <code class="docutils literal notranslate"><span class="pre">hardi_img.nii.gz</span></code>), and two text files one with b-values and one with the b-vectors. So let’s also load those two files:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bvals</span> <span class="o">=</span> <span class="s1">&#39;data/diffusion/stanford_hardi/HARDI150.bval&#39;</span>
-<span class="n">bvecs</span> <span class="o">=</span> <span class="s1">&#39;data/diffusion/stanford_hardi/HARDI150.bvec&#39;</span>
-
-<span class="kn">from</span> <span class="nn">dipy.core.gradients</span> <span class="kn">import</span> <span class="n">gradient_table</span>
-<span class="n">gtab</span> <span class="o">=</span> <span class="n">gradient_table</span><span class="p">(</span><span class="n">bvals</span><span class="p">,</span> <span class="n">bvecs</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;WM segmentation&#39;)
 </pre></div>
 </div>
+<img alt="../_images/diffusion_imaging_8_1.png" src="../_images/diffusion_imaging_8_1.png" />
 </div>
 </div>
-<p>Using the GradientTable object <code class="docutils literal notranslate"><span class="pre">gtab</span></code> you can show some information about the acquisition parameters.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gtab</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>You can also see the b-values using:</p>
+<p>In diffusion MRI (dMRI) usually we use three types of files, a Nifti file with the diffusion weighted data (here <code class="docutils literal notranslate"><span class="pre">hardi_img.nii.gz</span></code>), and two text files one with <code class="docutils literal notranslate"><span class="pre">b-values</span></code> and one with the <code class="docutils literal notranslate"><span class="pre">b-vectors</span></code>. So let’s also check those two files, starting with <code class="docutils literal notranslate"><span class="pre">b-values</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gtab</span><span class="o">.</span><span class="n">bvals</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[   0.    0.    0.    0.    0.    0.    0.    0.    0.    0. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000. 2000.
+ 2000. 2000. 2000. 2000.]
+</pre></div>
 </div>
-<p>Or, for example the last 10 b-vectors using:</p>
+</div>
+</div>
+<p>For example the last 10 <code class="docutils literal notranslate"><span class="pre">b-vectors</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gtab</span><span class="o">.</span><span class="n">bvecs</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.50924    0.2046    -0.83595  ]
+ [-0.50611   -0.85336   -0.12505  ]
+ [ 0.7696    -0.35989    0.52745  ]
+ [ 0.73579    0.19537   -0.64841  ]
+ [-0.90321    0.32539    0.27989  ]
+ [-0.66243   -0.29331   -0.68931  ]
+ [ 0.5852     0.74103    0.32927  ]
+ [-0.17711   -0.70962    0.68196  ]
+ [ 0.16554   -0.2838    -0.94449  ]
+ [ 0.97435    0.0049151  0.22501  ]]
 </pre></div>
 </div>
 </div>
@@ -914,6 +931,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data shape before masking: (81, 106, 76, 160)
+</pre></div>
+</div>
+</div>
 </div>
 <p>To avoid the calculation of the Tensors in the background of the image, we first need to mask and crop the data. For this, we can use Dipy’s mask module.</p>
 <div class="cell docutils container">
@@ -921,6 +943,11 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.segment.mask</span> <span class="kn">import</span> <span class="n">median_otsu</span>
 <span class="n">maskdata</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">median_otsu</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">vol_idx</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">median_radius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">numpass</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">autocrop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dilate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;data shape after masking (</span><span class="si">%d</span><span class="s1">, </span><span class="si">%d</span><span class="s1">, </span><span class="si">%d</span><span class="s1">, </span><span class="si">%d</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">maskdata</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data shape after masking (71, 88, 62, 160)
 </pre></div>
 </div>
 </div>
@@ -966,6 +993,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7f0eb46c1890&gt;
+</pre></div>
+</div>
+<img alt="../_images/diffusion_imaging_25_1.png" src="../_images/diffusion_imaging_25_1.png" />
+<img alt="../_images/diffusion_imaging_25_2.png" src="../_images/diffusion_imaging_25_2.png" />
+</div>
 </div>
 <p>We can also compute the colored FA or RGB-map (<a class="reference external" href="https://mscl.cit.nih.gov/mscl_publications/pierpaoli_99.pdf">Pajevic et al., 1999</a>). First, we make sure that the FA is scaled between 0 and 1, we compute the RGB map and save it.</p>
 <div class="cell docutils container">
@@ -985,92 +1019,10 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/diffusion_imaging_28_0.png" src="../_images/diffusion_imaging_28_0.png" />
 </div>
 </div>
-<div class="section" id="tensor-visualization">
-<h2>Tensor visualization<a class="headerlink" href="#tensor-visualization" title="Permalink to this headline">¶</a></h2>
-<p>We’ve estimated the tensors throughout the brain. Now, let’s try to visualize the tensor ellipsoids. For the visualization we need to load the sphere objects, define a canvas to plot the image (here a rendered window) and precut data to a small rectangular area in an axial slice of the splenium of the corpus callosum (CC).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.data</span> <span class="kn">import</span> <span class="n">get_sphere</span>
-<span class="n">sphere</span> <span class="o">=</span> <span class="n">get_sphere</span><span class="p">(</span><span class="s1">&#39;symmetric724&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evals</span> <span class="o">=</span> <span class="n">tenfit</span><span class="o">.</span><span class="n">evals</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">:</span><span class="mi">74</span><span class="p">,</span> <span class="mi">28</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span>
-<span class="n">evecs</span> <span class="o">=</span> <span class="n">tenfit</span><span class="o">.</span><span class="n">evecs</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">:</span><span class="mi">74</span><span class="p">,</span> <span class="mi">28</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can color the ellipsoids using the <code class="docutils literal notranslate"><span class="pre">color_fa</span></code> values that we calculated above. In this example we additionally normalize the values to increase the contrast.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfa</span> <span class="o">=</span> <span class="n">RGB</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">:</span><span class="mi">74</span><span class="p">,</span> <span class="mi">28</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span>
-<span class="n">cfa</span> <span class="o">/=</span> <span class="n">cfa</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.5</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">actor</span>
-<span class="n">ren</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
-<span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">actor</span><span class="o">.</span><span class="n">tensor_slicer</span><span class="p">(</span><span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span><span class="p">,</span> <span class="n">scalar_colors</span><span class="o">=</span><span class="n">cfa</span><span class="p">,</span> <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">n_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/tensor_ellipsoids.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/tensor_ellipsoids.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Finally, we can also visualize the tensor Orientation Distribution Functions for the same area as we did with the ellipsoids.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_odfs</span> <span class="o">=</span> <span class="n">tenmodel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">55</span><span class="p">:</span><span class="mi">85</span><span class="p">,</span> <span class="mi">38</span><span class="p">:</span><span class="mi">39</span><span class="p">])</span><span class="o">.</span><span class="n">odf</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
-<span class="n">odf_actor</span> <span class="o">=</span> <span class="n">actor</span><span class="o">.</span><span class="n">odf_slicer</span><span class="p">(</span><span class="n">tensor_odfs</span><span class="p">,</span> <span class="n">sphere</span><span class="o">=</span><span class="n">sphere</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">odf_actor</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">n_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/tensor_odfs.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/tensor_odfs.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note that while the tensor model is an accurate and reliable model of the diffusion signal in the white matter, it has the drawback that it only has one principal diffusion direction. Therefore, in locations in the brain that contain multiple fiber populations crossing each other, the tensor model may indicate that the principal diffusion direction is intermediate to these directions. Therefore, using the principal diffusion direction for tracking in these locations may be misleading and may lead to errors in defining the tracks. Fortunately, other reconstruction methods can be used to represent the diffusion and fiber orientations in those locations.</p>
 </div>
 </div>
 <div class="section" id="other-reconstruction-approaches">
@@ -1087,11 +1039,29 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:2: DeprecationWarning: dipy.reconst.csdeconv.auto_response is deprecated, Please use dipy.reconst.csdeconv.auto_response_ssst instead
+
+* deprecated from version: 1.2
+* Will raise &lt;class &#39;dipy.utils.deprecator.ExpiredDeprecationError&#39;&gt; as of version: 1.4
+  
+/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/dipy/reconst/csdeconv.py:80: UserWarning: Parameter `roi_radius` is now called `roi_radii` and can be an
+    array-like (3,). Parameters `fa_callable` and `return_number_of_voxels`
+    are not used anymore.
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
+</div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">response</span></code> return value contains two entries. The first is an array with the eigenvalues of the response function and the second is the average S0 for this response. It is a very good practice to always validate the result of <code class="docutils literal notranslate"><span class="pre">auto_response</span></code>. For, this purpose we can print it and have a look at its values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0.00139919, 0.0003007 , 0.0003007 ]), 416.7372408293461)
 </pre></div>
 </div>
 </div>
@@ -1144,21 +1114,9 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_odfs.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_odfs.png&#39;</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/fury/actor.py:956: RuntimeWarning: invalid value encountered in true_divide
+  m /= np.abs(m).max()
 </pre></div>
 </div>
 </div>
@@ -1186,47 +1144,11 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_peaks.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_peaks.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>Finally, we can plot both the peaks and the ODFs, overlayed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fodf_spheres</span><span class="o">.</span><span class="n">GetProperty</span><span class="p">()</span><span class="o">.</span><span class="n">SetOpacity</span><span class="p">(</span><span class="mf">0.4</span><span class="p">)</span>
 <span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fodf_spheres</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_both.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/sf_both.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1253,6 +1175,19 @@
 <span class="n">response</span><span class="p">,</span> <span class="n">ratio</span> <span class="o">=</span> <span class="n">auto_response</span><span class="p">(</span><span class="n">gtab</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">roi_radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fa_thr</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
 <span class="n">csd_model</span> <span class="o">=</span> <span class="n">ConstrainedSphericalDeconvModel</span><span class="p">(</span><span class="n">gtab</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/ipykernel_launcher.py:3: DeprecationWarning: dipy.reconst.csdeconv.auto_response is deprecated, Please use dipy.reconst.csdeconv.auto_response_ssst instead
+
+* deprecated from version: 1.2
+* Will raise &lt;class &#39;dipy.utils.deprecator.ExpiredDeprecationError&#39;&gt; as of version: 1.4
+  This is separate from the ipykernel package so we can avoid doing imports until
+/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/dipy/reconst/csdeconv.py:80: UserWarning: Parameter `roi_radius` is now called `roi_radii` and can be an
+    array-like (3,). Parameters `fa_callable` and `return_number_of_voxels`
+    are not used anymore.
+  warnings.warn(msg, UserWarning)
 </pre></div>
 </div>
 </div>
@@ -1288,6 +1223,12 @@
                              <span class="n">relative_peak_threshold</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span>
                              <span class="n">min_separation_angle</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
                              <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.3 s, sys: 5.79 s, total: 11.1 s
+Wall time: 9min 32s
 </pre></div>
 </div>
 </div>
@@ -1336,24 +1277,6 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/csd_direction_field.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/csd_direction_field.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="streamline-generation">
 <h2>Streamline generation<a class="headerlink" href="#streamline-generation" title="Permalink to this headline">¶</a></h2>
@@ -1383,6 +1306,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26066
+</pre></div>
+</div>
+</div>
 </div>
 <p>To increase the number of streamlines you can change the parameter <code class="docutils literal notranslate"><span class="pre">seeds_count</span></code> in <code class="docutils literal notranslate"><span class="pre">random_seeds_from_mask</span></code>.</p>
 </div>
@@ -1394,24 +1322,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">actor</span>
 <span class="n">ren</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
 <span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">actor</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">streamlines</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/det_streamlines.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/det_streamlines.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1429,6 +1339,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7f0e79223dd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/diffusion_imaging_68_1.png" src="../_images/diffusion_imaging_68_1.png" />
+</div>
 </div>
 <p>In this label image file, label 2 represents the corpus callosum. So let’s create a mask from this:</p>
 <div class="cell docutils container">
@@ -1438,6 +1354,12 @@
                    <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Corpus callosum&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7f0e793f8d90&gt;
+</pre></div>
+</div>
+<img alt="../_images/diffusion_imaging_70_1.png" src="../_images/diffusion_imaging_70_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1476,24 +1398,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dipy.viz</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">actor</span>
 <span class="n">ren</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
 <span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">actor</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">streamlines</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/deterministic.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/deterministic.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1579,31 +1483,9 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/corpuscallosum_axial.png&#39;</span><span class="p">)</span>
-    <span class="n">ren</span><span class="o">.</span><span class="n">set_camera</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">focal_point</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">view_up</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/corpuscallosum_sagittal.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/corpuscallosum_axial.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/corpuscallosum_sagittal.png&#39;</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10.9 s, sys: 604 ms, total: 11.6 s
+Wall time: 11 s
 </pre></div>
 </div>
 </div>
@@ -1633,6 +1515,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;connectivity.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/diffusion_imaging_89_0.png" src="../_images/diffusion_imaging_89_0.png" />
 </div>
 </div>
 <p>In our example track, there are more streamlines connecting regions 11 and 54 than any other pair of regions. These labels represent the left and right superior frontal gyrus respectively. These two regions are large, close together, have lots of corpus callosum fibers and are easy to track so this result should not be a surprise to anyone.</p>
@@ -1666,6 +1551,12 @@
                    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Density Map of Region 11 &amp; 54&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7f0eb7ce0150&gt;
+</pre></div>
+</div>
+<img alt="../_images/diffusion_imaging_94_1.png" src="../_images/diffusion_imaging_94_1.png" />
 </div>
 </div>
 </div>
@@ -1735,18 +1626,6 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/before_registration.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/before_registration.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>And now after bundle registration:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1762,18 +1641,6 @@
         <span class="n">lines_actor</span><span class="o">.</span><span class="n">RotateX</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">)</span>
         <span class="n">lines_actor</span><span class="o">.</span><span class="n">RotateZ</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
         <span class="n">ren</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lines_actor</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;create_plot&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ren</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
-                  <span class="n">out_path</span><span class="o">=</span><span class="s1">&#39;data/diffusion/after_registration.png&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">view_mode</span> <span class="o">==</span> <span class="s1">&#39;interactive&#39;</span><span class="p">:</span>
-    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;data/diffusion/after_registration.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1810,6 +1677,24 @@
 
 <div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="Predicting_age_with_machine_learning.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Machine learning to predict age from rs-fmri</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../break.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Yoga and/or dance break</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
 </div>
         

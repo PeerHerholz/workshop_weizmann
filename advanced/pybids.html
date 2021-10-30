@@ -496,6 +496,11 @@
      Machine learning to predict age from rs-fmri
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="diffusion_imaging.html">
+     Structural connectivity and diffusion imaging
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -751,13 +756,18 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we&#39;re using an example BIDS dataset that&#39;s bundled with the pybids tests</span>
-<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;/data/ds000114/&#39;</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;/home/neuro/workshop/data/ds000114/&#39;</span>
 
 <span class="c1"># Initialize the layout</span>
 <span class="n">layout</span> <span class="o">=</span> <span class="n">BIDSLayout</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
 
 <span class="c1"># Print some basic information about the layout</span>
 <span class="n">layout</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BIDS Layout: ...e/neuro/workshop/data/ds000114 | Subjects: 10 | Sessions: 20 | Runs: 0
 </pre></div>
 </div>
 </div>
@@ -774,11 +784,44 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are 173 files in the layout.
+
+The first 10 files are:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSFile filename=&#39;/home/neuro/workshop/data/ds000114/CHANGES&#39;&gt;,
+ &lt;BIDSJSONFile filename=&#39;/home/neuro/workshop/data/ds000114/dataset_description.json&#39;&gt;,
+ &lt;BIDSFile filename=&#39;/home/neuro/workshop/data/ds000114/dwi.bval&#39;&gt;,
+ &lt;BIDSFile filename=&#39;/home/neuro/workshop/data/ds000114/dwi.bvec&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/anat/sub-01_ses-retest_T1w.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/dwi/sub-01_ses-retest_dwi.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-fingerfootlips_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-linebisection_bold.nii.gz&#39;&gt;,
+ &lt;BIDSDataFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-linebisection_events.tsv&#39;&gt;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>The returned object is a Python list. By default, each element in the list is a <code class="docutils literal notranslate"><span class="pre">BIDSFile</span></code> object. We discuss the <code class="docutils literal notranslate"><span class="pre">BIDSFile</span></code> object in much more detail below. For now, let’s simplify things and work with just filenames:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/neuro/workshop/data/ds000114/CHANGES&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/dataset_description.json&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/dwi.bval&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/dwi.bvec&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/anat/sub-01_ses-retest_T1w.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/dwi/sub-01_ses-retest_dwi.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-fingerfootlips_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-linebisection_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-linebisection_events.tsv&#39;]
 </pre></div>
 </div>
 </div>
@@ -789,6 +832,11 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;01&#39;, &#39;02&#39;, &#39;03&#39;, &#39;04&#39;, &#39;05&#39;, &#39;06&#39;, &#39;07&#39;, &#39;08&#39;, &#39;09&#39;, &#39;10&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -796,10 +844,46 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;covertverbgeneration&#39;,
+ &#39;fingerfootlips&#39;,
+ &#39;linebisection&#39;,
+ &#39;overtverbgeneration&#39;,
+ &#39;overtwordrepetition&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span><span class="o">.</span><span class="n">get_entities</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;subject&#39;: &lt;bids.layout.models.Entity at 0x7f77cc836950&gt;,
+ &#39;session&#39;: &lt;bids.layout.models.Entity at 0x7f77cc836710&gt;,
+ &#39;task&#39;: &lt;bids.layout.models.Entity at 0x7f77cc8a1910&gt;,
+ &#39;acquisition&#39;: &lt;bids.layout.models.Entity at 0x7f77cc74fad0&gt;,
+ &#39;ceagent&#39;: &lt;bids.layout.models.Entity at 0x7f77cc74fdd0&gt;,
+ &#39;reconstruction&#39;: &lt;bids.layout.models.Entity at 0x7f77cc76bbd0&gt;,
+ &#39;direction&#39;: &lt;bids.layout.models.Entity at 0x7f77cc76b1d0&gt;,
+ &#39;run&#39;: &lt;bids.layout.models.Entity at 0x7f77cc76bb90&gt;,
+ &#39;proc&#39;: &lt;bids.layout.models.Entity at 0x7f77cc76b190&gt;,
+ &#39;modality&#39;: &lt;bids.layout.models.Entity at 0x7f77cc76be50&gt;,
+ &#39;echo&#39;: &lt;bids.layout.models.Entity at 0x7f77cc50e9d0&gt;,
+ &#39;recording&#39;: &lt;bids.layout.models.Entity at 0x7f77cc50ef90&gt;,
+ &#39;space&#39;: &lt;bids.layout.models.Entity at 0x7f77cc50ecd0&gt;,
+ &#39;suffix&#39;: &lt;bids.layout.models.Entity at 0x7f77cc836c10&gt;,
+ &#39;scans&#39;: &lt;bids.layout.models.Entity at 0x7f77cc50ec50&gt;,
+ &#39;fmap&#39;: &lt;bids.layout.models.Entity at 0x7f77cc50e8d0&gt;,
+ &#39;datatype&#39;: &lt;bids.layout.models.Entity at 0x7f77cc836310&gt;,
+ &#39;extension&#39;: &lt;bids.layout.models.Entity at 0x7f77cc836550&gt;,
+ &#39;EchoTime&#39;: &lt;bids.layout.models.Entity at 0x7f77cc8a1410&gt;,
+ &#39;FlipAngle&#39;: &lt;bids.layout.models.Entity at 0x7f77cc8a1650&gt;,
+ &#39;RepetitionTime&#39;: &lt;bids.layout.models.Entity at 0x7f77cc8a1950&gt;,
+ &#39;SliceTiming&#39;: &lt;bids.layout.models.Entity at 0x7f77cc8a1c10&gt;,
+ &#39;TaskName&#39;: &lt;bids.layout.models.Entity at 0x7f77cc8a1e50&gt;}
 </pre></div>
 </div>
 </div>
@@ -816,10 +900,32 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-fingerfootlips_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-linebisection_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-overtverbgeneration_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-overtwordrepetition_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-covertverbgeneration_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-linebisection_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-overtverbgeneration_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-overtwordrepetition_bold.nii.gz&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subject</span><span class="o">=</span><span class="s1">&#39;02&#39;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="s2">&quot;linebisection&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-linebisection_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-linebisection_events.tsv&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-linebisection_bold.nii.gz&#39;,
+ &#39;/home/neuro/workshop/data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-linebisection_events.tsv&#39;]
 </pre></div>
 </div>
 </div>
@@ -846,6 +952,42 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/anat/sub-01_ses-retest_T1w.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/dwi/sub-01_ses-retest_dwi.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-fingerfootlips_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-linebisection_bold.nii.gz&#39;&gt;,
+ &lt;BIDSDataFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-linebisection_events.tsv&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-overtverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-overtwordrepetition_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/dwi/sub-01_ses-test_dwi.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-linebisection_bold.nii.gz&#39;&gt;,
+ &lt;BIDSDataFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-linebisection_events.tsv&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-overtverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-overtwordrepetition_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-retest/anat/sub-02_ses-retest_T1w.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-retest/dwi/sub-02_ses-retest_dwi.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-fingerfootlips_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-linebisection_bold.nii.gz&#39;&gt;,
+ &lt;BIDSDataFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-linebisection_events.tsv&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-overtverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-overtwordrepetition_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-test/anat/sub-02_ses-test_T1w.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-test/dwi/sub-02_ses-test_dwi.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-linebisection_bold.nii.gz&#39;&gt;,
+ &lt;BIDSDataFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-linebisection_events.tsv&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-overtverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-overtwordrepetition_bold.nii.gz&#39;&gt;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Notice that we passed a list in for <code class="docutils literal notranslate"><span class="pre">subject</span></code> rather than just a string. This principle applies to all filters: you can always pass in a list instead of a single value, and this will be interpreted as a logical disjunction (i.e., a file must match any one of the provided values).</p>
 </div>
@@ -859,11 +1001,21 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;01&#39;, &#39;02&#39;, &#39;03&#39;, &#39;04&#39;, &#39;05&#39;, &#39;06&#39;, &#39;07&#39;, &#39;08&#39;, &#39;09&#39;, &#39;10&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>If our <code class="docutils literal notranslate"><span class="pre">target</span></code> is a BIDS entity that corresponds to a particular directory in the BIDS spec (e.g., <code class="docutils literal notranslate"><span class="pre">subject</span></code> or <code class="docutils literal notranslate"><span class="pre">session</span></code>) we can also use <code class="docutils literal notranslate"><span class="pre">return_type='dir'</span></code> to get all matching subdirectories:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;dir&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;subject&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
 </pre></div>
 </div>
 </div>
@@ -891,6 +1043,11 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BIDSImageFile filename=&#39;/home/neuro/workshop/data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Here are some of the attributes and methods available to us in a <code class="docutils literal notranslate"><span class="pre">BIDSFile</span></code> (note that some of these are only available for certain subclasses of <code class="docutils literal notranslate"><span class="pre">BIDSFile</span></code>; e.g., you can’t call <code class="docutils literal notranslate"><span class="pre">get_image()</span></code> on a <code class="docutils literal notranslate"><span class="pre">BIDSFile</span></code> that doesn’t correspond to an image file!):</p>
 <ul class="simple">
@@ -911,11 +1068,59 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;datatype&#39;: &#39;func&#39;,
+ &#39;extension&#39;: &#39;nii.gz&#39;,
+ &#39;session&#39;: &#39;test&#39;,
+ &#39;subject&#39;: &#39;01&#39;,
+ &#39;suffix&#39;: &#39;bold&#39;,
+ &#39;task&#39;: &#39;fingerfootlips&#39;}
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print all the metadata associated with this file</span>
 <span class="n">bf</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;EchoTime&#39;: 0.05,
+ &#39;FlipAngle&#39;: 90,
+ &#39;RepetitionTime&#39;: 2.5,
+ &#39;SliceTiming&#39;: [0.0,
+  1.2499999999999998,
+  0.08333333333333333,
+  1.333333333333333,
+  0.16666666666666666,
+  1.4166666666666663,
+  0.25,
+  1.4999999999999996,
+  0.3333333333333333,
+  1.5833333333333328,
+  0.41666666666666663,
+  1.666666666666666,
+  0.5,
+  1.7499999999999993,
+  0.5833333333333333,
+  1.8333333333333326,
+  0.6666666666666666,
+  1.9166666666666659,
+  0.75,
+  1.9999999999999991,
+  0.8333333333333333,
+  2.083333333333332,
+  0.9166666666666666,
+  2.1666666666666656,
+  1.0,
+  2.249999999999999,
+  1.0833333333333333,
+  2.333333333333332,
+  1.1666666666666665,
+  2.416666666666665],
+ &#39;TaskName&#39;: &#39;finger_foot_lips&#39;}
 </pre></div>
 </div>
 </div>
@@ -927,11 +1132,60 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;EchoTime&#39;: 0.05,
+ &#39;FlipAngle&#39;: 90,
+ &#39;RepetitionTime&#39;: 2.5,
+ &#39;SliceTiming&#39;: [0.0,
+  1.2499999999999998,
+  0.08333333333333333,
+  1.333333333333333,
+  0.16666666666666666,
+  1.4166666666666663,
+  0.25,
+  1.4999999999999996,
+  0.3333333333333333,
+  1.5833333333333328,
+  0.41666666666666663,
+  1.666666666666666,
+  0.5,
+  1.7499999999999993,
+  0.5833333333333333,
+  1.8333333333333326,
+  0.6666666666666666,
+  1.9166666666666659,
+  0.75,
+  1.9999999999999991,
+  0.8333333333333333,
+  2.083333333333332,
+  0.9166666666666666,
+  2.1666666666666656,
+  1.0,
+  2.249999999999999,
+  1.0833333333333333,
+  2.333333333333332,
+  1.1666666666666665,
+  2.416666666666665],
+ &#39;TaskName&#39;: &#39;finger_foot_lips&#39;,
+ &#39;datatype&#39;: &#39;func&#39;,
+ &#39;extension&#39;: &#39;nii.gz&#39;,
+ &#39;session&#39;: &#39;test&#39;,
+ &#39;subject&#39;: &#39;01&#39;,
+ &#39;suffix&#39;: &#39;bold&#39;,
+ &#39;task&#39;: &#39;fingerfootlips&#39;}
+</pre></div>
+</div>
+</div>
 </div>
 <p>Here are all the files associated with our target file in some way. Notice how we get back both the JSON sidecar for our target file, and the BOLD run that our target file contains physiological recordings for.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">get_associations</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSJSONFile filename=&#39;/home/neuro/workshop/data/ds000114/task-fingerfootlips_bold.json&#39;&gt;]
 </pre></div>
 </div>
 </div>
@@ -952,6 +1206,64 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>onset</th>
+      <th>respiratory</th>
+      <th>cardiac</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>-0.757342</td>
+      <td>0.048933</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.1</td>
+      <td>-0.796851</td>
+      <td>0.355185</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.2</td>
+      <td>-0.833215</td>
+      <td>0.626669</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.3</td>
+      <td>-0.866291</td>
+      <td>0.836810</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.4</td>
+      <td>-0.895948</td>
+      <td>0.965038</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>While it would have been easy enough to read the contents of the file ourselves with pandas’ <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code> method, notice that in the above example, <code class="docutils literal notranslate"><span class="pre">get_df()</span></code> saved us the trouble of having to read the physiological recording file’s metadata, pull out the column names and sampling rate, and add timing information.</p>
 <p>Mind you, if we don’t <em>want</em> the timing information, we can ignore it:</p>
@@ -961,6 +1273,58 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>respiratory</th>
+      <th>cardiac</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.757342</td>
+      <td>0.048933</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.796851</td>
+      <td>0.355185</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.833215</td>
+      <td>0.626669</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.866291</td>
+      <td>0.836810</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.895948</td>
+      <td>0.965038</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="other-utilities">
@@ -972,6 +1336,11 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/a/fake/path/to/a/BIDS/file/sub-01_run-1_T2w.nii.gz&quot;</span>
 <span class="n">layout</span><span class="o">.</span><span class="n">parse_file_entities</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;subject&#39;: &#39;01&#39;, &#39;run&#39;: 1, &#39;suffix&#39;: &#39;T2w&#39;, &#39;extension&#39;: &#39;nii.gz&#39;}
 </pre></div>
 </div>
 </div>
@@ -990,6 +1359,11 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 <span class="p">}</span>
 
 <span class="n">layout</span><span class="o">.</span><span class="n">build_path</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;sub-01/func/sub-01_task-nback_run-2_bold.nii.gz&#39;
 </pre></div>
 </div>
 </div>
@@ -1013,6 +1387,11 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;sub-01_task-n-back_run-2_z.nii.gz&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="exporting-a-bidslayout-to-a-pandas-dataframe">
@@ -1026,6 +1405,88 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>entity</th>
+      <th>path</th>
+      <th>datatype</th>
+      <th>extension</th>
+      <th>session</th>
+      <th>subject</th>
+      <th>suffix</th>
+      <th>task</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>/home/neuro/workshop/data/ds000114/dataset_des...</td>
+      <td>NaN</td>
+      <td>json</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>description</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>/home/neuro/workshop/data/ds000114/dwi.bval</td>
+      <td>NaN</td>
+      <td>bval</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>dwi</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>/home/neuro/workshop/data/ds000114/dwi.bvec</td>
+      <td>NaN</td>
+      <td>bvec</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>dwi</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>/home/neuro/workshop/data/ds000114/sub-01/ses-...</td>
+      <td>anat</td>
+      <td>nii.gz</td>
+      <td>retest</td>
+      <td>01</td>
+      <td>T1w</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>/home/neuro/workshop/data/ds000114/sub-01/ses-...</td>
+      <td>dwi</td>
+      <td>nii.gz</td>
+      <td>retest</td>
+      <td>01</td>
+      <td>dwi</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>We can also include metadata in the result if we like (which may blow up our <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> if we have a large dataset). Note that in this case, most of our cells will have missing values.</p>
 <div class="cell docutils container">
@@ -1034,6 +1495,118 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>entity</th>
+      <th>path</th>
+      <th>EchoTime</th>
+      <th>FlipAngle</th>
+      <th>RepetitionTime</th>
+      <th>SliceTiming</th>
+      <th>TaskName</th>
+      <th>datatype</th>
+      <th>extension</th>
+      <th>session</th>
+      <th>subject</th>
+      <th>suffix</th>
+      <th>task</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>/home/neuro/workshop/data/ds000114/dataset_des...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>json</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>description</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>/home/neuro/workshop/data/ds000114/dwi.bval</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>bval</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>dwi</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>/home/neuro/workshop/data/ds000114/dwi.bvec</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>bvec</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>dwi</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>/home/neuro/workshop/data/ds000114/sub-01/ses-...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>anat</td>
+      <td>nii.gz</td>
+      <td>retest</td>
+      <td>01</td>
+      <td>T1w</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>/home/neuro/workshop/data/ds000114/sub-01/ses-...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>dwi</td>
+      <td>nii.gz</td>
+      <td>retest</td>
+      <td>01</td>
+      <td>dwi</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 </div>
@@ -1050,11 +1623,21 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can decide if a filepath represents a file part of the specification</span>
 <span class="n">validator</span><span class="o">.</span><span class="n">is_file</span><span class="p">(</span><span class="s1">&#39;/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -1066,11 +1649,21 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># or subject (or session) level</span>
 <span class="n">validator</span><span class="o">.</span><span class="n">is_subject_level</span><span class="p">(</span><span class="s1">&#39;/dataset_description.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
 </div>
 </div>
@@ -1081,11 +1674,21 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can decide if a filepath represents phenotypic data</span>
 <span class="n">validator</span><span class="o">.</span><span class="n">is_phenotypic</span><span class="p">(</span><span class="s1">&#39;/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
 </div>
 </div>
@@ -1112,12 +1715,75 @@ In this tutorial we will use a <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-01/ses-01/anat/sub-01_ses-01_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-01/ses-01/anat/sub-01_ses-01_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-01/ses-02/anat/sub-01_ses-02_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-01/ses-02/anat/sub-01_ses-02_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-01/ses-01/anat/sub-01_ses-01_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-01/ses-01/anat/sub-01_ses-01_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-01/ses-02/anat/sub-01_ses-02_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-01/ses-02/anat/sub-01_ses-02_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-02/ses-01/anat/sub-02_ses-01_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-02/ses-01/anat/sub-02_ses-01_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-02/ses-02/anat/sub-02_ses-02_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-02/ses-02/anat/sub-02_ses-02_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-02/ses-01/anat/sub-02_ses-01_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-02/ses-01/anat/sub-02_ses-01_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-02/ses-02/anat/sub-02_ses-02_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-02/ses-02/anat/sub-02_ses-02_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-03/ses-01/anat/sub-03_ses-01_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-03/ses-01/anat/sub-03_ses-01_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-03/ses-02/anat/sub-03_ses-02_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-03/ses-02/anat/sub-03_ses-02_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-03/ses-01/anat/sub-03_ses-01_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-03/ses-01/anat/sub-03_ses-01_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-03/ses-02/anat/sub-03_ses-02_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-03/ses-02/anat/sub-03_ses-02_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-04/ses-01/anat/sub-04_ses-01_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-04/ses-01/anat/sub-04_ses-01_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-04/ses-02/anat/sub-04_ses-02_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-04/ses-02/anat/sub-04_ses-02_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-04/ses-01/anat/sub-04_ses-01_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-04/ses-01/anat/sub-04_ses-01_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-04/ses-02/anat/sub-04_ses-02_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-04/ses-02/anat/sub-04_ses-02_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-05/ses-01/anat/sub-05_ses-01_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-05/ses-01/anat/sub-05_ses-01_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-05/ses-02/anat/sub-05_ses-02_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-05/ses-02/anat/sub-05_ses-02_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-05/ses-01/anat/sub-05_ses-01_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-05/ses-01/anat/sub-05_ses-01_T1w.nii.gz
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-05/ses-02/anat/sub-05_ses-02_T1w.nii
+WARNING:pybids.reports.parsing:No json file found for /opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/bids/tests/data/synthetic/sub-05/ses-02/anat/sub-05_ses-02_T1w.nii.gz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of patterns detected: 1
+Remember to double-check everything and to replace &lt;deg&gt; with a degree symbol.
+</pre></div>
+</div>
+</div>
 </div>
 <p>As we can see, one pattern was detected and we can evaluate the actual corresponding information, that is our <code class="docutils literal notranslate"><span class="pre">report</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_report</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">main_report</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For session 01:
+	MR data were acquired using a UNKNOWN-Tesla MANUFACTURER MODEL MRI scanner.
+	Two runs of N-Back UNKNOWN-echo fMRI data were collected (64 slices; repetition time, TR=2500ms; echo time, TE=UNKNOWNms; flip angle, FA=UNKNOWN&lt;deg&gt;; field of view, FOV=128x128mm; matrix size=64x64; voxel size=2x2x2mm). Each run was 2:40 minutes in length, during which 64 functional volumes were acquired. 
+	Zero runs of Rest UNKNOWN-echo fMRI data were collected (64 slices; repetition time, TR=2500ms; echo time, TE=UNKNOWNms; flip angle, FA=UNKNOWN&lt;deg&gt;; field of view, FOV=128x128mm; matrix size=64x64; voxel size=2x2x2mm). Each run was 2:40 minutes in length, during which 64 functional volumes were acquired. 
+
+For session 02:
+	MR data were acquired using a UNKNOWN-Tesla MANUFACTURER MODEL MRI scanner.
+	Two runs of N-Back UNKNOWN-echo fMRI data were collected (64 slices; repetition time, TR=2500ms; echo time, TE=UNKNOWNms; flip angle, FA=UNKNOWN&lt;deg&gt;; field of view, FOV=128x128mm; matrix size=64x64; voxel size=2x2x2mm). Each run was 2:40 minutes in length, during which 64 functional volumes were acquired. 
+	Zero runs of Rest UNKNOWN-echo fMRI data were collected (64 slices; repetition time, TR=2500ms; echo time, TE=UNKNOWNms; flip angle, FA=UNKNOWN&lt;deg&gt;; field of view, FOV=128x128mm; matrix size=64x64; voxel size=2x2x2mm). Each run was 2:40 minutes in length, during which 64 functional volumes were acquired. 
+
+Dicoms were converted to NIfTI-1 format. This section was (in part) generated automatically using pybids (0.10.2). 
 </pre></div>
 </div>
 </div>

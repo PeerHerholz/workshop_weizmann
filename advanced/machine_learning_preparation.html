@@ -496,6 +496,11 @@
      Machine learning to predict age from rs-fmri
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="diffusion_imaging.html">
+     Structural connectivity and diffusion imaging
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -678,7 +683,7 @@
 <h2>What do we want to do?<a class="headerlink" href="#what-do-we-want-to-do" title="Permalink to this headline">¶</a></h2>
 <p>For the machine learning tutorial, we will use the dataset from <a class="reference external" href="https://link.springer.com/article/10.1007%2Fs12021-013-9187-0">Zang et al.</a>. It contains 48 subjects, where each subject did two resting-state fMRI recordings. Once with eyes <strong>open</strong> and once with eyes <strong>closed</strong>. The data was already pre-processed and is already ready for the machine learning notebooks. <em><strong>Note</strong></em>: The data diverges from the original data in the way, that we only consider the first 100 volumes for this tutorial. The original dataset had 240 volumes per run.</p>
 <p>What we would like to do is to see if we can predict if a person had their eyes open or not, solely based on the fMRI signal.</p>
-<img src="./data/resting_state_eyes.gif" style="width:500px;">
+<img src="data/resting_state_eyes.gif" style="width:500px;">
 <p>With such an obvious signal difference we should be able to classify the two categories <code class="docutils literal notranslate"><span class="pre">'closed'</span></code> and <code class="docutils literal notranslate"><span class="pre">'open'</span></code> if we leave the signal around the eyes in the data. But before we can do any machine learning we need to prepare the data accordingly.</p>
 </div>
 <div class="section" id="why-do-we-need-to-prepare-the-data">
@@ -695,12 +700,18 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img_func</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/sub-01_rest-EC.nii.gz&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img_func</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/home/neuro/workshop_weizmann/workshop/advanced/data/sub-01_rest-EC.nii.gz&#39;</span><span class="p">)</span>
 <span class="n">plot_anat</span><span class="p">(</span><span class="n">img_func</span><span class="o">.</span><span class="n">slicer</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
           <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1250</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Normalized and Cleaned Functional Image; Vox.Res.: 4mm^3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7ff9498a2490&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_preparation_3_1.png" src="../_images/machine_learning_preparation_3_1.png" />
 </div>
 </div>
 <p>This all looks fine. Why do we need to prepare something? Well, let’s take a look at two things.</p>
@@ -712,6 +723,12 @@
 <span class="n">plot</span><span class="p">(</span><span class="n">img_func</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[</span><span class="mi">19</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="p">:])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ff946e1a8d0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_preparation_5_1.png" src="../_images/machine_learning_preparation_5_1.png" />
 </div>
 </div>
 <p>As we can see, the data still has a slight linear trend and is centered around a value of 800 (for this particular voxel). To be able to do some machine learning on this data we therefore need to remove the linear trend and ideally zscore the data.</p>
@@ -732,6 +749,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/scipy/stats/stats.py:2419: RuntimeWarning: invalid value encountered in true_divide
+  return (a - mns) / sstd
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_preparation_7_1.png" src="../_images/machine_learning_preparation_7_1.png" />
+</div>
 </div>
 <p>Perfect, that looks much better!</p>
 </div>
@@ -743,10 +767,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(40, 52, 38, 100)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">img_func</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>79040
 </pre></div>
 </div>
 </div>
@@ -770,6 +804,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7ff946d16e10&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_preparation_13_1.png" src="../_images/machine_learning_preparation_13_1.png" />
+</div>
 </div>
 <p>Great, now we just need to binarize this template to get a mask, dilate this mask a bit to be sure that we keep all relevant voxels and multiply it with the functional image. But before we can do any of this we also need to resample the ROI template to a voxel resolution for 4x4x4mm, as the functional images.</p>
 <div class="cell docutils container">
@@ -783,6 +823,12 @@
           <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Brain &amp; Eye MNI Template; Vox.Res.: 4mm^3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7ff946bc8a90&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_preparation_15_1.png" src="../_images/machine_learning_preparation_15_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -807,11 +853,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7ff946b1ad50&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_preparation_16_1.png" src="../_images/machine_learning_preparation_16_1.png" />
+</div>
 </div>
 <p>Cool. How many voxels do we have now?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">img_mask</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36575.0
 </pre></div>
 </div>
 </div>
@@ -834,6 +891,12 @@
           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Masked functional image; Vox.Res.: 4mm^3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7ff9469fbed0&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_preparation_20_1.png" src="../_images/machine_learning_preparation_20_1.png" />
 </div>
 </div>
 </div>
@@ -876,6 +939,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda-latest/envs/neuro/lib/python3.7/site-packages/scipy/stats/stats.py:2419: RuntimeWarning: invalid value encountered in true_divide
+  return (a - mns) / sstd
+</pre></div>
+</div>
+</div>
 </div>
 <p>And the result looks as follows:</p>
 <div class="cell docutils container">
@@ -885,6 +954,12 @@
           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Masked and standardized functional image; Vox.Res.: 4mm^3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7ff946079a50&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_preparation_25_1.png" src="../_images/machine_learning_preparation_25_1.png" />
 </div>
 </div>
 </div>
@@ -912,6 +987,12 @@
           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Standard Deviation for Segment 1&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7ff93d646990&gt;
+</pre></div>
+</div>
+<img alt="../_images/machine_learning_preparation_28_1.png" src="../_images/machine_learning_preparation_28_1.png" />
 </div>
 </div>
 <p>If we do this now for each of the eyes <strong>closed</strong> and <strong>open</strong> run, for each of the total 48 subjects in the dataset, we will get 4 segments x 2 eye_state x 48 subjects = 384 datapoints per voxel. The pre-processing of all 48 subjects would explode the scope of this workshop, we therefore already pre-processed all subjects and prepared the data for the machine-learning approach.</p>
