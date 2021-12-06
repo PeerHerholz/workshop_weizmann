@@ -74,4 +74,7 @@ might have (via [issues](https://github.com/PeerHerholz/workshop_weizmann) or [h
 ## Acknowledgements
 
 This workshop was organized by the [The Azrieli National Institute
-for Human Brain Imaging and Research](), specifically Dr. Tali Weiss.
+for Human Brain Imaging and Research](https://centers.weizmann.ac.il/AzrieliBrain/), specifically Dr. Tali Weiss.
+
+
+Peer Herholz' work on and ability to compile this workshop was enabled through training received at the [Montreal Neurological Institute](https://www.mcgill.ca/neuro/), specifically the [NeuroDataScience - ORIGAMI lab](https://neurodatascience.github.io/) supported by funding from the Canada First Research Excellence Fund, awarded to McGill University for the [Healthy Brains for Healthy Lives initiative](https://www.mcgill.ca/hbhl/), the [National Institutes of Health (NIH)](https://www.nih.gov/) [NIH-NIBIB P41 EB019936 (ReproNim)](https://www.repronim.org/), the [National Institute Of Mental Health](https://www.nimh.nih.gov/) of the NIH under Award  Number [R01MH096906 (Neurosynth)](https://www.neurosynth.org/), a [research scholar award from Brain Canada, in partnership with Health Canada, for the Canadian Open Neuroscience Platform initiative](https://conp.ca/), as well as an [Excellence Scholarship from Unifying Neuroscience and Artificial Intelligence - Québec](https://sites.google.com/view/unique-neuro-ai).
